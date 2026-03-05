@@ -54,6 +54,9 @@ public class DropRatePlugin extends Plugin
 	@Inject
 	private ChatMessageManager chatMessageManager;
 
+	@Inject
+	private Gson gson;
+
 	private Map<String, Map<String, String>> primaryDrops;
 	private Map<String, Map<String, String>> invertedDrops;
 
@@ -72,11 +75,13 @@ public class DropRatePlugin extends Plugin
 			throw new IllegalStateException("Missing resource: /droprates_clean.json");
 		}
 
-		Gson gson = new Gson();
-		primaryDrops = gson.fromJson(
-			new InputStreamReader(in, StandardCharsets.UTF_8),
-			new TypeToken<Map<String, Map<String, String>>>() {}.getType()
-		);
+		try (InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8))
+		{
+			primaryDrops = gson.fromJson(
+				reader,
+				new TypeToken<Map<String, Map<String, String>>>() {}.getType()
+			);
+		}
 		invertedDrops = invertDropMap(primaryDrops);
 
 		log.info("DropRate database loaded: {} primary entries", primaryDrops != null ? primaryDrops.size() : 0);
