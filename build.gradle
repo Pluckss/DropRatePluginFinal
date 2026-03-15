@@ -16,10 +16,15 @@ repositories {
 def runeLiteVersion = 'latest.release'
 def pluginMainClass = 'com.pluckss.droprate.DropRateDevLauncher'
 
+configurations {
+	// Keep RuneLite only on the local dev launcher classpath so Plugin Hub does not bundle it.
+	devRuntime
+}
+
 dependencies {
 	compileOnly group: 'net.runelite', name:'client', version: runeLiteVersion
-	runtimeOnly group: 'net.runelite', name:'client', version: runeLiteVersion
-	runtimeOnly group: 'net.runelite', name:'jshell', version: runeLiteVersion
+	devRuntime group: 'net.runelite', name:'client', version: runeLiteVersion
+	devRuntime group: 'net.runelite', name:'jshell', version: runeLiteVersion
 
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
@@ -33,8 +38,24 @@ tasks.withType(JavaCompile).configureEach {
 	options.release.set(11)
 }
 
+tasks.withType(AbstractCopyTask).configureEach {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Jar).configureEach {
+	exclude 'META-INF/INDEX.LIST'
+	exclude 'META-INF/LICENSE'
+	exclude 'META-INF/LICENSE.txt'
+	exclude 'META-INF/NOTICE'
+	exclude 'META-INF/NOTICE.txt'
+	exclude 'META-INF/*.SF'
+	exclude 'META-INF/*.DSA'
+	exclude 'META-INF/*.RSA'
+	exclude '**/module-info.class'
+}
+
 tasks.register('run', JavaExec) {
-	classpath = sourceSets.main.runtimeClasspath
+	classpath = sourceSets.main.runtimeClasspath + configurations.devRuntime
 	mainClass = pluginMainClass
 
 	jvmArgs "-ea"
@@ -42,24 +63,17 @@ tasks.register('run', JavaExec) {
 }
 
 tasks.register('shadowJar', Jar) {
-	dependsOn configurations.runtimeClasspath
+	dependsOn configurations.devRuntime
 	manifest {
 		attributes('Main-Class': pluginMainClass, 'Multi-Release': true)
 	}
 
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	from sourceSets.main.output
 	from {
-		configurations.runtimeClasspath.collect { file ->
+		configurations.devRuntime.collect { file ->
 			file.isDirectory() ? file : zipTree(file)
 		}
 	}
-
-	exclude 'META-INF/INDEX.LIST'
-	exclude 'META-INF/*.SF'
-	exclude 'META-INF/*.DSA'
-	exclude 'META-INF/*.RSA'
-	exclude '**/module-info.class'
 
 	group = BasePlugin.BUILD_GROUP
 	archiveClassifier.set('shadow')
