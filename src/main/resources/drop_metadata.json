@@ -1,0 +1,33 @@
+{
+  "npcContexts": {
+    "Hydra": [
+      {
+        "condition": "slayer_task",
+        "task": "Hydras",
+        "lookupNpc": "Colossal Hydra"
+      }
+    ]
+  },
+  "dropOverrides": {
+    "Hydra tail": {
+      "Hydra": {
+        "primaryLabel": "Off-task",
+        "alternates": [
+          {
+            "label": "On-task",
+            "rate": "1/1001"
+          }
+        ]
+      },
+      "Colossal Hydra": {
+        "primaryLabel": "On-task",
+        "alternates": [
+          {
+            "label": "Off-task",
+            "rate": "1/5001"
+          }
+        ]
+      }
+    }
+  }
+}

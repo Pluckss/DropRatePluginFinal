@@ -2,7 +2,7 @@ package com.pluckss.droprate;
 
 public enum DropRateDisplayMode
 {
-	ALL_MATCHES("Show all matched drops"),
+	ALL_MATCHES("All drops"),
 	CLEANER_FEED("Cleaner feed"),
 	RARE_DROPS_ONLY("Rare drops only");
 
