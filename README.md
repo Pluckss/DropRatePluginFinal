@@ -1,33 +1,31 @@
 # Drop Rate Plugin
-Drop Rate is a RuneLite plugin that shows item drop-rate information for monsters and bosses directly in-game, so you can quickly check loot odds while playing.
+Instantly see the exact drop rate of items when monsters or bosses drop them, without leaving the game.
 
 Created by **Pluckss**.
 
+## Example
+![Drop Rate example](assets/hero-example.png)
+
 ## Features
 - Shows a chat message when a dropped item has a known drop rate.
-- Supports common rate formats like `1/128` and multi-roll formats like `2 x 1/128`.
-- Color-codes drops by rarity:
-  - Green: up to `1/300`
-  - Orange: `1/301` to `1/999`
-  - Red: `1/1000+`
-- Looks up rates even when data is organized in either `NPC -> item` or `item -> NPC` direction.
-- Optional filters for always-drops, common/filler drops, and spammy multi-roll drops.
+- Supports standard rates like `1/128` and bundle rates like `6/378` or `12/378`.
+- Uses color-coded chat messages to quickly separate common, uncommon, and rare drops.
+- Colors and rarity checks are based on the effective chance of the drop, including bundle drops.
+- Works with drop data whether it is stored as `NPC -> item` or `item -> NPC`.
+- Includes cleaner feed options so players can reduce chat clutter.
 
-## Config Options
-- `Allow spam` (default: `false`)
-  - Shows multi-roll/common drops such as `2/x`, `5/x`, `16/x`.
-- `Only rare drops` (default: `false`)
-  - Only shows drops at/above your threshold.
-- `Rare drop threshold` (default: `500`)
-  - Denominator cutoff used when `Only rare drops` is enabled.
-- `Hide always drops` (default: `true`)
-  - Hides guaranteed drops like `1/1`.
-- `Hide useless drops` (default: `false`)
-  - Hides filler drops (bones/ashes + custom list).
-- `Useless items` (default: `Bones, Ashes, Zulrah's scales`)
-  - Comma-separated item names to hide when `Hide useless drops` is enabled.
+## Config
+- `What to show`
+  Choose between `Show all matched drops`, `Cleaner feed`, or `Rare drops only`.
+- `Show common bundle drops`
+  Shows multi-roll or bundled drops such as `4/115`, `6/378`, or `12/378`.
+- `Rare drop threshold`
+  Used only in `Rare drops only` mode. Example: `700` means show `1/700` and rarer.
+- `Extra clutter items`
+  Lets you hide custom filler items in `Cleaner feed` mode with a comma-separated list.
 
 ## Useful Notes
-- The plugin reads data from `droprates_clean.json` at startup.
-- If an item/NPC has no entry in the data, no drop-rate message is shown.
-- Messages appear in game chat as `Quantity x Item (rate)`.
+- The plugin reads its data from `src/main/resources/droprates_clean.json` at startup.
+- If an item and NPC combination is not in the data, no drop-rate message is shown.
+- Messages appear in chat as `Quantity x Item (rate)`.
+- Raids are not currently supported.
