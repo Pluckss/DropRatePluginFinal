@@ -13,14 +13,14 @@ public interface DropRateConfig extends Config
 {
 	@ConfigSection(
 		name = "Display",
-		description = "Core drop message settings",
+		description = "Control when and how drop rates are shown in chat",
 		position = 0
 	)
 	String dropFeedSection = "dropFeedSection";
 
 	@ConfigSection(
 		name = "Filtering",
-		description = "Hide filler drops and common spam",
+		description = "Reduce chat clutter from frequent low-value drops",
 		position = 1,
 		closedByDefault = true
 	)
@@ -28,24 +28,16 @@ public interface DropRateConfig extends Config
 
 	@ConfigSection(
 		name = "Appearance",
-		description = "How drop messages look in chat",
+		description = "Set drop message colors and rarity tiers",
 		position = 2,
 		closedByDefault = true
 	)
 	String colorsSection = "colorsSection";
 
-	@ConfigSection(
-		name = "Advanced",
-		description = "Extra details for edge cases and ambiguous drops",
-		position = 3,
-		closedByDefault = true
-	)
-	String advancedSection = "advancedSection";
-
 	@ConfigItem(
 		keyName = "displayMode",
 		name = "Drop visibility",
-		description = "Choose how much drop information the plugin sends to chat",
+		description = "Choose which drops should include drop-rate messages in chat",
 		position = 0,
 		section = dropFeedSection
 	)
@@ -57,8 +49,8 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "highDropThreshold",
 		name = "Rare-only minimum rate",
-		description = "Rare drops only mode. Example: 700 shows 1/700 and rarer",
-		position = 3,
+		description = "Used only in Rare drops only mode. Example: 700 shows 1/700 and rarer drops",
+		position = 4,
 		section = dropFeedSection
 	)
 	@Range(
@@ -73,7 +65,7 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "rateFormatMode",
 		name = "Rate display",
-		description = "Show raw wiki rates, effective 1/x rates, or both",
+		description = "Show wiki rates, converted effective 1/x rates, or both",
 		position = 1,
 		section = dropFeedSection
 	)
@@ -85,7 +77,7 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "showRatePercentage",
 		name = "Show percentage",
-		description = "Adds the computed drop chance at the end, for example 1/100 becomes 1%",
+		description = "Adds the computed percentage chance, for example 1/100 becomes 1%",
 		position = 2,
 		section = dropFeedSection
 	)
@@ -96,8 +88,8 @@ public interface DropRateConfig extends Config
 
 	@ConfigItem(
 		keyName = "colorMode",
-		name = "Chat colors",
-		description = "Use rarity colors or keep all drop messages neutral white",
+		name = "Color style",
+		description = "Use rarity-based colors or show all drop messages in neutral white",
 		position = 0,
 		section = colorsSection
 	)
@@ -108,8 +100,8 @@ public interface DropRateConfig extends Config
 
 	@ConfigItem(
 		keyName = "commonTierThreshold",
-		name = "Normal tier max",
-		description = "Tiered colors only. Rates up to this value stay in the normal color tier",
+		name = "Common tier max",
+		description = "Tiered colors only. Rates up to this value use the common color",
 		position = 1,
 		section = colorsSection
 	)
@@ -124,8 +116,8 @@ public interface DropRateConfig extends Config
 
 	@ConfigItem(
 		keyName = "rareColorThreshold",
-		name = "Rare tier min",
-		description = "Tiered colors only. Rates at or above this value use the rare color tier",
+		name = "Rare tier minimum",
+		description = "Tiered colors only. Rates at or above this value use the rare color",
 		position = 2,
 		section = colorsSection
 	)
@@ -140,8 +132,8 @@ public interface DropRateConfig extends Config
 
 	@ConfigItem(
 		keyName = "ultraRareColorThreshold",
-		name = "Ultra-rare tier min",
-		description = "Tiered colors only. Rates at or above this value use the ultra-rare purple tier",
+		name = "Ultra-rare tier minimum",
+		description = "Tiered colors only. Rates at or above this value use the ultra-rare color",
 		position = 3,
 		section = colorsSection
 	)
@@ -151,7 +143,7 @@ public interface DropRateConfig extends Config
 	)
 	default int ultraRareColorThreshold()
 	{
-		return 6000;
+		return 5000;
 	}
 
 	@Alpha
@@ -209,19 +201,19 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "allowSpam",
 		name = "Show bundle drops",
-		description = "Include common multi-roll or bundled drops such as 2/115 and 6/378",
+		description = "Include multi-roll drops such as 2/115, 6/378, or 2 x 1/637",
 		position = 0,
 		section = cleanerFeedSection
 	)
 	default boolean showMultiRollDrops()
 	{
-		return false;
+		return true;
 	}
 
 	@ConfigItem(
 		keyName = "uselessItems",
 		name = "Hidden filler items",
-		description = "Cleaner feed only. Comma-separated items to hide, for example Bones, Ashes, Zulrah's scales",
+		description = "Cleaner feed only. Comma-separated item names to hide, for example Bones, Ashes, Zulrah's scales",
 		position = 1,
 		section = cleanerFeedSection
 	)
@@ -232,10 +224,10 @@ public interface DropRateConfig extends Config
 
 	@ConfigItem(
 		keyName = "showAlternateTables",
-		name = "Show possible sources",
-		description = "Adds notes for drops with multiple possible tables or context-specific rates. This does not detect the exact hidden roll",
-		position = 0,
-		section = advancedSection
+		name = "Show source hints",
+		description = "Show hints when a drop can come from more than one source, for example Normal and RDT",
+		position = 3,
+		section = dropFeedSection
 	)
 	default boolean showAlternateTables()
 	{

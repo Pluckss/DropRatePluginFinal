@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -25,8 +26,14 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import net.runelite.api.EquipmentInventorySlot;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemContainer;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
+import net.runelite.api.Quest;
+import net.runelite.api.QuestState;
 import net.runelite.api.gameval.DBTableID;
 import net.runelite.api.gameval.VarPlayerID;
 import net.runelite.api.gameval.VarbitID;
@@ -53,9 +60,10 @@ public class DropRatePlugin extends Plugin
 	private static final String LEGACY_RARE_ONLY_KEY = "onlyHighDrops";
 	private static final String LEGACY_HIDE_ALWAYS_KEY = "hideAlwaysDrops";
 	private static final String LEGACY_HIDE_USELESS_KEY = "hideUselessDrops";
+	private static final String RING_OF_WEALTH_NAME = "ring of wealth";
 	private static final int BOSSES_TASK_ID = 98;
 	private static final Pattern CHANCE_PATTERN = Pattern.compile(
-		"(?i)(?:(\\d+(?:\\.\\d+)?)\\s*[x*]\\s*)?(\\d+(?:\\.\\d+)?)\\s*/\\s*(\\d+(?:\\.\\d+)?)"
+		"(?i)(?:([\\d.,]+)\\s*[x*]\\s*)?([\\d.,]+)\\s*/\\s*([\\d.,]+)"
 	);
 
 	private static final Color DEFAULT_GREEN = new Color(46, 125, 50);
@@ -84,7 +92,6 @@ public class DropRatePlugin extends Plugin
 	private Map<String, Map<String, String>> primaryDrops;
 	private Map<String, Map<String, String>> invertedDrops;
 	private Map<String, Map<String, String>> rdtDrops;
-	private Map<String, Map<String, String>> invertedRdtDrops;
 	private DropMetadata dropMetadata = DropMetadata.empty();
 	private final Map<String, Integer> recentLootSignatures = new HashMap<>();
 	private final Map<String, Integer> recentMessageKeys = new HashMap<>();
@@ -103,16 +110,17 @@ public class DropRatePlugin extends Plugin
 		primaryDrops = loadPrimaryDrops("/droprates_clean.json");
 		invertedDrops = invertDropMap(primaryDrops);
 		rdtDrops = loadOptionalDrops("/rare_drop_table.json");
-		invertedRdtDrops = invertDropMap(rdtDrops);
 		dropMetadata = loadDropMetadata("/drop_metadata.json");
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		log.info(
-			"DropRate database loaded: {} primary entries, {} RDT entries, {} drop overrides, {} context rules",
+			"DropRate database loaded: {} primary entries, {} RDT entries, {} drop overrides, {} context rules, {} source aliases, {} source context rules",
 			primaryDrops != null ? primaryDrops.size() : 0,
 			rdtDrops != null ? rdtDrops.size() : 0,
 			dropMetadata.getDropOverrideCount(),
-			dropMetadata.getNpcContextCount()
+			dropMetadata.getNpcContextCount(),
+			dropMetadata.getSourceAliasCount(),
+			dropMetadata.getSourceContextCount()
 		);
 		log.info(
 			"DropRate config active: mode={}, multiRolls={}, rareThreshold={}, rateFormatMode={}, showRatePercentage={}, colorMode={}, commonTierMax={}, rareTierMin={}, ultraRareTierMin={}, alternateTables={}",
@@ -185,6 +193,7 @@ public class DropRatePlugin extends Plugin
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		String currentSlayerTask = getCurrentSlayerTaskName();
+		DropContext context = new DropContext(currentSlayerTask, isRingOfWealthEquipped(), isLegendsQuestCompleted());
 
 		for (ItemStack stack : items)
 		{
@@ -194,7 +203,7 @@ public class DropRatePlugin extends Plugin
 				continue;
 			}
 
-			ResolvedDrop resolvedDrop = resolveDrop(npcName, itemName, currentSlayerTask);
+			ResolvedDrop resolvedDrop = resolveDrop(npcName, itemName, context);
 			if (resolvedDrop == null)
 			{
 				log.debug("No rarity entry found for {} from {}", itemName, npcName);
@@ -363,45 +372,136 @@ public class DropRatePlugin extends Plugin
 		}
 	}
 
-	private ResolvedDrop resolveDrop(String npcName, String itemName, String currentSlayerTask)
+	private ResolvedDrop resolveDrop(String npcName, String itemName, DropContext context)
 	{
-		String lookupNpc = resolveLookupNpc(npcName, currentSlayerTask);
-
-		DropMatch normalMatch = findDropMatch(lookupNpc, itemName);
-		if (normalMatch == null && !lookupNpc.equals(npcName))
+		List<String> sourceCandidates = resolveSourceCandidates(npcName, itemName, context);
+		for (String sourceCandidate : sourceCandidates)
 		{
-			normalMatch = findDropMatch(npcName, itemName);
+			DropMatch normalMatch = findDropMatch(sourceCandidate, itemName);
+			String rdtRate = findRdtRate(sourceCandidate, itemName);
+
+			if (normalMatch == null && rdtRate == null)
+			{
+				continue;
+			}
+
+			if (normalMatch == null)
+			{
+				Chance rdtChance = parseChance(rdtRate);
+				return new ResolvedDrop(
+					sourceCandidate,
+					rdtRate,
+					formatSingleRate(rdtRate, rdtChance),
+					getEffectiveRate(rdtChance, rdtRate)
+				);
+			}
+
+			Chance chance = parseChance(normalMatch.rate);
+			return new ResolvedDrop(
+				normalMatch.npcName,
+				normalMatch.rate,
+				formatRateForMessage(normalMatch.rate, chance, normalMatch.override, rdtRate),
+				getEffectiveRate(chance, normalMatch.rate)
+			);
 		}
 
-		String rdtRate = findRdtRate(lookupNpc, itemName);
-		if (rdtRate == null && !lookupNpc.equals(npcName))
+		return null;
+	}
+
+	private List<String> resolveSourceCandidates(String npcName, String itemName, DropContext context)
+	{
+		LinkedHashSet<String> baseCandidates = new LinkedHashSet<>();
+		if (!isBlank(npcName))
 		{
-			rdtRate = findRdtRate(npcName, itemName);
+			baseCandidates.add(npcName);
 		}
 
-		if (normalMatch == null && rdtRate == null)
+		for (String alias : dropMetadata.getSourceAliases(npcName))
+		{
+			if (!isBlank(alias))
+			{
+				baseCandidates.add(alias);
+			}
+		}
+
+		Map<String, String> ratesForItem = getRdtRatesForItem(itemName);
+		if (!isBlank(npcName) && ratesForItem != null)
+		{
+			String standardKey = npcName + " Standard";
+			if (ratesForItem.containsKey(standardKey))
+			{
+				baseCandidates.add(standardKey);
+			}
+
+			if (dropMetadata.getSourceAliases(npcName).isEmpty())
+			{
+				String uniqueVariant = findUniqueRdtVariant(npcName, ratesForItem);
+				if (!isBlank(uniqueVariant))
+				{
+					baseCandidates.add(uniqueVariant);
+				}
+			}
+		}
+
+		LinkedHashSet<String> resolvedCandidates = new LinkedHashSet<>();
+		for (String candidate : baseCandidates)
+		{
+			if (isBlank(candidate))
+			{
+				continue;
+			}
+
+			String resolved = resolveLookupNpc(candidate, context);
+			if (!isBlank(resolved))
+			{
+				resolvedCandidates.add(resolved);
+			}
+			resolvedCandidates.add(candidate);
+		}
+
+		if (resolvedCandidates.isEmpty() && !isBlank(npcName))
+		{
+			resolvedCandidates.add(npcName);
+		}
+
+		return new ArrayList<>(resolvedCandidates);
+	}
+
+	private String findUniqueRdtVariant(String npcName, Map<String, String> ratesForItem)
+	{
+		if (isBlank(npcName) || ratesForItem == null || ratesForItem.isEmpty())
 		{
 			return null;
 		}
 
-		if (normalMatch == null)
+		String unique = null;
+		for (String key : ratesForItem.keySet())
 		{
-			Chance rdtChance = parseChance(rdtRate);
-			return new ResolvedDrop(
-				lookupNpc,
-				rdtRate,
-				formatSingleRate(rdtRate, rdtChance),
-				getEffectiveRate(rdtChance, rdtRate)
-			);
+			if (key == null || key.equals(npcName) || key.equals(npcName + " Standard"))
+			{
+				continue;
+			}
+
+			if (key.length() <= npcName.length() || !key.startsWith(npcName))
+			{
+				continue;
+			}
+
+			char separator = key.charAt(npcName.length());
+			if (separator != ' ' && separator != '(')
+			{
+				continue;
+			}
+
+			if (unique != null && !unique.equals(key))
+			{
+				return null;
+			}
+
+			unique = key;
 		}
 
-		Chance chance = parseChance(normalMatch.rate);
-		return new ResolvedDrop(
-			normalMatch.npcName,
-			normalMatch.rate,
-			formatRateForMessage(normalMatch.rate, chance, normalMatch.override, rdtRate),
-			getEffectiveRate(chance, normalMatch.rate)
-		);
+		return unique;
 	}
 
 	private DropMatch findDropMatch(String npcName, String itemName)
@@ -421,11 +521,28 @@ public class DropRatePlugin extends Plugin
 		return rate == null ? null : new DropMatch(npcName, rate, override);
 	}
 
-	private String resolveLookupNpc(String npcName, String currentSlayerTask)
+	private String resolveLookupNpc(String npcName, DropContext context)
 	{
-		for (NpcContextRule rule : dropMetadata.getNpcContexts(npcName))
+		String resolvedNpc = npcName;
+		for (int depth = 0; depth < 4; depth++)
 		{
-			if (matchesContext(rule, currentSlayerTask) && !isBlank(rule.lookupNpc))
+			String nextNpc = resolveLookupNpcOnce(resolvedNpc, context);
+			if (isBlank(nextNpc) || nextNpc.equals(resolvedNpc))
+			{
+				break;
+			}
+
+			resolvedNpc = nextNpc;
+		}
+
+		return resolvedNpc;
+	}
+
+	private String resolveLookupNpcOnce(String npcName, DropContext context)
+	{
+		for (NpcContextRule rule : dropMetadata.getContextRules(npcName))
+		{
+			if (matchesContext(rule, context) && !isBlank(rule.lookupNpc))
 			{
 				return rule.lookupNpc;
 			}
@@ -434,7 +551,7 @@ public class DropRatePlugin extends Plugin
 		return npcName;
 	}
 
-	private boolean matchesContext(NpcContextRule rule, String currentSlayerTask)
+	private boolean matchesContext(NpcContextRule rule, DropContext context)
 	{
 		if (rule == null || isBlank(rule.condition))
 		{
@@ -443,10 +560,89 @@ public class DropRatePlugin extends Plugin
 
 		if ("slayer_task".equalsIgnoreCase(rule.condition))
 		{
+			String currentSlayerTask = context != null ? context.currentSlayerTask : null;
 			return !isBlank(rule.task) && !isBlank(currentSlayerTask) && rule.task.equalsIgnoreCase(currentSlayerTask);
 		}
 
+		if ("ring_of_wealth".equalsIgnoreCase(rule.condition) || "ring_of_wealth_equipped".equalsIgnoreCase(rule.condition))
+		{
+			if (context == null)
+			{
+				return false;
+			}
+
+			boolean expected = rule.equipped == null || rule.equipped;
+			return context.ringOfWealthEquipped == expected;
+		}
+
+		if ("legends_quest".equalsIgnoreCase(rule.condition) || "legends_quest_completed".equalsIgnoreCase(rule.condition))
+		{
+			if (context == null)
+			{
+				return false;
+			}
+
+			boolean expected = rule.completed == null || rule.completed;
+			return context.legendsQuestCompleted == expected;
+		}
+
 		return false;
+	}
+
+	private boolean isLegendsQuestCompleted()
+	{
+		try
+		{
+			if (client == null || client.getLocalPlayer() == null)
+			{
+				return false;
+			}
+
+			return Quest.LEGENDS_QUEST.getState(client) == QuestState.FINISHED;
+		}
+		catch (Exception e)
+		{
+			log.debug("Unable to determine Legends' Quest state", e);
+			return false;
+		}
+	}
+
+	private boolean isRingOfWealthEquipped()
+	{
+		try
+		{
+			if (client == null || client.getLocalPlayer() == null)
+			{
+				return false;
+			}
+
+			ItemContainer equipment = client.getItemContainer(InventoryID.EQUIPMENT);
+			if (equipment == null)
+			{
+				return false;
+			}
+
+			Item[] items = equipment.getItems();
+			int ringSlot = EquipmentInventorySlot.RING.getSlotIdx();
+			if (ringSlot < 0 || ringSlot >= items.length)
+			{
+				return false;
+			}
+
+			Item ringItem = items[ringSlot];
+			if (ringItem == null || ringItem.getId() <= 0)
+			{
+				return false;
+			}
+
+			String ringName = cleanName(client.getItemDefinition(ringItem.getId()).getName());
+			return ringName != null && ringName.toLowerCase(Locale.US).contains(RING_OF_WEALTH_NAME);
+		}
+		catch (Exception e)
+		{
+			log.debug("Unable to determine Ring of Wealth state", e);
+			return false;
+		}
 	}
 
 	private String getCurrentSlayerTaskName()
@@ -550,43 +746,28 @@ public class DropRatePlugin extends Plugin
 
 	private String findRdtRate(String npcName, String itemName)
 	{
-		if (rdtDrops == null || rdtDrops.isEmpty() || npcName == null || itemName == null)
+		if (npcName == null || itemName == null)
 		{
 			return null;
 		}
 
-		Map<String, String> ratesForItem = rdtDrops.get(itemName);
+		Map<String, String> ratesForItem = getRdtRatesForItem(itemName);
 		if (ratesForItem == null)
 		{
 			return null;
 		}
 
-		String rate = ratesForItem.get(npcName);
-		if (rate != null)
+		return ratesForItem.get(npcName);
+	}
+
+	private Map<String, String> getRdtRatesForItem(String itemName)
+	{
+		if (rdtDrops == null || rdtDrops.isEmpty() || itemName == null)
 		{
-			return rate;
+			return null;
 		}
 
-		rate = ratesForItem.get(npcName + " Standard");
-		if (rate != null)
-		{
-			return rate;
-		}
-
-		for (Map.Entry<String, String> entry : ratesForItem.entrySet())
-		{
-			String key = entry.getKey();
-			if (key.length() > npcName.length() && key.startsWith(npcName))
-			{
-				char separator = key.charAt(npcName.length());
-				if (separator == ' ' || separator == '(')
-				{
-					return entry.getValue();
-				}
-			}
-		}
-
-		return null;
+		return rdtDrops.get(itemName);
 	}
 
 	private String getOverrideRate(DropOverride override)
@@ -763,9 +944,9 @@ public class DropRatePlugin extends Plugin
 				return null;
 			}
 
-			double multiplier = matcher.group(1) != null ? Double.parseDouble(matcher.group(1)) : 1.0d;
-			double baseNumerator = Double.parseDouble(matcher.group(2));
-			double denominator = Double.parseDouble(matcher.group(3));
+			double multiplier = matcher.group(1) != null ? parseRateNumber(matcher.group(1)) : 1.0d;
+			double baseNumerator = parseRateNumber(matcher.group(2));
+			double denominator = parseRateNumber(matcher.group(3));
 			if (denominator <= 0)
 			{
 				return null;
@@ -794,13 +975,59 @@ public class DropRatePlugin extends Plugin
 				return 0;
 			}
 
-			double denominator = Double.parseDouble(matcher.group(3));
+			double denominator = parseRateNumber(matcher.group(3));
 			return denominator > 0 ? denominator : 0;
 		}
 		catch (Exception e)
 		{
 			return 0;
 		}
+	}
+
+	private double parseRateNumber(String rawNumber)
+	{
+		if (rawNumber == null)
+		{
+			throw new NumberFormatException("null");
+		}
+
+		String value = rawNumber.trim();
+		if (value.isEmpty())
+		{
+			throw new NumberFormatException("empty");
+		}
+
+		int commaIdx = value.lastIndexOf(',');
+		int dotIdx = value.lastIndexOf('.');
+
+		if (commaIdx >= 0 && dotIdx >= 0)
+		{
+			if (commaIdx > dotIdx)
+			{
+				value = value.replace(".", "").replace(',', '.');
+			}
+			else
+			{
+				value = value.replace(",", "");
+			}
+		}
+		else if (commaIdx >= 0)
+		{
+			if (value.matches("\\d{1,3}(,\\d{3})+"))
+			{
+				value = value.replace(",", "");
+			}
+			else if (value.matches("\\d+,\\d{1,2}"))
+			{
+				value = value.replace(',', '.');
+			}
+			else
+			{
+				value = value.replace(",", "");
+			}
+		}
+
+		return Double.parseDouble(value);
 	}
 
 	private Color getColor(double rate)
@@ -999,6 +1226,8 @@ public class DropRatePlugin extends Plugin
 	private static final class DropMetadata
 	{
 		private Map<String, List<NpcContextRule>> npcContexts;
+		private Map<String, List<String>> sourceAliases;
+		private Map<String, List<NpcContextRule>> sourceContexts;
 		private Map<String, Map<String, DropOverride>> dropOverrides;
 
 		private static DropMetadata empty()
@@ -1015,6 +1244,31 @@ public class DropRatePlugin extends Plugin
 
 			List<NpcContextRule> rules = npcContexts.get(npcName);
 			return rules != null ? rules : Collections.emptyList();
+		}
+
+		private List<String> getSourceAliases(String npcName)
+		{
+			if (sourceAliases == null || npcName == null)
+			{
+				return Collections.emptyList();
+			}
+
+			List<String> aliases = sourceAliases.get(npcName);
+			return aliases != null ? aliases : Collections.emptyList();
+		}
+
+		private List<NpcContextRule> getContextRules(String sourceName)
+		{
+			if (sourceContexts != null && sourceName != null)
+			{
+				List<NpcContextRule> rules = sourceContexts.get(sourceName);
+				if (rules != null)
+				{
+					return rules;
+				}
+			}
+
+			return getNpcContexts(sourceName);
 		}
 
 		private DropOverride getDropOverride(String itemName, String npcName)
@@ -1063,13 +1317,65 @@ public class DropRatePlugin extends Plugin
 			}
 			return count;
 		}
+
+		private int getSourceAliasCount()
+		{
+			if (sourceAliases == null)
+			{
+				return 0;
+			}
+
+			int count = 0;
+			for (List<String> aliases : sourceAliases.values())
+			{
+				if (aliases != null)
+				{
+					count += aliases.size();
+				}
+			}
+			return count;
+		}
+
+		private int getSourceContextCount()
+		{
+			if (sourceContexts == null)
+			{
+				return 0;
+			}
+
+			int count = 0;
+			for (List<NpcContextRule> rules : sourceContexts.values())
+			{
+				if (rules != null)
+				{
+					count += rules.size();
+				}
+			}
+			return count;
+		}
 	}
 
 	private static final class NpcContextRule
 	{
 		private String condition;
 		private String task;
+		private Boolean equipped;
+		private Boolean completed;
 		private String lookupNpc;
+	}
+
+	private static final class DropContext
+	{
+		private final String currentSlayerTask;
+		private final boolean ringOfWealthEquipped;
+		private final boolean legendsQuestCompleted;
+
+		private DropContext(String currentSlayerTask, boolean ringOfWealthEquipped, boolean legendsQuestCompleted)
+		{
+			this.currentSlayerTask = currentSlayerTask;
+			this.ringOfWealthEquipped = ringOfWealthEquipped;
+			this.legendsQuestCompleted = legendsQuestCompleted;
+		}
 	}
 
 	private static final class DropOverride
