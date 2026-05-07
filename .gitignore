@@ -10,3 +10,7 @@ build
 nbactions.xml
 nb-configuration.xml
 nbproject/
+.runelite-dev-home/
+.runelite-dev-session
+*.err.log
+*.out.log

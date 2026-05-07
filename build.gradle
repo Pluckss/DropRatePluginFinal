@@ -15,6 +15,8 @@ repositories {
 
 def runeLiteVersion = 'latest.release'
 def pluginMainClass = 'com.pluckss.droprate.DropRateDevLauncher'
+def devSessionFile = (findProperty('runeliteSessionFile') ?: rootProject.file('.runelite-dev-session').absolutePath).toString()
+def devUserHome = (findProperty('runeliteDevHome') ?: rootProject.file('.runelite-dev-home').absolutePath).toString()
 
 configurations {
 	// Keep RuneLite only on the local dev launcher classpath so Plugin Hub does not bundle it.
@@ -59,7 +61,11 @@ tasks.register('run', JavaExec) {
 	mainClass = pluginMainClass
 
 	jvmArgs "-ea"
+	systemProperty "user.home", devUserHome
 	args "--developer-mode", "--debug"
+	if (devSessionFile) {
+		args "--sessionfile", devSessionFile.toString()
+	}
 }
 
 tasks.register('shadowJar', Jar) {

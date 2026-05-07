@@ -27,9 +27,17 @@ public interface DropRateConfig extends Config
 	String cleanerFeedSection = "cleanerFeedSection";
 
 	@ConfigSection(
+		name = "Notifications",
+		description = "Get a desktop notification when you receive a rare drop",
+		position = 2,
+		closedByDefault = true
+	)
+	String notificationsSection = "notificationsSection";
+
+	@ConfigSection(
 		name = "Appearance",
 		description = "Set drop message colors and rarity tiers",
-		position = 2,
+		position = 3,
 		closedByDefault = true
 	)
 	String colorsSection = "colorsSection";
@@ -37,7 +45,9 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "displayMode",
 		name = "Drop visibility",
-		description = "Choose which drops should include drop-rate messages in chat",
+		description = "<html>All drops: show a rate for every item received.<br>"
+			+ "Notable drops only: hide guaranteed drops (bones, always-drops) and any items in the filler list below.<br>"
+			+ "Rare drops only: only show messages for drops rarer than the threshold below.</html>",
 		position = 0,
 		section = dropFeedSection
 	)
@@ -65,13 +75,13 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "rateFormatMode",
 		name = "Rate display",
-		description = "Show wiki rates, converted effective 1/x rates, or both",
+		description = "Show wiki rates, simplified standard 1/x rates, or both",
 		position = 1,
 		section = dropFeedSection
 	)
 	default DropRateFormatMode rateFormatMode()
 	{
-		return DropRateFormatMode.RAW_RATE;
+		return DropRateFormatMode.EFFECTIVE_RATE;
 	}
 
 	@ConfigItem(
@@ -213,13 +223,30 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "uselessItems",
 		name = "Hidden filler items",
-		description = "Cleaner feed only. Comma-separated item names to hide, for example Bones, Ashes, Zulrah's scales",
+		description = "Notable drops only mode. Comma-separated item names to always hide, for example: Bones, Ashes, Zulrah's scales",
 		position = 1,
 		section = cleanerFeedSection
 	)
 	default String extraClutterItems()
 	{
 		return "Bones, Ashes, Zulrah's scales";
+	}
+
+	@ConfigItem(
+		keyName = "minItemValue",
+		name = "Min item value (gp)",
+		description = "<html>Hide drop rate messages for items worth less than this on the GE.<br>"
+			+ "Set to 0 to disable. Example: 10000 hides anything under 10k gp.</html>",
+		position = 2,
+		section = cleanerFeedSection
+	)
+	@Range(
+		min = 0,
+		max = 10000000
+	)
+	default int minItemValue()
+	{
+		return 0;
 	}
 
 	@ConfigItem(
@@ -232,5 +259,64 @@ public interface DropRateConfig extends Config
 	default boolean showAlternateTables()
 	{
 		return false;
+	}
+
+	@ConfigItem(
+		keyName = "showKillCounter",
+		name = "Show kill counter",
+		description = "<html>Shows your KC and the average kills needed next to rare drops.<br>"
+			+ "Example: 1x Abyssal whip (1/512 — KC: 203, avg: ~512 kills)<br>"
+			+ "If your KC is lower than avg you got lucky, higher means unlucky.<br>"
+			+ "Resets each session when the plugin starts.</html>",
+		position = 5,
+		section = dropFeedSection
+	)
+	default boolean showKillCounter()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "killCounterThreshold",
+		name = "Kill counter min rarity",
+		description = "Only show the kill counter for drops rarer than this. Example: 100 means only 1/100 or rarer drops show the kill count.",
+		position = 6,
+		section = dropFeedSection
+	)
+	@Range(
+		min = 1,
+		max = 100000
+	)
+	default int killCounterThreshold()
+	{
+		return 100;
+	}
+
+	@ConfigItem(
+		keyName = "notifyOnRareDrops",
+		name = "Notify on rare drops",
+		description = "Send a desktop notification when you receive a drop rarer than the threshold below. Useful when alt-tabbed.",
+		position = 0,
+		section = notificationsSection
+	)
+	default boolean notifyOnRareDrops()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "notificationThreshold",
+		name = "Notification threshold",
+		description = "Minimum rarity to trigger a notification. Example: 1000 means only 1/1000 or rarer drops notify you.",
+		position = 1,
+		section = notificationsSection
+	)
+	@Range(
+		min = 1,
+		max = 100000
+	)
+	default int notificationThreshold()
+	{
+		return 1000;
 	}
 }

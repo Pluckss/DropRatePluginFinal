@@ -1,6 +1,8 @@
 package com.pluckss.droprate;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Provides;
 import java.awt.Color;
@@ -37,12 +39,14 @@ import net.runelite.api.QuestState;
 import net.runelite.api.gameval.DBTableID;
 import net.runelite.api.gameval.VarPlayerID;
 import net.runelite.api.gameval.VarbitID;
+import net.runelite.client.Notifier;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.NpcLootReceived;
 import net.runelite.client.events.ServerNpcLoot;
+import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStack;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -89,12 +93,19 @@ public class DropRatePlugin extends Plugin
 	@Inject
 	private ConfigManager configManager;
 
+	@Inject
+	private Notifier notifier;
+
+	@Inject
+	private ItemManager itemManager;
+
 	private Map<String, Map<String, String>> primaryDrops;
 	private Map<String, Map<String, String>> invertedDrops;
 	private Map<String, Map<String, String>> rdtDrops;
 	private DropMetadata dropMetadata = DropMetadata.empty();
 	private final Map<String, Integer> recentLootSignatures = new HashMap<>();
 	private final Map<String, Integer> recentMessageKeys = new HashMap<>();
+	private final Map<String, Integer> killCounts = new HashMap<>();
 
 	@Provides
 	DropRateConfig provideConfig(ConfigManager configManager)
@@ -189,7 +200,10 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
-		log.debug("Processing loot event for {}: {}", npcName, items);
+		killCounts.merge(npcName, 1, Integer::sum);
+		int killCount = killCounts.get(npcName);
+
+		log.debug("Processing loot event for {} (kill {}): {}", npcName, killCount, items);
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		String currentSlayerTask = getCurrentSlayerTaskName();
@@ -201,6 +215,15 @@ public class DropRatePlugin extends Plugin
 			if (itemName == null)
 			{
 				continue;
+			}
+
+			if (config.minItemValue() > 0)
+			{
+				int price = itemManager.getItemPrice(stack.getId());
+				if (price < config.minItemValue())
+				{
+					continue;
+				}
 			}
 
 			ResolvedDrop resolvedDrop = resolveDrop(npcName, itemName, context);
@@ -236,8 +259,15 @@ public class DropRatePlugin extends Plugin
 				continue;
 			}
 
+			String rateDisplay = resolvedDrop.formattedRate;
+			if (config.showKillCounter() && effectiveRate >= config.killCounterThreshold())
+			{
+				long avgKills = Math.round(effectiveRate);
+				rateDisplay = rateDisplay + " — KC: " + killCount + ", avg: ~" + avgKills + " kills";
+			}
+
 			Color color = getColor(effectiveRate);
-			String message = colorTag(color) + stack.getQuantity() + "x " + itemName + " (" + resolvedDrop.formattedRate + ")</col>";
+			String message = colorTag(color) + stack.getQuantity() + "x " + itemName + " (" + rateDisplay + ")</col>";
 			String messageKey = buildMessageKey(npcName, stack, resolvedDrop.formattedRate);
 
 			if (isDuplicateMessage(messageKey))
@@ -252,6 +282,11 @@ public class DropRatePlugin extends Plugin
 					.runeLiteFormattedMessage(message)
 					.build()
 			);
+
+			if (config.notifyOnRareDrops() && effectiveRate >= config.notificationThreshold())
+			{
+				notifier.notify(stack.getQuantity() + "x " + itemName + " (" + resolvedDrop.formattedRate + ")");
+			}
 
 			log.debug(
 				"Queued drop rate message for {} from {} using {}: {}",
@@ -298,7 +333,7 @@ public class DropRatePlugin extends Plugin
 
 	private String buildMessageKey(String npcName, ItemStack stack, String rarity)
 	{
-		return npcName + '|' + stack.getId() + '|' + stack.getQuantity() + '|' + rarity;
+		return npcName + '|' + stack.getId() + '|' + rarity;
 	}
 
 	private void expireOldEntries(Map<String, Integer> entries, int currentTick)
@@ -316,11 +351,38 @@ public class DropRatePlugin extends Plugin
 
 		try (InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8))
 		{
-			Map<String, Map<String, String>> loaded = gson.fromJson(
+			Map<String, Map<String, JsonElement>> raw = gson.fromJson(
 				reader,
-				new TypeToken<Map<String, Map<String, String>>>() {}.getType()
+				new TypeToken<Map<String, Map<String, JsonElement>>>() {}.getType()
 			);
-			return loaded != null ? loaded : new HashMap<>();
+			if (raw == null)
+			{
+				return new HashMap<>();
+			}
+
+			Map<String, Map<String, String>> result = new HashMap<>();
+			for (Map.Entry<String, Map<String, JsonElement>> outer : raw.entrySet())
+			{
+				Map<String, String> inner = new HashMap<>();
+				for (Map.Entry<String, JsonElement> entry : outer.getValue().entrySet())
+				{
+					JsonElement el = entry.getValue();
+					if (el.isJsonArray())
+					{
+						JsonArray arr = el.getAsJsonArray();
+						if (arr.size() > 0)
+						{
+							inner.put(entry.getKey(), arr.get(0).getAsString());
+						}
+					}
+					else if (el.isJsonPrimitive())
+					{
+						inner.put(entry.getKey(), el.getAsString());
+					}
+				}
+				result.put(outer.getKey(), inner);
+			}
+			return result;
 		}
 		catch (Exception e)
 		{
@@ -848,15 +910,7 @@ public class DropRatePlugin extends Plugin
 
 	private String formatRateNumber(double value)
 	{
-		if (Math.abs(value - Math.rint(value)) < 0.000001d)
-		{
-			return Long.toString(Math.round(value));
-		}
-
-		synchronized (EFFECTIVE_RATE_FORMAT)
-		{
-			return EFFECTIVE_RATE_FORMAT.format(value);
-		}
+		return Long.toString(Math.round(value));
 	}
 
 	private static DecimalFormat createEffectiveRateFormat()
