@@ -67,7 +67,7 @@ public class DropRatePlugin extends Plugin
 	private static final String RING_OF_WEALTH_NAME = "ring of wealth";
 	private static final int BOSSES_TASK_ID = 98;
 	private static final Pattern CHANCE_PATTERN = Pattern.compile(
-		"(?i)(?:([\\d.,]+)\\s*[x*]\\s*)?([\\d.,]+)\\s*/\\s*([\\d.,]+)"
+		"(?i)(?:([\\d.,]+)\\s*[x×*]\\s*)?([\\d.,]+)\\s*/\\s*([\\d.,]+)"
 	);
 
 	private static final Color DEFAULT_GREEN = new Color(46, 125, 50);
@@ -992,6 +992,13 @@ public class DropRatePlugin extends Plugin
 	{
 		try
 		{
+			// Malformed data (e.g. an unevaluated wiki template) must never
+			// half-match and produce a wrong rate — reject it outright.
+			if (rarity.indexOf('{') >= 0)
+			{
+				return null;
+			}
+
 			Matcher matcher = CHANCE_PATTERN.matcher(rarity);
 			if (!matcher.find())
 			{
@@ -1023,6 +1030,11 @@ public class DropRatePlugin extends Plugin
 
 		try
 		{
+			if (rarity.indexOf('{') >= 0)
+			{
+				return 0;
+			}
+
 			Matcher matcher = CHANCE_PATTERN.matcher(rarity);
 			if (!matcher.find())
 			{
