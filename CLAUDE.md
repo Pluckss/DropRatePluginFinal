@@ -25,7 +25,7 @@ cd DropRatePluginFinal
 |---|---|
 | `src/main/java/com/pluckss/droprate/DropRatePlugin.java` | Main plugin logic |
 | `src/main/java/com/pluckss/droprate/DropRateConfig.java` | All config options shown in the RuneLite panel |
-| `src/main/resources/droprates_clean.json` | NPC drop rates (592 NPCs) |
+| `src/main/resources/droprates_clean.json` | NPC drop rates (608 NPCs) |
 | `src/main/resources/rare_drop_table.json` | Rare Drop Table items (26 items) |
 | `src/main/resources/drop_metadata.json` | NPC aliases, Ring of Wealth and Slayer task context rules |
 | `../Drop Rate Crawler/crawler_new.py` | Regenerates the JSON data files from the OSRS Wiki |
@@ -38,11 +38,26 @@ py -3 crawler_new.py --limit 100
 ```
 Then copy the output files into `src/main/resources/`.
 
+The crawler evaluates wiki rate templates ({{#expr:}}, {{#vardefine}}/{{#var}},
+{{Brimstone rarity}}) and validates every emitted rate at the end of the run.
+Check the end of the crawl output: it must say "every emitted rate is
+plugin-parseable" with no WARNING lines before copying the files over.
+`compare_crawls.py` (in the crawler folder) diffs a fresh crawl against the
+currently shipped data — run it before shipping to spot lost NPCs/items.
+
 ## Known data gaps
 - Herb sub-table items are missing from `rare_drop_table.json` — herbs dropped via the RDT show no rate in chat
 
 ## Publishing an update to the Plugin Hub
 1. Push your commit to `Pluckss/DropRatePluginFinal`
 2. Get the full commit SHA: `git rev-parse HEAD`
-3. Update `plugins/drop-rate-properties` in the `Pluckss/Drop-Rate` fork (which is a fork of `runelite/plugin-hub`)
-4. The open PR at `runelite/plugin-hub/pull/11818` will pick up the change and re-run CI automatically
+3. In the `Pluckss/Drop-Rate` fork (a fork of `runelite/plugin-hub`), create a
+   branch **based on the current upstream `runelite/plugin-hub` master** — the
+   fork's own master is usually stale, and branching from it causes merge
+   conflicts on the PR
+4. On that branch, set `commit=` in `plugins/drop-rate-properties` to the SHA
+   from step 2, push the branch to the fork
+5. Open a **new PR** against `runelite/plugin-hub` master (the original
+   submission PR #11818 was merged 2026-05-08; each update needs a fresh PR)
+6. Wait for CI to go green, then a RuneLite maintainer merges it — the update
+   ships to users automatically
