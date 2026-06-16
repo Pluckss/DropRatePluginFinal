@@ -46,11 +46,13 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.NpcLootReceived;
 import net.runelite.client.events.ServerNpcLoot;
+import net.runelite.client.plugins.loottracker.LootReceived;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStack;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.Text;
+import net.runelite.http.api.loottracker.LootRecordType;
 
 @Slf4j
 @PluginDescriptor(
@@ -119,6 +121,7 @@ public class DropRatePlugin extends Plugin
 		migrateLegacyConfig();
 
 		primaryDrops = loadPrimaryDrops("/droprates_clean.json");
+		mergeDropTable(primaryDrops, loadPrimaryDrops("/minigame_droprates.json", false));
 		invertedDrops = invertDropMap(primaryDrops);
 		rdtDrops = loadOptionalDrops("/rare_drop_table.json");
 		dropMetadata = loadDropMetadata("/drop_metadata.json");
@@ -170,6 +173,20 @@ public class DropRatePlugin extends Plugin
 		}
 
 		handleLoot(cleanName(composition.getName()), event.getItems());
+	}
+
+	@Subscribe
+	public void onLootReceived(LootReceived event)
+	{
+		// NPC loot already arrives via onNpcLootReceived / onServerNpcLoot. Only
+		// activity reward sources (minigames, reward chests) come through here as
+		// EVENT loot; filtering to EVENT avoids reporting NPC drops twice.
+		if (event.getType() != LootRecordType.EVENT)
+		{
+			return;
+		}
+
+		handleLoot(cleanName(event.getName()), event.getItems());
 	}
 
 	private void handleLoot(String npcName, Collection<ItemStack> items)
@@ -262,8 +279,7 @@ public class DropRatePlugin extends Plugin
 			String rateDisplay = resolvedDrop.formattedRate;
 			if (config.showKillCounter() && effectiveRate >= config.killCounterThreshold())
 			{
-				long avgKills = Math.round(effectiveRate);
-				rateDisplay = rateDisplay + " — KC: " + killCount + ", avg: ~" + avgKills + " kills";
+				rateDisplay = rateDisplay + " — KC: " + killCount;
 			}
 
 			Color color = getColor(effectiveRate);
@@ -343,10 +359,34 @@ public class DropRatePlugin extends Plugin
 
 	private Map<String, Map<String, String>> loadPrimaryDrops(String resourcePath)
 	{
+		return loadPrimaryDrops(resourcePath, true);
+	}
+
+	private void mergeDropTable(Map<String, Map<String, String>> target, Map<String, Map<String, String>> additions)
+	{
+		if (target == null || additions == null)
+		{
+			return;
+		}
+
+		for (Map.Entry<String, Map<String, String>> entry : additions.entrySet())
+		{
+			target.computeIfAbsent(entry.getKey(), k -> new HashMap<>()).putAll(entry.getValue());
+		}
+	}
+
+	private Map<String, Map<String, String>> loadPrimaryDrops(String resourcePath, boolean required)
+	{
 		InputStream in = getClass().getResourceAsStream(resourcePath);
 		if (in == null)
 		{
-			throw new IllegalStateException("Missing resource: " + resourcePath);
+			if (required)
+			{
+				throw new IllegalStateException("Missing resource: " + resourcePath);
+			}
+
+			log.info("Optional resource not found: {}", resourcePath);
+			return new HashMap<>();
 		}
 
 		try (InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8))

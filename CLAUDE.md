@@ -28,7 +28,9 @@ cd DropRatePluginFinal
 | `src/main/resources/droprates_clean.json` | NPC drop rates (608 NPCs) |
 | `src/main/resources/rare_drop_table.json` | Rare Drop Table items (26 items) |
 | `src/main/resources/drop_metadata.json` | NPC aliases, Ring of Wealth and Slayer task context rules |
-| `../Drop Rate Crawler/crawler_new.py` | Regenerates the JSON data files from the OSRS Wiki |
+| `src/main/resources/minigame_droprates.json` | Minigame/reward-chest drop rates, keyed by RuneLite LootReceived event name |
+| `../Drop Rate Crawler/crawler_new.py` | Regenerates the NPC JSON data files from the OSRS Wiki |
+| `../Drop Rate Crawler/minigame_crawler.py` | Separate crawler for minigame reward rates (`minigame_droprates.json`) |
 
 ## Regenerating data
 ```
@@ -44,6 +46,17 @@ Check the end of the crawl output: it must say "every emitted rate is
 plugin-parseable" with no WARNING lines before copying the files over.
 `compare_crawls.py` (in the crawler folder) diffs a fresh crawl against the
 currently shipped data — run it before shipping to spot lost NPCs/items.
+
+## Minigame reward rates
+- `minigame_crawler.py` scrapes reward tables for activities that deliver loot via a
+  reward chest/pool/interface instead of an NPC kill. Output is merged into `primaryDrops`
+  at load; an `onLootReceived` subscriber (filtered to `LootRecordType.EVENT`) feeds the
+  same `handleLoot` path as NPCs. Each JSON key is the EXACT RuneLite event-name string.
+- Shipped sources: Wintertodt, Tempoross, Guardians of the Rift, Soul Wars (pet only),
+  Barbarian Assault high gamble (rares only).
+- Deliberately NOT supported (no fixed wiki rates or no RuneLite event): Fishing Trawler
+  (all "Varies"), Barrows (reward-potential rolls), Hallowed Sepulchre, Shades of Mort'ton,
+  Zalcano, Hespori, The Gauntlet, raids. See memory `minigame-droprates.md` for the why.
 
 ## Known data gaps
 - Herb sub-table items are missing from `rare_drop_table.json` — herbs dropped via the RDT show no rate in chat

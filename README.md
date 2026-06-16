@@ -1,5 +1,5 @@
 # Drop Rate Plugin
-Instantly see the exact drop rate of items when monsters or bosses drop them, without leaving the game.
+Instantly see the exact drop rate of items when monsters, bosses, or select minigames drop them, without leaving the game.
 
 Created by **Pluckss**.
 
@@ -26,6 +26,7 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
 - Lets you customize the color tier cutoffs or switch everything to neutral white text.
 - Works with drop data whether it is stored as `NPC -> item` or `item -> NPC`.
 - Supports both normal drop tables and the Rare Drop Table (RDT) with automatic dual lookup.
+- Supports minigame reward drops from Wintertodt, Tempoross, Guardians of the Rift, Soul Wars, and Barbarian Assault high gamble.
 - Supports context-aware overrides for exceptions like task-based Hydra rates.
 - Includes cleaner feed options so players can reduce chat clutter.
 
@@ -72,4 +73,5 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
 - If an item exists in both the normal table and the RDT for the same NPC, and `Show source hints` is on, both rates are shown side by side.
 - If an item and NPC combination is not in either database, no drop-rate message is shown.
 - Messages appear in chat as `Quantity x Item (rate)`.
+- Minigame reward rates load from `src/main/resources/minigame_droprates.json`, keyed by the in-game reward source.
 - Raids are not currently supported.
