@@ -63,6 +63,8 @@ import net.runelite.http.api.loottracker.LootRecordType;
 @Slf4j
 @PluginDescriptor(
 	name = "Drop Rate",
+	description = "Shows drop rates in chat when you receive loot, and as a tooltip when hovering Collection Log items",
+	tags = {"drop", "rate", "loot", "collection", "log", "clog", "rarity", "clue"},
 	enabledByDefault = true
 )
 public class DropRatePlugin extends Plugin
@@ -241,6 +243,13 @@ public class DropRatePlugin extends Plugin
 		// The packed widget id is (groupId << 16 | childId); the high 16 bits are the
 		// interface group. 621 is the Collection Log, regardless of which page is open.
 		if ((entry.getParam1() >>> 16) != InterfaceID.COLLECTION)
+		{
+			return;
+		}
+
+		// Tabs, page names, and buttons also raise menu entries in this group;
+		// only actual item slots carry an item id.
+		if (entry.getItemId() <= 0)
 		{
 			return;
 		}
