@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -32,13 +33,17 @@ import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
+import net.runelite.api.MenuEntry;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.Quest;
 import net.runelite.api.QuestState;
+import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.gameval.DBTableID;
+import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.gameval.VarPlayerID;
 import net.runelite.api.gameval.VarbitID;
+import net.runelite.api.widgets.Widget;
 import net.runelite.client.Notifier;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.QueuedMessage;
@@ -51,6 +56,7 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStack;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.Text;
 import net.runelite.http.api.loottracker.LootRecordType;
 
@@ -101,6 +107,12 @@ public class DropRatePlugin extends Plugin
 	@Inject
 	private ItemManager itemManager;
 
+	@Inject
+	private OverlayManager overlayManager;
+
+	@Inject
+	private ClogTooltipOverlay clogTooltipOverlay;
+
 	private Map<String, Map<String, String>> primaryDrops;
 	private Map<String, Map<String, String>> invertedDrops;
 	private Map<String, Map<String, String>> rdtDrops;
@@ -108,6 +120,17 @@ public class DropRatePlugin extends Plugin
 	private final Map<String, Integer> recentLootSignatures = new HashMap<>();
 	private final Map<String, Integer> recentMessageKeys = new HashMap<>();
 	private final Map<String, Integer> killCounts = new HashMap<>();
+
+	// Collection Log tooltip: item name -> every source that drops it, kept
+	// separate from the chat feature's data so it never alters chat behaviour.
+	private Map<String, List<SourceRate>> clogSources = Collections.emptyMap();
+	private String hoveredClogItem;
+	private boolean hoveredClogItemObtained;
+	private long clogHoverSeenAt;
+
+	private static final long CLOG_HOVER_TIMEOUT_MS = 150;
+	private static final int CLOG_MAX_RATE_GROUPS = 7;
+	private static final int CLOG_MAX_SOURCES_PER_GROUP = 3;
 
 	@Provides
 	DropRateConfig provideConfig(ConfigManager configManager)
@@ -122,9 +145,19 @@ public class DropRatePlugin extends Plugin
 
 		primaryDrops = loadPrimaryDrops("/droprates_clean.json");
 		mergeDropTable(primaryDrops, loadPrimaryDrops("/minigame_droprates.json", false));
+		// Bosses whose drops the main crawler structurally misses (combined activity
+		// pages, Unsired sink rewards). Merged like minigame data so both the chat
+		// feed and the Collection Log tooltip see them.
+		mergeDropTable(primaryDrops, loadPrimaryDrops("/special_droprates.json", false));
 		invertedDrops = invertDropMap(primaryDrops);
 		rdtDrops = loadOptionalDrops("/rare_drop_table.json");
 		dropMetadata = loadDropMetadata("/drop_metadata.json");
+
+		// Clue reward rates are loaded only for the Collection Log tooltip. They are
+		// deliberately NOT merged into primaryDrops, so the chat feed is unaffected.
+		Map<String, Map<String, String>> clueDrops = loadPrimaryDrops("/clue_droprates.json", false);
+		clogSources = buildClogSources(primaryDrops, clueDrops, rdtDrops);
+		overlayManager.add(clogTooltipOverlay);
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		log.info(
@@ -149,6 +182,13 @@ public class DropRatePlugin extends Plugin
 			config.ultraRareColorThreshold(),
 			config.showAlternateTables()
 		);
+	}
+
+	@Override
+	protected void shutDown() throws Exception
+	{
+		overlayManager.remove(clogTooltipOverlay);
+		hoveredClogItem = null;
 	}
 
 	@Subscribe
@@ -187,6 +227,192 @@ public class DropRatePlugin extends Plugin
 		}
 
 		handleLoot(cleanName(event.getName()), event.getItems());
+	}
+
+	@Subscribe
+	public void onMenuEntryAdded(MenuEntryAdded event)
+	{
+		if (!config.showClogTooltip())
+		{
+			return;
+		}
+
+		MenuEntry entry = event.getMenuEntry();
+		// The packed widget id is (groupId << 16 | childId); the high 16 bits are the
+		// interface group. 621 is the Collection Log, regardless of which page is open.
+		if ((entry.getParam1() >>> 16) != InterfaceID.COLLECTION)
+		{
+			return;
+		}
+
+		String itemName = cleanName(event.getTarget());
+		if (itemName == null)
+		{
+			return;
+		}
+
+		hoveredClogItem = itemName;
+		hoveredClogItemObtained = isClogItemObtained(entry);
+		clogHoverSeenAt = System.currentTimeMillis();
+	}
+
+	private boolean isClogItemObtained(MenuEntry entry)
+	{
+		Widget widget = entry.getWidget();
+		// Unobtained collection log slots are drawn faded; obtained ones are fully opaque.
+		return widget != null && widget.getOpacity() == 0;
+	}
+
+	/**
+	 * Called every render frame by {@link ClogTooltipOverlay}. Returns the tooltip
+	 * text for the hovered collection log item, or null when nothing should show.
+	 * MenuEntryAdded has no "hover ended" event, so a short freshness window makes
+	 * the tooltip disappear once the mouse leaves the item.
+	 */
+	String buildActiveClogTooltip()
+	{
+		if (!config.showClogTooltip() || hoveredClogItem == null)
+		{
+			return null;
+		}
+
+		if (System.currentTimeMillis() - clogHoverSeenAt > CLOG_HOVER_TIMEOUT_MS)
+		{
+			return null;
+		}
+
+		if (client.isMenuOpen())
+		{
+			return null;
+		}
+
+		if (config.hideClogTooltipIfObtained() && hoveredClogItemObtained)
+		{
+			return null;
+		}
+
+		return renderClogTooltip(hoveredClogItem);
+	}
+
+	private String renderClogTooltip(String itemName)
+	{
+		List<SourceRate> sources = clogSources.get(itemName);
+		if (sources == null || sources.isEmpty())
+		{
+			return null;
+		}
+
+		// Group sources that share the same rate so identical rates collapse to one line.
+		LinkedHashMap<String, List<String>> sourcesByRate = new LinkedHashMap<>();
+		for (SourceRate source : sources)
+		{
+			sourcesByRate.computeIfAbsent(source.rate, k -> new ArrayList<>()).add(source.source);
+		}
+
+		List<ClogRateGroup> groups = new ArrayList<>();
+		for (Map.Entry<String, List<String>> entry : sourcesByRate.entrySet())
+		{
+			Chance chance = parseChance(entry.getKey());
+			groups.add(new ClogRateGroup(entry.getKey(), chance, getEffectiveRate(chance, entry.getKey()), entry.getValue()));
+		}
+
+		// Most common source first — that is the best way to obtain the item.
+		groups.sort(Comparator.comparingDouble(group -> group.effectiveRate));
+
+		StringBuilder tooltip = new StringBuilder();
+		tooltip.append(colorTag(WHITE)).append(itemName).append("</col>");
+
+		int shown = 0;
+		for (ClogRateGroup group : groups)
+		{
+			if (shown >= CLOG_MAX_RATE_GROUPS)
+			{
+				tooltip.append("<br>+").append(groups.size() - shown).append(" more");
+				break;
+			}
+
+			String rate = formatSingleRate(group.rate, group.chance);
+			Color color = getColor(group.effectiveRate);
+			tooltip.append("<br>")
+				.append(colorTag(color))
+				.append(joinClogSources(group.sources))
+				.append(": ")
+				.append(rate)
+				.append("</col>");
+			shown++;
+		}
+
+		return tooltip.toString();
+	}
+
+	private String joinClogSources(List<String> sources)
+	{
+		if (sources.size() <= CLOG_MAX_SOURCES_PER_GROUP)
+		{
+			return String.join(", ", sources);
+		}
+
+		List<String> head = sources.subList(0, CLOG_MAX_SOURCES_PER_GROUP);
+		return String.join(", ", head) + " +" + (sources.size() - CLOG_MAX_SOURCES_PER_GROUP) + " more";
+	}
+
+	private Map<String, List<SourceRate>> buildClogSources(
+		Map<String, Map<String, String>> npcAndMinigame,
+		Map<String, Map<String, String>> clueDrops,
+		Map<String, Map<String, String>> rdt)
+	{
+		// item name -> (source name -> rate), de-duplicating repeated sources.
+		Map<String, LinkedHashMap<String, String>> byItem = new HashMap<>();
+
+		addSourceKeyedDrops(byItem, npcAndMinigame);
+		addSourceKeyedDrops(byItem, clueDrops);
+
+		// rdt is already item-keyed: item -> (source -> rate).
+		if (rdt != null)
+		{
+			for (Map.Entry<String, Map<String, String>> entry : rdt.entrySet())
+			{
+				String item = entry.getKey();
+				for (Map.Entry<String, String> sourceRate : entry.getValue().entrySet())
+				{
+					byItem.computeIfAbsent(item, k -> new LinkedHashMap<>())
+						.putIfAbsent(sourceRate.getKey(), sourceRate.getValue());
+				}
+			}
+		}
+
+		Map<String, List<SourceRate>> result = new HashMap<>();
+		for (Map.Entry<String, LinkedHashMap<String, String>> entry : byItem.entrySet())
+		{
+			List<SourceRate> sourceList = new ArrayList<>();
+			for (Map.Entry<String, String> sourceRate : entry.getValue().entrySet())
+			{
+				sourceList.add(new SourceRate(sourceRate.getKey(), sourceRate.getValue()));
+			}
+			result.put(entry.getKey(), sourceList);
+		}
+
+		return result;
+	}
+
+	private void addSourceKeyedDrops(
+		Map<String, LinkedHashMap<String, String>> byItem,
+		Map<String, Map<String, String>> sourceKeyed)
+	{
+		if (sourceKeyed == null)
+		{
+			return;
+		}
+
+		for (Map.Entry<String, Map<String, String>> source : sourceKeyed.entrySet())
+		{
+			String sourceName = source.getKey();
+			for (Map.Entry<String, String> itemRate : source.getValue().entrySet())
+			{
+				byItem.computeIfAbsent(itemRate.getKey(), k -> new LinkedHashMap<>())
+					.putIfAbsent(sourceName, itemRate.getValue());
+			}
+		}
 	}
 
 	private void handleLoot(String npcName, Collection<ItemStack> items)
@@ -1529,6 +1755,34 @@ public class DropRatePlugin extends Plugin
 		{
 			this.numerator = numerator;
 			this.denominator = denominator;
+		}
+	}
+
+	private static final class SourceRate
+	{
+		private final String source;
+		private final String rate;
+
+		private SourceRate(String source, String rate)
+		{
+			this.source = source;
+			this.rate = rate;
+		}
+	}
+
+	private static final class ClogRateGroup
+	{
+		private final String rate;
+		private final Chance chance;
+		private final double effectiveRate;
+		private final List<String> sources;
+
+		private ClogRateGroup(String rate, Chance chance, double effectiveRate, List<String> sources)
+		{
+			this.rate = rate;
+			this.chance = chance;
+			this.effectiveRate = effectiveRate;
+			this.sources = sources;
 		}
 	}
 }

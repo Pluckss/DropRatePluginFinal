@@ -3,7 +3,9 @@
 ## What this project is
 - Live RuneLite plugin on the Plugin Hub (id: `drop-rate-properties`)
 - Two parts: a Python crawler that scrapes the OSRS Wiki, and a Java RuneLite plugin
-- The plugin shows item drop rates in chat whenever you receive loot from an NPC
+- The plugin shows item drop rates in two places:
+  - **In chat** whenever you receive loot from an NPC / activity
+  - **As a tooltip** when you hover an item in the Collection Log (shows every source + rate, grouped)
 
 ## How to run locally
 
@@ -23,14 +25,20 @@ cd DropRatePluginFinal
 ## Key files
 | File | Purpose |
 |---|---|
-| `src/main/java/com/pluckss/droprate/DropRatePlugin.java` | Main plugin logic |
+| `src/main/java/com/pluckss/droprate/DropRatePlugin.java` | Main plugin logic (chat feed + collection log tooltip) |
 | `src/main/java/com/pluckss/droprate/DropRateConfig.java` | All config options shown in the RuneLite panel |
+| `src/main/java/com/pluckss/droprate/ClogTooltipOverlay.java` | Overlay that draws the Collection Log hover tooltip via TooltipManager |
 | `src/main/resources/droprates_clean.json` | NPC drop rates (608 NPCs) |
 | `src/main/resources/rare_drop_table.json` | Rare Drop Table items (26 items) |
 | `src/main/resources/drop_metadata.json` | NPC aliases, Ring of Wealth and Slayer task context rules |
 | `src/main/resources/minigame_droprates.json` | Minigame/reward-chest drop rates, keyed by RuneLite LootReceived event name |
+| `src/main/resources/clue_droprates.json` | Clue (Treasure Trail) reward rates per tier — tooltip only |
+| `src/main/resources/special_droprates.json` | Bosses the main crawler structurally misses (Grotesque Guardians, Abyssal Sire Unsired rewards) |
+| `icon.png` / `scripts/make_icon.py` | Plugin Hub icon (48×72 purple droplet) and its generator |
 | `../Drop Rate Crawler/crawler_new.py` | Regenerates the NPC JSON data files from the OSRS Wiki |
 | `../Drop Rate Crawler/minigame_crawler.py` | Separate crawler for minigame reward rates (`minigame_droprates.json`) |
+| `../Drop Rate Crawler/clue_crawler.py` | Crawler for clue reward rates (`clue_droprates.json`) |
+| `../Drop Rate Crawler/special_droprates.py` | Crawler for the special-case bosses (`special_droprates.json`) |
 
 ## Regenerating data
 ```
@@ -57,6 +65,40 @@ currently shipped data — run it before shipping to spot lost NPCs/items.
 - Deliberately NOT supported (no fixed wiki rates or no RuneLite event): Fishing Trawler
   (all "Varies"), Barrows (reward-potential rolls), Hallowed Sepulchre, Shades of Mort'ton,
   Zalcano, Hespori, The Gauntlet, raids. See memory `minigame-droprates.md` for the why.
+
+## Collection Log tooltip
+- Hovering an item in the in-game Collection Log shows a tooltip listing every source that
+  drops it, with rates, grouped by rate (identical rates collapse to one line; long groups
+  and long tooltips are capped). `ClogTooltipOverlay` draws it via `TooltipManager` at
+  `OverlayPosition.TOOLTIP`.
+- Hook: `onMenuEntryAdded` filters to the Collection Log interface with
+  `(entry.getParam1() >>> 16) == InterfaceID.COLLECTION` (621, gameval), reads the hovered
+  item straight off the `MenuEntry`, and a 150 ms freshness window makes the tooltip vanish
+  when the mouse leaves. No widget enumeration / per-frame hit-testing.
+- Data: a tooltip-only `clogSources` map (item → sources) is built at load from
+  `primaryDrops` + RDT + `clue_droprates.json`. It is kept SEPARATE from the chat feature's
+  `invertedDrops` so the tooltip never changes chat behaviour.
+- Config lives under the **Collection log** section (master toggle + hide-for-obtained).
+- `clue_crawler.py` scrapes the 6 Reward casket pages. NO min-denominator filter (the tooltip
+  wants every source, incl. common rewards). Decimal rates like `1/30.3` are CORRECT and kept
+  as-is — clue caskets roll a variable number of times, so the per-casket chance is a genuine
+  weighted average, exactly as the wiki shows it. Do not "normalise" them (false precision).
+- **Deliberately shown WITHOUT a rate** (no honest fixed number exists): raid uniques
+  (CoX/ToB/ToA — contribution/invocation-based) and skilling pets (per-activity + level). Those
+  items simply get no tooltip rather than a fabricated one.
+
+## Special-case bosses (`special_droprates.py`)
+- The main NPC crawler only sees `{{DropsLine}}` tables on Category:Monsters pages, so it
+  structurally misses bosses whose drops live elsewhere. `special_droprates.py` fills these and
+  its output is merged into `primaryDrops` at load (one `mergeDropTable` line), feeding both
+  chat and the tooltip:
+  - **Grotesque Guardians** — loot table is on the combined activity page; the NPCs Dusk/Dawn
+    have no DropsLine of their own. (Chat won't fire on Dusk/Dawn kills unless a
+    `Dusk`/`Dawn` → `Grotesque Guardians` sourceAlias is added to `drop_metadata.json`.)
+  - **Abyssal Sire** — the Sire only drops `Unsired` (1/100); the real rewards (bludgeon pieces,
+    Jar of miasma, Abyssal orphan pet, ...) are on the `Unsired` page and are combined ×1/100.
+- If another boss turns up missing, add it here. Audit of 35 notable collection-log bosses found
+  only these two.
 
 ## Known data gaps
 - Herb sub-table items are missing from `rare_drop_table.json` — herbs dropped via the RDT show no rate in chat

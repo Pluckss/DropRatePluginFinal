@@ -42,6 +42,14 @@ public interface DropRateConfig extends Config
 	)
 	String colorsSection = "colorsSection";
 
+	@ConfigSection(
+		name = "Collection log",
+		description = "Show drop-rate sources when hovering items in the Collection Log",
+		position = 4,
+		closedByDefault = true
+	)
+	String clogSection = "clogSection";
+
 	@ConfigItem(
 		keyName = "displayMode",
 		name = "Drop visibility",
@@ -318,5 +326,29 @@ public interface DropRateConfig extends Config
 	default int notificationThreshold()
 	{
 		return 1000;
+	}
+
+	@ConfigItem(
+		keyName = "showClogTooltip",
+		name = "Collection log tooltips",
+		description = "Show a tooltip with each item's drop-rate sources when you hover it in the Collection Log",
+		position = 0,
+		section = clogSection
+	)
+	default boolean showClogTooltip()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "hideClogTooltipIfObtained",
+		name = "Hide for obtained items",
+		description = "Don't show the tooltip for collection log items you have already unlocked",
+		position = 1,
+		section = clogSection
+	)
+	default boolean hideClogTooltipIfObtained()
+	{
+		return false;
 	}
 }
