@@ -23,7 +23,6 @@
     "Dragon longsword": "2 × 1/142",
     "Dragon med helm": "2 × 1/142",
     "Dragonstone bolt tips": "2 × 2/142",
-    "GG clue}}": "1/230",
     "Gold bar": "2 × 6/142",
     "Gold ore": "2 × 7/142",
     "Granite gloves": "2 × 1/500",
@@ -51,5 +50,8 @@
     "Shark lure": "2 × 1.5/142",
     "Soul rune": "2 × 1/142",
     "Super combat potion(2)": "2 × 6/142"
+  },
+  "Maggot King (taking eggs)": {
+    "Maggot marquess": "1/1502.4"
   }
 }

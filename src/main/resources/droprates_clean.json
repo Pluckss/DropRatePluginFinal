@@ -238,7 +238,8 @@
     "Fire rune": "2/128",
     "Fishing bait": "5/128",
     "Iron dagger": "1/128",
-    "Mind rune": "2/128"
+    "Mind rune": "2/128",
+    "Rocky": "1/256586"
   },
   "Albatross": {
     "Bird nest (egg)#Blue egg": "1/1000",
@@ -458,7 +459,6 @@
   "Ancient Zygomite": {
     "Brimstone key": "1/79",
     "Calcite": "18/118",
-    "Clue rates tweet}}": "1/128",
     "Cosmic rune": "6/118",
     "Earth rune": "18/118",
     "Grimy cadantine": "2 × 12/472",
@@ -540,7 +540,7 @@
     ],
     "Brimstone key": "1/225",
     "Dark fishing bait": [
-      "33/100",
+      "38/100",
       "57/92"
     ],
     "Death rune": [
@@ -550,7 +550,7 @@
     "Fishing bait": "33/100",
     "Fried mushrooms": "1/100",
     "Law rune": [
-      "4/100",
+      "7/100",
       "20/100"
     ],
     "Left skull half": "3/100",
@@ -593,7 +593,7 @@
     "Antidote++(3)": "4/115",
     "Araxyte fang": "1/600",
     "Araxyte head": "1/250",
-    "Araxyte venom sack": [
+    "Araxyte venom sac": [
       "5/115",
       "2/115"
     ],
@@ -641,14 +641,13 @@
       "1/2000"
     ],
     "Araxyte head": "1/2000",
-    "Araxyte venom sack": "5/127",
+    "Araxyte venom sac": "5/127",
     "Blood rune": "5/127",
     "Chaos rune": "5/127",
     "Cosmic rune": "5/127",
     "Death rune": "5/127",
     "Earth rune": "10/127",
     "Fire rune": "10/127",
-    "HardClueRate": "1/86",
     "Law rune": "5/127",
     "Nature rune": "5/127",
     "Rune dagger": "3/127",
@@ -700,8 +699,8 @@
     "Camphor repair kit": "4/119",
     "Camphor seed": "1/158.7",
     "Death rune": "10/119",
-    "Dragon keel parts": "1/1280",
-    "Dragon metal sheet": "1/90",
+    "Dragon keel parts": "1/800",
+    "Dragon metal sheet": "1/140",
     "Dwarf weed seed": "1/1117",
     "Earth battlestaff": "6/119",
     "Harralander seed": "1/1111",
@@ -711,7 +710,7 @@
     "Jangerberry seed": "1/676.5",
     "Kwuarm seed": "1/227.3",
     "Lantadyme seed": "1/681.8",
-    "Large dragon keel parts": "1/1280",
+    "Large dragon keel parts": "1/600",
     "Limpwurt seed": "1/454.3",
     "Marrentill seed": "1/497.9",
     "Mushroom spore": "1/2146",
@@ -860,7 +859,7 @@
   "Baby blue dragon": {
     "Brimstone key": "1/640",
     "Frozen tear": "1/100",
-    "Scaly blue dragonhide": "1/100",
+    "Scaly blue dragonhide": "1/200",
     "Tooth half of key (moon key)": "1/1066"
   },
   "Baby impling": {
@@ -953,8 +952,15 @@
     "Iron battleaxe": "2/128",
     "Law rune": "2/128",
     "Nature rune": "2/128",
+    "Rocky": "1/255,886",
     "Steel axe": "1/128",
     "Steel bar": "5/128"
+  },
+  "Bandit (Pollnivneach)": {
+    "Rocky": [
+      "1/256,086",
+      "1/255,836"
+    ]
   },
   "Bandit (Shayzien)": {
     "Air rune": "5/128",
@@ -1394,22 +1400,8 @@
     "Pure essence": "8/128",
     "Super defence(1)": "2/128"
   },
-  "Bloodthirst rockslug": {
-    "Bronze bar": "9 × 2/128",
-    "Chaos rune": "9 × 4/128",
-    "Coal": "9 × 13/128",
-    "Copper ore": "9 × 3/128",
-    "Dwarven stout": "9 × 13/128",
-    "Earth rune": [
-      "9 × 30/128",
-      "9 × 4/128"
-    ],
-    "Hammer": "9 × 10/128",
-    "Iron bar": "9 × 3/128",
-    "Iron ore": "9 × 22/128",
-    "Mithril ore": "9 × 1/128",
-    "Mystic gloves (light)": "9 × 1/512",
-    "Tin ore": "9 × 8/128"
+  "Blood-starved venator": {
+    "Brimstone key": "1/56"
   },
   "Bloodveld": {
     "Big bones": [
@@ -1467,7 +1459,6 @@
       "6/52",
       "1/52"
     ],
-    "Scroll box (beginner)": "1/62",
     "Tin ore": "6/52",
     "Uncut emerald": "2/52",
     "Uncut ruby": "1/52",
@@ -1685,10 +1676,6 @@
     "Blue dragon scale": "4/128",
     "Brimstone key": "1/66",
     "Chaos rune": "8/128",
-    "Clue rates tweet}}": [
-      "1/128",
-      "1/750"
-    ],
     "Curry": "8/128",
     "Death rune": "8/128",
     "Draconic visage": "1/10000",
@@ -1965,7 +1952,6 @@
   },
   "Cave bug": {
     "Candle": "5/128",
-    "Clue rates tweet}}": "1/128",
     "Earth rune": [
       "2/128",
       "15/128"
@@ -2011,7 +1997,7 @@
     "Vial of water": "13/128",
     "White berries": "5/128"
   },
-  "Cave goblin (monster)": {
+  "Cave goblin": {
     "Body rune": "5/50",
     "Brass necklace": "1/50",
     "Earth rune": "5/50",
@@ -2062,10 +2048,6 @@
     "Brimstone key": "1/76",
     "Bucket": "1/240",
     "Chaos rune": "16/200",
-    "Clue rates tweet}}": [
-      "1/100",
-      "1/1200"
-    ],
     "Death rune": "16/200",
     "Fire rune": "10/200",
     "Kraken tentacle": "1/1200",
@@ -2091,7 +2073,6 @@
   "Cave slime": {
     "Bronze axe": "3/128",
     "Bronze full helm": "1/128",
-    "Clue rates tweet}}": "1/128",
     "Earth rune": "3/128",
     "Gold bar": "2/128",
     "Iron boots": "1/128",
@@ -2371,7 +2352,6 @@
     "Water rune": "3 × 2/128"
   },
   "Cockatrice": {
-    "Clue rates tweet}}": "1/128",
     "Cockatrice head": "1/1000",
     "Fire rune": "2/128",
     "Iron boots": "1/128",
@@ -2407,12 +2387,10 @@
     "Steel med helm": "1/128"
   },
   "Colossal Hydra": {
-    "Alchemical Hydra}}": "10/128",
     "Battlestaff": "3 × 2/128",
     "Black d'hide chaps": "3 × 3/128",
     "Blood rune": "3 × 9/128",
     "Chaos rune": "3 × 9/128",
-    "Clue rates tweet}}": "10/512",
     "Death rune": "3 × 9/128",
     "Diamond bolt tips": "3 × 1/256",
     "Dragon bones": "3 × 3/128",
@@ -2474,7 +2452,6 @@
     "Adamantite bar": "18/512",
     "Adamantite ore": "17/512",
     "Antidote++(4)": "10/512",
-    "Clue rates tweet}}": "1/200",
     "Cosmic rune": "17/512",
     "Death rune": "22/512",
     "Desert goat horn": "17/512",
@@ -2506,7 +2483,7 @@
     "White berries": "17/512"
   },
   "Crawling Hand": {
-    "Crawling hand (item)": "1/500",
+    "Crawling hand": "1/500",
     "Emerald ring": "2/128",
     "Gold ring": "3/128",
     "Leather gloves": "21/128",
@@ -2551,7 +2528,7 @@
     "Ancient ceremonial top": "1/1000"
   },
   "Crushing hand": {
-    "Crawling hand (item)": "1/500",
+    "Crawling hand": "1/500",
     "Emerald ring": "3 × 2/128",
     "Gold ring": "3 × 3/128",
     "Leather gloves": "3 × 21/128",
@@ -2738,7 +2715,6 @@
     ],
     "Casket": "5/128",
     "Circular hide": "2/128",
-    "Clue rates tweet}}": "1/128",
     "Dagannoth hide": "10/128",
     "Edible seaweed": "8/128",
     "Farseer helm": "1/2048",
@@ -2883,7 +2859,6 @@
   },
   "Dagannoth spawn": {
     "Brimstone key": "1/772",
-    "Clue rates tweet}}": "1/128",
     "Feather": "38/128",
     "Fishing bait": "10/128",
     "Oyster pearl": "4/128",
@@ -3019,7 +2994,6 @@
     "Black d'hide body": "6/131",
     "Black dragonhide": "5/131",
     "Brimstone key": "1/65",
-    "Clue rates tweet}}": "1/200",
     "Crystal key": "7/131",
     "Dragon arrow": "1/131",
     "Gold ore": "6/131",
@@ -3062,7 +3036,6 @@
     "Battlestaff": "5/128",
     "Black platelegs": "5/128",
     "Brimstone key": "1/69",
-    "Clue rates tweet}}": "1/128",
     "Lava battlestaff": "1/128",
     "Limpwurt seed": "10/128",
     "Mithril battleaxe": "5/128",
@@ -3183,7 +3156,7 @@
     "Air rune": "3 × 10/127",
     "Aranea boots": "3 × 1/400",
     "Araxyte head": "3 × 1/2000",
-    "Araxyte venom sack": "3 × 5/127",
+    "Araxyte venom sac": "3 × 5/127",
     "Blood rune": "3 × 5/127",
     "Chaos rune": "3 × 5/127",
     "Cosmic rune": "3 × 5/127",
@@ -3536,7 +3509,6 @@
     "Adamant full helm": "1/128",
     "Adamantite ore": "1/128",
     "Bass": "3/128",
-    "Clue rates tweet}}": "1/128",
     "Crystal teleport seed": "25/128",
     "Ensouled elf head": "1/50",
     "Fire rune": "3/128",
@@ -3555,7 +3527,6 @@
     "Adamant full helm": "1/128",
     "Adamantite ore": "1/128",
     "Bass": "3/128",
-    "Clue rates tweet}}": "1/128",
     "Crystal teleport seed": "25/128",
     "Fire rune": "3/128",
     "Green d'hide body": "4/128",
@@ -3698,7 +3669,6 @@
   },
   "Experiment No.2": {
     "Chaos rune": "7/128",
-    "Clue rates tweet}}": "1/128",
     "Earth rune": "10/128",
     "Grimy tarromin": "27/128",
     "Mole claw": "1/128",
@@ -3721,6 +3691,7 @@
     "Mind rune": "2/128",
     "Potato seed": "5/128",
     "Rake": "3/128",
+    "Rocky": "1/256961",
     "Secateurs": "1/128",
     "Seed dibber": "2/128",
     "Watering can(8)": "1/128"
@@ -3803,7 +3774,6 @@
   "Flaming pyrelord": {
     "Adamant med helm": "3 × 1/128",
     "Chaos rune": "3 × 5/128",
-    "Clue rates tweet}}<ref group=d>Twice as common if a [[ring of wealth (i)]] is worn and fought in the [[Wilderness]].</ref>": "10/128",
     "Death rune": "3 × 3/128",
     "Fire rune": [
       "3 × 21/128",
@@ -3908,7 +3878,6 @@
     "Blamish oil": "1/512",
     "Bronze warhammer": "100/512",
     "Bucket": "17/512",
-    "Clue rates tweet}}": "1/128",
     "Coal": "10/512",
     "Copper ore": "10/512",
     "Eye of newt": "4/512",
@@ -4052,7 +4021,6 @@
     "Black med helm": "8/256",
     "Black plateskirt": "8/256",
     "Black scimitar": "11/256",
-    "Clue rates tweet}}": "1/65",
     "Compost": "25/256",
     "Cosmic rune": "20/256",
     "Gold bar": "15/256",
@@ -4070,7 +4038,6 @@
     "Black med helm": "8/256",
     "Black plateskirt": "8/256",
     "Black scimitar": "11/256",
-    "Clue rates tweet}}": "1/65",
     "Compost": "25/256",
     "Cosmic rune": "20/256",
     "Gold bar": "15/256",
@@ -4214,7 +4181,6 @@
     "Black platebody": "5/128",
     "Black warhammer": "5/128",
     "Casket": "2/128",
-    "Clue rates tweet}}": "1/128",
     "Earth rune": "10/128",
     "Mithril axe": "10/128",
     "Raw bass": "10/128",
@@ -4377,7 +4343,8 @@
     "Fire orb": "2/128",
     "Gold ore": "8/128",
     "King worm": "3/128",
-    "Swamp toad (item)": "24/128"
+    "Rocky": "1/106,843",
+    "Swamp toad": "24/128"
   },
   "Gnome child": {
     "Arrow shaft": "56/128",
@@ -4385,7 +4352,7 @@
     "Fire orb": "2/128",
     "Gold ore": "8/128",
     "King worm": "3/128",
-    "Swamp toad (item)": "24/128"
+    "Swamp toad": "24/128"
   },
   "Gnome woman": {
     "Arrow shaft": "56/128",
@@ -4393,7 +4360,7 @@
     "Fire orb": "2/128",
     "Gold ore": "8/128",
     "King worm": "3/128",
-    "Swamp toad (item)": "24/128"
+    "Swamp toad": "24/128"
   },
   "Goblin": {
     "Air talisman": "1/128",
@@ -4549,12 +4516,12 @@
     "Diamond amulet": "12/100",
     "Dragon cannonball": "2/100",
     "Dragon dart tip": "3/100",
-    "Dragon keel parts": "1/6138",
+    "Dragon keel parts": "1/1000",
     "Dragon longsword": "1/100",
     "Dragon med helm": "1/100",
-    "Dragon metal sheet": "1/120",
+    "Dragon metal sheet": "1/200",
     "Fremennik salvage": "2/100",
-    "Large dragon keel parts": "1/6138",
+    "Large dragon keel parts": "1/500",
     "Mystic hat": "5/100",
     "Onyx bolt tips": "4/100",
     "Raw shark": "17/100",
@@ -4585,7 +4552,6 @@
       "10/128",
       "10/112"
     ],
-    "Clue rates tweet}}": "1/128",
     "Death rune": [
       "12/128",
       "12/112"
@@ -4658,8 +4624,7 @@
     "Pure essence": "3 × 5/128",
     "Rune chainbody": "3 × 1/128",
     "Rune med helm": "3 × 1/128",
-    "Steel battleaxe": "3 × 3/128",
-    "drop2}}": "10/128"
+    "Steel battleaxe": "3 × 3/128"
   },
   "Greater demon": {
     "Adamant platelegs": "1/128",
@@ -4774,6 +4739,7 @@
     "Iron dagger": "6/128",
     "Iron ore": "1/128",
     "Nature rune": "1/128",
+    "Rocky": "1/256,211",
     "Steel arrow": [
       "4/128",
       "1/128"
@@ -4968,7 +4934,6 @@
     "Adamant full helm": "1/128",
     "Adamantite ore": "2/128",
     "Bass": "3/128",
-    "Clue rates tweet}}": "1/128",
     "Crystal teleport seed": "25/128",
     "Enhanced crystal teleport seed": "1/1024",
     "Ensouled elf head": "1/50",
@@ -5103,7 +5068,6 @@
     "Bronze dagger": "3/110",
     "Bronze pickaxe": "3/110",
     "Buttons": "4/110",
-    "Clue rates tweet}}": "1/55",
     "Coal": "2/110",
     "Cowhide": "3/110",
     "Damaged armour": "4/110",
@@ -5160,7 +5124,6 @@
   "Harpie Bug Swarm": {
     "Adamant med helm": "1/128",
     "Chaos rune": "5/128",
-    "Clue rates tweet}}": "1/128",
     "Death rune": "3/128",
     "Fire rune": [
       "20/128",
@@ -5257,7 +5220,8 @@
     "Diamond": "1/128",
     "Fire orb": "2/128",
     "Gold ore": "1/128",
-    "Jug of wine": "6/128"
+    "Jug of wine": "6/128",
+    "Rocky": "1/97,175"
   },
   "Hespori": {
     "Avantoe seed": "3/80",
@@ -5352,13 +5316,11 @@
     "Water rune": "2/128"
   },
   "Hydra": {
-    "Alchemical Hydra}}": "1/128",
     "Battlestaff": "2/128",
     "Black d'hide chaps": "3/128",
     "Blood rune": "9/128",
     "Brimstone key": "1/65",
     "Chaos rune": "9/128",
-    "Clue rates tweet}}": "1/512",
     "Death rune": "9/128",
     "Diamond bolt tips": "1/256",
     "Dragon bones": "3/128",
@@ -5598,7 +5560,6 @@
   },
   "Icefiend": {
     "Air rune": "1/128",
-    "Clue rates tweet}}": "1/128",
     "Frozen tear": "1/150",
     "Tooth half of key (moon key)": "1/1373",
     "Water rune": "4/128"
@@ -5730,8 +5691,7 @@
     "Rune med helm": "3 × 1/128",
     "Steel axe": "3 × 4/128",
     "Steel full helm": "3 × 4/128",
-    "Steel scimitar": "3 × 2/128",
-    "drop2}}": "10/256"
+    "Steel scimitar": "3 × 2/128"
   },
   "Insatiable mutated Bloodveld": {
     "Adamant chainbody": "3 × 3/128",
@@ -5764,7 +5724,6 @@
     "Adamant full helm": "1/128",
     "Adamantite ore": "2/128",
     "Bass": "3/128",
-    "Clue rates tweet}}": "1/128",
     "Fire rune": "2/128",
     "Green d'hide body": "4/128",
     "Green d'hide chaps": "3/128",
@@ -5783,7 +5742,6 @@
       "1/128"
     ],
     "Bass": "3/128",
-    "Clue rates tweet}}": "1/128",
     "Crystal teleport seed": "25/128",
     "Enhanced crystal teleport seed": "1/1024",
     "Ensouled elf head": "1/50",
@@ -5896,8 +5854,7 @@
     "Thread": [
       "1/128",
       "1/64"
-    ],
-    "drop}}": "1/128"
+    ]
   },
   "Jennella": {
     "Beer": "2/512",
@@ -5974,7 +5931,6 @@
       "2/129"
     ],
     "Bones": "5/129",
-    "Clue rates tweet}}": "1/128",
     "Death rune": "5/129",
     "Iron javelin": "2/129",
     "Iron kiteshield": "5/129",
@@ -6010,7 +5966,6 @@
     "Brimstone key": "1/50",
     "Death rune": "8/127",
     "Dragon dagger(p++)": "2/127",
-    "Drop Rates V2}}": "1/250",
     "Godsword shard 1": "1/762",
     "Godsword shard 2": "1/762",
     "Godsword shard 3": "1/762",
@@ -6224,8 +6179,8 @@
     "Rune longsword": "3 × 3/124",
     "White berries": "3 × 6/124"
   },
-  "Knight of Saradomin": {
-    "Clue rates tweet}}<ref group=d>The hard clue scroll drop rate is increased to 1/64 if a [[Ring of wealth (i)]] is worn and fought in the [[Wilderness]].</ref>": "1/128"
+  "Knight of Ardougne": {
+    "Rocky": "1/255,836"
   },
   "Kraka": {
     "Adamant axe": "2/128",
@@ -6340,7 +6295,6 @@
     "Adamant platebody": "3/124",
     "Big bones": "5/124",
     "Brimstone key": "1/79",
-    "Clue rates tweet}}": "1/128",
     "Coconut": "4/124",
     "Flax": "6/124",
     "Kurask head": "1/3000",
@@ -6613,7 +6567,6 @@
   "Lobstrosity": {
     "Caviar": "5/118",
     "Chaos rune": "8/118",
-    "Clue rates tweet}}": "1/128",
     "Death rune": "5/118",
     "Giant seaweed": "8/118",
     "Grimy cadantine": "2 × 3/236",
@@ -6666,7 +6619,6 @@
     "Calcite": "2/123",
     "Celastrus seed": "1/7687.5",
     "Chaos rune": "4/123",
-    "Clue rates tweet}}": "1/118",
     "Death rune": "4/123",
     "Dragonfruit tree seed": "1/5125",
     "Granite boots": "1/2560",
@@ -6724,6 +6676,41 @@
       "1/128"
     ]
   },
+  "Maggot King": {
+    "Adamantite ore": "10/159",
+    "Blood sac": "5/159",
+    "Brimstone key": "1/50",
+    "Crimson kisten": "1/520",
+    "Dull ancient medal": "41/159",
+    "Elder venator fang": "1/340",
+    "Gold ore": "5/159",
+    "Letvek": "10/159",
+    "Maggot egg (base)": "300/1500",
+    "Maggot egg (pulsating)": "6/1500",
+    "Maggot egg (sickly)": "150/1500",
+    "Maggot egg (warm)": "33/1500",
+    "Maggot egg (wriggling)": "3/1500",
+    "Maggot egg (writhing)": "1/1500",
+    "Maggot marquess": "1/3500",
+    "Mithril ore": "5/159",
+    "Mort myre fungus": "10/159",
+    "Orikalkum gravel": "4/159",
+    "Runite ore": "5/159",
+    "Stymphike feather": "10/159",
+    "Stymphike tartare": "41/159",
+    "Tarnished 2h sword": "2/159",
+    "Tarnished amulet": "3/159",
+    "Tarnished battleaxe": "2/159",
+    "Tarnished bracelet": "3/159",
+    "Tarnished halberd": "2/159",
+    "Tarnished longsword": "2/159",
+    "Tarnished necklace": "3/159",
+    "Tarnished ring": "6/159",
+    "Tarnished spear": "12/159",
+    "Uncut ruby": "15/159",
+    "Venator fang": "2/159",
+    "Venator tooth": "2/159"
+  },
   "Magic axe": {
     "Adamant battleaxe": "4/500",
     "Iron battleaxe": "475/500",
@@ -6743,7 +6730,6 @@
     "Death rune": "3 × 6/128",
     "Diamond bolt tips": "3 × 1/94.2",
     "Dragon arrowtips": "3 × 4/128",
-    "Dragon metal sheet": "3 × 1/100",
     "Dragonstone bolt tips": "3 × 1/157",
     "Emerald bolt tips": "3 × 1/117.8",
     "Fire orb": "3 × 5/128",
@@ -6846,9 +6832,10 @@
     "Fire rune": "2/128",
     "Fishing bait": "5/128",
     "Iron dagger": "1/128",
-    "Mind rune": "2/128"
+    "Mind rune": "2/128",
+    "Rocky": "1/257211"
   },
-  "Manta ray (monster)": {
+  "Manta ray": {
     "Avantoe seed": "1/174.6",
     "Belladonna seed": "1/125.8",
     "Bucket of sand": "5/99",
@@ -6952,6 +6939,9 @@
     "Rune arrow": "10/107",
     "Steel cannonball": "15/107"
   },
+  "Menaphite Thug": {
+    "Rocky": "1/255,586"
+  },
   "Milla": {
     "Blamish oil": "1/512",
     "Bucket": "25/512",
@@ -6999,7 +6989,6 @@
     "Bronze dagger": "4/101",
     "Bronze full helm": "10/101",
     "Bronze spear": "10/101",
-    "Clue rates tweet}}": "1/101",
     "Cooked meat": "3/101",
     "Copper ore": "6/101",
     "Ensouled minotaur head": "1/50",
@@ -7083,7 +7072,6 @@
     "Water rune": "6/128"
   },
   "Molanisk": {
-    "Clue rates tweet}}": "1/128",
     "Cosmic rune": "5/128",
     "Earth rune": "10/128",
     "Mole claw": "1/128",
@@ -7210,7 +7198,6 @@
     "Adamant full helm": "1/128",
     "Adamantite ore": "3/128",
     "Bass": "3/128",
-    "Clue rates tweet}}": "1/128",
     "Fire rune": "1/128",
     "Green d'hide body": "4/128",
     "Green d'hide chaps": "3/128",
@@ -7391,7 +7378,6 @@
     "Blood rune": "4/116",
     "Brimstone key": "1/77",
     "Chaos rune": "8/116",
-    "Clue rates tweet}}": "1/128",
     "Death rune": "6/116",
     "Law rune": "5/116",
     "Limpwurt seed": "6/116",
@@ -7416,10 +7402,6 @@
     "Chaos rune": [
       "3 × 8/116",
       "3 × 10/128"
-    ],
-    "Clue rates tweet}}": [
-      "10/128",
-      "1/128"
     ],
     "Death rune": [
       "3 × 6/116",
@@ -7732,8 +7714,6 @@
     "Camphor seed": "15/1840",
     "Cotton seed": "2/460",
     "Dragon cannonball": "2/92",
-    "Dragon metal sheet": "1/100",
-    "Dragon nails": "1/75",
     "Echo pearl": "1/70",
     "Flax seed": "5/460",
     "Fremennik salvage": "6/92",
@@ -7820,6 +7800,7 @@
     "Blood rune": "1/128",
     "Iron bar": "9/128",
     "Mithril bar": "1/128",
+    "Rocky": "1/125,306",
     "Steel bar": "1/128",
     "Steel full helm": "1/128",
     "Steel longsword": "1/128",
@@ -7991,6 +7972,7 @@
     "Law rune": "1/128",
     "Nature rune": "5/128",
     "Right eye patch": "12/128",
+    "Rocky": "1/255,711",
     "Steel cannonball": "5/200"
   },
   "Possessed pickaxe": {
@@ -8156,7 +8138,7 @@
     "Spinach roll": "1/128",
     "Tin ore": "4/128"
   },
-  "Rock Golem (monster)": {
+  "Rock Golem": {
     "Adamant pickaxe": "1/128",
     "Adamantite ore": "3/128",
     "Bronze bar": [
@@ -8201,7 +8183,6 @@
     ]
   },
   "Rock lobster": {
-    "Clue rates tweet}}": "1/128",
     "Earth rune": "10/128",
     "Edible seaweed": "10/128",
     "Iron arrow": "10/128",
@@ -8247,7 +8228,8 @@
     "Iron dagger(p)": "1/144",
     "Jug of wine": "6/144",
     "Lockpick": "5/144",
-    "Mind rune": "2/128"
+    "Mind rune": "2/128",
+    "Rocky": "1/256,411"
   },
   "Rooster": {
     "Feather": [
@@ -8311,7 +8293,6 @@
     "Bronze pickaxe": "6/128",
     "Bucket of sand": "6/128",
     "Casket": "1/128",
-    "Clue rates tweet}}": "1/128",
     "Coal": "2/128",
     "Copper ore": "2/128",
     "Edible seaweed": "2/128",
@@ -8378,9 +8359,6 @@
     "Uncut sapphire": "4/100",
     "Weapon poison(++)": "2/100",
     "Yew seed": "1/100"
-  },
-  "Saradomin priest": {
-    "Clue rates tweet}}": "1/128"
   },
   "Saradomin wizard": {
     "Air battlestaff": "2/128",
@@ -8504,7 +8482,6 @@
       "3 × 2/128",
       "3 × 1/128"
     ],
-    "Clue rates tweet}}": "10/128",
     "Cosmic rune": "3 × 3/128",
     "Eye of newt": "3 × 1/128",
     "Fire rune": "3 × 1/128",
@@ -8701,7 +8678,7 @@
   "Shellbane gryphon": {
     "Adamant cannonball": "2 × 8/128",
     "Basket": "2 × 3/128",
-    "Belle's folly (tarnished)": "1/256",
+    "Belle's folly (tarnished)": "1/75",
     "Brimstone key": "1/58",
     "Cabbage seed": "2 × 1/68.3",
     "Curved bone": "1/5012.5",
@@ -8781,7 +8758,6 @@
     "Draconic visage": "1/10000",
     "Dragon platelegs": "1/512",
     "Dragon plateskirt": "1/512",
-    "Drop Rates V2}}": "1/350",
     "Earth battlestaff": "4/128",
     "Granite legs": "1/512",
     "Iron ore": "3/128",
@@ -9736,7 +9712,6 @@
     "Calcite": "2/123",
     "Celastrus seed": "1/7687.5",
     "Chaos rune": "4/123",
-    "Clue rates tweet}}": "1/118",
     "Death rune": "4/123",
     "Dragonfruit tree seed": "1/5125",
     "Granite boots": "1/2560",
@@ -9921,7 +9896,7 @@
     "Mithril ore": "1/128",
     "Nature rune": "4/128",
     "Silver ore": "12/128",
-    "Sulphur blades": "1/450",
+    "Sulphur blades": "1/250",
     "Sulphurous essence": "4/128",
     "Tin ore": "5/128"
   },
@@ -9962,7 +9937,6 @@
     "Bronze pickaxe": "12/128",
     "Casket": "1/128",
     "Chisel": "3/128",
-    "Clue rates tweet}}": "1/96",
     "Coal": "2/128",
     "Copper ore": "2/128",
     "Edible seaweed": "2/128",
@@ -9993,7 +9967,6 @@
     "Calcite": "2/123",
     "Celastrus seed": "1/7687.5",
     "Chaos rune": "4/123",
-    "Clue rates tweet}}": "1/118",
     "Death rune": "4/123",
     "Dragonfruit tree seed": "1/5125",
     "Granite boots": "1/2560",
@@ -10045,7 +10018,6 @@
     "Death rune": "2/100",
     "Earth rune": "5/100",
     "Fire rune": "5/100",
-    "Forthos Dungeon clue scroll Droprates}}": "1/200",
     "Grubby key": "1/100",
     "Law rune": "1/100",
     "Nature rune": "2/100",
@@ -10532,7 +10504,7 @@
       "20/128",
       "10/128"
     ],
-    "Swamp toad (item)": [
+    "Swamp toad": [
       "20/128",
       "5/128"
     ],
@@ -10809,6 +10781,7 @@
     "Jug": "8/128",
     "Knife": "8/128",
     "Pot": "8/128",
+    "Rocky": "1/174,493",
     "Tokkul": [
       "64/128",
       "182/195"
@@ -10908,7 +10881,6 @@
     "Earth battlestaff": "2/100",
     "Earth rune": "5/100",
     "Eye of newt": "2/100",
-    "Forthos Dungeon clue scroll Droprates}}": "1/100",
     "Grubby key": "1/75",
     "Law rune": "2/100",
     "Mask of ranul": "1/1000",
@@ -10979,18 +10951,18 @@
   "Vampyre kraken": {
     "Battlestaff": "6/120",
     "Blood rune": "8/120",
-    "Bottled storm": "1/350",
+    "Bottled storm": "1/300",
     "Camphor seed": "15/2400",
     "Death rune": "10/120",
     "Dragon cannonball": "2/120",
-    "Dragon keel parts": "1/1024",
-    "Dragon metal sheet": "1/80",
+    "Dragon keel parts": "1/300",
+    "Dragon metal sheet": "1/150",
     "Fire battlestaff": "6/120",
     "Fremennik salvage": "2/120",
     "Inky paint": "1/1500",
     "Ironwood repair kit": "4/120",
     "Ironwood seed": "4/2400",
-    "Large dragon keel parts": "1/1024",
+    "Large dragon keel parts": "1/300",
     "Mahogany plank": "8/120",
     "Mystic fire staff": "5/120",
     "Mystic robe top": "1/120",
@@ -11046,15 +11018,15 @@
     "Death rune": "8/272",
     "Dragon cannon barrel": "1/500",
     "Dragon cannonball": "3/272",
-    "Dragon keel parts": "1/1850",
-    "Dragon metal sheet": "1/90",
+    "Dragon keel parts": "2/500",
+    "Dragon metal sheet": "4/500",
     "Earth battlestaff": "30/272",
     "Earth rune": "10/272",
     "Giant seaweed": "5/272",
     "Inky paint": "1/1900",
     "Ironwood repair kit": "5/272",
     "Ironwood seed": "1/680",
-    "Large dragon keel parts": "1/2100",
+    "Large dragon keel parts": "2/500",
     "Mystic boots": "3/272",
     "Mystic earth staff": "30/272",
     "Mystic gloves": "3/272",
@@ -11073,6 +11045,34 @@
     "Snake hide": "5/272",
     "Water battlestaff": "30/272",
     "Water rune": "10/272"
+  },
+  "Venator": {
+    "Adamantite ore": "17/131",
+    "Blood sac": "3/131",
+    "Blood shard": "1/860",
+    "Brimstone key": "1/56",
+    "Fine fish offcuts": "3/131",
+    "Fish offcuts": "5/131",
+    "Grapevine": "5/131",
+    "Hard leather": "6/131",
+    "Jug of wine": "1/131",
+    "Letvek": "2/131",
+    "Mithril ore": "12/131",
+    "Mort myre fungus": "10/131",
+    "Orikalkum gravel": "1/131",
+    "Runite ore": "1/131",
+    "Stymphike feather": "12/131",
+    "Tarnished 2h sword": "115/14803",
+    "Tarnished amulet": "253/14803",
+    "Tarnished battleaxe": "115/14803",
+    "Tarnished bracelet": "253/14803",
+    "Tarnished halberd": "115/14803",
+    "Tarnished longsword": "115/14803",
+    "Tarnished necklace": "253/14803",
+    "Tarnished ring": "506/14803",
+    "Tarnished spear": "690/14803",
+    "Venator fang": "7/131",
+    "Venator tooth": "7/131"
   },
   "Venenatis": {
     "Antidote++(4)": "3/126",
@@ -11212,8 +11212,7 @@
     "Steel 2h sword": "3 × 7/128",
     "Steel axe": "3 × 3/128",
     "Steel battleaxe": "3 × 11/128",
-    "Thread": "3 × 1/128",
-    "drop}}{{CiteGeneral": "10/128"
+    "Thread": "3 × 1/128"
   },
   "Vitreous Warped Jelly": {
     "Adamant 2h sword": "3 × 2/128",
@@ -11363,7 +11362,6 @@
     "Air rune": "10/128",
     "Blood rune": "10/128",
     "Chaos rune": "10/128",
-    "Clue rates tweet}}": "1/128",
     "Death rune": "10/128",
     "Earth rune": "10/128",
     "Fibula piece": "2/128",
@@ -11456,6 +11454,12 @@
     "Ring mould": "1/128",
     "Steel warhammer": "1/128",
     "Tin ore": "1/128"
+  },
+  "Warrior (Thieving)": {
+    "Rocky": "1/256586"
+  },
+  "Watchman": {
+    "Rocky": "1/133,000"
   },
   "Water elemental": {
     "Blood rune": "1/128",
@@ -11621,7 +11625,8 @@
     "Fire rune": "2/128",
     "Fishing bait": "5/128",
     "Iron dagger": "1/128",
-    "Mind rune": "2/128"
+    "Mind rune": "2/128",
+    "Rocky": "1/257211"
   },
   "Wyrm": {
     "Adamant 2h sword": "2/76",
@@ -11678,22 +11683,31 @@
     "Aether catalyst": "7/95.11",
     "Barrel of demonic tallow (full)": "5/95.11",
     "Battlestaff": "4/95.11",
+    "Blood rune": "3/95.11",
     "Chasm teleport scroll": "4/95.11",
     "Diabolic worms": "7/95.11",
+    "Diamond": "3/95.11",
     "Dragon platelegs": "2/95.11",
     "Dragon plateskirt": "2/95.11",
     "Emerald": "3/95.11",
+    "Fire rune": "1/95.11",
+    "Law rune": "3/95.11",
     "Oathplate chest": "1/600",
     "Oathplate helm": "1/600",
     "Oathplate legs": "1/600",
     "Onyx bolt tips": "1/95.11",
+    "Pineapple pizza": "7.5/95.11",
     "Prayer potion(3)": "7.5/95.11",
     "Ruby": "3/95.11",
     "Rune chainbody": "5/95.11",
     "Rune platebody": "3/95.11",
+    "Smoke rune": "2/95.11",
+    "Soul rune": "2/95.11",
     "Soulflame horn": "2/600",
     "Super combat potion(1)": "7.5/95.11",
     "Super restore mix(2)": "7.5/95.11",
+    "Wild pie": "7.5/95.11",
+    "Wrath rune": "1/95.11",
     "Yami": [
       "1/2500",
       "1/100"
@@ -12273,7 +12287,6 @@
     "Chaos rune": "2 × 12/249",
     "Coal": "2 × 8/249",
     "Coconut": "2 × 6/249",
-    "Confirmed droprates}}": "1/75",
     "Death rune": "2 × 12/249",
     "Dragon bones": "2 × 8/249",
     "Dragon halberd": "2 × 2/249",
