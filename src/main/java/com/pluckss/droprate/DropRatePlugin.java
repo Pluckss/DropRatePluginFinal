@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.MenuEntry;
@@ -41,6 +40,7 @@ import net.runelite.api.QuestState;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.gameval.DBTableID;
 import net.runelite.api.gameval.InterfaceID;
+import net.runelite.api.gameval.InventoryID;
 import net.runelite.api.gameval.VarPlayerID;
 import net.runelite.api.gameval.VarbitID;
 import net.runelite.api.widgets.Widget;
@@ -48,7 +48,9 @@ import net.runelite.client.Notifier;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.config.Notification;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.events.NpcLootReceived;
 import net.runelite.client.events.ServerNpcLoot;
 import net.runelite.client.plugins.loottracker.LootReceived;
@@ -74,6 +76,9 @@ public class DropRatePlugin extends Plugin
 	private static final String LEGACY_RARE_ONLY_KEY = "onlyHighDrops";
 	private static final String LEGACY_HIDE_ALWAYS_KEY = "hideAlwaysDrops";
 	private static final String LEGACY_HIDE_USELESS_KEY = "hideUselessDrops";
+	private static final String LEGACY_NOTIFY_KEY = "notifyOnRareDrops";
+	private static final String NOTIFICATION_KEY = "rareDropNotification";
+	private static final String NOTIFICATION_MIGRATED_KEY = "notificationMigrated";
 	private static final String RING_OF_WEALTH_NAME = "ring of wealth";
 	private static final int BOSSES_TASK_ID = 98;
 	private static final Pattern CHANCE_PATTERN = Pattern.compile(
@@ -130,6 +135,17 @@ public class DropRatePlugin extends Plugin
 	private boolean hoveredClogItemObtained;
 	private long clogHoverSeenAt;
 
+	// The overlay asks for the tooltip once per rendered frame, so building it from
+	// scratch every time would re-parse every rate of the hovered item ~50x a second
+	// (Nature rune alone has 264 sources). The rendered text only depends on the item
+	// and on config, so it is memoised and dropped whenever our config changes.
+	// null values are cached too, to make repeated misses free.
+	private final Map<String, String> clogTooltipCache = new HashMap<>();
+
+	// Parsed form of the "Hidden filler items" CSV, rebuilt only when config changes
+	// instead of once per item per drop.
+	private Set<String> fillerItems;
+
 	private static final long CLOG_HOVER_TIMEOUT_MS = 150;
 	private static final int CLOG_MAX_RATE_GROUPS = 7;
 	private static final int CLOG_MAX_SOURCES_PER_GROUP = 3;
@@ -144,6 +160,7 @@ public class DropRatePlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		migrateLegacyConfig();
+		migrateNotificationConfig();
 
 		primaryDrops = loadPrimaryDrops("/droprates_clean.json");
 		mergeDropTable(primaryDrops, loadPrimaryDrops("/minigame_droprates.json", false));
@@ -191,6 +208,22 @@ public class DropRatePlugin extends Plugin
 	{
 		overlayManager.remove(clogTooltipOverlay);
 		hoveredClogItem = null;
+		clogTooltipCache.clear();
+		fillerItems = null;
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (!CONFIG_GROUP.equals(event.getGroup()))
+		{
+			return;
+		}
+
+		// Rate format, percentages and the colour tiers all feed the rendered tooltip
+		// text, so any of our settings changing invalidates the memoised tooltips.
+		clogTooltipCache.clear();
+		fillerItems = null;
 	}
 
 	@Subscribe
@@ -300,7 +333,15 @@ public class DropRatePlugin extends Plugin
 			return null;
 		}
 
-		return renderClogTooltip(hoveredClogItem);
+		String itemName = hoveredClogItem;
+		if (clogTooltipCache.containsKey(itemName))
+		{
+			return clogTooltipCache.get(itemName);
+		}
+
+		String tooltip = renderClogTooltip(itemName);
+		clogTooltipCache.put(itemName, tooltip);
+		return tooltip;
 	}
 
 	private String renderClogTooltip(String itemName)
@@ -471,8 +512,12 @@ public class DropRatePlugin extends Plugin
 
 			if (config.minItemValue() > 0)
 			{
-				int price = itemManager.getItemPrice(stack.getId());
-				if (price < config.minItemValue())
+				int unitPrice = itemManager.getItemPrice(stack.getId());
+				// Untradeables (pets, jars, Unsired) have no GE price and come back as 0.
+				// They are exactly the drops players want to be told about, so a value
+				// filter must never hide them — only filter items that do have a price.
+				if (unitPrice > 0
+					&& (long) unitPrice * Math.max(1, stack.getQuantity()) < config.minItemValue())
 				{
 					continue;
 				}
@@ -515,6 +560,12 @@ public class DropRatePlugin extends Plugin
 			if (config.showKillCounter() && effectiveRate >= config.killCounterThreshold())
 			{
 				rateDisplay = rateDisplay + " — KC: " + killCount;
+				if (effectiveRate > 0)
+				{
+					// The average number of kills this drop takes, so the KC on its own
+					// tells you whether you got lucky. Config has always promised this.
+					rateDisplay = rateDisplay + ", avg: ~" + formatRateNumber(effectiveRate) + " kills";
+				}
 			}
 
 			Color color = getColor(effectiveRate);
@@ -534,9 +585,12 @@ public class DropRatePlugin extends Plugin
 					.build()
 			);
 
-			if (config.notifyOnRareDrops() && effectiveRate >= config.notificationThreshold())
+			if (effectiveRate >= config.notificationThreshold())
 			{
-				notifier.notify(stack.getQuantity() + "x " + itemName + " (" + resolvedDrop.formattedRate + ")");
+				notifier.notify(
+					config.rareDropNotification(),
+					stack.getQuantity() + "x " + itemName + " (" + resolvedDrop.formattedRate + ")"
+				);
 			}
 
 			log.debug(
@@ -953,7 +1007,7 @@ public class DropRatePlugin extends Plugin
 				return false;
 			}
 
-			ItemContainer equipment = client.getItemContainer(InventoryID.EQUIPMENT);
+			ItemContainer equipment = client.getItemContainer(InventoryID.WORN);
 			if (equipment == null)
 			{
 				return false;
@@ -1442,6 +1496,34 @@ public class DropRatePlugin extends Plugin
 		log.info("Migrated legacy DropRate config to display mode {}", migratedMode);
 	}
 
+	/**
+	 * The rare-drop notification used to be a plain boolean. It is now a RuneLite
+	 * {@link Notification}, so users get the standard tray/sound/flash controls.
+	 * Carry the old on/off state over once, so nobody silently loses their setting.
+	 */
+	private void migrateNotificationConfig()
+	{
+		if ("1".equals(configManager.getConfiguration(CONFIG_GROUP, NOTIFICATION_MIGRATED_KEY)))
+		{
+			return;
+		}
+
+		String legacyNotify = configManager.getConfiguration(CONFIG_GROUP, LEGACY_NOTIFY_KEY);
+		if (legacyNotify != null)
+		{
+			boolean wasEnabled = Boolean.parseBoolean(legacyNotify);
+			configManager.setConfiguration(
+				CONFIG_GROUP,
+				NOTIFICATION_KEY,
+				wasEnabled ? Notification.ON : Notification.OFF
+			);
+			configManager.unsetConfiguration(CONFIG_GROUP, LEGACY_NOTIFY_KEY);
+			log.info("Migrated rare drop notification setting (was enabled: {})", wasEnabled);
+		}
+
+		configManager.setConfiguration(CONFIG_GROUP, NOTIFICATION_MIGRATED_KEY, "1");
+	}
+
 	private boolean parseLegacyBoolean(String value, boolean fallback)
 	{
 		return value == null ? fallback : Boolean.parseBoolean(value);
@@ -1494,8 +1576,12 @@ public class DropRatePlugin extends Plugin
 			return true;
 		}
 
-		Set<String> extraIgnored = parseIgnoredItems(config.extraClutterItems());
-		return extraIgnored.contains(normalized);
+		if (fillerItems == null)
+		{
+			fillerItems = parseIgnoredItems(config.extraClutterItems());
+		}
+
+		return fillerItems.contains(normalized);
 	}
 
 	private Set<String> parseIgnoredItems(String csv)

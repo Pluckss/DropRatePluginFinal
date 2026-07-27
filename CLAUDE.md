@@ -1,5 +1,43 @@
 # Drop Rate Plugin
 
+## ⚠️ RULE 1 — TOP PRIORITY: audit against Plugin Hub rules BEFORE every submission
+
+**Never open or update a plugin-hub PR without running the full checklist below first.**
+This is not optional and not "probably fine because it passed last time".
+
+Why this rule exists: on 2026-07-27 maintainer Alexsuperfly rejected PR #14341 with
+*"your LICENSE file is malformed"*. The BSD 2-Clause text had been truncated part-way
+through the warranty disclaimer — it ended at `CONSEQUENTIAL DAMAGES.` and dropped the
+remaining six lines, so automated licence detection could not match it. **That flaw was
+present from the initial commit and sailed through three previous merged PRs.** A green
+`build` check does not prove compliance: the CI only compiles the plugin, it never
+validates the licence, the manifest, or the icon.
+
+Source of truth is <https://github.com/runelite/plugin-hub> (README + its own `LICENSE`).
+**Re-read it each time — the rules change.** Do not rely on this list being current.
+
+Run every check and paste the results before pushing:
+
+| # | Requirement | How to verify |
+|---|---|---|
+| 1 | `LICENSE` is complete, unmodified **BSD 2-Clause** | `diff` it against `runelite/plugin-hub/LICENSE`; must be identical apart from the copyright line. Truncation is invisible by eye — always diff |
+| 2 | `runelite-plugin.properties` has `displayName`, `author`, `description`, `tags`, `plugins`, `build` | `build` must be `standard` or `gradle`. `version` is optional (commit is used if absent) |
+| 3 | `build.gradle` defines `pluginMainClass` | `grep pluginMainClass build.gradle` |
+| 4 | `icon.png` ≤ **48×72 px** | read the PNG header, don't trust the filename |
+| 5 | No template leftovers | `grep -rl "ExamplePlugin\|ExampleConfig\|com.example" src/` must be empty |
+| 6 | `README.md` documents the features | must exist and be current |
+| 7 | Repo public, HTTPS URL, **full 40-char** commit hash | check `plugins/drop-rate-properties` |
+| 8 | Third-party deps have Gradle dependency verification | we currently add **no** third-party deps — keep it that way |
+| 9 | Nothing that breaks Jagex's rules | informational only; must not aid combat |
+
+Also, when reading the bot's `RuneLite Plugin Hub Checks` result:
+- **`Changes are needed.`** → a real defect, fix it. Their README says this is the only one to worry about.
+- **`Requires maintainer review.`** → a queue gate, not a defect. Nothing to fix; do NOT
+  close/reopen or re-push, that only loses queue position. It renders as a red ❌ and can
+  appear on a perfectly valid PR (on 2026-07-26 nine unrelated PRs had it simultaneously).
+- **A red ❌ from the bot never means "our code is fine".** It reports its own gate, not a
+  clean bill of health — run the checklist above regardless.
+
 ## What this project is
 - Live RuneLite plugin on the Plugin Hub (id: `drop-rate-properties`)
 - Two parts: a Python crawler that scrapes the OSRS Wiki, and a Java RuneLite plugin
@@ -162,7 +200,32 @@ REAL variants mapped via `sourceAliases` and are deliberately left intact.
   `drop_metadata.json` is the curated way to express these; it currently covers none
   of the 602.
 
+## Known behaviour bugs (found 2026-07-28, NOT yet fixed — need live verification)
+These three all need someone killing/thieving NPCs in a real client to verify, so they were
+deliberately left out of the 2026-07-28 patch rather than shipped untested.
+
+- **Pickpocketing reports combat drop rates.** The server sends NPC loot for pickpockets;
+  RuneLite's own `LootTrackerPlugin` discards it with `ignorePickpocketLoot == client.getTickCount()`.
+  We don't, and `Hero`, `Paladin`, `Guard`, `Man`, `Woman`, `Farmer`, `TzHaar-Hur` and
+  `Knight of Ardougne` are all in `droprates_clean.json`. Worst case: pickpocketing a
+  TzHaar-Hur prints `Uncut diamond (1/2048)` — the *kill* rate. The real thieving rate is
+  `1/195`, which sits in element #2 of the array and is discarded (see below).
+- **`NpcLootReceived` and `ServerNpcLoot` both fire for one kill.** `LootManager` posts them
+  from two independent paths (`processNpcLoot` on despawn/item-spawn vs `processScriptLoot`
+  from the `LOOTTRACKER_ADD_LOOT` script); neither suppresses the other. `LootTrackerPlugin`
+  now has **zero** references to `NpcLootReceived` — upstream treats `ServerNpcLoot` as the
+  complete path. Our `isDuplicateLoot` only saves us when the item multiset matches exactly
+  within 1 tick. Before dropping `onNpcLootReceived`, verify on the NPCs that only reach loot
+  through the client-side path: gargoyles/rockslugs/zygomites (die with >0 hp), Kraken,
+  Nightmare and Duke Sucellus (delayed loot).
+- **471 multi-table entries silently return the wrong rate.** 178 NPCs, and all 471 arrays
+  hold *differing* rates, so `arr.get(0)` in `loadPrimaryDrops` is a coin flip.
+  `dropOverrides` curates 13 items. This is data work, not a code fix. The Collection Log
+  tooltip would be the natural place to show every variant instead of picking one.
+
 ## Publishing an update to the Plugin Hub
+0. **Run the RULE 1 compliance checklist at the top of this file. Every time, no exceptions.**
+   A passing `build` check does not mean the submission is compliant.
 1. Push your commit to `Pluckss/DropRatePluginFinal`
 2. Get the full commit SHA: `git rev-parse HEAD`
 3. In the `Pluckss/Drop-Rate` fork (a fork of `runelite/plugin-hub`), create a

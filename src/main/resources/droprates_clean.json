@@ -242,9 +242,7 @@
     "Rocky": "1/256586"
   },
   "Albatross": {
-    "Bird nest (egg)#Blue egg": "1/1000",
-    "Bird nest (egg)#Green egg": "1/1000",
-    "Bird nest (egg)#Red egg": "1/1000",
+    "Bird nest (egg)": "1/1000",
     "Bird nest (ring)": "32/1000",
     "Bird nest (seeds)": "65/1000",
     "Cotton seed": "16/500",
@@ -5215,7 +5213,7 @@
   },
   "Hero": {
     "Blood rune": "5/128",
-    "Coin pouch#Hero": "105/128",
+    "Coin pouch": "105/128",
     "Death rune": "8/128",
     "Diamond": "1/128",
     "Fire orb": "2/128",
@@ -7054,7 +7052,7 @@
     "Water rune": "4/128"
   },
   "Mogre (sea)": {
-    "Fishbowl#Water": "1/128",
+    "Fishbowl": "1/128",
     "Fishing bait": "23/128",
     "Flippers": "1/60",
     "Giant seaweed": "4/128",
@@ -7756,9 +7754,7 @@
     "Steel med helm": "5/128"
   },
   "Osprey": {
-    "Bird nest (egg)#Blue egg": "1/2500",
-    "Bird nest (egg)#Green egg": "1/2500",
-    "Bird nest (egg)#Red egg": "1/2500",
+    "Bird nest (egg)": "1/2500",
     "Bird nest (ring)": "32/2500",
     "Bird nest (seeds)": "65/2500",
     "Cotton seed": "8/500",
@@ -10030,9 +10026,7 @@
     "Weapon poison(+)": "2/100"
   },
   "Tern": {
-    "Bird nest (egg)#Blue egg": "1/5000",
-    "Bird nest (egg)#Green egg": "1/5000",
-    "Bird nest (egg)#Red egg": "1/5000",
+    "Bird nest (egg)": "1/5000",
     "Bird nest (ring)": "32/5000",
     "Bird nest (seeds)": "65/5000",
     "Cotton seed": "6/500",

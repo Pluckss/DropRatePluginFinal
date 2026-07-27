@@ -15,38 +15,59 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
 
 ## Features
 - Shows a chat message when a dropped item has a known drop rate.
+- Shows a hover tooltip in the Collection Log listing every source that drops an item, with each rate.
 - Supports standard rates like `1/128` and bundle rates like `6/378` or `12/378`.
 - Uses color-coded chat messages to quickly separate common, uncommon, and rare drops.
 - Adds a purple ultra-rare tier for especially rare drops.
 - Each tier color can be customized with a color picker.
 - Colors and rarity checks are based on the effective chance of the drop, including bundle drops.
-- Lets you keep the raw wiki rate, convert it to an effective `1/x`, or show both in chat.
+- Lets you keep the raw wiki rate, convert it to a standard `1/x`, or show both in chat.
 - Can optionally append a rounded percentage such as `1/100 (1%)` or `4/51 (7.84%)`.
 - Can optionally show source hints for ambiguous drops like `Normal 1/400 | RDT 1/5012.5`.
+- Optional kill counter showing your KC and the average kills the drop takes.
+- Optional notification when you receive a drop rarer than a threshold you choose.
+- Optional minimum GE value filter to keep low-value drops out of chat.
 - Lets you customize the color tier cutoffs or switch everything to neutral white text.
 - Works with drop data whether it is stored as `NPC -> item` or `item -> NPC`.
 - Supports both normal drop tables and the Rare Drop Table (RDT) with automatic dual lookup.
+- Takes Ring of Wealth and your current Slayer task into account when resolving a rate.
 - Supports minigame reward drops from Wintertodt, Tempoross, Guardians of the Rift, Soul Wars, and Barbarian Assault high gamble.
 - Supports context-aware overrides for exceptions like task-based Hydra rates.
 - Includes cleaner feed options so players can reduce chat clutter.
 
 ## Display
 - `Drop visibility`
-  Choose between `All drops`, `Cleaner feed`, or `Rare drops only`.
+  Choose between `All drops`, `Notable drops only`, or `Rare drops only`.
 - `Rate display`
-  Defaults to `Raw wiki rate`. You can switch to `Effective 1/x` to convert rates like `2/222` into `1/111`, or `Raw + effective` to show both.
+  Defaults to `Standard (1/x)`, which converts rates like `2/222` into `1/111`. You can switch to `Raw wiki rate` to keep the wiki's own wording, or `Raw + standard` to show both.
 - `Show percentage`
   Off by default. Adds a rounded percent chance to the end of the message.
 - `Show source hints`
   Adds extra context for drops that can come from more than one table, such as both normal and RDT rates.
 - `Rare-only minimum rate`
   Used only in `Rare drops only` mode. Example: `700` means show `1/700` and rarer.
+- `Show kill counter`
+  Off by default. Appends your kill count and the average kills the drop takes, for example
+  `1x Abyssal whip (1/512 — KC: 203, avg: ~512 kills)`. A KC below the average means you got
+  lucky. The count is per session and resets when the plugin starts.
+- `Kill counter min rarity`
+  Only show the kill counter for drops rarer than this.
 
 ## Filtering
 - `Show bundle drops`
   Includes common multi-roll or bundled drops such as `4/115`, `6/378`, or `12/378`.
 - `Hidden filler items`
-  Lets you hide custom filler items in `Cleaner feed` mode with a comma-separated list.
+  Lets you hide custom filler items in `Notable drops only` mode with a comma-separated list.
+- `Min item value (gp)`
+  Hides drops whose whole stack is worth less than this on the GE. Set to `0` to disable.
+  Untradeable drops such as pets are never hidden by this filter.
+
+## Notifications
+- `Notify on rare drops`
+  Off by default. Uses RuneLite's standard notification settings, so you control tray popup,
+  sound, screen flash, and focus behaviour. Useful when alt-tabbed.
+- `Notification threshold`
+  Minimum rarity to trigger a notification. Example: `1000` means only `1/1000` or rarer drops notify you.
 
 ## Appearance
 - `Color style`
@@ -57,21 +78,29 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
   Tiered colors only. Rates at or above this value use the rare color.
 - `Ultra-rare tier minimum`
   Tiered colors only. Rates at or above this value use the ultra-rare color.
-- `Common color`
-  Pick the color used for common-tier drops.
-- `Uncommon color`
-  Pick the color used for uncommon-tier drops.
-- `Rare color`
-  Pick the color used for rare-tier drops.
-- `Ultra-rare color`
-  Pick the color used for ultra-rare-tier drops.
+- `Common color` / `Uncommon color` / `Rare color` / `Ultra-rare color`
+  Pick the color used for each tier.
+
+## Collection log
+- `Collection log tooltips`
+  On by default. Hovering an item in the Collection Log shows every source that drops it and
+  its rate, with the most common source first. Sources that share a rate are grouped onto one line.
+- `Hide for obtained items`
+  Off by default. Skips the tooltip for items you have already unlocked.
+
+Clue casket rewards from Beginner to Master are included in the tooltip. Raid uniques and
+skilling pets are deliberately shown without a rate, because no honest fixed number exists for
+them — they depend on contribution, invocation level, or your skill level.
 
 ## Useful Notes
 - The plugin reads normal drop data from `src/main/resources/droprates_clean.json` at startup.
 - Rare Drop Table data is loaded from `src/main/resources/rare_drop_table.json`.
 - Extra context rules and alternate-table metadata live in `src/main/resources/drop_metadata.json`.
+- Minigame reward rates load from `src/main/resources/minigame_droprates.json`, keyed by the in-game reward source.
+- Clue reward rates load from `src/main/resources/clue_droprates.json` and are used by the Collection Log tooltip only.
+- Bosses whose drops the wiki stores outside a normal drop table load from `src/main/resources/special_droprates.json`.
+- All data is bundled with the plugin. It makes no network requests while you play.
 - If an item exists in both the normal table and the RDT for the same NPC, and `Show source hints` is on, both rates are shown side by side.
 - If an item and NPC combination is not in either database, no drop-rate message is shown.
 - Messages appear in chat as `Quantity x Item (rate)`.
-- Minigame reward rates load from `src/main/resources/minigame_droprates.json`, keyed by the in-game reward source.
 - Raids are not currently supported.

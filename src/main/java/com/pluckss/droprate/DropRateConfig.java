@@ -6,6 +6,7 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.Notification;
 import net.runelite.client.config.Range;
 
 @ConfigGroup("droprate")
@@ -243,8 +244,9 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "minItemValue",
 		name = "Min item value (gp)",
-		description = "<html>Hide drop rate messages for items worth less than this on the GE.<br>"
-			+ "Set to 0 to disable. Example: 10000 hides anything under 10k gp.</html>",
+		description = "<html>Hide drop rate messages when the whole stack is worth less than this on the GE.<br>"
+			+ "Set to 0 to disable. Example: 10000 hides anything under 10k gp.<br>"
+			+ "Untradeable drops such as pets are never hidden by this filter.</html>",
 		position = 2,
 		section = cleanerFeedSection
 	)
@@ -301,15 +303,15 @@ public interface DropRateConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "notifyOnRareDrops",
+		keyName = "rareDropNotification",
 		name = "Notify on rare drops",
-		description = "Send a desktop notification when you receive a drop rarer than the threshold below. Useful when alt-tabbed.",
+		description = "Send a notification when you receive a drop rarer than the threshold below. Useful when alt-tabbed.",
 		position = 0,
 		section = notificationsSection
 	)
-	default boolean notifyOnRareDrops()
+	default Notification rareDropNotification()
 	{
-		return false;
+		return Notification.OFF;
 	}
 
 	@ConfigItem(
