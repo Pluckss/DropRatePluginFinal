@@ -6593,5 +6593,10 @@
         "primaryLabel": "RoW"
       }
     }
+  },
+  "killCountAliases": {
+    "Reward cart (Wintertodt)": "wintertodt",
+    "Reward pool (Tempoross)": "tempoross",
+    "Maggot King (taking eggs)": "maggot king"
   }
 }

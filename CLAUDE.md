@@ -200,6 +200,24 @@ REAL variants mapped via `sourceAliases` and are deliberately left intact.
   `drop_metadata.json` is the curated way to express these; it currently covers none
   of the 602.
 
+## Kill counter (real KC, fixed 2026-07-30)
+- The chat feed's `KC:` used to be an in-memory session counter, which read exactly like the
+  in-game kill count but reset on every restart/toggle/update. It is now the player's real KC.
+- Source: RuneLite's stock **Chat Commands** plugin parses `Your X kill count is: N` and
+  stores it per RS profile in config group `killcount`, key `boss.toLowerCase()`. We read it
+  with `configManager.getRSProfileConfiguration("killcount", key, int.class)`.
+- **Ordering is safe.** Verified live 5/5 at Alchemical Hydra (KC 511→515): the KC chat
+  message is always dispatched *before* our loot event, so Chat Commands has already written
+  the fresh value when we read it. No off-by-one, no need to defer output to end of tick.
+- Key resolution is `killCountAliases` (in `drop_metadata.json`) → exact lowercase → lowercase
+  with a leading `the ` stripped. The strip covers The Hueycoatl/Leviathan/Mimic/Nightmare/
+  Whisperer, which the KC message names without the article. Aliases currently cover the three
+  sources whose own name is nothing like the boss key (Wintertodt/Tempoross reward containers,
+  Maggot King egg route).
+- Sources that never print a KC message (most regular monsters) have no real count. Those fall
+  back to the session counter and MUST stay labelled `KC: 8 this session` — an unlabelled
+  session count next to `avg: ~1001 kills` is exactly the bug that was fixed.
+
 ## Known behaviour bugs (found 2026-07-28, NOT yet fixed — need live verification)
 These three all need someone killing/thieving NPCs in a real client to verify, so they were
 deliberately left out of the 2026-07-28 patch rather than shipped untested.
@@ -218,6 +236,12 @@ deliberately left out of the 2026-07-28 patch rather than shipped untested.
   within 1 tick. Before dropping `onNpcLootReceived`, verify on the NPCs that only reach loot
   through the client-side path: gargoyles/rockslugs/zygomites (die with >0 hp), Kraken,
   Nightmare and Duke Sucellus (delayed loot).
+  **CONFIRMED LIVE 2026-07-30** at Alchemical Hydra: one kill produced two loot events in the
+  same second, and `isDuplicateLoot` missed it because the two events describe the same drop
+  differently — one listed `385 x1, 385 x1`, the other `385 x2`. So the multiset comparison is
+  not just narrow, it is defeated by ordinary stacking. Over 5 real kills (KC 511→515) the
+  session counter reached 6. Any per-kill counting built on these events must dedupe by
+  *quantity-summed* item totals, not by the raw stack list.
 - **471 multi-table entries silently return the wrong rate.** 178 NPCs, and all 471 arrays
   hold *differing* rates, so `arr.get(0)` in `loadPrimaryDrops` is a coin flip.
   `dropOverrides` curates 13 items. This is data work, not a code fix. The Collection Log

@@ -79,6 +79,8 @@ public class DropRatePlugin extends Plugin
 	private static final String LEGACY_NOTIFY_KEY = "notifyOnRareDrops";
 	private static final String NOTIFICATION_KEY = "rareDropNotification";
 	private static final String NOTIFICATION_MIGRATED_KEY = "notificationMigrated";
+	// Owned by RuneLite's Chat Commands plugin, which writes the real kill counts there.
+	private static final String KILL_COUNT_CONFIG_GROUP = "killcount";
 	private static final String RING_OF_WEALTH_NAME = "ring of wealth";
 	private static final int BOSSES_TASK_ID = 98;
 	private static final Pattern CHANCE_PATTERN = Pattern.compile(
@@ -126,7 +128,9 @@ public class DropRatePlugin extends Plugin
 	private DropMetadata dropMetadata = DropMetadata.empty();
 	private final Map<String, Integer> recentLootSignatures = new HashMap<>();
 	private final Map<String, Integer> recentMessageKeys = new HashMap<>();
-	private final Map<String, Integer> killCounts = new HashMap<>();
+	// Fallback only. Counts kills seen since the plugin loaded, so it is reset by
+	// every client restart, plugin toggle and update. Never presented as a real KC.
+	private final Map<String, Integer> sessionKillCounts = new HashMap<>();
 
 	// Collection Log tooltip: item name -> every source that drops it, kept
 	// separate from the chat feature's data so it never alters chat behaviour.
@@ -493,10 +497,10 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
-		killCounts.merge(npcName, 1, Integer::sum);
-		int killCount = killCounts.get(npcName);
+		sessionKillCounts.merge(npcName, 1, Integer::sum);
+		int sessionKillCount = sessionKillCounts.get(npcName);
 
-		log.debug("Processing loot event for {} (kill {}): {}", npcName, killCount, items);
+		log.debug("Processing loot event for {} (session kill {}): {}", npcName, sessionKillCount, items);
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		String currentSlayerTask = getCurrentSlayerTaskName();
@@ -559,7 +563,17 @@ public class DropRatePlugin extends Plugin
 			String rateDisplay = resolvedDrop.formattedRate;
 			if (config.showKillCounter() && effectiveRate >= config.killCounterThreshold())
 			{
-				rateDisplay = rateDisplay + " — KC: " + killCount;
+				// Prefer the real, persisted kill count. The session counter alone is
+				// meaningless next to "avg: ~1001 kills" — it reads like a genuine KC
+				// but resets on every restart, so it must be labelled when it is used.
+				int trackedKillCount = lookupTrackedKillCount(npcName);
+				boolean sessionOnly = trackedKillCount < 0;
+				rateDisplay = rateDisplay + " — KC: " + (sessionOnly ? sessionKillCount : trackedKillCount);
+				if (sessionOnly)
+				{
+					rateDisplay = rateDisplay + " this session";
+				}
+
 				if (effectiveRate > 0)
 				{
 					// The average number of kills this drop takes, so the KC on its own
@@ -761,6 +775,69 @@ public class DropRatePlugin extends Plugin
 		{
 			throw new IllegalStateException("Unable to read resource: " + resourcePath, e);
 		}
+	}
+
+	/**
+	 * The player's real kill count for a source, or -1 when RuneLite has none.
+	 * <p>
+	 * RuneLite's own Chat Commands plugin parses the in-game "Your X kill count is:"
+	 * message and stores it per RS profile in the "killcount" config group, keyed by
+	 * {@code boss.toLowerCase()}. Reading that is what makes the KC survive restarts.
+	 * It only exists for sources that print a kill count message (bosses, chests) and
+	 * only once the player has killed one with Chat Commands enabled, so the caller
+	 * must handle -1 rather than treat a missing value as zero kills.
+	 */
+	private int lookupTrackedKillCount(String npcName)
+	{
+		if (npcName == null)
+		{
+			return -1;
+		}
+
+		for (String key : killCountKeyCandidates(npcName))
+		{
+			Integer tracked;
+			try
+			{
+				tracked = configManager.getRSProfileConfiguration(KILL_COUNT_CONFIG_GROUP, key, int.class);
+			}
+			catch (Exception e)
+			{
+				// A malformed stored value must never cost the player their drop message.
+				log.debug("Unable to read kill count for {}", key, e);
+				continue;
+			}
+
+			if (tracked != null && tracked > 0)
+			{
+				return tracked;
+			}
+		}
+
+		return -1;
+	}
+
+	private List<String> killCountKeyCandidates(String npcName)
+	{
+		List<String> candidates = new ArrayList<>(3);
+
+		String alias = dropMetadata.getKillCountAlias(npcName);
+		if (alias != null)
+		{
+			candidates.add(alias.toLowerCase(Locale.ROOT));
+		}
+
+		String lower = npcName.toLowerCase(Locale.ROOT);
+		candidates.add(lower);
+
+		// The kill count message drops the article that the NPC name carries:
+		// "The Whisperer" / "The Nightmare" / "The Hueycoatl" are all stored bare.
+		if (lower.startsWith("the "))
+		{
+			candidates.add(lower.substring(4));
+		}
+
+		return candidates;
 	}
 
 	private ResolvedDrop resolveDrop(String npcName, String itemName, DropContext context)
@@ -1656,6 +1733,7 @@ public class DropRatePlugin extends Plugin
 		private Map<String, List<String>> sourceAliases;
 		private Map<String, List<NpcContextRule>> sourceContexts;
 		private Map<String, Map<String, DropOverride>> dropOverrides;
+		private Map<String, String> killCountAliases;
 
 		private static DropMetadata empty()
 		{
@@ -1671,6 +1749,20 @@ public class DropRatePlugin extends Plugin
 
 			List<NpcContextRule> rules = npcContexts.get(npcName);
 			return rules != null ? rules : Collections.emptyList();
+		}
+
+		/**
+		 * The "killcount" config key for a source, when lowercasing our own source
+		 * name does not already produce it (e.g. "Reward pool (Tempoross)").
+		 */
+		private String getKillCountAlias(String npcName)
+		{
+			if (killCountAliases == null || npcName == null)
+			{
+				return null;
+			}
+
+			return killCountAliases.get(npcName);
 		}
 
 		private List<String> getSourceAliases(String npcName)

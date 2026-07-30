@@ -277,7 +277,10 @@ public interface DropRateConfig extends Config
 		description = "<html>Shows your KC and the average kills needed next to rare drops.<br>"
 			+ "Example: 1x Abyssal whip (1/512 — KC: 203, avg: ~512 kills)<br>"
 			+ "If your KC is lower than avg you got lucky, higher means unlucky.<br>"
-			+ "Resets each session when the plugin starts.</html>",
+			+ "Uses your real kill count, the same one RuneLite tracks from the<br>"
+			+ "in-game kill count message. Sources that never print one (most<br>"
+			+ "regular monsters) fall back to a count for this session only,<br>"
+			+ "shown as \"KC: 8 this session\".</html>",
 		position = 5,
 		section = dropFeedSection
 	)

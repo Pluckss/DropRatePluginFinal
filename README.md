@@ -49,7 +49,10 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
 - `Show kill counter`
   Off by default. Appends your kill count and the average kills the drop takes, for example
   `1x Abyssal whip (1/512 — KC: 203, avg: ~512 kills)`. A KC below the average means you got
-  lucky. The count is per session and resets when the plugin starts.
+  lucky. This is your real kill count, read from the same per-account record RuneLite builds
+  from the in-game `Your ... kill count is:` message, so it survives restarts. Sources that
+  never print that message have no real count to show, and fall back to a count for the
+  current session only, labelled `KC: 8 this session`.
 - `Kill counter min rarity`
   Only show the kill counter for drops rarer than this.
 
