@@ -175,6 +175,21 @@ The wiki uses *page titles*, which carry disambiguation suffixes the game does n
 (disambiguation)/(page)`. Location suffixes like `Cyclops (God Wars Dungeon)` are
 REAL variants mapped via `sourceAliases` and are deliberately left intact.
 
+## Re-check on the wiki at the NEXT patch
+New content ships with incomplete wiki data, so these had no honest rate on 2026-08-03 and
+should be re-checked (and crawled again) before the next release. Run
+`py -3 clog_coverage.py --crawler` after any crawl — that is what surfaces them.
+
+| Item | Source | Why it has no rate today | What to check |
+|---|---|---|---|
+| `Ardeaglais teleport` | Mad Angel | Rate is **1/25**, below `MIN_DENOMINATOR = 50` in `crawler_new.py`, so it is filtered out. It IS a collection log item, so the tooltip shows nothing for it | Decide whether the clog tooltip should bypass the min-denominator filter the way `clue_crawler.py` already does. Lowering the threshold globally would change chat output for all 613 NPCs — don't do it blind |
+| `Jeweller's chisel` | Golem crafting | Untradeable Golem crafting reward; the wiki publishes no rate at all | Re-read [[Golem crafting]] once the page leaves "under construction" |
+| `Mr McGroot` | Goat hunting | Wiki states outright "the rates are currently unknown" | Re-read [[Goat hunting]]; if a rate appears, Goat hunting needs a `minigame_crawler.py` / `special_droprates.py` source |
+| `Granite dust` | Mad Angel | `rarity=Always` (25–35 per kill) | Nothing to fix — a 100% drop has no meaningful rate. Listed only so it is not re-investigated every sweep |
+
+`Mad Angel` was still tagged `Category:Articles under construction` when crawled, so its whole
+table is worth a re-crawl once the page settles.
+
 ## Known data gaps
 - **Herb / seed drop tables are not crawled at all.** 290 monsters are in
   `Category:Herb drop table monsters` and pages like Vorkath use
