@@ -1,0 +1,1 @@
+allprojects { tasks.register('printCp') { doLast { println sourceSets.main.compileClasspath.asPath } } }

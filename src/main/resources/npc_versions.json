@@ -1,0 +1,6227 @@
+{
+  "Abyssal demon": [
+    {
+      "version": "Standard",
+      "ids": [
+        415,
+        416
+      ],
+      "drops": {
+        "Abyssal dagger": "1/32000",
+        "Abyssal head": "1/6000",
+        "Abyssal whip": "1/512",
+        "Adamantite bar": "2/128",
+        "Air rune": "8/128",
+        "Black axe": "2/128",
+        "Black sword": "4/128",
+        "Blood rune": "4/128",
+        "Brimstone key": "1/76",
+        "Chaos rune": "7/128",
+        "Chaos talisman": "1/128",
+        "Clue scroll (elite)": "1/1200",
+        "Clue scroll (hard)": "1/128",
+        "Cosmic talisman": "1/128",
+        "Defence potion(3)": "1/128",
+        "Grimy avantoe": "1/143.7",
+        "Grimy cadantine": "1/215.6",
+        "Grimy dwarf weed": "1/287.4",
+        "Grimy harralander": "1/61.6",
+        "Grimy irit leaf": "1/107.8",
+        "Grimy kwuarm": "1/172.5",
+        "Grimy lantadyme": "1/287.4",
+        "Grimy ranarr weed": "1/78.4",
+        "Law rune": "1/128",
+        "Lobster": "2/128",
+        "Mithril kiteshield": "1/128",
+        "Pure essence": "5/128",
+        "Rune chainbody": "1/128",
+        "Rune med helm": "1/128",
+        "Steel battleaxe": "3/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [
+        7241
+      ],
+      "drops": {
+        "Ancient shard": "1/233",
+        "Dark totem base": "1/350",
+        "Dark totem middle": "1/350",
+        "Dark totem top": "1/350"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        11239
+      ],
+      "drops": {
+        "Abyssal dagger": "1/32000",
+        "Abyssal head": "1/6000",
+        "Abyssal whip": "1/512",
+        "Adamantite bar": "2/68",
+        "Air rune": "8/68",
+        "Annakarl teleport": "~1/138.8",
+        "Black axe": "2/68",
+        "Black sword": "4/68",
+        "Blood rune": "4/68",
+        "Carrallanger teleport": "~1/138.8",
+        "Chaos rune": "7/68",
+        "Chaos talisman": "1/68",
+        "Clue scroll (elite)": "1/1200",
+        "Clue scroll (hard)": "1/128",
+        "Cosmic talisman": "1/68",
+        "Dareeyak teleport": "~1/138.8",
+        "Defence potion(3)": "1/68",
+        "Ghorrock teleport": "~1/138.8",
+        "Grimy avantoe": "1/76.4",
+        "Grimy cadantine": "1/114.5",
+        "Grimy dwarf weed": "1/152.7",
+        "Grimy irit leaf": "1/57.3",
+        "Grimy kwuarm": "1/91.6",
+        "Grimy lantadyme": "1/152.7",
+        "Kharyrll teleport": "~1/138.8",
+        "Larran's key": "1/65",
+        "Lassar teleport": "~1/138.8",
+        "Law rune": "1/68",
+        "Looting bag note": "~1/1387.5",
+        "Magic shortbow scroll": "~1/346.9",
+        "Mithril kiteshield": "1/68",
+        "Paddewwa teleport": "~1/138.8",
+        "Pure essence": "5/68",
+        "Ring of wealth scroll": "~1/346.9",
+        "Rune chainbody": "1/68",
+        "Rune med helm": "1/68",
+        "Senntisten teleport": "~1/138.8",
+        "Slayer's enchantment": "1/200",
+        "Steel battleaxe": "3/68",
+        "Target teleport": "~1/138.8",
+        "Trouver parchment": "~1/1387.5",
+        "Wilderness crabs teleport": "~1/138.8"
+      }
+    }
+  ],
+  "Ancient Zygomite": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Brimstone key": "1/79",
+        "Celastrus seed": "1/7375",
+        "Clue scroll (medium)": "1/128",
+        "Cosmic rune": "6/118",
+        "Dragonfruit tree seed": "1/4916.7",
+        "Earth rune": "18/118",
+        "Grimy torstol": "6/118",
+        "Law rune": "6/118",
+        "Magic seed": "1/2681.8",
+        "Mahogany seed": "1/1638.9",
+        "Maple seed": "1/1638.9",
+        "Mort myre fungus": "10/118",
+        "Mushroom spore": "10/118",
+        "Nature rune": "6/118",
+        "Palm tree seed": "1/2950",
+        "Papaya tree seed": "1/2107.1",
+        "Ranarr seed": "1/983.3",
+        "Redwood tree seed": "1/7375",
+        "Rune axe": "3/118",
+        "Snapdragon seed": "1/1053.6",
+        "Spirit seed": "1/3687.5",
+        "Supercompost": "64/590",
+        "Teak seed": "1/1638.9",
+        "Torstol seed": "1/1340.9",
+        "Watermelon seed": "1/1404.8",
+        "Willow seed": "1/1475",
+        "Yew seed": "1/1638.9"
+      }
+    },
+    {
+      "version": "Varlamore",
+      "ids": [],
+      "drops": {
+        "Grimy cadantine": "2 × 12/472",
+        "Grimy dwarf weed": "2 × 12/472",
+        "Grimy kwuarm": "2 × 15/472",
+        "Grimy lantadyme": "2 × 9/472"
+      }
+    },
+    {
+      "version": "Fossil Island",
+      "ids": [],
+      "drops": {
+        "Calcite": "18/118",
+        "Numulite": "63/175",
+        "Pyrophosphite": "18/118",
+        "Unidentified large fossil": "7/875",
+        "Unidentified medium fossil": "7/700",
+        "Unidentified rare fossil": "7/3500",
+        "Unidentified small fossil": "7/350",
+        "Volcanic ash": "16/590"
+      }
+    }
+  ],
+  "Ankou": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Adamant arrow": "4/100",
+        "Avantoe seed": "1/8733.3",
+        "Bass": "2/100",
+        "Belladonna seed": "1/5822.2",
+        "Black knife": "1/100",
+        "Black robe": "1/100",
+        "Blood rune": [
+          "6/100",
+          "3/100"
+        ],
+        "Brimstone key": "1/225",
+        "Cactus seed": "1/8733.3",
+        "Cadantine seed": "1/26200",
+        "Clue scroll (hard)": "1/512",
+        "Dark fishing bait": "38/100",
+        "Death rune": "10/100",
+        "Dwarf weed seed": "1/52400",
+        "Fried mushrooms": "1/100",
+        "Grimy avantoe": "1/711.1",
+        "Grimy cadantine": "1/1066.7",
+        "Grimy dwarf weed": "1/1422.2",
+        "Grimy guam leaf": "1/133.3",
+        "Grimy harralander": "1/304.8",
+        "Grimy irit leaf": "1/533.3",
+        "Grimy kwuarm": "1/853.3",
+        "Grimy lantadyme": "1/1422.2",
+        "Grimy marrentill": "1/177.8",
+        "Grimy ranarr weed": "1/387.9",
+        "Grimy tarromin": "1/237",
+        "Harralander seed": "1/1871.4",
+        "Irit seed": "1/5822.2",
+        "Jangerberry seed": "1/1139.1",
+        "Kwuarm seed": "1/11644.4",
+        "Lantadyme seed": "1/34933.3",
+        "Law rune": "7/100",
+        "Left skull half": "3/100",
+        "Limpwurt seed": "1/765",
+        "Marrentill seed": "1/838.4",
+        "Mithril ore": "2/100",
+        "Mushroom spore": "1/3613.8",
+        "Poison ivy seed": "1/8061.5",
+        "Potato cactus seed": "1/13100",
+        "Pure essence": "5/100",
+        "Ranarr seed": "1/2687.2",
+        "Snapdragon seed": "1/20960",
+        "Snape grass seed": "1/2620",
+        "Strawberry seed": "1/800",
+        "Tarromin seed": "1/1232.9",
+        "Toadflax seed": "1/3881.5",
+        "Torstol seed": "1/104800",
+        "Watermelon seed": "1/1663.5",
+        "Weapon poison": "2/100",
+        "Whiteberry seed": "1/3082.4",
+        "Wildblood seed": "1/1262.7"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/293",
+        "Dark totem base": "1/440",
+        "Dark totem middle": "1/440",
+        "Dark totem top": "1/440"
+      }
+    },
+    {
+      "version": "Level 86",
+      "ids": [],
+      "drops": {
+        "Larran's key": "1/98",
+        "Slayer's enchantment": "1/264"
+      }
+    },
+    {
+      "version": "Free-to-play",
+      "ids": [],
+      "drops": {
+        "Adamant arrow": "4/100",
+        "Black robe": "5/100",
+        "Fishing bait": "33/100",
+        "Law rune": "20/100",
+        "Left skull half": "3/100",
+        "Mithril ore": "5/100",
+        "Rune essence": "5/100"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7864
+      ],
+      "drops": {
+        "Adamant platelegs": "1/92",
+        "Annakarl teleport": "~1/168.2",
+        "Avantoe seed": "1/8034.7",
+        "Belladonna seed": "1/5356.4",
+        "Blood rune": [
+          "3/92",
+          "2/92",
+          "1/92"
+        ],
+        "Cactus seed": "1/8034.7",
+        "Cadantine seed": "1/24104",
+        "Carrallanger teleport": "~1/168.2",
+        "Clue scroll (hard)": "1/256",
+        "Dareeyak teleport": "~1/168.2",
+        "Dark fishing bait": "57/92",
+        "Death rune": "3/92",
+        "Dwarf weed seed": "1/48208",
+        "Ghorrock teleport": "~1/168.2",
+        "Grimy avantoe": "1/654.2",
+        "Grimy cadantine": "1/981.3",
+        "Grimy dwarf weed": "1/1308.4",
+        "Grimy guam leaf": "1/122.7",
+        "Grimy harralander": "1/280.4",
+        "Grimy irit leaf": "1/490.7",
+        "Grimy kwuarm": "1/785.1",
+        "Grimy lantadyme": "1/1308.4",
+        "Grimy marrentill": "1/163.6",
+        "Grimy ranarr weed": "1/356.8",
+        "Grimy tarromin": "1/218.1",
+        "Harralander seed": "1/1721.7",
+        "Irit seed": "1/5356.4",
+        "Jangerberry seed": "1/1048",
+        "Kharyrll teleport": "~1/168.2",
+        "Kwuarm seed": "1/10712.9",
+        "Lantadyme seed": "1/32138.7",
+        "Larran's key": "1/82",
+        "Lassar teleport": "~1/168.2",
+        "Limpwurt seed": "1/703.8",
+        "Looting bag note": "~1/1681.8",
+        "Magic shortbow scroll": "~1/420.5",
+        "Marrentill seed": "1/771.3",
+        "Mithril ore": "2/92",
+        "Mushroom spore": "1/3324.7",
+        "Paddewwa teleport": "~1/168.2",
+        "Poison ivy seed": "1/7416.6",
+        "Potato cactus seed": "1/12052",
+        "Ranarr seed": "1/2472.2",
+        "Ring of wealth scroll": "~1/420.5",
+        "Rune arrow": "4/92",
+        "Senntisten teleport": "~1/168.2",
+        "Slayer's enchantment": "1/240",
+        "Snapdragon seed": "1/19283.2",
+        "Snape grass seed": "1/2410.4",
+        "Strawberry seed": "1/736",
+        "Target teleport": "~1/168.2",
+        "Tarromin seed": "1/1134.3",
+        "Toadflax seed": "1/3571",
+        "Torstol seed": "1/96416",
+        "Trouver parchment": "~1/1681.8",
+        "Watermelon seed": "1/1530.4",
+        "Whiteberry seed": "1/2835.8",
+        "Wildblood seed": "1/1161.6",
+        "Wilderness crabs teleport": "~1/168.2"
+      }
+    }
+  ],
+  "Araxyte": [
+    {
+      "version": "Level 96",
+      "ids": [
+        11175,
+        13666
+      ],
+      "drops": {
+        "Adamant battleaxe": "5/127",
+        "Adamant longsword": "5/127",
+        "Air rune": "10/127",
+        "Aranea boots": "1/4000",
+        "Araxyte head": "1/2000",
+        "Araxyte venom sac": "5/127",
+        "Avantoe seed": "1/1109.1",
+        "Belladonna seed": "1/739.4",
+        "Blood rune": "5/127",
+        "Cactus seed": "1/1109.1",
+        "Cadantine seed": "1/3327.4",
+        "Chaos rune": "5/127",
+        "Clue scroll (hard)": "1/128",
+        "Cosmic rune": "5/127",
+        "Death rune": "5/127",
+        "Dwarf weed seed": "1/6654.8",
+        "Earth rune": "10/127",
+        "Fire rune": "10/127",
+        "Grimy avantoe": "1/270.9",
+        "Grimy cadantine": "1/406.4",
+        "Grimy dwarf weed": "1/541.9",
+        "Grimy guam leaf": "1/50.8",
+        "Grimy harralander": "1/116.1",
+        "Grimy irit leaf": "1/203.2",
+        "Grimy kwuarm": "1/325.1",
+        "Grimy lantadyme": "1/541.9",
+        "Grimy marrentill": "1/67.7",
+        "Grimy ranarr weed": "1/147.8",
+        "Grimy tarromin": "1/90.3",
+        "Harralander seed": "1/237.7",
+        "Irit seed": "1/739.4",
+        "Jangerberry seed": "1/144.7",
+        "Kwuarm seed": "1/1478.8",
+        "Lantadyme seed": "1/4436.5",
+        "Law rune": "5/127",
+        "Limpwurt seed": "1/97.2",
+        "Marrentill seed": "1/106.5",
+        "Mushroom spore": "1/459",
+        "Nature rune": "5/127",
+        "Poison ivy seed": "1/1023.8",
+        "Potato cactus seed": "1/1663.7",
+        "Ranarr seed": "1/341.3",
+        "Rune dagger": "3/127",
+        "Rune med helm": "2/127",
+        "Rune platelegs": "2/127",
+        "Snapdragon seed": "1/2661.9",
+        "Snape grass seed": "1/332.7",
+        "Soul rune": "5/127",
+        "Strawberry seed": "1/101.6",
+        "Tarromin seed": "1/156.6",
+        "Toadflax seed": "1/492.9",
+        "Torstol seed": "1/13309.6",
+        "Water rune": "10/127",
+        "Watermelon seed": "1/211.3",
+        "Whiteberry seed": "1/391.5",
+        "Wildblood seed": "1/160.4"
+      }
+    },
+    {
+      "version": "Level 146",
+      "ids": [
+        11176,
+        13667
+      ],
+      "drops": {
+        "Adamant battleaxe": "5/127",
+        "Adamant longsword": "5/127",
+        "Air rune": "10/127",
+        "Aranea boots": "1/2000",
+        "Araxyte head": "1/2000",
+        "Araxyte venom sac": "5/127",
+        "Avantoe seed": "1/1109.1",
+        "Belladonna seed": "1/739.4",
+        "Blood rune": "5/127",
+        "Cactus seed": "1/1109.1",
+        "Cadantine seed": "1/3327.4",
+        "Chaos rune": "5/127",
+        "Clue scroll (hard)": "1/86",
+        "Cosmic rune": "5/127",
+        "Death rune": "5/127",
+        "Dwarf weed seed": "1/6654.8",
+        "Earth rune": "10/127",
+        "Fire rune": "10/127",
+        "Grimy avantoe": "1/270.9",
+        "Grimy cadantine": "1/406.4",
+        "Grimy dwarf weed": "1/541.9",
+        "Grimy guam leaf": "1/50.8",
+        "Grimy harralander": "1/116.1",
+        "Grimy irit leaf": "1/203.2",
+        "Grimy kwuarm": "1/325.1",
+        "Grimy lantadyme": "1/541.9",
+        "Grimy marrentill": "1/67.7",
+        "Grimy ranarr weed": "1/147.8",
+        "Grimy tarromin": "1/90.3",
+        "Harralander seed": "1/237.7",
+        "Irit seed": "1/739.4",
+        "Jangerberry seed": "1/144.7",
+        "Kwuarm seed": "1/1478.8",
+        "Lantadyme seed": "1/4436.5",
+        "Law rune": "5/127",
+        "Limpwurt seed": "1/97.2",
+        "Marrentill seed": "1/106.5",
+        "Mushroom spore": "1/459",
+        "Nature rune": "5/127",
+        "Poison ivy seed": "1/1023.8",
+        "Potato cactus seed": "1/1663.7",
+        "Ranarr seed": "1/341.3",
+        "Rune dagger": "3/127",
+        "Rune med helm": "2/127",
+        "Rune platelegs": "2/127",
+        "Snapdragon seed": "1/2661.9",
+        "Snape grass seed": "1/332.7",
+        "Soul rune": "5/127",
+        "Strawberry seed": "1/101.6",
+        "Tarromin seed": "1/156.6",
+        "Toadflax seed": "1/492.9",
+        "Torstol seed": "1/13309.6",
+        "Water rune": "10/127",
+        "Watermelon seed": "1/211.3",
+        "Whiteberry seed": "1/391.5",
+        "Wildblood seed": "1/160.4"
+      }
+    }
+  ],
+  "Bandit": [
+    {
+      "version": "Level 22",
+      "ids": [
+        1026
+      ],
+      "drops": {
+        "Air rune": "2/128",
+        "Blood rune": "1/128",
+        "Chaos rune": "3/128",
+        "Coal": "6/128",
+        "Death rune": "2/128",
+        "Grimy avantoe": "1/73.8",
+        "Grimy cadantine": "1/110.7",
+        "Grimy dwarf weed": "1/147.6",
+        "Grimy irit leaf": "1/55.4",
+        "Grimy kwuarm": "1/88.6",
+        "Grimy lantadyme": "1/147.6",
+        "Iron scimitar": "4/128",
+        "Larran's key": "1/1109",
+        "Law rune": "2/128",
+        "Mind rune": "1/128",
+        "Nature rune": "1/128",
+        "Slayer's enchantment": "1/299",
+        "Steel axe": "1/128",
+        "Steel sq shield": "2/128",
+        "Water rune": "3/128"
+      }
+    },
+    {
+      "version": "Level 130",
+      "ids": [
+        6605
+      ],
+      "drops": {
+        "Adamant scimitar": "4/143",
+        "Air rune": "2/143",
+        "Blood rune": "1/143",
+        "Chaos rune": "3/143",
+        "Clue scroll (hard)": "1/128",
+        "Coal": "6/143",
+        "Dark fishing bait": "2/143",
+        "Death rune": "2/143",
+        "Dragon longsword": "1/143",
+        "Grimy avantoe": "1/74.4",
+        "Grimy cadantine": "1/111.6",
+        "Grimy dwarf weed": "1/148.8",
+        "Grimy irit leaf": "1/55.8",
+        "Grimy kwuarm": "1/89.3",
+        "Grimy lantadyme": "1/148.8",
+        "Larran's key": "1/90",
+        "Law rune": "2/143",
+        "Mind rune": "1/143",
+        "Mithril axe": "1/143",
+        "Mithril sq shield": "2/143",
+        "Nature rune": "1/143",
+        "Rune full helm": "5/143",
+        "Rune med helm": "5/143",
+        "Rune scimitar": "5/143",
+        "Slayer's enchantment": "1/196",
+        "Water rune": "3/143"
+      }
+    }
+  ],
+  "Barbarian": [
+    {
+      "version": "Low level",
+      "ids": [
+        3056,
+        3059,
+        3060,
+        3061,
+        3064,
+        3065,
+        3066,
+        3067,
+        3070,
+        3071,
+        3072,
+        3262
+      ],
+      "drops": {
+        "Bear fur": "1/128",
+        "Beer": "1/128",
+        "Bronze arrow": "3/128",
+        "Bronze axe": "6/128",
+        "Chaos rune": "4/128",
+        "Clue scroll (beginner)": "1/75",
+        "Clue scroll (easy)": "1/128",
+        "Cooked meat": "1/128",
+        "Earth rune": "3/128",
+        "Fire rune": "2/128",
+        "Flyer": "1/128",
+        "Iron mace": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "2/128",
+        "Ring mould": "1/128",
+        "Staff": "4/128",
+        "Tin ore": "1/128"
+      }
+    },
+    {
+      "version": "High level",
+      "ids": [
+        3055,
+        3057,
+        3058,
+        3062,
+        3068,
+        3069
+      ],
+      "drops": {
+        "Amulet mould": "1/128",
+        "Bear fur": "1/128",
+        "Beer": "1/128",
+        "Bronze arrow": "4/128",
+        "Bronze battleaxe": "4/128",
+        "Chaos rune": "4/128",
+        "Clue scroll (beginner)": "1/55",
+        "Clue scroll (easy)": "1/128",
+        "Cooked meat": "1/128",
+        "Earth rune": "3/128",
+        "Fire rune": "2/128",
+        "Flyer": "1/128",
+        "Iron arrow": "3/128",
+        "Iron axe": "6/128",
+        "Iron mace": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "2/128",
+        "Tin ore": "1/128"
+      }
+    }
+  ],
+  "Barbarian (Barbarian Camp)": [
+    {
+      "version": "Low level",
+      "ids": [
+        10984,
+        10985,
+        10987,
+        10988
+      ],
+      "drops": {
+        "Bear fur": "1/128",
+        "Beer": "1/128",
+        "Bronze arrow": "3/128",
+        "Bronze axe": "6/128",
+        "Chaos rune": "4/128",
+        "Clue scroll (beginner)": "1/75",
+        "Clue scroll (easy)": "1/128",
+        "Cooked meat": "1/128",
+        "Earth rune": "3/128",
+        "Fire rune": "2/128",
+        "Flyer": "1/128",
+        "Iron mace": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "2/128",
+        "Ring mould": "1/128",
+        "Staff": "4/128",
+        "Tin ore": "1/128"
+      }
+    },
+    {
+      "version": "High level",
+      "ids": [
+        10986
+      ],
+      "drops": {
+        "Amulet mould": "1/128",
+        "Bear fur": "1/128",
+        "Beer": "1/128",
+        "Bronze arrow": "4/128",
+        "Bronze battleaxe": "4/128",
+        "Chaos rune": "4/128",
+        "Clue scroll (beginner)": "1/55",
+        "Clue scroll (easy)": "1/128",
+        "Cooked meat": "1/128",
+        "Earth rune": "3/128",
+        "Fire rune": "2/128",
+        "Flyer": "1/128",
+        "Iron arrow": "3/128",
+        "Iron axe": "6/128",
+        "Iron mace": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "2/128"
+      }
+    }
+  ],
+  "Big frog": [
+    {
+      "version": "Level 10",
+      "ids": [
+        8701
+      ],
+      "drops": {
+        "Clue scroll (beginner)": "1/70"
+      }
+    },
+    {
+      "version": "Level 24",
+      "ids": [
+        478
+      ],
+      "drops": {
+        "Cosmic rune": "6/128",
+        "Earth rune": "10/128",
+        "Earth talisman": "1/128",
+        "Nature rune": "7/128",
+        "Water rune": "10/128",
+        "Water talisman": "1/128"
+      }
+    }
+  ],
+  "Black Guard": [
+    {
+      "version": "Level 25",
+      "ids": [
+        1409,
+        1410,
+        1411,
+        1412
+      ],
+      "drops": {
+        "Bronze bar": "7/128",
+        "Bronze battleaxe": "2/128",
+        "Bronze bolts": "7/128",
+        "Bronze med helm": "4/128",
+        "Bronze pickaxe": "13/128",
+        "Chaos rune": "4/128",
+        "Clue scroll (beginner)": "1/100",
+        "Coal": "2/128",
+        "Copper ore": "3/128",
+        "Hammer": "10/128",
+        "Iron bar": "3/128",
+        "Iron battleaxe": "1/128",
+        "Iron ore": "4/128",
+        "Nature rune": "4/128",
+        "Tin ore": "3/128"
+      }
+    },
+    {
+      "version": "Level 48",
+      "ids": [
+        6046,
+        6047,
+        6048,
+        6049
+      ],
+      "drops": {
+        "Beer": "1/128",
+        "Black warhammer": "2/128",
+        "Bronze warhammer": "3/128",
+        "Bucket of water": "1/128",
+        "Cake": "4/128",
+        "Clue scroll (medium)": "1/128",
+        "Copper ore": "2/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Iron ore": "3/128",
+        "Iron warhammer": "6/128",
+        "Keg of beer": "4/128",
+        "Ring mould": "1/128",
+        "Steel warhammer": "1/128",
+        "Tin ore": "1/128"
+      }
+    }
+  ],
+  "Black demon": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Adamantite bar": "2/128",
+        "Air rune": "8/128",
+        "Black axe": "2/128",
+        "Black sword": "4/128",
+        "Blood rune": "4/128",
+        "Brimstone key": "1/86",
+        "Chaos rune": "7/128",
+        "Clue scroll (hard)": "1/128",
+        "Defence potion(3)": "1/128",
+        "Fire rune": "1/128",
+        "Grimy avantoe": "1/118.7",
+        "Grimy cadantine": "1/178.1",
+        "Grimy dwarf weed": "1/237.4",
+        "Grimy harralander": "1/50.9",
+        "Grimy irit leaf": "1/89",
+        "Grimy kwuarm": "1/142.5",
+        "Grimy lantadyme": "1/237.4",
+        "Grimy ranarr weed": "1/64.8",
+        "Larran's key": "1/82",
+        "Law rune": "1/128",
+        "Lobster": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Rune chainbody": "1/128",
+        "Rune med helm": "1/128",
+        "Slayer's enchantment": "1/195",
+        "Steel battleaxe": "3/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/226",
+        "Dark totem base": "1/340",
+        "Dark totem middle": "1/340",
+        "Dark totem top": "1/340"
+      }
+    },
+    {
+      "version": "Chasm of Fire",
+      "ids": [],
+      "drops": {
+        "Contract of Bloodied Blows": "1/53",
+        "Contract of Divine Severance": "1/53",
+        "Contract of Forfeit Breath": "1/53",
+        "Contract of Glyphic Attenuation": "1/53",
+        "Contract of Sensory Clouding": "1/53"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7874,
+        7875,
+        7876
+      ],
+      "drops": {
+        "Adamant battleaxe": "2/74",
+        "Adamant dagger": "3/74",
+        "Adamant platebody": "1/74",
+        "Adamantite bar": "2/74",
+        "Adamantite ore": "1/74",
+        "Annakarl teleport": "~1/122",
+        "Blood rune": [
+          "4/74",
+          "1/74"
+        ],
+        "Carrallanger teleport": "~1/122",
+        "Chaos rune": "7/74",
+        "Clue scroll (hard)": "1/128",
+        "Dareeyak teleport": "~1/122",
+        "Death rune": "8/74",
+        "Ghorrock teleport": "~1/122",
+        "Grimy avantoe": "1/68.6",
+        "Grimy cadantine": "1/103",
+        "Grimy dwarf weed": "1/137.3",
+        "Grimy irit leaf": "1/51.5",
+        "Grimy kwuarm": "1/82.4",
+        "Grimy lantadyme": "1/137.3",
+        "Kharyrll teleport": "~1/122",
+        "Larran's key": "1/68",
+        "Lassar teleport": "~1/122",
+        "Law rune": "1/74",
+        "Looting bag note": "~1/1219.8",
+        "Magic shortbow scroll": "~1/304.9",
+        "Paddewwa teleport": "~1/122",
+        "Ring of wealth scroll": "~1/304.9",
+        "Rune chainbody": "1/74",
+        "Rune dagger": "1/74",
+        "Rune full helm": "1/74",
+        "Rune med helm": "1/74",
+        "Rune sword": "4/74",
+        "Senntisten teleport": "~1/122",
+        "Slayer's enchantment": "1/160",
+        "Target teleport": "~1/122",
+        "Trouver parchment": "~1/1219.8",
+        "Wilderness crabs teleport": "~1/122"
+      }
+    }
+  ],
+  "Black dragon": [
+    {
+      "version": "Regular",
+      "ids": [
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        8084,
+        8085
+      ],
+      "drops": {
+        "Adamant dart(p)": "7/128",
+        "Adamant javelin": "20/128",
+        "Adamant platebody": "1/128",
+        "Adamantite bar": "3/128",
+        "Air rune": "1/128",
+        "Blood rune": "3/128",
+        "Brimstone key": "1/75",
+        "Chocolate cake": "3/128",
+        "Clue scroll (elite)": "1/500",
+        "Clue scroll (hard)": "1/128",
+        "Draconic visage": "1/10000",
+        "Dragon javelin tips": "6/128",
+        "Fire rune": "8/128",
+        "Larran's key": "1/72",
+        "Law rune": "5/128",
+        "Mithril 2h sword": "4/128",
+        "Mithril axe": "3/128",
+        "Mithril battleaxe": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Rune knife": "3/128",
+        "Rune longsword": "1/128",
+        "Slayer's enchantment": "1/168"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7861,
+        7862,
+        7863
+      ],
+      "drops": {
+        "Adamant 2h sword": "4/128",
+        "Adamant battleaxe": "3/128",
+        "Adamant platebody": "20/128",
+        "Adamantite bar": "3/128",
+        "Annakarl teleport": "~1/122",
+        "Blood rune": "3/128",
+        "Carrallanger teleport": "~1/122",
+        "Chaos rune": "1/128",
+        "Clue scroll (elite)": "1/500",
+        "Clue scroll (hard)": "1/128",
+        "Dareeyak teleport": "~1/122",
+        "Death rune": "8/128",
+        "Draconic visage": "1/5000",
+        "Dragon javelin tips": "6/128",
+        "Ghorrock teleport": "~1/122",
+        "Kharyrll teleport": "~1/122",
+        "Larran's key": "1/59",
+        "Lassar teleport": "~1/122",
+        "Law rune": "5/128",
+        "Looting bag note": "~1/1219.8",
+        "Magic shortbow scroll": "~1/304.9",
+        "Monkfish": "3/128",
+        "Paddewwa teleport": "~1/122",
+        "Ring of wealth scroll": "~1/304.9",
+        "Rune axe": "3/128",
+        "Rune kiteshield": "1/128",
+        "Rune knife": [
+          "7/128",
+          "6/128",
+          "3/128"
+        ],
+        "Rune longsword": "1/128",
+        "Rune med helm": "1/128",
+        "Senntisten teleport": "~1/122",
+        "Slayer's enchantment": "1/120",
+        "Target teleport": "~1/122",
+        "Trouver parchment": "~1/1219.8",
+        "Wilderness crabs teleport": "~1/122"
+      }
+    }
+  ],
+  "Bronze dragon": [
+    {
+      "version": "Standard",
+      "ids": [
+        270,
+        271
+      ],
+      "drops": {
+        "Adamant dart(p)": "7/128",
+        "Adamant javelin": "20/128",
+        "Adamant platebody": "1/128",
+        "Adamantite bar": "3/128",
+        "Blood rune": "3/128",
+        "Brimstone key": "1/94",
+        "Clue scroll (hard)": "1/128",
+        "Death rune": "1/128",
+        "Dragon platelegs": "1/2048",
+        "Dragon plateskirt": "1/2048",
+        "Fire rune": "8/128",
+        "Law rune": "5/128",
+        "Mithril 2h sword": "4/128",
+        "Mithril axe": "3/128",
+        "Mithril battleaxe": "3/128",
+        "Mithril bolts": "6/128",
+        "Mithril kiteshield": "1/128",
+        "Rune knife": "3/128",
+        "Rune longsword": "1/128",
+        "Swordfish": [
+          "2/128",
+          "1/128"
+        ]
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [
+        7253
+      ],
+      "drops": {
+        "Ancient shard": "1/252",
+        "Dark totem base": "1/378",
+        "Dark totem middle": "1/378",
+        "Dark totem top": "1/378"
+      }
+    }
+  ],
+  "Bryophyta": [
+    {
+      "version": "Members",
+      "ids": [],
+      "drops": {
+        "Air rune": "3/128",
+        "Avantoe seed": "1/319.4",
+        "Belladonna seed": "1/212.9",
+        "Black sq shield": "5/128",
+        "Blood rune": "1/128",
+        "Cactus seed": "1/319.4",
+        "Cadantine seed": "1/958.2",
+        "Chaos rune": "3/128",
+        "Coal": "1/128",
+        "Cosmic rune": "2/128",
+        "Curved bone": "1/5012.5",
+        "Death rune": "1/128",
+        "Dwarf weed seed": "1/1916.3",
+        "Earth rune": "3/128",
+        "Giant champion scroll": "1/5000",
+        "Grimy avantoe": "1/546.1",
+        "Grimy cadantine": "1/819.2",
+        "Grimy dwarf weed": "1/1092.3",
+        "Grimy guam leaf": "1/102.4",
+        "Grimy harralander": "1/234.1",
+        "Grimy irit leaf": "1/409.6",
+        "Grimy kwuarm": "1/655.4",
+        "Grimy lantadyme": "1/1092.3",
+        "Grimy marrentill": "1/136.5",
+        "Grimy ranarr weed": "1/297.9",
+        "Grimy tarromin": "1/182",
+        "Harralander seed": "1/68.4",
+        "Irit seed": "1/212.9",
+        "Iron arrow": "2/128",
+        "Kwuarm seed": "1/425.9",
+        "Lantadyme seed": "1/1277.6",
+        "Law rune": "4/128",
+        "Long bone": "1/400",
+        "Magic staff": "2/128",
+        "Mithril spear": "2/128",
+        "Mithril sword": "2/128",
+        "Mushroom spore": "1/132.2",
+        "Nature rune": "3/128",
+        "Poison ivy seed": "1/294.8",
+        "Potato cactus seed": "1/479.1",
+        "Ranarr seed": "1/98.3",
+        "Snapdragon seed": "1/766.5",
+        "Snape grass seed": "1/95.8",
+        "Spinach roll": "1/128",
+        "Steel arrow": "1/128",
+        "Steel bar": "6/128",
+        "Steel kiteshield": "1/128",
+        "Steel med helm": "2/128",
+        "Toadflax seed": "1/142",
+        "Torstol seed": "1/3832.7",
+        "Watermelon seed": "1/60.8",
+        "Whiteberry seed": "1/112.7"
+      }
+    },
+    {
+      "version": "Free-to-play",
+      "ids": [],
+      "drops": {
+        "Air rune": "3/128",
+        "Black sq shield": "5/128",
+        "Chaos rune": "3/128",
+        "Coal": "1/128",
+        "Cosmic rune": "2/128",
+        "Death rune": "1/128",
+        "Earth rune": "3/128",
+        "Iron arrow": "2/128",
+        "Law rune": "4/128",
+        "Magic staff": "2/128",
+        "Mithril sword": "2/128",
+        "Nature rune": "3/128",
+        "Spinach roll": "1/128",
+        "Steel arrow": "1/128",
+        "Steel bar": "6/128",
+        "Steel kiteshield": "1/128",
+        "Steel med helm": "2/128"
+      }
+    }
+  ],
+  "Cave bug": [
+    {
+      "version": "Level 6",
+      "ids": [
+        481
+      ],
+      "drops": {
+        "Candle": "5/128",
+        "Earth rune": "2/128",
+        "Empty candle lantern": "1/128",
+        "Eye of newt": "2/128",
+        "Grimy avantoe": "1/118.7",
+        "Grimy cadantine": "1/178.1",
+        "Grimy dwarf weed": "1/237.4",
+        "Grimy guam leaf": "16/128",
+        "Grimy harralander": "1/50.9",
+        "Grimy irit leaf": "1/89",
+        "Grimy kwuarm": "1/142.5",
+        "Grimy lantadyme": "1/237.4",
+        "Grimy ranarr weed": "1/64.8",
+        "Limpwurt root": "1/128",
+        "Nature rune": [
+          "5/128",
+          "1/128"
+        ],
+        "Red spiders' eggs": "2/128",
+        "Snape grass": "1/128",
+        "Tinderbox": "3/128",
+        "Unicorn horn dust": "2/128",
+        "Water rune": "5/128"
+      }
+    },
+    {
+      "version": "Level 96",
+      "ids": [
+        483
+      ],
+      "drops": {
+        "Clue scroll (easy)": "1/128",
+        "Earth rune": [
+          "15/128",
+          "2/128"
+        ],
+        "Fire rune": [
+          "13/128",
+          "2/128"
+        ],
+        "Grimy avantoe": "1/143.7",
+        "Grimy cadantine": "1/215.6",
+        "Grimy dwarf weed": "1/287.4",
+        "Grimy harralander": "1/61.6",
+        "Grimy irit leaf": "1/107.8",
+        "Grimy kwuarm": "1/172.5",
+        "Grimy lantadyme": "1/287.4",
+        "Grimy ranarr weed": "1/78.4",
+        "Swamp weed": [
+          "31/128",
+          "10/128"
+        ],
+        "Water battlestaff": "1/128",
+        "Water rune": [
+          "14/128",
+          "2/128"
+        ]
+      }
+    }
+  ],
+  "Choke devil": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Adamant axe": "3 × 3/128",
+        "Adamantite bar": "3 × 1/128",
+        "Air battlestaff": "3 × 2/128",
+        "Ancient shard": "1/133",
+        "Black d'hide vambraces": "3 × 1/128",
+        "Chaos rune": "3 × 7/128",
+        "Dragon chainbody": "3 × 1/32768",
+        "Dragon dagger": "3 × 1/128",
+        "Dust battlestaff": [
+          "3 × 1/4000",
+          "1/194"
+        ],
+        "Dust rune": "3 × 10/128",
+        "Earth battlestaff": "3 × 2/128",
+        "Earth rune": "3 × 10/128",
+        "Eternal gem": "1/680",
+        "Fire rune": [
+          "3 × 10/128",
+          "3 × 1/128"
+        ],
+        "Grimy avantoe": "3 × 1/341.3",
+        "Grimy cadantine": "3 × 1/512",
+        "Grimy dwarf weed": "3 × 1/682.7",
+        "Grimy guam leaf": "3 × 1/64",
+        "Grimy harralander": "3 × 1/146.3",
+        "Grimy irit leaf": "3 × 1/256",
+        "Grimy kwuarm": "3 × 1/409.6",
+        "Grimy lantadyme": "3 × 1/682.7",
+        "Grimy marrentill": "3 × 1/85.3",
+        "Grimy ranarr weed": "3 × 1/186.2",
+        "Grimy tarromin": "3 × 1/113.8",
+        "Imbued heart": "1/680",
+        "Mist battlestaff": "1/194",
+        "Mithril bar": "3 × 3/128",
+        "Mystic air staff": "3 × 1/128",
+        "Mystic earth staff": "3 × 1/128",
+        "Red d'hide vambraces": "3 × 2/128",
+        "Rune arrow": "3 × 5/128",
+        "Rune dagger": "3 × 2/128",
+        "Soul rune": [
+          "3 × 4/128",
+          "3 × 1/128"
+        ],
+        "Ugthanki kebab": "3 × 2/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave superior",
+      "ids": [],
+      "drops": {
+        "Slayer's enchantment": "1/80"
+      }
+    }
+  ],
+  "Cyclops": [
+    {
+      "version": "Warriors' Guild Rooftop",
+      "ids": [
+        2463,
+        2464,
+        2465,
+        2466,
+        2467,
+        2468
+      ],
+      "drops": {
+        "Adamant 2h sword": "1/100",
+        "Adamant defender": "2/100",
+        "Adamant mace": "1/100",
+        "Avantoe seed": "1/8733.3",
+        "Belladonna seed": "1/5822.2",
+        "Black 2h sword": "1/100",
+        "Black dagger": "1/100",
+        "Black defender": "2/100",
+        "Black knife": "16/100",
+        "Black longsword": "1/100",
+        "Black sword": "1/100",
+        "Bronze defender": "2/100",
+        "Cactus seed": "1/8733.3",
+        "Cadantine seed": "1/26200",
+        "Clue scroll (hard)": "1/512",
+        "Curved bone": "1/5012.5",
+        "Dwarf weed seed": "1/52400",
+        "Grimy avantoe": "1/711.1",
+        "Grimy cadantine": "1/1066.7",
+        "Grimy dwarf weed": "1/1422.2",
+        "Grimy guam leaf": "1/133.3",
+        "Grimy harralander": "1/304.8",
+        "Grimy irit leaf": "1/533.3",
+        "Grimy kwuarm": "1/853.3",
+        "Grimy lantadyme": "1/1422.2",
+        "Grimy marrentill": "1/177.8",
+        "Grimy ranarr weed": "1/387.9",
+        "Grimy tarromin": "1/237",
+        "Harralander seed": "1/1871.4",
+        "Irit seed": "1/5822.2",
+        "Iron 2h sword": "2/100",
+        "Iron chainbody": "2/100",
+        "Iron defender": "2/100",
+        "Jangerberry seed": "1/1139.1",
+        "Kwuarm seed": "1/11644.4",
+        "Lantadyme seed": "1/34933.3",
+        "Limpwurt seed": "1/765",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/838.4",
+        "Mithril dagger": "1/100",
+        "Mithril defender": "2/100",
+        "Mithril longsword": "1/100",
+        "Mushroom spore": "1/3613.8",
+        "Poison ivy seed": "1/8061.5",
+        "Potato cactus seed": "1/13100",
+        "Ranarr seed": "1/2687.2",
+        "Rune defender": "2/100",
+        "Snapdragon seed": "1/20960",
+        "Snape grass seed": "1/2620",
+        "Steel 2h sword": "2/100",
+        "Steel battleaxe": "2/100",
+        "Steel chainbody": "2/100",
+        "Steel dagger": "2/100",
+        "Steel defender": "2/100",
+        "Steel longsword": "2/100",
+        "Steel mace": "2/100",
+        "Steel med helm": "2/100",
+        "Steel sword": "2/100",
+        "Strawberry seed": "1/800",
+        "Tarromin seed": "1/1232.9",
+        "Toadflax seed": "1/3881.5",
+        "Torstol seed": "1/104800",
+        "Watermelon seed": "1/1663.5",
+        "Whiteberry seed": "1/3082.4",
+        "Wildblood seed": "1/1262.7"
+      }
+    },
+    {
+      "version": "Warriors' Guild Basement",
+      "ids": [
+        2137,
+        2138,
+        2139,
+        2140,
+        2141,
+        2142
+      ],
+      "drops": {
+        "Adamant 2h sword": "4/100",
+        "Adamant dagger": "5/100",
+        "Adamant sq shield": "1/100",
+        "Avantoe seed": "1/2911.1",
+        "Belladonna seed": "1/1940.7",
+        "Black dagger": "5/100",
+        "Black full helm": "5/100",
+        "Black knife": "4/100",
+        "Black mace": "5/100",
+        "Cactus seed": "1/2911.1",
+        "Cadantine seed": "1/8733.3",
+        "Clue scroll (hard)": "1/256",
+        "Curved bone": "1/5012.5",
+        "Dragon defender": "1/100",
+        "Dwarf weed seed": "1/17466.7",
+        "Grimy avantoe": "1/533.3",
+        "Grimy cadantine": "1/800",
+        "Grimy dwarf weed": "1/1066.7",
+        "Grimy guam leaf": "1/100",
+        "Grimy harralander": "1/228.6",
+        "Grimy irit leaf": "1/400",
+        "Grimy kwuarm": "1/640",
+        "Grimy lantadyme": "1/1066.7",
+        "Grimy marrentill": "1/133.3",
+        "Grimy ranarr weed": "1/290.9",
+        "Grimy tarromin": "1/177.8",
+        "Harralander seed": "1/623.8",
+        "Irit seed": "1/1940.7",
+        "Jangerberry seed": "1/379.7",
+        "Kwuarm seed": "1/3881.5",
+        "Lantadyme seed": "1/11644.4",
+        "Limpwurt seed": "1/255",
+        "Lobster": "7/100",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/279.5",
+        "Mithril dart": "6/100",
+        "Mithril kiteshield": "5/100",
+        "Mithril platelegs": "4/100",
+        "Mithril scimitar": "5/100",
+        "Mushroom spore": "1/1204.6",
+        "Poison ivy seed": "1/2687.2",
+        "Potato cactus seed": "1/4366.7",
+        "Ranarr seed": "1/895.7",
+        "Rune full helm": "1/100",
+        "Rune med helm": "3/100",
+        "Snapdragon seed": "1/6986.7",
+        "Snape grass seed": "1/873.3",
+        "Steel chainbody": "7/100",
+        "Steel platebody": "5/100",
+        "Strawberry seed": "1/266.7",
+        "Tarromin seed": "1/411",
+        "Toadflax seed": "1/1293.8",
+        "Torstol seed": "1/34933.3",
+        "Watermelon seed": "1/554.5",
+        "Whiteberry seed": "1/1027.5",
+        "Wildblood seed": "1/420.9"
+      }
+    }
+  ],
+  "Dagannoth": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Avantoe seed": "1/76.7",
+        "Belladonna seed": "1/54.2",
+        "Brimstone key": "1/235",
+        "Bronze spear": "5/128",
+        "Cactus seed": "1/80.7",
+        "Cadantine seed": "1/242.2",
+        "Casket": "1/128",
+        "Clue scroll (medium)": "1/128",
+        "Dwarf weed seed": "1/553.7",
+        "Feather": "2/128",
+        "Fishing bait": "2/128",
+        "Harpoon": "3/128",
+        "Irit seed": "1/52.4",
+        "Iron spear": "6/128",
+        "Kwuarm seed": "1/112.3",
+        "Lantadyme seed": "1/337",
+        "Lobster pot": "12/128",
+        "Mithril javelin": "1/128",
+        "Mithril spear": "1/128",
+        "Opal bolt tips": "2/128",
+        "Oyster pearl": "1/128",
+        "Oyster pearls": "1/128",
+        "Poison ivy seed": "1/75.3",
+        "Potato cactus seed": "1/110.7",
+        "Raw herring": "4/128",
+        "Raw lobster": "2/128",
+        "Raw sardine": "4/128",
+        "Raw tuna": "2/128",
+        "Seaweed": "2/128",
+        "Snapdragon seed": "1/168.5",
+        "Snape grass seed": "1/387.6",
+        "Steel arrow": "2/128",
+        "Torstol seed": "1/861.2",
+        "Water rune": "4/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/286",
+        "Dark totem base": "1/430",
+        "Dark totem middle": "1/430",
+        "Dark totem top": "1/430"
+      }
+    }
+  ],
+  "Dagannoth (Waterbirth Island)": [
+    {
+      "version": "Level 88",
+      "ids": [
+        2259,
+        5942
+      ],
+      "drops": {
+        "Air talisman": "1/179.2",
+        "Archer helm": "1/2048",
+        "Avantoe seed": "1/1381.4",
+        "Belladonna seed": "1/975.7",
+        "Berserker helm": "1/2048",
+        "Body talisman": "1/179.2",
+        "Brimstone key": "1/128",
+        "Cactus seed": "1/1453.3",
+        "Cadantine seed": "1/4360",
+        "Casket": "5/128",
+        "Chaos talisman": "1/597.3",
+        "Circular hide": "2/128",
+        "Clue scroll (medium)": "1/128",
+        "Cosmic talisman": "1/448",
+        "Dwarf weed seed": "1/9965.7",
+        "Earth talisman": "1/179.2",
+        "Edible seaweed": "8/128",
+        "Farseer helm": "1/2048",
+        "Fire talisman": "1/179.2",
+        "Flattened hide": "2/128",
+        "Fremennik blade": "3/128",
+        "Fremennik brown cloak": "2/128",
+        "Fremennik brown shirt": "2/128",
+        "Fremennik gloves": "2/128",
+        "Fremennik helm": "3/128",
+        "Fremennik shield": "3/128",
+        "Grimy avantoe": "1/341.3",
+        "Grimy cadantine": "1/512",
+        "Grimy dwarf weed": "1/682.7",
+        "Grimy guam leaf": "1/64",
+        "Grimy harralander": "1/146.3",
+        "Grimy irit leaf": "1/256",
+        "Grimy kwuarm": "1/409.6",
+        "Grimy lantadyme": "1/682.7",
+        "Grimy marrentill": "1/85.3",
+        "Grimy ranarr weed": "1/186.2",
+        "Grimy tarromin": "1/113.8",
+        "Irit seed": "1/942.7",
+        "Keg of beer": "2/128",
+        "Kwuarm seed": "1/2022",
+        "Lantadyme seed": "1/6066.1",
+        "Mind talisman": "1/179.2",
+        "Mithril javelin": "2/128",
+        "Nature talisman": "1/597.3",
+        "Opal bolt tips": "10/128",
+        "Oyster pearls": "5/128",
+        "Poison ivy seed": "1/1354.6",
+        "Potato cactus seed": "1/1993.1",
+        "Raw bass": "5/128",
+        "Seaweed": "30/128",
+        "Snapdragon seed": "1/3033",
+        "Snape grass seed": "1/6976",
+        "Spined boots": "2/128",
+        "Spined gloves": "2/128",
+        "Steel arrow": "10/128",
+        "Stretched hide": "2/128",
+        "Toadflax seed": "1/645.9",
+        "Torstol seed": "1/15502.2",
+        "Warrior helm": "1/2048",
+        "Water talisman": "1/179.2"
+      }
+    },
+    {
+      "version": "Level 90",
+      "ids": [
+        3185,
+        5943
+      ],
+      "drops": {
+        "Air talisman": "1/224",
+        "Archer helm": "1/2048",
+        "Avantoe seed": "1/1381.4",
+        "Belladonna seed": "1/975.7",
+        "Berserker helm": "1/2048",
+        "Blood rune": "2/128",
+        "Body talisman": "1/224",
+        "Brimstone key": "1/120",
+        "Cactus seed": "1/1453.3",
+        "Cadantine seed": "1/4360",
+        "Chaos talisman": "1/746.7",
+        "Clue scroll (medium)": "1/128",
+        "Cosmic talisman": "1/560",
+        "Dagannoth hide": "10/128",
+        "Dwarf weed seed": "1/9965.7",
+        "Earth talisman": "1/224",
+        "Farseer helm": "1/2048",
+        "Fire talisman": "1/224",
+        "Fremennik blade": "2/128",
+        "Fremennik brown cloak": "3/128",
+        "Fremennik brown shirt": "2/128",
+        "Fremennik gloves": "2/128",
+        "Fremennik helm": "3/128",
+        "Fremennik shield": "3/128",
+        "Grimy avantoe": "1/682.7",
+        "Grimy cadantine": "1/1024",
+        "Grimy dwarf weed": "1/1365.3",
+        "Grimy guam leaf": "1/128",
+        "Grimy harralander": "1/292.6",
+        "Grimy irit leaf": "1/512",
+        "Grimy kwuarm": "1/819.2",
+        "Grimy lantadyme": "1/1365.3",
+        "Grimy marrentill": "1/170.7",
+        "Grimy ranarr weed": "1/372.4",
+        "Grimy tarromin": "1/227.6",
+        "Irit seed": "1/942.7",
+        "Keg of beer": "2/128",
+        "Kwuarm seed": "1/2022",
+        "Lantadyme seed": "1/6066.1",
+        "Law rune": "10/128",
+        "Mind talisman": "1/224",
+        "Mithril javelin": "10/128",
+        "Nature rune": "10/128",
+        "Nature talisman": "1/746.7",
+        "Oyster pearl": "7/128",
+        "Poison ivy seed": "1/1354.6",
+        "Potato cactus seed": "1/1993.1",
+        "Raw lobster": "5/128",
+        "Snapdragon seed": "1/3033",
+        "Snape grass seed": "1/6976",
+        "Steel arrow": "5/128",
+        "Steel axe": "10/128",
+        "Tinderbox": "10/128",
+        "Toadflax seed": "1/645.9",
+        "Torstol seed": "1/15502.2",
+        "Warrior helm": "1/2048",
+        "Water rune": "10/128",
+        "Water talisman": "1/224"
+      }
+    }
+  ],
+  "Dark warrior": [
+    {
+      "version": "Level 8",
+      "ids": [
+        531
+      ],
+      "drops": {
+        "Black mace": "1/128",
+        "Black med helm": "1/128",
+        "Bronze arrow": "4/128",
+        "Bronze med helm": "3/128",
+        "Chaos rune": "1/128",
+        "Earth rune": "1/128",
+        "Grimy avantoe": "1/910.2",
+        "Grimy cadantine": "1/1365.3",
+        "Grimy dwarf weed": "1/1820.4",
+        "Grimy guam leaf": "1/170.7",
+        "Grimy harralander": "1/390.1",
+        "Grimy irit leaf": "1/682.7",
+        "Grimy kwuarm": "1/1092.3",
+        "Grimy lantadyme": "1/1820.4",
+        "Grimy marrentill": "1/227.6",
+        "Grimy ranarr weed": "1/496.5",
+        "Grimy tarromin": "1/303.4",
+        "Iron mace": "1/128",
+        "Iron ore": "1/128",
+        "Larran's key": "1/1655",
+        "Mind rune": "3/128",
+        "Nature rune": "2/128",
+        "Sardine": "1/128",
+        "Slayer's enchantment": "1/307",
+        "Water rune": "2/128"
+      }
+    },
+    {
+      "version": "Great Kourend",
+      "ids": [
+        11109,
+        11110,
+        11111
+      ],
+      "drops": {
+        "Black mace": "1/128",
+        "Black med helm": "1/128",
+        "Bronze arrow": "4/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (medium)": "1/96",
+        "Earth rune": "1/128",
+        "Grimy avantoe": "1/910.2",
+        "Grimy cadantine": "1/1365.3",
+        "Grimy dwarf weed": "1/1820.4",
+        "Grimy guam leaf": "1/170.7",
+        "Grimy harralander": "1/390.1",
+        "Grimy irit leaf": "1/682.7",
+        "Grimy kwuarm": "1/1092.3",
+        "Grimy lantadyme": "1/1820.4",
+        "Grimy marrentill": "1/227.6",
+        "Grimy ranarr weed": "1/496.5",
+        "Grimy tarromin": "1/303.4",
+        "Iron ore": "1/128",
+        "Mind rune": "3/128",
+        "Nature rune": "2/128",
+        "Sardine": "1/128",
+        "Steel mace": "1/128",
+        "Steel med helm": "3/128",
+        "Water rune": "2/128"
+      }
+    },
+    {
+      "version": "Level 145",
+      "ids": [
+        6606
+      ],
+      "drops": {
+        "Adamant med helm": "3/128",
+        "Black mace": "1/128",
+        "Black med helm": "1/128",
+        "Bronze arrow": "4/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (hard)": "1/128",
+        "Dark fishing bait": "2/128",
+        "Earth rune": "1/128",
+        "Grimy avantoe": "1/910.2",
+        "Grimy cadantine": "1/1365.3",
+        "Grimy dwarf weed": "1/1820.4",
+        "Grimy guam leaf": "1/170.7",
+        "Grimy harralander": "1/390.1",
+        "Grimy irit leaf": "1/682.7",
+        "Grimy kwuarm": "1/1092.3",
+        "Grimy lantadyme": "1/1820.4",
+        "Grimy marrentill": "1/227.6",
+        "Grimy ranarr weed": "1/496.5",
+        "Grimy tarromin": "1/303.4",
+        "Iron ore": "1/128",
+        "Larran's key": "1/87",
+        "Mind rune": "3/128",
+        "Mithril mace": "1/128",
+        "Nature rune": "2/128",
+        "Sardine": "1/128",
+        "Slayer's enchantment": "1/211",
+        "Water rune": "2/128"
+      }
+    }
+  ],
+  "Dark wizard": [
+    {
+      "version": "Low level",
+      "ids": [
+        512,
+        2058,
+        2059,
+        5086,
+        5087
+      ],
+      "drops": {
+        "Air rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Black robe": "3/128",
+        "Blood rune": "2/128",
+        "Body rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Chaos rune": "6/128",
+        "Clue scroll (beginner)": "1/50",
+        "Cosmic rune": "1/128",
+        "Earth rune": [
+          "4/128",
+          "3/128",
+          "2/128"
+        ],
+        "Fire rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Fire talisman": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Nature rune": "7/128",
+        "Staff": "8/128",
+        "Water rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Water talisman": "1/128",
+        "Wizard hat": "6/128"
+      }
+    },
+    {
+      "version": "High level",
+      "ids": [
+        510,
+        2056,
+        2057,
+        5088,
+        5089
+      ],
+      "drops": {
+        "Air rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Black robe": "3/128",
+        "Blood rune": "2/128",
+        "Body rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Chaos rune": "6/128",
+        "Cosmic rune": "1/128",
+        "Earth rune": [
+          "4/128",
+          "3/128",
+          "2/128"
+        ],
+        "Fire rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Fire talisman": "2/128",
+        "Law rune": "1/128",
+        "Mind rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Nature rune": "7/128",
+        "Staff": "4/128",
+        "Water rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Water talisman": "2/128",
+        "Wizard hat": "6/128"
+      }
+    }
+  ],
+  "Dust devil": [
+    {
+      "version": "Regular",
+      "ids": [
+        423,
+        7249
+      ],
+      "drops": {
+        "Adamant axe": "3/128",
+        "Adamantite bar": "1/128",
+        "Air battlestaff": "2/128",
+        "Ancient shard": "1/246",
+        "Black d'hide vambraces": "1/128",
+        "Brimstone key": "1/87",
+        "Chaos rune": "7/128",
+        "Dark totem base": "1/370",
+        "Dark totem middle": "1/370",
+        "Dark totem top": "1/370",
+        "Dragon chainbody": "1/32768",
+        "Dragon dagger": "1/128",
+        "Dust battlestaff": "1/4000",
+        "Dust rune": "10/128",
+        "Earth battlestaff": "2/128",
+        "Earth rune": "10/128",
+        "Fire rune": [
+          "10/128",
+          "1/128"
+        ],
+        "Grimy avantoe": "1/143.7",
+        "Grimy cadantine": "1/215.6",
+        "Grimy dwarf weed": "1/287.4",
+        "Grimy harralander": "1/61.6",
+        "Grimy irit leaf": "1/107.8",
+        "Grimy kwuarm": "1/172.5",
+        "Grimy lantadyme": "1/287.4",
+        "Grimy ranarr weed": "1/78.4",
+        "Mithril bar": "3/128",
+        "Mystic air staff": "1/128",
+        "Mystic earth staff": "1/128",
+        "Red d'hide vambraces": "2/128",
+        "Rune arrow": "5/128",
+        "Rune dagger": "2/128",
+        "Soul rune": [
+          "4/128",
+          "1/128"
+        ],
+        "Ugthanki kebab": "2/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [],
+      "drops": {
+        "Adamant axe": "3/126",
+        "Adamantite bar": "1/126",
+        "Air battlestaff": "2/126",
+        "Annakarl teleport": "~1/173.4",
+        "Black d'hide vambraces": "1/126",
+        "Carrallanger teleport": "~1/173.4",
+        "Chaos rune": "7/126",
+        "Dareeyak teleport": "~1/173.4",
+        "Dragon chainbody": "1/32256",
+        "Dragon dagger": "1/126",
+        "Dust battlestaff": "1/4000",
+        "Dust rune": "10/126",
+        "Earth battlestaff": "2/126",
+        "Earth rune": "10/126",
+        "Fire rune": [
+          "10/126",
+          "1/126"
+        ],
+        "Ghorrock teleport": "~1/173.4",
+        "Grimy avantoe": "1/141.5",
+        "Grimy cadantine": "1/212.2",
+        "Grimy dwarf weed": "1/282.9",
+        "Grimy harralander": "1/60.6",
+        "Grimy irit leaf": "1/106.1",
+        "Grimy kwuarm": "1/169.8",
+        "Grimy lantadyme": "1/282.9",
+        "Grimy ranarr weed": "1/77.2",
+        "Kharyrll teleport": "~1/173.4",
+        "Larran's key": "1/69",
+        "Lassar teleport": "~1/173.4",
+        "Looting bag note": "~1/1734.4",
+        "Magic shortbow scroll": "~1/433.6",
+        "Mithril bar": "3/126",
+        "Mystic air staff": "1/126",
+        "Mystic earth staff": "1/126",
+        "Paddewwa teleport": "~1/173.4",
+        "Red d'hide vambraces": "2/126",
+        "Ring of wealth scroll": "~1/433.6",
+        "Rune arrow": "5/126",
+        "Rune dagger": "2/126",
+        "Senntisten teleport": "~1/173.4",
+        "Slayer's enchantment": "1/236",
+        "Soul rune": [
+          "4/126",
+          "1/126"
+        ],
+        "Target teleport": "~1/173.4",
+        "Trouver parchment": "~1/1734.4",
+        "Wilderness crabs teleport": "~1/173.4"
+      }
+    }
+  ],
+  "Farmer": [
+    {
+      "version": "Free-to-play",
+      "ids": [
+        3114,
+        3243,
+        3244,
+        11918,
+        11919,
+        11920,
+        11921
+      ],
+      "drops": {
+        "Bronze arrow": "3/128",
+        "Bronze med helm": "2/128",
+        "Cabbage": "1/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (beginner)": "1/90",
+        "Copper ore": "2/128",
+        "Earth rune": "2/128",
+        "Earth talisman": "2/128",
+        "Fire rune": "2/128",
+        "Fishing bait": "5/128",
+        "Iron dagger": "1/128",
+        "Mind rune": "2/128"
+      }
+    },
+    {
+      "version": "Members",
+      "ids": [],
+      "drops": {
+        "Chaos rune": "1/128",
+        "Clue scroll (beginner)": "1/90",
+        "Clue scroll (easy)": "1/128",
+        "Earth rune": "2/128",
+        "Earth talisman": "2/128",
+        "Fire rune": "2/128",
+        "Fishing bait": "5/128",
+        "Gardening boots": "2/128",
+        "Grimy avantoe": "1/248.2",
+        "Grimy cadantine": "1/372.4",
+        "Grimy dwarf weed": "1/496.5",
+        "Grimy harralander": "1/106.4",
+        "Grimy irit leaf": "1/186.2",
+        "Grimy kwuarm": "1/297.9",
+        "Grimy lantadyme": "1/496.5",
+        "Grimy marrentill": "1/62.1",
+        "Grimy ranarr weed": "1/135.4",
+        "Grimy tarromin": "1/82.7",
+        "Mind rune": "2/128",
+        "Rake": "3/128",
+        "Secateurs": "1/128",
+        "Seed dibber": "2/128",
+        "Snape grass seed": "1/606.8",
+        "Strawberry seed": "1/303.4",
+        "Sweetcorn seed": "1/151.7",
+        "Tomato seed": "1/75.9",
+        "Watering can(8)": "1/128",
+        "Watermelon seed": "1/606.8"
+      }
+    }
+  ],
+  "Fire giant": [
+    {
+      "version": "",
+      "ids": [
+        2075,
+        2076,
+        2077,
+        2078,
+        2079,
+        2080,
+        2081,
+        2082,
+        2083,
+        2084
+      ],
+      "drops": {
+        "Blood rune": "4/128",
+        "Brimstone key": "1/139",
+        "Chaos rune": "7/128",
+        "Curved bone": "1/5012.5",
+        "Fire battlestaff": "1/128",
+        "Fire rune": [
+          "10/128",
+          "1/128"
+        ],
+        "Giant champion scroll": "1/5000",
+        "Grimy avantoe": "1/143.7",
+        "Grimy cadantine": "1/215.6",
+        "Grimy dwarf weed": "1/287.4",
+        "Grimy harralander": "1/61.6",
+        "Grimy irit leaf": "1/107.8",
+        "Grimy kwuarm": "1/172.5",
+        "Grimy lantadyme": "1/287.4",
+        "Grimy ranarr weed": "1/78.4",
+        "Larran's key": "1/98",
+        "Law rune": "1/128",
+        "Lobster": "3/128",
+        "Long bone": "1/400",
+        "Mithril sq shield": "2/128",
+        "Rune arrow": "5/128",
+        "Rune scimitar": "1/128",
+        "Slayer's enchantment": "1/232",
+        "Steel axe": "3/128",
+        "Steel bar": "2/128",
+        "Strength potion(2)": "1/128"
+      }
+    },
+    {
+      "version": "Level 104,Level 109",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/246",
+        "Dark totem base": "1/370",
+        "Dark totem middle": "1/370",
+        "Dark totem top": "1/370"
+      }
+    }
+  ],
+  "Flesh Crawler": [
+    {
+      "version": "Members",
+      "ids": [],
+      "drops": {
+        "Ashes": "4/100",
+        "Body rune": "10/100",
+        "Bottom of sceptre": "3/100",
+        "Dust rune": "10/100",
+        "Fire rune": "4/100",
+        "Grimy avantoe": "1/61",
+        "Grimy cadantine": "1/91.4",
+        "Grimy dwarf weed": "1/121.9",
+        "Grimy kwuarm": "1/73.1",
+        "Grimy lantadyme": "1/121.9",
+        "Iron ore": [
+          "5/100",
+          "12/100"
+        ],
+        "Nature rune": "4/100",
+        "Silver bar": "2/100"
+      }
+    },
+    {
+      "version": "Free-to-play",
+      "ids": [],
+      "drops": {
+        "Ashes": "4/100",
+        "Body rune": "19/100",
+        "Bottom of sceptre": "3/100",
+        "Iron ore": "5/100"
+      }
+    }
+  ],
+  "Giant frog": [
+    {
+      "version": "Level 13",
+      "ids": [
+        8700
+      ],
+      "drops": {
+        "Clue scroll (beginner)": "1/64",
+        "Curved bone": "1/5012.5",
+        "Long bone": "1/400"
+      }
+    },
+    {
+      "version": "Level 99",
+      "ids": [
+        477
+      ],
+      "drops": {
+        "Blood rune": "1/128",
+        "Coal": "1/128",
+        "Cosmic rune": "3/128",
+        "Curved bone": "1/5012.5",
+        "Giant frog legs": "64/128",
+        "Iron arrow": "2/128",
+        "Long bone": "1/400",
+        "Mithril spear": "2/128",
+        "Nature rune": "10/128",
+        "Spinach roll": "1/128",
+        "Steel arrow": "1/128"
+      }
+    }
+  ],
+  "Goblin": [
+    {
+      "version": "Drop table 1",
+      "ids": [],
+      "drops": {
+        "Air talisman": "1/128",
+        "Beer": "2/128",
+        "Body rune": "5/128",
+        "Brass necklace": "1/128",
+        "Bronze bolts": "3/128",
+        "Bronze spear": "4/128",
+        "Bronze sq shield": "3/128",
+        "Chef's hat": "3/128",
+        "Clue scroll (beginner)": "1/64",
+        "Clue scroll (easy)": "1/128",
+        "Earth rune": "3/128",
+        "Goblin book": "2/128",
+        "Goblin champion scroll": "1/5000",
+        "Goblin mail": "5/128",
+        "Hammer": "15/128",
+        "Water rune": "6/128"
+      }
+    },
+    {
+      "version": "Drop table 2",
+      "ids": [
+        3045,
+        3046,
+        3073,
+        3074,
+        3075,
+        3076
+      ],
+      "drops": {
+        "Body rune": "3/128",
+        "Bronze arrow": "3/128",
+        "Bronze axe": "3/128",
+        "Bronze javelin": "2/128",
+        "Bronze scimitar": "1/128",
+        "Bronze spear": "9/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (beginner)": "1/80",
+        "Clue scroll (easy)": "1/128",
+        "Earth rune": "3/128",
+        "Goblin book": "2/128",
+        "Goblin champion scroll": "1/5000",
+        "Goblin mail": "10/128",
+        "Grapes": "1/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Hammer": "9/128",
+        "Mind rune": "3/128",
+        "Nature rune": "1/128",
+        "Red cape": "1/128",
+        "Tin ore": "1/128"
+      }
+    }
+  ],
+  "Goblin (Goblin Village)": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Body rune": "3/128",
+        "Bronze arrow": "3/128",
+        "Bronze axe": "3/128",
+        "Bronze javelin": "2/128",
+        "Bronze scimitar": "1/128",
+        "Bronze spear": "9/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (beginner)": "1/80",
+        "Clue scroll (easy)": "1/128",
+        "Earth rune": "3/128",
+        "Goblin book": "2/128",
+        "Goblin champion scroll": "1/5000",
+        "Grapes": "1/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Hammer": "9/128",
+        "Mind rune": "3/128",
+        "Nature rune": "1/128",
+        "Red cape": "1/128",
+        "Tin ore": "1/128"
+      }
+    },
+    {
+      "version": "Red",
+      "ids": [],
+      "drops": {
+        "Red goblin mail": "10/128"
+      }
+    },
+    {
+      "version": "Green",
+      "ids": [],
+      "drops": {
+        "Green goblin mail": "10/128"
+      }
+    }
+  ],
+  "Gorak": [
+    {
+      "version": "Gems",
+      "ids": [],
+      "drops": {
+        "Clue scroll (hard)": "1/128",
+        "Curved bone": "1/5012.5",
+        "Long bone": "1/400"
+      }
+    },
+    {
+      "version": "Full",
+      "ids": [],
+      "drops": {
+        "Adamant kiteshield": "1/128",
+        "Bronze dagger(p+)": "2/128",
+        "Clue scroll (hard)": "1/128",
+        "Curved bone": "1/5012.5",
+        "Ecumenical key": "1/60",
+        "Grimy avantoe": "1/170.7",
+        "Grimy cadantine": "1/256",
+        "Grimy dwarf weed": "1/341.3",
+        "Grimy harralander": "1/73.1",
+        "Grimy irit leaf": "1/128",
+        "Grimy kwuarm": "1/204.8",
+        "Grimy lantadyme": "1/341.3",
+        "Grimy ranarr weed": "1/93.1",
+        "Grimy tarromin": "1/56.9",
+        "Iron 2h sword": "3/128",
+        "Iron halberd": "3/128",
+        "Long bone": "1/400",
+        "Mithril arrow(p++)": "2/128",
+        "Mithril thrownaxe": "3/128",
+        "Ring of life": "1/128",
+        "Rune chainbody": "1/128",
+        "Steel battleaxe": "1/128",
+        "Steel platelegs": "4/128",
+        "Steel plateskirt": "1/128",
+        "Steel thrownaxe": "3/128"
+      }
+    }
+  ],
+  "Greater Nechryael": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Adamant battleaxe": "5/128",
+        "Adamant kiteshield": "7/128",
+        "Air rune": "6/128",
+        "Avantoe seed": "2 × 1/276.3",
+        "Belladonna seed": "2 × 1/195.1",
+        "Blood rune": "10/128",
+        "Brimstone key": "1/64",
+        "Cactus seed": "2 × 1/290.7",
+        "Cadantine seed": "2 × 1/872",
+        "Chaos rune": "10/128",
+        "Clue scroll (hard)": "1/128",
+        "Death rune": "12/128",
+        "Dwarf weed seed": "2 × 1/1993.1",
+        "Gold bar": "7/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Irit seed": "2 × 1/188.5",
+        "Kwuarm seed": "2 × 1/404.4",
+        "Lantadyme seed": "2 × 1/1213.2",
+        "Lobster": "10/128",
+        "Mystic air staff": "2/128",
+        "Poison ivy seed": "2 × 1/270.9",
+        "Potato cactus seed": "2 × 1/398.6",
+        "Rune axe": "7/128",
+        "Rune boots": "1/128",
+        "Rune chainbody": "1/128",
+        "Rune full helm": "3/128",
+        "Rune med helm": "4/128",
+        "Rune sq shield": "7/128",
+        "Snapdragon seed": "2 × 1/606.6",
+        "Snape grass seed": "2 × 1/1395.2",
+        "Soul rune": "5/128",
+        "Toadflax seed": "2 × 1/129.2",
+        "Torstol seed": "2 × 1/3100.4",
+        "Tuna": "6/128",
+        "Wine of Zamorak": "2/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/196",
+        "Dark totem base": "1/295",
+        "Dark totem middle": "1/295",
+        "Dark totem top": "1/295"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [],
+      "drops": {
+        "Adamant battleaxe": "5/112",
+        "Adamant kiteshield": "7/112",
+        "Air rune": "6/112",
+        "Annakarl teleport": "~1/120.7",
+        "Avantoe seed": "1/241.7",
+        "Belladonna seed": "1/170.7",
+        "Blood rune": "10/112",
+        "Cactus seed": "1/254.3",
+        "Cadantine seed": "1/763",
+        "Carrallanger teleport": "~1/120.7",
+        "Chaos rune": "10/112",
+        "Clue scroll (hard)": "1/128",
+        "Dareeyak teleport": "~1/120.7",
+        "Death rune": "12/112",
+        "Dwarf weed seed": "1/1744",
+        "Ghorrock teleport": "~1/120.7",
+        "Gold bar": "7/112",
+        "Grimy avantoe": "1/341.3",
+        "Grimy cadantine": "1/512",
+        "Grimy dwarf weed": "1/682.7",
+        "Grimy guam leaf": "1/64",
+        "Grimy harralander": "1/146.3",
+        "Grimy irit leaf": "1/256",
+        "Grimy kwuarm": "1/409.6",
+        "Grimy lantadyme": "1/682.7",
+        "Grimy marrentill": "1/85.3",
+        "Grimy ranarr weed": "1/186.2",
+        "Grimy tarromin": "1/113.8",
+        "Irit seed": "1/165",
+        "Kharyrll teleport": "~1/120.7",
+        "Kwuarm seed": "1/353.9",
+        "Lantadyme seed": "1/1061.6",
+        "Larran's key": "1/55",
+        "Lassar teleport": "~1/120.7",
+        "Looting bag note": "~1/1206.5",
+        "Magic shortbow scroll": "~1/301.6",
+        "Mystic air staff": "2/112",
+        "Paddewwa teleport": "~1/120.7",
+        "Poison ivy seed": "1/237",
+        "Potato cactus seed": "1/348.8",
+        "Ring of wealth scroll": "~1/301.6",
+        "Rune axe": "7/112",
+        "Rune boots": "1/112",
+        "Rune chainbody": "1/112",
+        "Rune full helm": "3/112",
+        "Rune med helm": "4/112",
+        "Rune sq shield": "7/112",
+        "Senntisten teleport": "~1/120.7",
+        "Slayer's enchantment": "1/156",
+        "Snapdragon seed": "1/530.8",
+        "Snape grass seed": "1/1220.8",
+        "Soul rune": "5/112",
+        "Target teleport": "~1/120.7",
+        "Toadflax seed": "1/113",
+        "Torstol seed": "1/2712.9",
+        "Trouver parchment": "~1/1206.5",
+        "Wilderness crabs teleport": "~1/120.7",
+        "Wine of Zamorak": "2/112"
+      }
+    }
+  ],
+  "Greater abyssal demon": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Abyssal dagger": "3 × 1/32000",
+        "Abyssal head": "1/6000",
+        "Abyssal whip": "3 × 1/512",
+        "Adamantite bar": "3 × 2/128",
+        "Air rune": "3 × 8/128",
+        "Ancient shard": "1/66",
+        "Black axe": "3 × 2/128",
+        "Black sword": "3 × 4/128",
+        "Blood rune": "3 × 4/128",
+        "Chaos rune": "3 × 6/128",
+        "Chaos talisman": "3 × 1/128",
+        "Clue scroll (elite)": "1/120",
+        "Clue scroll (hard)": "10/128",
+        "Cosmic talisman": "3 × 1/128",
+        "Defence potion(3)": "3 × 1/128",
+        "Dust battlestaff": "1/101",
+        "Eternal gem": "1/352",
+        "Grimy avantoe": "3 × 1/143.7",
+        "Grimy cadantine": "3 × 1/215.6",
+        "Grimy dwarf weed": "3 × 1/287.4",
+        "Grimy harralander": "3 × 1/61.6",
+        "Grimy irit leaf": "3 × 1/107.8",
+        "Grimy kwuarm": "3 × 1/172.5",
+        "Grimy lantadyme": "3 × 1/287.4",
+        "Grimy ranarr weed": "3 × 1/78.4",
+        "Imbued heart": "1/352",
+        "Law rune": "3 × 1/128",
+        "Lobster": "3 × 2/128",
+        "Mist battlestaff": "1/101",
+        "Mithril kiteshield": "3 × 1/128",
+        "Pure essence": "3 × 5/128",
+        "Rune chainbody": "3 × 1/128",
+        "Rune med helm": "3 × 1/128",
+        "Steel battleaxe": "3 × 3/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave superior",
+      "ids": [],
+      "drops": {
+        "Slayer's enchantment": "1/80"
+      }
+    }
+  ],
+  "Greater demon": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Adamant platelegs": "1/128",
+        "Brimstone key": "1/112",
+        "Chaos rune": "3/128",
+        "Clue scroll (hard)": "1/128",
+        "Death rune": "3/128",
+        "Fire rune": [
+          "8/128",
+          "1/128"
+        ],
+        "Gold bar": "2/128",
+        "Larran's key": "1/96",
+        "Mithril kiteshield": "1/128",
+        "Rune full helm": "1/128",
+        "Slayer's enchantment": "1/249",
+        "Steel 2h sword": "4/128",
+        "Steel axe": "3/128",
+        "Steel battleaxe": "3/128",
+        "Thread": "1/128",
+        "Tuna": "3/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/256",
+        "Dark totem base": "1/385",
+        "Dark totem middle": "1/385",
+        "Dark totem top": "1/385"
+      }
+    },
+    {
+      "version": "Chasm of Fire",
+      "ids": [],
+      "drops": {
+        "Contract of Bloodied Blows": "1/81",
+        "Contract of Divine Severance": "1/81",
+        "Contract of Forfeit Breath": "1/81",
+        "Contract of Glyphic Attenuation": "1/81",
+        "Contract of Sensory Clouding": "1/81"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7871,
+        7872,
+        7873
+      ],
+      "drops": {
+        "Annakarl teleport": "~1/163.2",
+        "Carrallanger teleport": "~1/163.2",
+        "Clue scroll (hard)": "1/128",
+        "Dareeyak teleport": "~1/163.2",
+        "Ghorrock teleport": "~1/163.2",
+        "Kharyrll teleport": "~1/163.2",
+        "Larran's key": "1/81",
+        "Lassar teleport": "~1/163.2",
+        "Looting bag note": "~1/1632.4",
+        "Magic shortbow scroll": "~1/408.1",
+        "Paddewwa teleport": "~1/163.2",
+        "Ring of wealth scroll": "~1/408.1",
+        "Senntisten teleport": "~1/163.2",
+        "Slayer's enchantment": "1/224",
+        "Target teleport": "~1/163.2",
+        "Trouver parchment": "~1/1632.4",
+        "Wilderness crabs teleport": "~1/163.2"
+      }
+    }
+  ],
+  "Green dragon": [
+    {
+      "version": "Regular",
+      "ids": [
+        260,
+        261,
+        262,
+        263,
+        264,
+        8073,
+        8076,
+        8082
+      ],
+      "drops": {
+        "Adamant full helm": "1/128",
+        "Adamantite ore": "3/128",
+        "Bass": "3/128",
+        "Clue scroll (hard)": "1/128",
+        "Fire rune": "1/128",
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Larran's key": "1/100",
+        "Law rune": "3/128",
+        "Mithril axe": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Mithril spear": "2/128",
+        "Nature rune": "5/128",
+        "Rune dagger": "1/128",
+        "Slayer's enchantment": "1/260",
+        "Steel battleaxe": "3/128",
+        "Steel platelegs": "4/128",
+        "Water rune": "8/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7868,
+        7869,
+        7870
+      ],
+      "drops": {
+        "Adamant dagger": "1/128",
+        "Adamant full helm": "1/128",
+        "Adamant kiteshield": "1/128",
+        "Adamant sword": "1/128",
+        "Annakarl teleport": "~1/179",
+        "Blood rune": "1/128",
+        "Carrallanger teleport": "~1/179",
+        "Clue scroll (hard)": "1/128",
+        "Dareeyak teleport": "~1/179",
+        "Death rune": "1/128",
+        "Ghorrock teleport": "~1/179",
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Kharyrll teleport": "~1/179",
+        "Larran's key": "1/84",
+        "Lassar teleport": "~1/179",
+        "Law rune": "3/128",
+        "Looting bag note": "~1/1790.3",
+        "Magic shortbow scroll": "~1/447.6",
+        "Mithril 2h sword": "5/128",
+        "Mithril battleaxe": "1/128",
+        "Mithril ore": "3/128",
+        "Mithril platelegs": "2/128",
+        "Monkfish": "7/128",
+        "Nature rune": "1/128",
+        "Paddewwa teleport": "~1/179",
+        "Ring of wealth scroll": "~1/447.6",
+        "Senntisten teleport": "~1/179",
+        "Slayer's enchantment": "1/240",
+        "Target teleport": "~1/179",
+        "Trouver parchment": "~1/1790.3",
+        "Wilderness crabs teleport": "~1/179"
+      }
+    }
+  ],
+  "Hellhound": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Brimstone key": "1/96",
+        "Clue scroll (hard)": "1/64",
+        "Death rune": [
+          "6/50",
+          "3/50",
+          "1/50"
+        ],
+        "Larran's key": "1/91",
+        "Slayer's enchantment": "1/228",
+        "Smouldering stone": "1/32768"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/256",
+        "Dark totem base": "1/384",
+        "Dark totem middle": "1/384",
+        "Dark totem top": "1/384"
+      }
+    },
+    {
+      "version": "God Wars Dungeon",
+      "ids": [
+        3133
+      ],
+      "drops": {
+        "Brimstone key": "1/95",
+        "Clue scroll (hard)": "1/64"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7877
+      ],
+      "drops": {
+        "Annakarl teleport": "~1/130.6",
+        "Carrallanger teleport": "~1/130.6",
+        "Clue scroll (hard)": "1/64",
+        "Dareeyak teleport": "~1/130.6",
+        "Ghorrock teleport": "~1/130.6",
+        "Kharyrll teleport": "~1/130.6",
+        "Larran's key": "1/76",
+        "Lassar teleport": "~1/130.6",
+        "Looting bag note": "~1/1305.9",
+        "Magic shortbow scroll": "~1/326.5",
+        "Paddewwa teleport": "~1/130.6",
+        "Ring of wealth scroll": "~1/326.5",
+        "Senntisten teleport": "~1/130.6",
+        "Slayer's enchantment": "1/200",
+        "Smouldering stone": "1/16384",
+        "Target teleport": "~1/130.6",
+        "Trouver parchment": "~1/1305.9",
+        "Wilderness crabs teleport": "~1/130.6"
+      }
+    }
+  ],
+  "Hill Giant": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Beer": "6/128",
+        "Body talisman": "2/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (beginner)": "1/50",
+        "Cosmic rune": "2/128",
+        "Curved bone": "1/5012.5",
+        "Death rune": "1/128",
+        "Fire rune": "3/128",
+        "Giant champion scroll": "1/5000",
+        "Giant key": "1/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Iron arrow": "6/128",
+        "Iron dagger": "4/128",
+        "Iron full helm": "5/128",
+        "Iron kiteshield": "3/128",
+        "Larran's key": "1/911",
+        "Law rune": "3/128",
+        "Limpwurt root": "11/128",
+        "Long bone": "1/400",
+        "Mind rune": "2/128",
+        "Nature rune": "2/128",
+        "Slayer's enchantment": "1/292",
+        "Snape grass seed": "1/896",
+        "Steel arrow": "2/128",
+        "Steel longsword": "2/128",
+        "Strawberry seed": "1/311",
+        "Sweetcorn seed": "1/155",
+        "Tomato seed": "1/77",
+        "Water rune": "3/128",
+        "Watermelon seed": "1/651"
+      }
+    },
+    {
+      "version": "Giants' Plateau",
+      "ids": [],
+      "drops": {
+        "Iron med helm": "5/128",
+        "Steel scimitar": "2/128"
+      }
+    },
+    {
+      "version": "Catacombs",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/310",
+        "Dark totem base": "1/465",
+        "Dark totem middle": "1/465",
+        "Dark totem top": "1/465"
+      }
+    }
+  ],
+  "Hobgoblin": [
+    {
+      "version": "Unarmed",
+      "ids": [],
+      "drops": {
+        "Body rune": "2/128",
+        "Bronze spear": "3/128",
+        "Chaos rune": "2/128",
+        "Clue scroll (beginner)": "1/70",
+        "Cosmic rune": "1/128",
+        "Fire rune": "2/128",
+        "Goblin mail": "5/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Hobgoblin champion scroll": "1/5000",
+        "Iron spear": "2/128",
+        "Iron sword": "3/128",
+        "Law rune": "3/128",
+        "Limpwurt root": "22/128",
+        "Nature rune": "2/128",
+        "Snape grass seed": "1/896",
+        "Steel dagger": "3/128",
+        "Steel longsword": "1/128",
+        "Steel spear": "2/128",
+        "Strawberry seed": "1/311",
+        "Sweetcorn seed": "1/155",
+        "Tomato seed": "1/77",
+        "Trading sticks": [
+          "1/128",
+          "12/128",
+          "16/128",
+          "3/128",
+          "4/128"
+        ],
+        "Water rune": "2/128",
+        "Watermelon seed": "1/651"
+      }
+    },
+    {
+      "version": "Armed",
+      "ids": [
+        2241,
+        3050
+      ],
+      "drops": {
+        "Avantoe seed": "1/931.6",
+        "Belladonna seed": "1/621",
+        "Body rune": "2/128",
+        "Cactus seed": "1/931.6",
+        "Cadantine seed": "1/2794.7",
+        "Chaos rune": "2/128",
+        "Cosmic rune": "1/128",
+        "Dwarf weed seed": "1/5589.3",
+        "Fire rune": "2/128",
+        "Goblin mail": "5/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Harralander seed": "1/199.6",
+        "Hobgoblin champion scroll": "1/5000",
+        "Irit seed": "1/621",
+        "Iron javelin": "1/128",
+        "Iron sword": "3/128",
+        "Jangerberry seed": "1/121.5",
+        "Kwuarm seed": "1/1242.1",
+        "Lantadyme seed": "1/3726.2",
+        "Law rune": "3/128",
+        "Limpwurt root": "21/128",
+        "Limpwurt seed": "1/81.6",
+        "Marrentill seed": "1/89.4",
+        "Mushroom spore": "1/385.5",
+        "Nature rune": "2/128",
+        "Poison ivy seed": "1/859.9",
+        "Potato cactus seed": "1/1397.3",
+        "Ranarr seed": "1/286.6",
+        "Snapdragon seed": "1/2235.7",
+        "Snape grass seed": "1/279.5",
+        "Steel dagger": "3/128",
+        "Steel longsword": "1/128",
+        "Strawberry seed": "1/85.3",
+        "Tarromin seed": "1/131.5",
+        "Toadflax seed": "1/414",
+        "Torstol seed": "1/11178.7",
+        "Water rune": "2/128",
+        "Watermelon seed": "1/177.4",
+        "Whiteberry seed": "1/328.8",
+        "Wildblood seed": "1/134.7"
+      }
+    }
+  ],
+  "Ice giant": [
+    {
+      "version": "Regular",
+      "ids": [
+        2085,
+        2086,
+        2087,
+        2088,
+        2089,
+        13796,
+        13797
+      ],
+      "drops": {
+        "Adamant arrow": "6/128",
+        "Avantoe seed": "1/1397.3",
+        "Banana": "1/128",
+        "Belladonna seed": "1/931.6",
+        "Black kiteshield": "5/128",
+        "Blood rune": "1/128",
+        "Body rune": "3/128",
+        "Cactus seed": "1/1397.3",
+        "Cadantine seed": "1/4192",
+        "Cosmic rune": "1/128",
+        "Curved bone": "1/5012.5",
+        "Death rune": "1/128",
+        "Dwarf weed seed": "1/8384",
+        "Giant champion scroll": "1/5000",
+        "Harralander seed": "1/299.4",
+        "Irit seed": "1/931.6",
+        "Iron 2h sword": "5/128",
+        "Iron platelegs": "1/128",
+        "Jangerberry seed": "1/182.3",
+        "Jug of wine": "3/128",
+        "Kwuarm seed": "1/1863.1",
+        "Lantadyme seed": "1/5589.3",
+        "Larran's key": "1/318",
+        "Law rune": "2/128",
+        "Limpwurt seed": "1/122.4",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/134.1",
+        "Mind rune": "3/128",
+        "Mithril mace": "1/128",
+        "Mithril ore": "1/128",
+        "Mithril sq shield": "1/128",
+        "Mushroom spore": "1/578.2",
+        "Nature rune": "4/128",
+        "Poison ivy seed": "1/1289.8",
+        "Potato cactus seed": "1/2096",
+        "Ranarr seed": "1/429.9",
+        "Slayer's enchantment": "1/264",
+        "Snapdragon seed": "1/3353.6",
+        "Snape grass seed": "1/419.2",
+        "Steel axe": "4/128",
+        "Steel sword": "4/128",
+        "Strawberry seed": "1/128",
+        "Tarromin seed": "1/197.3",
+        "Toadflax seed": "1/621",
+        "Tooth half of key": "1/1026",
+        "Torstol seed": "1/16768",
+        "Water rune": "1/128",
+        "Watermelon seed": "1/266.2",
+        "Whiteberry seed": "1/493.2",
+        "Wildblood seed": "1/202"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        7878,
+        7879,
+        7880
+      ],
+      "drops": {
+        "Adamant arrow": "6/62",
+        "Adamant dagger": "1/62",
+        "Adamant kiteshield": "1/62",
+        "Adamant mace": "1/62",
+        "Adamant sq shield": "1/62",
+        "Adamant sword": "4/62",
+        "Annakarl teleport": "~1/152.1",
+        "Avantoe seed": "1/416.5",
+        "Belladonna seed": "1/277.7",
+        "Blood rune": "2/62",
+        "Cactus seed": "1/416.5",
+        "Cadantine seed": "1/1249.5",
+        "Carrallanger teleport": "~1/152.1",
+        "Chaos rune": "1/62",
+        "Cosmic rune": "1/62",
+        "Curved bone": "1/5012.5",
+        "Dareeyak teleport": "~1/152.1",
+        "Death rune": [
+          "3/62",
+          "1/62"
+        ],
+        "Dwarf weed seed": "1/2499.1",
+        "Ghorrock teleport": "~1/152.1",
+        "Giant champion scroll": "1/5000",
+        "Harralander seed": "1/89.3",
+        "Irit seed": "1/277.7",
+        "Jangerberry seed": "1/54.3",
+        "Jug of wine": "3/62",
+        "Kharyrll teleport": "~1/152.1",
+        "Kwuarm seed": "1/555.4",
+        "Lantadyme seed": "1/1666.1",
+        "Larran's key": "1/130",
+        "Lassar teleport": "~1/152.1",
+        "Law rune": "2/62",
+        "Long bone": "1/400",
+        "Looting bag note": "~1/1520.5",
+        "Magic shortbow scroll": "~1/380.1",
+        "Mithril axe": "4/62",
+        "Mithril ore": "1/62",
+        "Mithril platelegs": "1/62",
+        "Mushroom spore": "1/172.4",
+        "Nature rune": "4/62",
+        "Paddewwa teleport": "~1/152.1",
+        "Poison ivy seed": "1/384.5",
+        "Potato cactus seed": "1/624.8",
+        "Ranarr seed": "1/128.2",
+        "Ring of wealth scroll": "~1/380.1",
+        "Rune dagger": "1/62",
+        "Senntisten teleport": "~1/152.1",
+        "Slayer's enchantment": "1/240",
+        "Snapdragon seed": "1/999.6",
+        "Snape grass seed": "1/125",
+        "Target teleport": "~1/152.1",
+        "Tarromin seed": "1/58.8",
+        "Toadflax seed": "1/185.1",
+        "Torstol seed": "1/4998.2",
+        "Trouver parchment": "~1/1520.5",
+        "Watermelon seed": "1/79.3",
+        "Whiteberry seed": "1/147",
+        "Wildblood seed": "1/60.2",
+        "Wilderness crabs teleport": "~1/152.1"
+      }
+    }
+  ],
+  "Ice troll female": [
+    {
+      "version": "Variant 1",
+      "ids": [
+        5830
+      ],
+      "drops": {
+        "Adamant axe": "5/128",
+        "Adamant full helm": "10/128",
+        "Avantoe seed": "1/1016.2",
+        "Ball of wool": "10/128",
+        "Belladonna seed": "1/677.5",
+        "Cactus seed": "1/1016.2",
+        "Cadantine seed": "1/3048.7",
+        "Curved bone": "1/5012.5",
+        "Dwarf weed seed": "1/6097.5",
+        "Earth rune": "10/128",
+        "Granite shield": "1/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Harralander seed": "1/217.8",
+        "Irit seed": "1/677.5",
+        "Jangerberry seed": "1/132.6",
+        "Kwuarm seed": "1/1355",
+        "Lantadyme seed": "1/4065",
+        "Law rune": "5/128",
+        "Limpwurt seed": "1/89",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/97.6",
+        "Mithril warhammer": "5/128",
+        "Mushroom spore": "1/420.5",
+        "Nature rune": "5/128",
+        "Poison ivy seed": "1/938.1",
+        "Potato cactus seed": "1/1524.4",
+        "Ranarr seed": "1/312.7",
+        "Raw shark": "10/128",
+        "Rune kiteshield": "2/128",
+        "Rune warhammer": "1/128",
+        "Seaweed": "10/128",
+        "Snapdragon seed": "1/2439",
+        "Snape grass seed": "1/304.9",
+        "Steel platebody": "10/128",
+        "Strawberry seed": "1/93.1",
+        "Tarromin seed": "1/143.5",
+        "Toadflax seed": "1/451.7",
+        "Torstol seed": "1/12194.9",
+        "Watermelon seed": "1/193.6",
+        "Whiteberry seed": "1/358.7",
+        "Wildblood seed": "1/146.9"
+      }
+    },
+    {
+      "version": "Variant 2",
+      "ids": [
+        1876
+      ],
+      "drops": {
+        "Curved bone": "1/5012.5",
+        "Long bone": "1/400"
+      }
+    }
+  ],
+  "Ice troll male": [
+    {
+      "version": "Variant 1",
+      "ids": [
+        5829
+      ],
+      "drops": {
+        "Adamant axe": "5/128",
+        "Adamant full helm": "10/128",
+        "Avantoe seed": "1/1016.2",
+        "Ball of wool": "10/128",
+        "Belladonna seed": "1/677.5",
+        "Cactus seed": "1/1016.2",
+        "Cadantine seed": "1/3048.7",
+        "Curved bone": "1/5012.5",
+        "Dwarf weed seed": "1/6097.5",
+        "Earth rune": "10/128",
+        "Granite shield": "1/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Harralander seed": "1/217.8",
+        "Irit seed": "1/677.5",
+        "Jangerberry seed": "1/132.6",
+        "Kwuarm seed": "1/1355",
+        "Lantadyme seed": "1/4065",
+        "Law rune": "5/128",
+        "Limpwurt seed": "1/89",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/97.6",
+        "Mithril warhammer": "5/128",
+        "Mushroom spore": "1/420.5",
+        "Nature rune": "5/128",
+        "Poison ivy seed": "1/938.1",
+        "Potato cactus seed": "1/1524.4",
+        "Ranarr seed": "1/312.7",
+        "Raw shark": "10/128",
+        "Rune kiteshield": "2/128",
+        "Rune warhammer": "1/128",
+        "Seaweed": "10/128",
+        "Snapdragon seed": "1/2439",
+        "Snape grass seed": "1/304.9",
+        "Steel platebody": "10/128",
+        "Strawberry seed": "1/93.1",
+        "Tarromin seed": "1/143.5",
+        "Toadflax seed": "1/451.7",
+        "Torstol seed": "1/12194.9",
+        "Watermelon seed": "1/193.6",
+        "Whiteberry seed": "1/358.7",
+        "Wildblood seed": "1/146.9"
+      }
+    },
+    {
+      "version": "Variant 2",
+      "ids": [
+        1875
+      ],
+      "drops": {
+        "Adamant med helm": "1/128",
+        "Adamant warhammer": "1/128",
+        "Avantoe seed": "1/588.4",
+        "Belladonna seed": "1/392.2",
+        "Black warhammer": "3/128",
+        "Cactus seed": "1/588.4",
+        "Cadantine seed": "1/1765.1",
+        "Coal": "3/128",
+        "Curved bone": "1/5012.5",
+        "Dwarf weed seed": "1/3530.1",
+        "Earth rune": [
+          "8/128",
+          "1/128"
+        ],
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Harralander seed": "1/126.1",
+        "Irit seed": "1/392.2",
+        "Jangerberry seed": "1/76.7",
+        "Kwuarm seed": "1/784.5",
+        "Lantadyme seed": "1/2353.4",
+        "Law rune": "3/128",
+        "Limpwurt seed": "1/51.5",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/56.5",
+        "Mithril sq shield": "1/128",
+        "Mushroom spore": "1/243.5",
+        "Nature rune": "5/128",
+        "Poison ivy seed": "1/543.1",
+        "Potato cactus seed": "1/882.5",
+        "Ranarr seed": "1/181",
+        "Raw mackerel": "2/128",
+        "Snapdragon seed": "1/1412",
+        "Snape grass seed": "1/176.5",
+        "Steel med helm": "4/128",
+        "Steel warhammer": "3/128",
+        "Strawberry seed": "1/53.9",
+        "Tarromin seed": "1/83.1",
+        "Toadflax seed": "1/261.5",
+        "Torstol seed": "1/7060.2",
+        "Watermelon seed": "1/112.1",
+        "Whiteberry seed": "1/207.7",
+        "Wildblood seed": "1/85.1"
+      }
+    }
+  ],
+  "Ice troll runt": [
+    {
+      "version": "Variant 1",
+      "ids": [
+        5828
+      ],
+      "drops": {
+        "Adamant axe": "5/128",
+        "Adamant full helm": "10/128",
+        "Avantoe seed": "1/1016.2",
+        "Ball of wool": "10/128",
+        "Belladonna seed": "1/677.5",
+        "Cactus seed": "1/1016.2",
+        "Cadantine seed": "1/3048.7",
+        "Curved bone": "1/5012.5",
+        "Dwarf weed seed": "1/6097.5",
+        "Earth rune": "10/128",
+        "Granite shield": "1/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Harralander seed": "1/217.8",
+        "Irit seed": "1/677.5",
+        "Jangerberry seed": "1/132.6",
+        "Kwuarm seed": "1/1355",
+        "Lantadyme seed": "1/4065",
+        "Law rune": "5/128",
+        "Limpwurt seed": "1/89",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/97.6",
+        "Mithril warhammer": "5/128",
+        "Mushroom spore": "1/420.5",
+        "Nature rune": "5/128",
+        "Poison ivy seed": "1/938.1",
+        "Potato cactus seed": "1/1524.4",
+        "Ranarr seed": "1/312.7",
+        "Raw shark": "10/128",
+        "Rune kiteshield": "2/128",
+        "Rune warhammer": "1/128",
+        "Seaweed": "10/128",
+        "Snapdragon seed": "1/2439",
+        "Snape grass seed": "1/304.9",
+        "Steel platebody": "10/128",
+        "Strawberry seed": "1/93.1",
+        "Tarromin seed": "1/143.5",
+        "Toadflax seed": "1/451.7",
+        "Torstol seed": "1/12194.9",
+        "Watermelon seed": "1/193.6",
+        "Whiteberry seed": "1/358.7",
+        "Wildblood seed": "1/146.9"
+      }
+    },
+    {
+      "version": "Variant 2",
+      "ids": [
+        1874
+      ],
+      "drops": {
+        "Adamant med helm": "1/128",
+        "Adamant warhammer": "1/128",
+        "Avantoe seed": "1/588.4",
+        "Belladonna seed": "1/392.2",
+        "Black warhammer": "3/128",
+        "Cactus seed": "1/588.4",
+        "Cadantine seed": "1/1765.1",
+        "Coal": "3/128",
+        "Curved bone": "1/5012.5",
+        "Dwarf weed seed": "1/3530.1",
+        "Earth rune": [
+          "8/128",
+          "1/128"
+        ],
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Harralander seed": "1/126.1",
+        "Irit seed": "1/392.2",
+        "Jangerberry seed": "1/76.7",
+        "Kwuarm seed": "1/784.5",
+        "Lantadyme seed": "1/2353.4",
+        "Law rune": "3/128",
+        "Limpwurt seed": "1/51.5",
+        "Long bone": "1/400",
+        "Marrentill seed": "1/56.5",
+        "Mithril sq shield": "1/128",
+        "Mushroom spore": "1/243.5",
+        "Nature rune": "5/128",
+        "Poison ivy seed": "1/543.1",
+        "Potato cactus seed": "1/882.5",
+        "Ranarr seed": "1/181",
+        "Raw mackerel": "2/128",
+        "Snapdragon seed": "1/1412",
+        "Snape grass seed": "1/176.5",
+        "Steel med helm": "4/128",
+        "Steel warhammer": "3/128",
+        "Strawberry seed": "1/53.9",
+        "Tarromin seed": "1/83.1",
+        "Toadflax seed": "1/261.5",
+        "Torstol seed": "1/7060.2",
+        "Watermelon seed": "1/112.1",
+        "Whiteberry seed": "1/207.7",
+        "Wildblood seed": "1/85.1"
+      }
+    }
+  ],
+  "Icefiend": [
+    {
+      "version": "",
+      "ids": [
+        3140
+      ],
+      "drops": {
+        "Air rune": "1/128",
+        "Clue scroll (easy)": "1/128",
+        "Ecumenical key": "1/60",
+        "Water rune": "4/128"
+      }
+    },
+    {
+      "version": "Level 13",
+      "ids": [],
+      "drops": {
+        "Frozen tear": "1/150",
+        "Tooth half of key": "1/1373"
+      }
+    }
+  ],
+  "Iorwerth Warrior": [
+    {
+      "version": "Iorwerth Camp",
+      "ids": [
+        3429,
+        8759
+      ],
+      "drops": {
+        "Adamant full helm": "1/128",
+        "Adamantite ore": "3/128",
+        "Avantoe seed": "1/81.3",
+        "Bass": "3/128",
+        "Belladonna seed": "1/57.4",
+        "Cactus seed": "1/85.5",
+        "Cadantine seed": "1/256.5",
+        "Clue scroll (hard)": "1/128",
+        "Dwarf weed seed": "1/586.2",
+        "Fire rune": "1/128",
+        "Green d'hide body": "4/128",
+        "Green d'hide chaps": "3/128",
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Irit seed": "1/55.5",
+        "Kwuarm seed": "1/118.9",
+        "Lantadyme seed": "1/356.8",
+        "Law rune": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Mithril spear": "2/128",
+        "Nature rune": "5/128",
+        "Poison ivy seed": "1/79.7",
+        "Potato cactus seed": "1/117.2",
+        "Rune dagger": "1/128",
+        "Shark": "3/128",
+        "Snapdragon seed": "1/178.4",
+        "Snape grass seed": "1/410.4",
+        "Torstol seed": "1/911.9",
+        "Water rune": "8/128"
+      }
+    },
+    {
+      "version": "Iorwerth Dungeon",
+      "ids": [
+        9502,
+        9503
+      ],
+      "drops": {
+        "Adamant full helm": "1/128",
+        "Adamantite ore": "1/128",
+        "Bass": "3/128",
+        "Clue scroll (hard)": "1/128",
+        "Crystal teleport seed": "25/128",
+        "Enhanced crystal teleport seed": "1/1024",
+        "Ensouled elf head": "1/50",
+        "Fire rune": "3/128",
+        "Green d'hide body": "4/128",
+        "Green d'hide chaps": "3/128",
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Law rune": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Mithril spear": "2/128",
+        "Nature rune": "5/128",
+        "Rune dagger": "1/128",
+        "Shark": "3/128",
+        "Teleport crystal (1)": "1/128",
+        "Water rune": "8/128"
+      }
+    }
+  ],
+  "Iron dragon": [
+    {
+      "version": "Standard",
+      "ids": [
+        272,
+        273,
+        8080
+      ],
+      "drops": {
+        "Adamant 2h sword": "4/128",
+        "Adamant axe": "3/128",
+        "Adamant battleaxe": "3/128",
+        "Adamant bolts": "6/128",
+        "Adamant sq shield": "1/128",
+        "Adamantite bar": "3/128",
+        "Blood rune": "19/128",
+        "Brimstone key": "1/83",
+        "Clue scroll (hard)": "1/128",
+        "Curry": "3/128",
+        "Draconic visage": "1/10000",
+        "Dragon platelegs": "1/1024",
+        "Dragon plateskirt": "1/1024",
+        "Rune battleaxe": "1/128",
+        "Rune dart(p)": "7/128",
+        "Rune javelin": "20/128",
+        "Rune knife": "3/128",
+        "Rune med helm": "1/128",
+        "Runite limbs": "5/128",
+        "Soul rune": "5/128",
+        "Super strength(1)": "8/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [
+        7254
+      ],
+      "drops": {
+        "Ancient shard": "1/203",
+        "Dark totem base": "1/305",
+        "Dark totem middle": "1/305",
+        "Dark totem top": "1/305"
+      }
+    }
+  ],
+  "Jelly": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Brimstone key": "1/156",
+        "Chaos rune": "5/128",
+        "Clue scroll (hard)": "1/128",
+        "Death rune": "3/128",
+        "Gold bar": "2/128",
+        "Mithril boots": "1/128",
+        "Mithril kiteshield": "2/128",
+        "Rune full helm": "1/128",
+        "Steel 2h sword": "7/128",
+        "Steel axe": "3/128",
+        "Steel battleaxe": "11/128",
+        "Thread": "1/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [
+        438,
+        439,
+        440,
+        441,
+        442,
+        11241,
+        11242,
+        11243,
+        11244,
+        11245
+      ],
+      "drops": {
+        "Adamant 2h sword": "2/64",
+        "Adamant axe": "3/64",
+        "Adamant battleaxe": "11/64",
+        "Annakarl teleport": "~1/146.1",
+        "Black 2h sword": "5/64",
+        "Carrallanger teleport": "~1/146.1",
+        "Chaos rune": "5/64",
+        "Clue scroll (hard)": "1/64",
+        "Dareeyak teleport": "~1/146.1",
+        "Death rune": "3/64",
+        "Ghorrock teleport": "~1/146.1",
+        "Gold bar": "2/64",
+        "Kharyrll teleport": "~1/146.1",
+        "Larran's key": "1/73",
+        "Lassar teleport": "~1/146.1",
+        "Looting bag note": "~1/1460.5",
+        "Magic shortbow scroll": "~1/365.1",
+        "Mithril boots": "2/64",
+        "Paddewwa teleport": "~1/146.1",
+        "Ring of wealth scroll": "~1/365.1",
+        "Rune full helm": "1/64",
+        "Rune kiteshield": "2/64",
+        "Senntisten teleport": "~1/146.1",
+        "Slayer's enchantment": "1/260",
+        "Target teleport": "~1/146.1",
+        "Thread": "1/64",
+        "Trouver parchment": "~1/1460.5",
+        "Wilderness crabs teleport": "~1/146.1"
+      }
+    }
+  ],
+  "Lesser demon": [
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Chaos rune": "5/128",
+        "Death rune": "3/128",
+        "Ensouled demon head": "1/50",
+        "Fire rune": [
+          "8/128",
+          "1/128"
+        ],
+        "Gold ore": "2/128",
+        "Grimy avantoe": "1/2730.7",
+        "Grimy cadantine": "1/4096",
+        "Grimy dwarf weed": "1/5461.3",
+        "Grimy guam leaf": "1/512",
+        "Grimy harralander": "1/1170.3",
+        "Grimy irit leaf": "1/2048",
+        "Grimy kwuarm": "1/3276.8",
+        "Grimy lantadyme": "1/5461.3",
+        "Grimy marrentill": "1/682.7",
+        "Grimy ranarr weed": "1/1489.5",
+        "Grimy tarromin": "1/910.2",
+        "Jug of wine": "3/128",
+        "Larran's key": "1/98",
+        "Lesser demon champion scroll": "1/5000",
+        "Mithril chainbody": "1/128",
+        "Mithril sq shield": "1/128",
+        "Rune med helm": "1/128",
+        "Slayer's enchantment": "1/256",
+        "Steel axe": "4/128",
+        "Steel full helm": "4/128",
+        "Steel scimitar": "3/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/275",
+        "Dark totem base": "1/413",
+        "Dark totem middle": "1/413",
+        "Dark totem top": "1/413"
+      }
+    },
+    {
+      "version": "Chasm of Fire",
+      "ids": [],
+      "drops": {
+        "Contract of Bloodied Blows": "1/123",
+        "Contract of Divine Severance": "1/123",
+        "Contract of Forfeit Breath": "1/123",
+        "Contract of Glyphic Attenuation": "1/123",
+        "Contract of Sensory Clouding": "1/123"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [],
+      "drops": {
+        "Annakarl teleport": "~1/173.4",
+        "Carrallanger teleport": "~1/173.4",
+        "Dareeyak teleport": "~1/173.4",
+        "Ensouled demon head": "1/50",
+        "Ghorrock teleport": "~1/173.4",
+        "Grimy avantoe": "1/832",
+        "Grimy cadantine": "1/1248",
+        "Grimy dwarf weed": "1/1664",
+        "Grimy guam leaf": "1/156",
+        "Grimy harralander": "1/356.6",
+        "Grimy irit leaf": "1/624",
+        "Grimy kwuarm": "1/998.4",
+        "Grimy lantadyme": "1/1664",
+        "Grimy marrentill": "1/208",
+        "Grimy ranarr weed": "1/453.8",
+        "Grimy tarromin": "1/277.3",
+        "Kharyrll teleport": "~1/173.4",
+        "Larran's key": "1/83",
+        "Lassar teleport": "~1/173.4",
+        "Lesser demon champion scroll": "1/5000",
+        "Looting bag note": "~1/1734.4",
+        "Magic shortbow scroll": "~1/433.6",
+        "Paddewwa teleport": "~1/173.4",
+        "Ring of wealth scroll": "~1/433.6",
+        "Senntisten teleport": "~1/173.4",
+        "Slayer's enchantment": "1/232",
+        "Target teleport": "~1/173.4",
+        "Trouver parchment": "~1/1734.4",
+        "Wilderness crabs teleport": "~1/173.4"
+      }
+    }
+  ],
+  "Lizardman": [
+    {
+      "version": "Level 53",
+      "ids": [
+        6914,
+        6915
+      ],
+      "drops": {
+        "Avantoe seed": "1/506.5",
+        "Belladonna seed": "1/337.7",
+        "Brimstone key": "1/541",
+        "Cactus seed": "1/506.5",
+        "Cadantine seed": "1/1519.6",
+        "Dwarf weed seed": "1/3039.2",
+        "Harralander seed": "1/108.5",
+        "Irit seed": "1/337.7",
+        "Jangerberry seed": "1/66.1",
+        "Kwuarm seed": "1/675.4",
+        "Lantadyme seed": "1/2026.1",
+        "Lizardman fang": "10/87",
+        "Mushroom spore": "1/209.6",
+        "Poison ivy seed": "1/467.6",
+        "Potato cactus seed": "1/759.8",
+        "Ranarr seed": "1/155.9",
+        "Snapdragon seed": "1/1215.7",
+        "Snape grass seed": "1/152",
+        "Tarromin seed": "1/71.5",
+        "Toadflax seed": "1/225.1",
+        "Torstol seed": "1/6078.4",
+        "Watermelon seed": "1/96.5",
+        "Whiteberry seed": "1/178.8",
+        "Wildblood seed": "1/73.2",
+        "Xeric's talisman (inert)": "1/250",
+        "Xerician fabric": "6/87"
+      }
+    },
+    {
+      "version": "Level 62",
+      "ids": [
+        6916,
+        6917,
+        8563
+      ],
+      "drops": {
+        "Avantoe seed": "1/454.1",
+        "Belladonna seed": "1/302.8",
+        "Brimstone key": "1/388",
+        "Cactus seed": "1/454.1",
+        "Cadantine seed": "1/1362.4",
+        "Dwarf weed seed": "1/2724.8",
+        "Harralander seed": "1/97.3",
+        "Irit seed": "1/302.8",
+        "Jangerberry seed": "1/59.2",
+        "Kwuarm seed": "1/605.5",
+        "Lantadyme seed": "1/1816.5",
+        "Lizardman fang": "14/78",
+        "Mushroom spore": "1/187.9",
+        "Poison ivy seed": "1/419.2",
+        "Potato cactus seed": "1/681.2",
+        "Ranarr seed": "1/139.7",
+        "Snapdragon seed": "1/1089.9",
+        "Snape grass seed": "1/136.2",
+        "Tarromin seed": "1/64.1",
+        "Toadflax seed": "1/201.8",
+        "Torstol seed": "1/5449.6",
+        "Watermelon seed": "1/86.5",
+        "Whiteberry seed": "1/160.3",
+        "Wildblood seed": "1/65.7",
+        "Xeric's talisman (inert)": "1/250",
+        "Xerician fabric": "8/78"
+      }
+    }
+  ],
+  "Maggot King": [
+    {
+      "version": "Take-eggs",
+      "ids": [],
+      "drops": {
+        "Maggot egg": [
+          "300/1500",
+          "150/1500",
+          "33/1500",
+          "6/1500",
+          "3/1500",
+          "1/1500"
+        ]
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Adamantite ore": "10/159",
+        "Blood sac": "5/159",
+        "Brimstone key": "1/50",
+        "Crimson kisten": "1/520",
+        "Dull ancient medal": "41/159",
+        "Elder venator fang": "1/340",
+        "Gold ore": "5/159",
+        "Letvek": "10/159",
+        "Maggot marquess": "1/3500",
+        "Mithril ore": "5/159",
+        "Mort myre fungus": "10/159",
+        "Orikalkum gravel": "4/159",
+        "Runite ore": "5/159",
+        "Stymphike feather": "10/159",
+        "Stymphike tartare": "41/159",
+        "Tarnished 2h sword": "2/159",
+        "Tarnished amulet": "3/159",
+        "Tarnished battleaxe": "2/159",
+        "Tarnished bracelet": "3/159",
+        "Tarnished halberd": "2/159",
+        "Tarnished longsword": "2/159",
+        "Tarnished necklace": "3/159",
+        "Tarnished ring": "6/159",
+        "Tarnished spear": "12/159",
+        "Uncut ruby": "15/159",
+        "Venator fang": "2/159",
+        "Venator tooth": "2/159"
+      }
+    }
+  ],
+  "Moss giant": [
+    {
+      "version": "Regular",
+      "ids": [
+        3851,
+        3852
+      ],
+      "drops": {
+        "Air rune": "3/128",
+        "Avantoe seed": "1/319.4",
+        "Belladonna seed": "1/212.9",
+        "Black sq shield": "5/128",
+        "Blood rune": "1/128",
+        "Cactus seed": "1/319.4",
+        "Cadantine seed": "1/958.2",
+        "Chaos rune": "3/128",
+        "Coal": "1/128",
+        "Cosmic rune": "2/128",
+        "Curved bone": "1/5012.5",
+        "Death rune": "1/128",
+        "Dwarf weed seed": "1/1916.3",
+        "Earth rune": "3/128",
+        "Giant champion scroll": "1/5000",
+        "Grimy avantoe": "1/546.1",
+        "Grimy cadantine": "1/819.2",
+        "Grimy dwarf weed": "1/1092.3",
+        "Grimy guam leaf": "1/102.4",
+        "Grimy harralander": "1/234.1",
+        "Grimy irit leaf": "1/409.6",
+        "Grimy kwuarm": "1/655.4",
+        "Grimy lantadyme": "1/1092.3",
+        "Grimy marrentill": "1/136.5",
+        "Grimy ranarr weed": "1/297.9",
+        "Grimy tarromin": "1/182",
+        "Harralander seed": "1/68.4",
+        "Irit seed": "1/212.9",
+        "Iron arrow": "2/128",
+        "Kwuarm seed": "1/425.9",
+        "Lantadyme seed": "1/1277.6",
+        "Larran's key": "1/533",
+        "Law rune": "4/128",
+        "Long bone": "1/400",
+        "Magic staff": "2/128",
+        "Mithril spear": "2/128",
+        "Mithril sword": "2/128",
+        "Mossy key": "1/150",
+        "Mushroom spore": "1/132.2",
+        "Nature rune": "3/128",
+        "Poison ivy seed": "1/294.8",
+        "Potato cactus seed": "1/479.1",
+        "Ranarr seed": "1/98.3",
+        "Slayer's enchantment": "1/272",
+        "Snapdragon seed": "1/766.5",
+        "Snape grass seed": "1/95.8",
+        "Spinach roll": "1/128",
+        "Steel arrow": "1/128",
+        "Steel bar": "6/128",
+        "Steel kiteshield": "1/128",
+        "Steel med helm": "2/128",
+        "Toadflax seed": "1/142",
+        "Torstol seed": "1/3832.7",
+        "Watermelon seed": "1/60.8",
+        "Whiteberry seed": "1/112.7"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/293",
+        "Dark totem base": "1/440",
+        "Dark totem middle": "1/440",
+        "Dark totem top": "1/440"
+      }
+    }
+  ],
+  "Nechryarch": [
+    {
+      "version": "Normal",
+      "ids": [],
+      "drops": {
+        "Adamant kiteshield": "3 × 2/116",
+        "Adamant platelegs": "3 × 4/116",
+        "Avantoe seed": "3 × 1/69.5",
+        "Blood rune": "3 × 4/116",
+        "Cactus seed": "3 × 1/73.2",
+        "Cadantine seed": "3 × 1/219.5",
+        "Chaos rune": "3 × 8/116",
+        "Clue scroll (hard)": "10/128",
+        "Death rune": "3 × 6/116",
+        "Dust battlestaff": "1/126",
+        "Dwarf weed seed": "3 × 1/501.7",
+        "Eternal gem": "1/440",
+        "Imbued heart": "1/440",
+        "Kwuarm seed": "3 × 1/101.8",
+        "Lantadyme seed": "3 × 1/305.4",
+        "Law rune": "3 × 5/116",
+        "Limpwurt seed": "3 × 6/116",
+        "Mist battlestaff": "1/126",
+        "Poison ivy seed": "3 × 1/68.2",
+        "Potato cactus seed": "3 × 1/100.3",
+        "Rune 2h sword": "3 × 4/116",
+        "Rune boots": "3 × 1/116",
+        "Rune full helm": "3 × 3/116",
+        "Snapdragon seed": "3 × 1/152.7",
+        "Snape grass seed": "3 × 1/351.2",
+        "Soft clay": "3 × 4/116",
+        "Torstol seed": "3 × 1/780.5",
+        "Tuna": "3 × 3/116"
+      }
+    },
+    {
+      "version": "Greater",
+      "ids": [],
+      "drops": {
+        "Adamant battleaxe": "3 × 5/128",
+        "Adamant kiteshield": "3 × 7/128",
+        "Air rune": "3 × 6/128",
+        "Ancient shard": "1/120",
+        "Avantoe seed": "3 × 1/276.3",
+        "Belladonna seed": "3 × 1/195.1",
+        "Blood rune": "3 × 10/128",
+        "Cactus seed": "3 × 1/290.7",
+        "Cadantine seed": "3 × 1/872",
+        "Chaos rune": "3 × 10/128",
+        "Clue scroll (hard)": "1/128",
+        "Death rune": "3 × 12/128",
+        "Dust battlestaff": "1/126",
+        "Dwarf weed seed": "3 × 1/1993.1",
+        "Eternal gem": "1/440",
+        "Gold bar": "3 × 7/128",
+        "Grimy avantoe": "3 × 1/390.1",
+        "Grimy cadantine": "3 × 1/585.1",
+        "Grimy dwarf weed": "3 × 1/780.2",
+        "Grimy guam leaf": "3 × 1/73.1",
+        "Grimy harralander": "3 × 1/167.2",
+        "Grimy irit leaf": "3 × 1/292.6",
+        "Grimy kwuarm": "3 × 1/468.1",
+        "Grimy lantadyme": "3 × 1/780.2",
+        "Grimy marrentill": "3 × 1/97.5",
+        "Grimy ranarr weed": "3 × 1/212.8",
+        "Grimy tarromin": "3 × 1/130",
+        "Imbued heart": "1/440",
+        "Irit seed": "3 × 1/188.5",
+        "Kwuarm seed": "3 × 1/404.4",
+        "Lantadyme seed": "3 × 1/1213.2",
+        "Lobster": "3 × 10/128",
+        "Mist battlestaff": "1/126",
+        "Mystic air staff": "3 × 2/128",
+        "Poison ivy seed": "3 × 1/270.9",
+        "Potato cactus seed": "3 × 1/398.6",
+        "Rune axe": "3 × 7/128",
+        "Rune boots": "3 × 1/128",
+        "Rune chainbody": "3 × 1/128",
+        "Rune full helm": "3 × 3/128",
+        "Rune med helm": "3 × 4/128",
+        "Rune sq shield": "3 × 7/128",
+        "Snapdragon seed": "3 × 1/606.6",
+        "Snape grass seed": "3 × 1/1395.2",
+        "Soul rune": "3 × 5/128",
+        "Toadflax seed": "3 × 1/129.2",
+        "Torstol seed": "3 × 1/3100.4",
+        "Tuna": "3 × 6/128",
+        "Wine of Zamorak": "3 × 2/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave",
+      "ids": [],
+      "drops": {
+        "Slayer's enchantment": "1/80"
+      }
+    }
+  ],
+  "Obor": [
+    {
+      "version": "Members",
+      "ids": [],
+      "drops": {
+        "Asgarnian seed": "1/190",
+        "Avantoe seed": "1/7528",
+        "Barley seed": "1/142",
+        "Beer": "6/135",
+        "Belladonna seed": "1/448",
+        "Body talisman": "2/135",
+        "Cabbage seed": "1/89",
+        "Cactus seed": "1/672",
+        "Cadantine seed": "1/23660",
+        "Cadavaberry seed": "1/292",
+        "Chaos rune": "1/135",
+        "Clue scroll (beginner)": "~1/50",
+        "Cosmic rune": "2/135",
+        "Curved bone": "1/5012.5",
+        "Death rune": "1/135",
+        "Dwarf weed seed": "1/55208",
+        "Dwellberry seed": "1/409",
+        "Fire rune": "3/135",
+        "Giant champion scroll": "1/5000",
+        "Grimy avantoe": "1/411.4",
+        "Grimy cadantine": "1/617.1",
+        "Grimy dwarf weed": "1/822.9",
+        "Grimy guam leaf": "1/77.1",
+        "Grimy harralander": "1/176.3",
+        "Grimy irit leaf": "1/308.6",
+        "Grimy kwuarm": "1/493.7",
+        "Grimy lantadyme": "1/822.9",
+        "Grimy marrentill": "1/102.9",
+        "Grimy ranarr weed": "1/224.4",
+        "Grimy tarromin": "1/137.1",
+        "Guam seed": "1/517",
+        "Hammerstone seed": "1/143",
+        "Harralander seed": "1/1639",
+        "Irit seed": "1/5175",
+        "Iron arrow": "6/135",
+        "Iron dagger": "4/135",
+        "Iron full helm": "5/135",
+        "Iron kiteshield": "3/135",
+        "Jangerberry seed": "1/1024",
+        "Jute seed": "1/191",
+        "Krandorian seed": "1/573",
+        "Kwuarm seed": "1/11041",
+        "Lantadyme seed": "1/33125",
+        "Law rune": "3/135",
+        "Limpwurt root": "11/135",
+        "Limpwurt seed": "1/685",
+        "Long bone": "1/400",
+        "Marigold seed": "1/173",
+        "Marrentill seed": "1/759",
+        "Mind rune": "2/135",
+        "Mushroom spore": "1/269",
+        "Nasturtium seed": "1/261",
+        "Nature rune": "2/135",
+        "Onion seed": "1/59",
+        "Poison ivy seed": "1/7450",
+        "Potato cactus seed": "1/1345",
+        "Ranarr seed": "1/2400",
+        "Redberry seed": "1/204",
+        "Rosemary seed": "1/404",
+        "Snapdragon seed": "1/16562",
+        "Snape grass seed": "1/2065",
+        "Steel arrow": "2/135",
+        "Steel longsword": "2/135",
+        "Strawberry seed": "1/718",
+        "Sweetcorn seed": "1/359",
+        "Tarromin seed": "1/1111",
+        "Toadflax seed": "1/3523",
+        "Tomato seed": "1/179",
+        "Torstol seed": "1/82812",
+        "Water rune": "3/135",
+        "Watermelon seed": "1/1502",
+        "Whiteberry seed": "1/2826",
+        "Wildblood seed": "1/1128",
+        "Woad seed": "1/547",
+        "Yanillian seed": "1/286"
+      }
+    },
+    {
+      "version": "Free-to-play",
+      "ids": [],
+      "drops": {
+        "Beer": "6/135",
+        "Body talisman": "2/135",
+        "Chaos rune": "1/135",
+        "Clue scroll (beginner)": "~1/50",
+        "Cosmic rune": "2/135",
+        "Death rune": "1/135",
+        "Fire rune": "3/135",
+        "Iron arrow": "6/135",
+        "Iron dagger": "4/135",
+        "Iron full helm": "5/135",
+        "Iron kiteshield": "3/135",
+        "Law rune": "3/135",
+        "Limpwurt root": "11/135",
+        "Mind rune": "2/135",
+        "Nature rune": "2/135",
+        "Steel arrow": "2/135",
+        "Steel longsword": "2/135",
+        "Water rune": "3/135"
+      }
+    }
+  ],
+  "Pirate": [
+    {
+      "version": "",
+      "ids": [
+        522,
+        523,
+        524,
+        1447,
+        4043,
+        4044,
+        4045,
+        4046,
+        4047,
+        4048,
+        4049,
+        4050,
+        4051,
+        4052,
+        6994,
+        6995
+      ],
+      "drops": {
+        "Air rune": "2/128",
+        "Bronze arrow": [
+          "3/128",
+          "2/128"
+        ],
+        "Bronze scimitar": "4/128",
+        "Chaos rune": "6/128",
+        "Chef's hat": "1/128",
+        "Earth rune": "2/128",
+        "Fire rune": "2/128",
+        "Iron bar": "1/128",
+        "Iron bolts": "10/128",
+        "Iron dagger": "6/128",
+        "Iron platebody": "1/128",
+        "Law rune": "1/128",
+        "Nature rune": "5/128",
+        "Right eye patch": "12/128"
+      }
+    },
+    {
+      "version": "Pirate's Cove",
+      "ids": [],
+      "drops": {
+        "Larran's key": "1/1074",
+        "Slayer's enchantment": "1/304"
+      }
+    }
+  ],
+  "Revenant cyclops": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/16266.87",
+        "Craw's bow (u)": "1/32533.74",
+        "Thammaron's sceptre (u)": "1/32533.74",
+        "Viggora's chainmace (u)": "1/32533.74"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/3253.13",
+        "Craw's bow (u)": "1/6506.26",
+        "Thammaron's sceptre (u)": "1/6506.26",
+        "Viggora's chainmace (u)": "1/6506.26"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/3253.33",
+        "Ancient effigy": "1/9760",
+        "Ancient emblem": "1/1626.67",
+        "Ancient medallion": "1/9760",
+        "Ancient relic": "1/9760",
+        "Ancient statuette": "1/4880",
+        "Ancient totem": "1/2440",
+        "Black dragonhide": "1/52.97",
+        "Blighted manta ray": "1/52.97",
+        "Blighted super restore(4)": "1/70.63",
+        "Dragon dagger": "1/211.89",
+        "Dragon longsword": "1/211.89",
+        "Dragon med helm": "1/750.77",
+        "Dragon platelegs": "1/423.79",
+        "Dragon plateskirt": "1/423.79",
+        "Dragonstone bolt tips": "1/70.63",
+        "Larran's key": "1/98",
+        "Magic logs": "1/105.95",
+        "Magic seed": "1/2440",
+        "Mahogany plank": "1/70.63",
+        "Onyx bolt tips": "1/70.63",
+        "Rune full helm": "1/105.95",
+        "Rune kiteshield": "1/105.95",
+        "Rune platebody": "1/105.95",
+        "Rune platelegs": "1/105.95",
+        "Rune warhammer": "1/105.95",
+        "Runite bar": "1/70.63",
+        "Runite ore": "1/52.97",
+        "Slayer's enchantment": "1/232",
+        "Uncut dragonstone": "1/211.89",
+        "Yew logs": "1/52.97",
+        "Yew seed": "1/2440"
+      }
+    }
+  ],
+  "Revenant dark beast": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/14666.85",
+        "Craw's bow (u)": "1/29333.7",
+        "Thammaron's sceptre (u)": "1/29333.7",
+        "Viggora's chainmace (u)": "1/29333.7"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/2933.15",
+        "Craw's bow (u)": "1/5866.3",
+        "Thammaron's sceptre (u)": "1/5866.3",
+        "Viggora's chainmace (u)": "1/5866.3"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/2933.33",
+        "Ancient effigy": "1/8800",
+        "Ancient emblem": "1/1466.67",
+        "Ancient medallion": "1/8800",
+        "Ancient relic": "1/8800",
+        "Ancient statuette": "1/4400",
+        "Ancient totem": "1/2200",
+        "Dragon dagger": "1/123.75",
+        "Dragon longsword": "1/123.75",
+        "Dragon med helm": "1/676.92",
+        "Dragon platelegs": "1/247.5",
+        "Dragon plateskirt": "1/247.5",
+        "Larran's key": "1/91",
+        "Magic logs": "1/61.88",
+        "Magic seed": "1/2200",
+        "Rune full helm": "1/61.88",
+        "Rune kiteshield": "1/61.88",
+        "Rune platebody": "1/61.88",
+        "Rune platelegs": "1/61.88",
+        "Rune warhammer": "1/61.88",
+        "Slayer's enchantment": "1/208",
+        "Uncut dragonstone": "1/123.75",
+        "Yew seed": "1/2200"
+      }
+    }
+  ],
+  "Revenant demon": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/16266.87",
+        "Craw's bow (u)": "1/32533.74",
+        "Thammaron's sceptre (u)": "1/32533.74",
+        "Viggora's chainmace (u)": "1/32533.74"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/3253.13",
+        "Craw's bow (u)": "1/6506.26",
+        "Thammaron's sceptre (u)": "1/6506.26",
+        "Viggora's chainmace (u)": "1/6506.26"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/3253.33",
+        "Ancient effigy": "1/9760",
+        "Ancient emblem": "1/1626.67",
+        "Ancient medallion": "1/9760",
+        "Ancient relic": "1/9760",
+        "Ancient statuette": "1/4880",
+        "Ancient totem": "1/2440",
+        "Blighted super restore(4)": "1/58.35",
+        "Dragon dagger": "1/175.04",
+        "Dragon longsword": "1/175.04",
+        "Dragon med helm": "1/750.77",
+        "Dragon platelegs": "1/350.09",
+        "Dragon plateskirt": "1/350.09",
+        "Dragonstone bolt tips": "1/58.35",
+        "Larran's key": "1/95",
+        "Magic logs": "1/87.52",
+        "Magic seed": "1/2440",
+        "Mahogany plank": "1/58.35",
+        "Onyx bolt tips": "1/58.35",
+        "Rune full helm": "1/87.52",
+        "Rune kiteshield": "1/87.52",
+        "Rune platebody": "1/87.52",
+        "Rune platelegs": "1/87.52",
+        "Rune warhammer": "1/87.52",
+        "Runite bar": "1/58.35",
+        "Slayer's enchantment": "1/256",
+        "Uncut dragonstone": "1/175.04",
+        "Yew seed": "1/2440"
+      }
+    }
+  ],
+  "Revenant dragon": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/13333.5",
+        "Craw's bow (u)": "1/26667",
+        "Thammaron's sceptre (u)": "1/26667",
+        "Viggora's chainmace (u)": "1/26667"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/2666.5",
+        "Craw's bow (u)": "1/5333",
+        "Thammaron's sceptre (u)": "1/5333",
+        "Viggora's chainmace (u)": "1/5333"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/2666.67",
+        "Ancient effigy": "1/8000",
+        "Ancient emblem": "1/1333.33",
+        "Ancient medallion": "1/8000",
+        "Ancient relic": "1/8000",
+        "Ancient statuette": "1/4000",
+        "Ancient totem": "1/2000",
+        "Dragon dagger": "1/99.5",
+        "Dragon longsword": "1/99.5",
+        "Dragon med helm": "1/615.38",
+        "Dragon platelegs": "1/198.99",
+        "Dragon plateskirt": "1/198.99",
+        "Larran's key": "1/89",
+        "Magic seed": "1/2000",
+        "Slayer's enchantment": "1/196",
+        "Uncut dragonstone": "1/99.5",
+        "Yew seed": "1/2000"
+      }
+    }
+  ],
+  "Revenant goblin": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/48867.28",
+        "Craw's bow (u)": "1/97734.56",
+        "Thammaron's sceptre (u)": "1/97734.56",
+        "Viggora's chainmace (u)": "1/97734.56"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/9772.72",
+        "Craw's bow (u)": "1/19545.45",
+        "Thammaron's sceptre (u)": "1/19545.45",
+        "Viggora's chainmace (u)": "1/19545.45"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Adamantite bar": "1/287.96",
+        "Ancient crystal": "1/9773.33",
+        "Ancient effigy": "1/29320",
+        "Ancient emblem": "1/4886.67",
+        "Ancient medallion": "1/29320",
+        "Ancient relic": "1/29320",
+        "Ancient statuette": "1/14660",
+        "Ancient totem": "1/7330",
+        "Battlestaff": "1/345.56",
+        "Black dragonhide": "1/431.95",
+        "Blighted manta ray": "1/431.95",
+        "Blighted super restore(4)": "1/575.93",
+        "Blood rune": "1/345.56",
+        "Bracelet of ethereum (uncharged)": "1/115.19",
+        "Coal": "1/287.96",
+        "Death rune": "1/345.56",
+        "Dragon dagger": "1/1727.79",
+        "Dragon longsword": "1/1727.79",
+        "Dragon med helm": "1/2255.38",
+        "Dragon platelegs": "1/3455.57",
+        "Dragon plateskirt": "1/3455.57",
+        "Dragonstone bolt tips": "1/575.93",
+        "Goblin champion scroll": "1/5000",
+        "Larran's key": "1/1367",
+        "Law rune": "1/345.56",
+        "Magic logs": "1/863.89",
+        "Magic seed": "1/7330",
+        "Mahogany plank": "1/575.93",
+        "Onyx bolt tips": "1/575.93",
+        "Revenant cave teleport": "1/345.56",
+        "Rune full helm": "1/863.89",
+        "Rune kiteshield": "1/863.89",
+        "Rune platebody": "1/863.89",
+        "Rune platelegs": "1/863.89",
+        "Rune warhammer": "1/863.89",
+        "Runite bar": "1/575.93",
+        "Runite ore": "1/431.95",
+        "Slayer's enchantment": "1/309",
+        "Uncut dragonstone": "1/1727.79",
+        "Yew logs": "1/431.95",
+        "Yew seed": "1/7330"
+      }
+    }
+  ],
+  "Revenant hellhound": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/16266.87",
+        "Craw's bow (u)": "1/32533.74",
+        "Thammaron's sceptre (u)": "1/32533.74",
+        "Viggora's chainmace (u)": "1/32533.74"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/3253.13",
+        "Craw's bow (u)": "1/6506.26",
+        "Thammaron's sceptre (u)": "1/6506.26",
+        "Viggora's chainmace (u)": "1/6506.26"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/3253.33",
+        "Ancient effigy": "1/9760",
+        "Ancient emblem": "1/1626.67",
+        "Ancient medallion": "1/9760",
+        "Ancient relic": "1/9760",
+        "Ancient statuette": "1/4880",
+        "Ancient totem": "1/2440",
+        "Blighted super restore(4)": "1/63.9",
+        "Dragon dagger": "1/191.71",
+        "Dragon longsword": "1/191.71",
+        "Dragon med helm": "1/750.77",
+        "Dragon platelegs": "1/383.43",
+        "Dragon plateskirt": "1/383.43",
+        "Dragonstone bolt tips": "1/63.9",
+        "Larran's key": "1/97",
+        "Magic logs": "1/95.86",
+        "Magic seed": "1/2440",
+        "Mahogany plank": "1/63.9",
+        "Onyx bolt tips": "1/63.9",
+        "Rune full helm": "1/95.86",
+        "Rune kiteshield": "1/95.86",
+        "Rune platebody": "1/95.86",
+        "Rune platelegs": "1/95.86",
+        "Rune warhammer": "1/95.86",
+        "Runite bar": "1/63.9",
+        "Slayer's enchantment": "1/256",
+        "Uncut dragonstone": "1/191.71",
+        "Yew seed": "1/2440"
+      }
+    }
+  ],
+  "Revenant hobgoblin": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/20933.6",
+        "Craw's bow (u)": "1/41867.19",
+        "Thammaron's sceptre (u)": "1/41867.19",
+        "Viggora's chainmace (u)": "1/41867.19"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/4186.41",
+        "Craw's bow (u)": "1/8372.81",
+        "Thammaron's sceptre (u)": "1/8372.81",
+        "Viggora's chainmace (u)": "1/8372.81"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Adamantite bar": "1/60.24",
+        "Ancient crystal": "1/4186.67",
+        "Ancient effigy": "1/12560",
+        "Ancient emblem": "1/2093.33",
+        "Ancient medallion": "1/12560",
+        "Ancient relic": "1/12560",
+        "Ancient statuette": "1/6280",
+        "Ancient totem": "1/3140",
+        "Battlestaff": "1/72.29",
+        "Black dragonhide": "1/90.37",
+        "Blighted manta ray": "1/90.37",
+        "Blighted super restore(4)": "1/120.49",
+        "Blood rune": "1/72.29",
+        "Coal": "1/60.24",
+        "Death rune": "1/72.29",
+        "Dragon dagger": "1/361.47",
+        "Dragon longsword": "1/361.47",
+        "Dragon med helm": "1/966.15",
+        "Dragon platelegs": "1/722.93",
+        "Dragon plateskirt": "1/722.93",
+        "Dragonstone bolt tips": "1/120.49",
+        "Hobgoblin champion scroll": "1/5000",
+        "Larran's key": "1/220",
+        "Law rune": "1/72.29",
+        "Magic logs": "1/180.73",
+        "Magic seed": "1/3140",
+        "Mahogany plank": "1/120.49",
+        "Onyx bolt tips": "1/120.49",
+        "Revenant cave teleport": "1/72.29",
+        "Rune full helm": "1/180.73",
+        "Rune kiteshield": "1/180.73",
+        "Rune platebody": "1/180.73",
+        "Rune platelegs": "1/180.73",
+        "Rune warhammer": "1/180.73",
+        "Runite bar": "1/120.49",
+        "Runite ore": "1/90.37",
+        "Slayer's enchantment": "1/263",
+        "Uncut dragonstone": "1/361.47",
+        "Yew logs": "1/90.37",
+        "Yew seed": "1/3140"
+      }
+    }
+  ],
+  "Revenant imp": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/73334.25",
+        "Craw's bow (u)": "1/146668.5",
+        "Thammaron's sceptre (u)": "1/146668.5",
+        "Viggora's chainmace (u)": "1/146668.5"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/14665.75",
+        "Craw's bow (u)": "1/29331.5",
+        "Thammaron's sceptre (u)": "1/29331.5",
+        "Viggora's chainmace (u)": "1/29331.5"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Adamantite bar": "1/504.17",
+        "Ancient crystal": "1/14666.67",
+        "Ancient effigy": "1/44000",
+        "Ancient emblem": "1/7333.33",
+        "Ancient medallion": "1/44000",
+        "Ancient relic": "1/44000",
+        "Ancient statuette": "1/22000",
+        "Ancient totem": "1/11000",
+        "Battlestaff": "1/605",
+        "Black dragonhide": "1/756.25",
+        "Blighted manta ray": "1/756.25",
+        "Blighted super restore(4)": "1/1008.33",
+        "Blood rune": "1/605",
+        "Bracelet of ethereum (uncharged)": "1/201.67",
+        "Coal": "1/504.17",
+        "Death rune": "1/605",
+        "Dragon dagger": "1/3025",
+        "Dragon longsword": "1/3025",
+        "Dragon med helm": "1/3384.62",
+        "Dragon platelegs": "1/6050",
+        "Dragon plateskirt": "1/6050",
+        "Dragonstone bolt tips": "1/1008.33",
+        "Imp champion scroll": "1/5000",
+        "Larran's key": "1/1698",
+        "Law rune": "1/605",
+        "Magic logs": "1/1512.5",
+        "Magic seed": "1/11000",
+        "Mahogany plank": "1/1008.33",
+        "Onyx bolt tips": "1/1008.33",
+        "Revenant cave teleport": "1/605",
+        "Rune full helm": "1/1512.5",
+        "Rune kiteshield": "1/1512.5",
+        "Rune platebody": "1/1512.5",
+        "Rune platelegs": "1/1512.5",
+        "Rune warhammer": "1/1512.5",
+        "Runite bar": "1/1008.33",
+        "Runite ore": "1/756.25",
+        "Slayer's enchantment": "1/312",
+        "Uncut dragonstone": "1/3025",
+        "Yew logs": "1/756.25",
+        "Yew seed": "1/11000"
+      }
+    }
+  ],
+  "Revenant knight": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/13333.5",
+        "Craw's bow (u)": "1/26667",
+        "Thammaron's sceptre (u)": "1/26667",
+        "Viggora's chainmace (u)": "1/26667"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/2666.5",
+        "Craw's bow (u)": "1/5333",
+        "Thammaron's sceptre (u)": "1/5333",
+        "Viggora's chainmace (u)": "1/5333"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/2666.67",
+        "Ancient effigy": "1/8000",
+        "Ancient emblem": "1/1333.33",
+        "Ancient medallion": "1/8000",
+        "Ancient relic": "1/8000",
+        "Ancient statuette": "1/4000",
+        "Ancient totem": "1/2000",
+        "Dragon dagger": "1/106.45",
+        "Dragon longsword": "1/106.45",
+        "Dragon med helm": "1/615.38",
+        "Dragon platelegs": "1/212.9",
+        "Dragon plateskirt": "1/212.9",
+        "Larran's key": "1/90",
+        "Magic logs": "1/53.23",
+        "Magic seed": "1/2000",
+        "Rune full helm": "1/53.23",
+        "Rune kiteshield": "1/53.23",
+        "Rune platebody": "1/53.23",
+        "Rune platelegs": "1/53.23",
+        "Rune warhammer": "1/53.23",
+        "Slayer's enchantment": "1/206",
+        "Uncut dragonstone": "1/106.45",
+        "Yew seed": "1/2000"
+      }
+    }
+  ],
+  "Revenant maledictus": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/13333.5",
+        "Craw's bow (u)": "1/26667",
+        "Thammaron's sceptre (u)": "1/26667",
+        "Viggora's chainmace (u)": "1/26667"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/2666.5",
+        "Craw's bow (u)": "1/5333",
+        "Thammaron's sceptre (u)": "1/5333",
+        "Viggora's chainmace (u)": "1/5333"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/2666.67",
+        "Ancient effigy": "1/8000",
+        "Ancient emblem": "1/1333.33",
+        "Ancient medallion": "1/8000",
+        "Ancient relic": "1/8000",
+        "Ancient statuette": "1/4000",
+        "Ancient totem": "1/2000",
+        "Dragon dagger": "1/99.5",
+        "Dragon longsword": "1/99.5",
+        "Dragon med helm": "1/615.38",
+        "Dragon platelegs": "1/198.99",
+        "Dragon plateskirt": "1/198.99",
+        "Larran's key": "1/89",
+        "Magic seed": "1/2000",
+        "Slayer's enchantment": "1/196",
+        "Uncut dragonstone": "1/99.5",
+        "Yew seed": "1/2000"
+      }
+    }
+  ],
+  "Revenant ork": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/14666.85",
+        "Craw's bow (u)": "1/29333.7",
+        "Thammaron's sceptre (u)": "1/29333.7",
+        "Viggora's chainmace (u)": "1/29333.7"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/2933.15",
+        "Craw's bow (u)": "1/5866.3",
+        "Thammaron's sceptre (u)": "1/5866.3",
+        "Viggora's chainmace (u)": "1/5866.3"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Ancient crystal": "1/2933.33",
+        "Ancient effigy": "1/8800",
+        "Ancient emblem": "1/1466.67",
+        "Ancient medallion": "1/8800",
+        "Ancient relic": "1/8800",
+        "Ancient statuette": "1/4400",
+        "Ancient totem": "1/2200",
+        "Dragon dagger": "1/145.2",
+        "Dragon longsword": "1/145.2",
+        "Dragon med helm": "1/676.92",
+        "Dragon platelegs": "1/290.4",
+        "Dragon plateskirt": "1/290.4",
+        "Larran's key": "1/94",
+        "Magic logs": "1/72.6",
+        "Magic seed": "1/2200",
+        "Rune full helm": "1/72.6",
+        "Rune kiteshield": "1/72.6",
+        "Rune platebody": "1/72.6",
+        "Rune platelegs": "1/72.6",
+        "Rune warhammer": "1/72.6",
+        "Slayer's enchantment": "1/236",
+        "Uncut dragonstone": "1/145.2",
+        "Yew seed": "1/2200"
+      }
+    }
+  ],
+  "Revenant pyrefiend": [
+    {
+      "version": "Off-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/20933.6",
+        "Craw's bow (u)": "1/41867.19",
+        "Thammaron's sceptre (u)": "1/41867.19",
+        "Viggora's chainmace (u)": "1/41867.19"
+      }
+    },
+    {
+      "version": "On-task",
+      "ids": [],
+      "drops": {
+        "Amulet of avarice": "1/4186.41",
+        "Craw's bow (u)": "1/8372.81",
+        "Thammaron's sceptre (u)": "1/8372.81",
+        "Viggora's chainmace (u)": "1/8372.81"
+      }
+    },
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Adamantite bar": "1/68.17",
+        "Ancient crystal": "1/4186.67",
+        "Ancient effigy": "1/12560",
+        "Ancient emblem": "1/2093.33",
+        "Ancient medallion": "1/12560",
+        "Ancient relic": "1/12560",
+        "Ancient statuette": "1/6280",
+        "Ancient totem": "1/3140",
+        "Battlestaff": "1/81.81",
+        "Black dragonhide": "1/102.26",
+        "Blighted manta ray": "1/102.26",
+        "Blighted super restore(4)": "1/136.34",
+        "Blood rune": "1/81.81",
+        "Coal": "1/68.17",
+        "Death rune": "1/81.81",
+        "Dragon dagger": "1/409.03",
+        "Dragon longsword": "1/409.03",
+        "Dragon med helm": "1/966.15",
+        "Dragon platelegs": "1/818.05",
+        "Dragon plateskirt": "1/818.05",
+        "Dragonstone bolt tips": "1/136.34",
+        "Larran's key": "1/335",
+        "Law rune": "1/81.81",
+        "Magic logs": "1/204.51",
+        "Magic seed": "1/3140",
+        "Mahogany plank": "1/136.34",
+        "Onyx bolt tips": "1/136.34",
+        "Revenant cave teleport": "1/81.81",
+        "Rune full helm": "1/204.51",
+        "Rune kiteshield": "1/204.51",
+        "Rune platebody": "1/204.51",
+        "Rune platelegs": "1/204.51",
+        "Rune warhammer": "1/204.51",
+        "Runite bar": "1/136.34",
+        "Runite ore": "1/102.26",
+        "Slayer's enchantment": "1/282",
+        "Uncut dragonstone": "1/409.03",
+        "Yew logs": "1/102.26",
+        "Yew seed": "1/3140"
+      }
+    }
+  ],
+  "Rock Golem": [
+    {
+      "version": "Low level",
+      "ids": [
+        6725,
+        6726,
+        6727,
+        6728
+      ],
+      "drops": {
+        "Bronze bar": "7/78",
+        "Chaos rune": "4/78",
+        "Copper ore": "3/78",
+        "Dwarven stout": "13/78",
+        "Earth rune": [
+          "30/78",
+          "4/78"
+        ],
+        "Hammer": "10/78",
+        "Iron ore": "4/78",
+        "Tin ore": "3/78"
+      }
+    },
+    {
+      "version": "High level",
+      "ids": [
+        6729,
+        6730
+      ],
+      "drops": {
+        "Adamant pickaxe": "1/128",
+        "Adamantite ore": "3/128",
+        "Bronze bar": "7/128",
+        "Bronze pickaxe": "4/128",
+        "Chaos rune": "4/128",
+        "Coal": "25/128",
+        "Copper ore": "3/128",
+        "Dwarven stout": "13/128",
+        "Earth rune": [
+          "30/128",
+          "4/128"
+        ],
+        "Hammer": "10/128",
+        "Iron bar": "3/128",
+        "Iron ore": "4/128",
+        "Mithril ore": "10/128",
+        "Rune pickaxe": "1/128",
+        "Runite ore": "1/128",
+        "Tin ore": "3/128"
+      }
+    }
+  ],
+  "Rogue": [
+    {
+      "version": "Level 15",
+      "ids": [
+        526
+      ],
+      "drops": {
+        "Bronze arrow": "3/128",
+        "Bronze bolts": "22/128",
+        "Bronze med helm": "2/128",
+        "Cabbage": "1/128",
+        "Chaos rune": "1/128",
+        "Clue scroll (beginner)": "1/90",
+        "Clue scroll (easy)": "1/128",
+        "Copper ore": "2/128",
+        "Earth rune": "2/128",
+        "Earth talisman": "2/128",
+        "Fire rune": "2/128",
+        "Fishing bait": "5/128",
+        "Grimy avantoe": "1/118.7",
+        "Grimy cadantine": "1/178.1",
+        "Grimy dwarf weed": "1/237.4",
+        "Grimy harralander": "1/50.9",
+        "Grimy irit leaf": "1/89",
+        "Grimy kwuarm": "1/142.5",
+        "Grimy lantadyme": "1/237.4",
+        "Grimy ranarr weed": "1/64.8",
+        "Iron dagger": "1/128",
+        "Larran's key": "1/1367",
+        "Mind rune": "2/128",
+        "Slayer's enchantment": "1/307"
+      }
+    },
+    {
+      "version": "Level 135",
+      "ids": [
+        6603
+      ],
+      "drops": {
+        "Larran's key": "1/89",
+        "Slayer's enchantment": "1/220"
+      }
+    }
+  ],
+  "Shade": [
+    {
+      "version": "",
+      "ids": [
+        6740
+      ],
+      "drops": {
+        "Shade robe": "32/128",
+        "Shade robe top": "32/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/256",
+        "Dark totem base": "1/385",
+        "Dark totem middle": "1/385",
+        "Dark totem top": "1/385"
+      }
+    }
+  ],
+  "Skeleton": [
+    {
+      "version": "Plain",
+      "ids": [
+        14426,
+        14427,
+        14428
+      ],
+      "drops": {
+        "Larran's key": "1/1144",
+        "Skeleton champion scroll": "1/5000",
+        "Slayer's enchantment": "1/301"
+      }
+    },
+    {
+      "version": "Unarmed",
+      "ids": [],
+      "drops": {
+        "Air rune": "2/128",
+        "Bronze arrow": [
+          "7/128",
+          "4/128"
+        ],
+        "Chaos rune": "2/128",
+        "Clue scroll (beginner)": "1/100",
+        "Earth rune": "2/128",
+        "Fire rune": "2/128",
+        "Fire talisman": "2/128",
+        "Grain": "1/128",
+        "Grimy avantoe": "1/130",
+        "Grimy cadantine": "1/195",
+        "Grimy dwarf weed": "1/260.1",
+        "Grimy harralander": "1/55.7",
+        "Grimy irit leaf": "1/97.5",
+        "Grimy kwuarm": "1/156",
+        "Grimy lantadyme": "1/260.1",
+        "Grimy ranarr weed": "1/70.9",
+        "Iron arrow": "4/128",
+        "Iron dagger": "6/128",
+        "Iron ore": "1/128",
+        "Larran's key": "1/1109",
+        "Nature rune": "1/128",
+        "Skeleton champion scroll": "1/5000",
+        "Slayer's enchantment": "1/301",
+        "Steel arrow": "1/128"
+      }
+    },
+    {
+      "version": "Armed",
+      "ids": [],
+      "drops": {
+        "Air rune": "3/128",
+        "Bronze bar": "5/128",
+        "Chaos rune": "3/128",
+        "Clue scroll (beginner)": "1/100",
+        "Cosmic rune": "1/128",
+        "Grimy avantoe": "1/136.5",
+        "Grimy cadantine": "1/204.8",
+        "Grimy dwarf weed": "1/273.1",
+        "Grimy harralander": "1/58.5",
+        "Grimy irit leaf": "1/102.4",
+        "Grimy kwuarm": "1/163.8",
+        "Grimy lantadyme": "1/273.1",
+        "Grimy ranarr weed": "1/74.5",
+        "Iron arrow": "2/128",
+        "Iron axe": "2/128",
+        "Iron med helm": "6/128",
+        "Iron scimitar": "1/128",
+        "Iron sword": "4/128",
+        "Larran's key": "1/1144",
+        "Law rune": "2/128",
+        "Skeleton champion scroll": "1/5000",
+        "Slayer's enchantment": "1/301",
+        "Water rune": "3/128"
+      }
+    }
+  ],
+  "Skeleton (Tarn's Lair)": [
+    {
+      "version": "Low level",
+      "ids": [
+        6444,
+        6445,
+        6446
+      ],
+      "drops": {
+        "Astral rune": "3/128",
+        "Black kiteshield": "1/128",
+        "Black warhammer": "1/128",
+        "Bronze axe": "5/128",
+        "Bronze knife(p)": "5/128",
+        "Bronze nails": "5/128",
+        "Bronze scimitar": "2/128",
+        "Bullseye lantern (unf)": "5/128",
+        "Clue scroll (easy)": "1/128",
+        "Combat potion(3)": "5/128",
+        "Fishing potion(1)": "5/128",
+        "Gold bar": "2/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Iron dart": "3/128",
+        "Iron ore": "2/128",
+        "Iron warhammer": "2/128",
+        "Mithril chainbody": "1/128",
+        "Mithril mace": "2/128",
+        "Oak longbow": "3/128",
+        "Ring of dueling(3)": "2/128",
+        "Skeleton champion scroll": "1/5000",
+        "Steel 2h sword": "3/128",
+        "Steel arrow": "3/128",
+        "Steel cannonball": "3/128",
+        "Steel full helm": "8/128",
+        "Steel kiteshield": "2/128",
+        "Steel mace": "5/128",
+        "Unblessed symbol": "3/128",
+        "Unlit torch": "2/128",
+        "Unpowered orb": "3/128",
+        "Unstrung symbol": "2/128",
+        "Vial of water": "5/128",
+        "Water rune": "5/128"
+      }
+    },
+    {
+      "version": "Medium level",
+      "ids": [
+        6442,
+        6447,
+        6448,
+        6467
+      ],
+      "drops": {
+        "Adamant arrow": "3/128",
+        "Adamant kiteshield": "1/128",
+        "Agility potion(2)": "5/128",
+        "Air rune": "5/128",
+        "Amulet mould": "5/128",
+        "Antipoison(3)": "5/128",
+        "Arrow shaft": "5/128",
+        "Attack potion(3)": "5/128",
+        "Black longsword": "1/128",
+        "Bronze axe": "5/128",
+        "Bronze mace": "5/128",
+        "Bronze platebody": "2/128",
+        "Clue scroll (medium)": "1/128",
+        "Games necklace(2)": "2/128",
+        "Gold ore": "2/128",
+        "Grimy avantoe": "1/2730.7",
+        "Grimy cadantine": "1/4096",
+        "Grimy dwarf weed": "1/5461.3",
+        "Grimy guam leaf": "1/512",
+        "Grimy harralander": "1/1170.3",
+        "Grimy irit leaf": "1/2048",
+        "Grimy kwuarm": "1/3276.8",
+        "Grimy lantadyme": "1/5461.3",
+        "Grimy marrentill": "1/682.7",
+        "Grimy ranarr weed": "1/1489.5",
+        "Grimy tarromin": "1/910.2",
+        "Iron arrow": "2/128",
+        "Iron axe": "3/128",
+        "Iron bolts": "3/128",
+        "Iron dagger": "3/128",
+        "Iron dart (p)": "3/128",
+        "Iron mace": "2/128",
+        "Iron med helm": "8/128",
+        "Iron spear": "5/128",
+        "Law rune": "3/128",
+        "Leather body": "3/128",
+        "Leather vambraces": "2/128",
+        "Mithril arrow": "3/128",
+        "Mithril platelegs": "1/128",
+        "Mithril scimitar": "2/128",
+        "Silver bar": "2/128",
+        "Skeleton champion scroll": "1/5000",
+        "Steel platebody": "2/128",
+        "Steel warhammer": "2/128",
+        "Weapon poison": "1/128",
+        "Yew longbow (u)": "3/128"
+      }
+    },
+    {
+      "version": "High level",
+      "ids": [
+        6468
+      ],
+      "drops": {
+        "Adamant arrow": "2/128",
+        "Adamant battleaxe": "1/128",
+        "Adamantite bar": "2/128",
+        "Black longsword": "1/128",
+        "Blood rune": "3/128",
+        "Bronze full helm": "5/128",
+        "Bronze plateskirt": "5/128",
+        "Candle": "5/128",
+        "Gold ore": "2/128",
+        "Grimy avantoe": "1/546.1",
+        "Grimy cadantine": "1/819.2",
+        "Grimy dwarf weed": "1/1092.3",
+        "Grimy guam leaf": "1/102.4",
+        "Grimy harralander": "1/234.1",
+        "Grimy irit leaf": "1/409.6",
+        "Grimy kwuarm": "1/655.4",
+        "Grimy lantadyme": "1/1092.3",
+        "Grimy marrentill": "1/136.5",
+        "Grimy ranarr weed": "1/297.9",
+        "Grimy tarromin": "1/182",
+        "Iron battleaxe": "3/128",
+        "Iron kiteshield": "8/128",
+        "Iron scimitar": "2/128",
+        "Iron warhammer": "5/128",
+        "Knife": "3/128",
+        "Magic staff": "1/128",
+        "Mithril mace": "2/128",
+        "Mithril med helm": "1/128",
+        "Mithril sq shield": "1/128",
+        "Rune scimitar": "1/128",
+        "Sapphire ring": "2/128",
+        "Shortbow": "3/128",
+        "Silver bolts": "3/128",
+        "Steel arrow": "2/128",
+        "Steel axe": "2/128",
+        "Steel bolts (p+)": "3/128",
+        "Steel chainbody": "2/128",
+        "Steel dagger": "5/128",
+        "Steel full helm": "1/128",
+        "Steel javelin(p+)": "3/128",
+        "Steel kiteshield": "1/128",
+        "Steel nails": "5/128",
+        "Steel spear": "5/128",
+        "Steel studs": "5/128",
+        "Strength potion(3)": "5/128"
+      }
+    },
+    {
+      "version": "Level 81",
+      "ids": [],
+      "drops": {
+        "Clue scroll (medium)": "1/128",
+        "Skeleton champion scroll": "1/5000"
+      }
+    }
+  ],
+  "Skeleton Mage": [
+    {
+      "version": "Level 16",
+      "ids": [
+        84
+      ],
+      "drops": {
+        "Skeleton champion scroll": "1/5000"
+      }
+    },
+    {
+      "version": "Level 83",
+      "ids": [
+        4319
+      ],
+      "drops": {
+        "Big bones": "6/128",
+        "Chaos rune": "10/128",
+        "Grimy avantoe": "1/227.6",
+        "Grimy cadantine": "1/341.3",
+        "Grimy dwarf weed": "1/455.1",
+        "Grimy harralander": "1/97.5",
+        "Grimy irit leaf": "1/170.7",
+        "Grimy kwuarm": "1/273.1",
+        "Grimy lantadyme": "1/455.1",
+        "Grimy marrentill": "1/56.9",
+        "Grimy ranarr weed": "1/124.1",
+        "Grimy tarromin": "1/75.9",
+        "Iron bar": "5/128",
+        "Law rune": "12/128",
+        "Mind rune": "12/128",
+        "Nature rune": "11/128",
+        "Pink skirt": "2/128",
+        "Pot of flour": "10/128",
+        "Skeleton champion scroll": "1/5000",
+        "Uncut opal": "10/128"
+      }
+    }
+  ],
+  "Spiritual mage": [
+    {
+      "version": "",
+      "ids": [
+        2212,
+        2244,
+        3161,
+        3168
+      ],
+      "drops": {
+        "Air rune": [
+          "9/128",
+          "2/128"
+        ],
+        "Antipoison(3)": "5/128",
+        "Astral rune": "9/128",
+        "Blood rune": "2/128",
+        "Body rune": [
+          "3/128",
+          "2/128"
+        ],
+        "Chaos rune": [
+          "18/128",
+          "1/128"
+        ],
+        "Clue scroll (hard)": "1/128",
+        "Death rune": "8/128",
+        "Dragon boots": "1/128",
+        "Dust rune": "11/128",
+        "Ecumenical key": "1/60",
+        "Fire rune": "2/128",
+        "Larran's key": "1/75",
+        "Law rune": "2/128",
+        "Mind rune": "4/128",
+        "Mist rune": "6/128",
+        "Mud rune": "7/128",
+        "Nature rune": [
+          "7/128",
+          "4/128"
+        ],
+        "Pure essence": "6/128",
+        "Slayer's enchantment": "1/260",
+        "Water rune": [
+          "8/128",
+          "7/128"
+        ]
+      }
+    },
+    {
+      "version": "Zaros",
+      "ids": [],
+      "drops": {
+        "Adamantite bar": "8/128",
+        "Air rune": "7/128",
+        "Ancient brew(2)": "11/128",
+        "Ancient brew(3)": "4/128",
+        "Ancient ceremonial boots": "1/640",
+        "Ancient ceremonial gloves": "1/640",
+        "Ancient ceremonial legs": "1/640",
+        "Ancient ceremonial mask": "1/640",
+        "Ancient ceremonial top": "1/640",
+        "Astral rune": "15/128",
+        "Blood essence": "1/128",
+        "Blood rune": "2/128",
+        "Clue scroll (hard)": "1/96",
+        "Coal": "8/128",
+        "Death rune": "4/128",
+        "Dragon boots": "1/128",
+        "Grimy avantoe": "3.125/128",
+        "Grimy ranarr weed": "2.5/128",
+        "Grimy snapdragon": "2.5/128",
+        "Grimy torstol": "8.875/128",
+        "Lava rune": "9/128",
+        "Mud rune": "7/128",
+        "Nihil shard": "1/128",
+        "Pure essence": "8/128",
+        "Smoke rune": "2/128",
+        "Soul rune": "3/128",
+        "Super defence(3)": "2/128",
+        "Super restore(3)": "9/128"
+      }
+    }
+  ],
+  "Spiritual ranger": [
+    {
+      "version": "",
+      "ids": [
+        2211,
+        2242,
+        3160,
+        3167
+      ],
+      "drops": {
+        "Adamant arrow": "1/128",
+        "Adamant arrow(p++)": "3/128",
+        "Adamant arrowtips": "9/128",
+        "Adamant fire arrow": "2/128",
+        "Body rune": "4/128",
+        "Bow string": "18/128",
+        "Broken arrow": "1/128",
+        "Bronze arrow": "13/128",
+        "Bronze arrow(p+)": "1/128",
+        "Clue scroll (hard)": "1/128",
+        "Ecumenical key": "1/60",
+        "Headless arrow": "10/128",
+        "Iron arrow": "15/128",
+        "Iron arrowtips": "11/128",
+        "Larran's key": "1/76",
+        "Magic shortbow": "1/128",
+        "Maple longbow": "4/128",
+        "Mithril arrow(p+)": "11/128",
+        "Oak longbow (u)": "9/128",
+        "Oak shortbow": "5/128",
+        "Rune arrow": "2/128",
+        "Slayer's enchantment": "1/249",
+        "Steel arrow": "4/128",
+        "Steel crossbow": "3/128"
+      }
+    },
+    {
+      "version": "Zaros",
+      "ids": [],
+      "drops": {
+        "Adamant bolts": "7/128",
+        "Adamantite bar": "8/128",
+        "Ancient ceremonial boots": "1/640",
+        "Ancient ceremonial gloves": "1/640",
+        "Ancient ceremonial legs": "1/640",
+        "Ancient ceremonial mask": "1/640",
+        "Ancient ceremonial top": "1/640",
+        "Blue dragon scale": "7/128",
+        "Chaos rune": "3/128",
+        "Clue scroll (hard)": "1/128",
+        "Coal": "8/128",
+        "Green d'hide body": "7/128",
+        "Grimy ranarr weed": "1/51.2",
+        "Grimy snapdragon": "1/51.2",
+        "Grimy torstol": "1/68.27",
+        "Mithril longsword": "15/128",
+        "Nature rune": "4/128",
+        "Nihil shard": "1/128",
+        "Prayer potion(2)": "9/128",
+        "Pure essence": "8/128",
+        "Ranging potion(2)": "11/128",
+        "Rune arrow": "2/128",
+        "Shark": "1/128",
+        "Super defence(1)": "2/128",
+        "Uncut diamond": "4/128"
+      }
+    }
+  ],
+  "Spiritual warrior": [
+    {
+      "version": "",
+      "ids": [
+        2210,
+        2243,
+        3159,
+        3166
+      ],
+      "drops": {
+        "Adamant 2h sword": "1/127",
+        "Adamant battleaxe": "2/127",
+        "Adamant full helm": "8/127",
+        "Black dagger": "2/127",
+        "Black kiteshield": "3/127",
+        "Black warhammer": "5/127",
+        "Clue scroll (hard)": "1/128",
+        "Ecumenical key": "1/60",
+        "Iron plateskirt": "4/127",
+        "Iron scimitar": "8/127",
+        "Iron sword": "3/127",
+        "Larran's key": "1/76",
+        "Leather gloves": "9/127",
+        "Mithril axe": "8/127",
+        "Mithril mace": "7/127",
+        "Mithril platelegs": "11/127",
+        "Mithril spear(p)": "9/127",
+        "Rune halberd": "1/127",
+        "Rune kiteshield": "1/127",
+        "Rune longsword": "1/127",
+        "Slayer's enchantment": "1/242",
+        "Steel chainbody": "18/127",
+        "Steel longsword": "15/127",
+        "Steel sword": "7/127"
+      }
+    },
+    {
+      "version": "Zaros",
+      "ids": [],
+      "drops": {
+        "Adamant chainbody": "7/128",
+        "Adamantite bar": "8/128",
+        "Air rune": "2/128",
+        "Ancient ceremonial boots": "1/640",
+        "Ancient ceremonial gloves": "1/640",
+        "Ancient ceremonial legs": "1/640",
+        "Ancient ceremonial mask": "1/640",
+        "Ancient ceremonial top": "1/640",
+        "Chaos rune": "3/128",
+        "Clue scroll (hard)": "1/128",
+        "Coal": "8/128",
+        "Grimy ranarr weed": "1/51.2",
+        "Grimy snapdragon": "1/51.2",
+        "Grimy torstol": "1/68.27",
+        "Lobster": "1/128",
+        "Mind rune": "7/128",
+        "Mithril longsword": "15/128",
+        "Mud rune": "7/128",
+        "Nature rune": "4/128",
+        "Nihil shard": "1/128",
+        "Potato cactus": "7/128",
+        "Prayer potion(2)": "9/128",
+        "Pure essence": "8/128",
+        "Super attack(1)": "11/128",
+        "Super defence(1)": "2/128",
+        "Super strength(1)": "2/128"
+      }
+    }
+  ],
+  "Steel dragon": [
+    {
+      "version": "Standard",
+      "ids": [
+        274,
+        275
+      ],
+      "drops": {
+        "Adamant kiteshield": "2/128",
+        "Blood rune": "19/128",
+        "Brimstone key": "1/71",
+        "Clue scroll (elite)": "1/500",
+        "Clue scroll (hard)": "1/64",
+        "Curry": "1/128",
+        "Draconic visage": "1/10000",
+        "Dragon javelin tips": "5/128",
+        "Dragon platelegs": "1/512",
+        "Dragon plateskirt": "1/512",
+        "Rune axe": "2/128",
+        "Rune dart(p)": "7/128",
+        "Rune full helm": "1/128",
+        "Rune javelin": "20/128",
+        "Rune knife": "3/128",
+        "Rune mace": "4/128",
+        "Runite bar": "3/128",
+        "Runite bolts": "6/128",
+        "Runite limbs": "8/128",
+        "Soul rune": "5/128",
+        "Super attack(3)": "13/128",
+        "Super defence(2)": "3/128"
+      }
+    },
+    {
+      "version": "Catacombs of Kourend",
+      "ids": [],
+      "drops": {
+        "Ancient shard": "1/166",
+        "Dark totem base": "1/250",
+        "Dark totem middle": "1/250",
+        "Dark totem top": "1/250"
+      }
+    }
+  ],
+  "Terror dog": [
+    {
+      "version": "Level 100",
+      "ids": [
+        6474
+      ],
+      "drops": {
+        "Adamant full helm": "1/128",
+        "Adamantite ore": "3/128",
+        "Bass": "2/128",
+        "Clue scroll (hard)": "1/128",
+        "Fire rune": "1/128",
+        "Granite helm": "1/128",
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Law rune": "3/128",
+        "Mithril axe": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Mithril spear": "2/128",
+        "Nature rune": "5/128",
+        "Rune dagger": "1/128",
+        "Steel battleaxe": "3/128",
+        "Steel platelegs": "4/128",
+        "Water rune": "8/128"
+      }
+    },
+    {
+      "version": "Level 110",
+      "ids": [
+        6473
+      ],
+      "drops": {
+        "Adamant full helm": "1/128",
+        "Adamantite ore": "3/128",
+        "Bass": "2/128",
+        "Clue scroll (hard)": "1/128",
+        "Curved bone": "1/5012.5",
+        "Fire rune": "1/128",
+        "Granite helm": "1/128",
+        "Grimy avantoe": "1/182",
+        "Grimy cadantine": "1/273.1",
+        "Grimy dwarf weed": "1/364.1",
+        "Grimy harralander": "1/78",
+        "Grimy irit leaf": "1/136.5",
+        "Grimy kwuarm": "1/218.5",
+        "Grimy lantadyme": "1/364.1",
+        "Grimy ranarr weed": "1/99.3",
+        "Grimy tarromin": "1/60.7",
+        "Law rune": "3/128",
+        "Long bone": "1/400",
+        "Mithril axe": "3/128",
+        "Mithril kiteshield": "1/128",
+        "Mithril spear": "2/128",
+        "Nature rune": "5/128",
+        "Rune dagger": "1/128",
+        "Steel battleaxe": "3/128",
+        "Steel platelegs": "4/128",
+        "Water rune": "8/128"
+      }
+    }
+  ],
+  "Tortoise": [
+    {
+      "version": "No riders",
+      "ids": [
+        6075
+      ],
+      "drops": {
+        "Asgarnian seed": "1/241",
+        "Barley seed": "1/181",
+        "Cabbage": "20/128",
+        "Cabbage seed": [
+          "10/128",
+          "1/114"
+        ],
+        "Earth rune": "5/128",
+        "Grimy avantoe": "1/273.1",
+        "Grimy cadantine": "1/409.6",
+        "Grimy dwarf weed": "1/546.1",
+        "Grimy guam leaf": "1/51.2",
+        "Grimy harralander": "1/117",
+        "Grimy irit leaf": "1/204.8",
+        "Grimy kwuarm": "1/327.7",
+        "Grimy lantadyme": "1/546.1",
+        "Grimy marrentill": "1/68.3",
+        "Grimy ranarr weed": "1/148.9",
+        "Grimy tarromin": "1/91",
+        "Hammerstone seed": "1/182",
+        "Jute seed": "1/243",
+        "Krandorian seed": "1/730",
+        "Limpwurt seed": "1/1716",
+        "Mahogany logs": "2/128",
+        "Marigold seed": "1/433",
+        "Nasturtium seed": "1/655",
+        "Nature rune": "10/128",
+        "Onion seed": "1/76",
+        "Pineapple": "10/128",
+        "Potato seed": "1/57",
+        "Rosemary seed": "1/1013",
+        "Snape grass seed": "1/2627",
+        "Steel arrow": "20/128",
+        "Strawberry seed": "1/913",
+        "Swamp toad": "20/128",
+        "Sweetcorn seed": "1/456",
+        "Teak logs": [
+          "2/128",
+          "1/128"
+        ],
+        "Tomato seed": "1/228",
+        "Tortoise shell": "10/128",
+        "Watermelon seed": "1/1910",
+        "Wildblood seed": "1/1434",
+        "Woad seed": "1/1370",
+        "Worm batta": "8/128",
+        "Yanillian seed": "1/365"
+      }
+    },
+    {
+      "version": "With riders",
+      "ids": [
+        6076
+      ],
+      "drops": {
+        "Asgarnian seed": "1/281",
+        "Barley seed": "1/211",
+        "Blurberry special": "1/128",
+        "Cabbage": "20/128",
+        "Cabbage seed": [
+          "10/128",
+          "1/133"
+        ],
+        "Cadavaberry seed": "1/600",
+        "Dwellberry seed": "1/841",
+        "Earth rune": "10/128",
+        "Grimy avantoe": "1/273.1",
+        "Grimy cadantine": "1/409.6",
+        "Grimy dwarf weed": "1/546.1",
+        "Grimy guam leaf": "1/51.2",
+        "Grimy harralander": "1/117",
+        "Grimy irit leaf": "1/204.8",
+        "Grimy kwuarm": "1/327.7",
+        "Grimy lantadyme": "1/546.1",
+        "Grimy marrentill": "1/68.3",
+        "Grimy ranarr weed": "1/148.9",
+        "Grimy tarromin": "1/91",
+        "Hammerstone seed": "1/212",
+        "Jangerberry seed": "1/2102",
+        "Jute seed": "1/283",
+        "Krandorian seed": "1/850",
+        "Limpwurt seed": "1/1016",
+        "Mahogany logs": "2/128",
+        "Marigold seed": "1/256",
+        "Mithril arrow": "20/128",
+        "Nasturtium seed": "1/387",
+        "Nature rune": "10/128",
+        "Onion seed": "1/88",
+        "Perfect shell": "2/128",
+        "Pineapple": "10/128",
+        "Pink boots": "1/128",
+        "Pink robe bottoms": "1/128",
+        "Pink robe top": "1/128",
+        "Poison ivy seed": "1/15293",
+        "Potato seed": "1/66",
+        "Redberry seed": "1/420",
+        "Rosemary seed": "1/599",
+        "Snape grass seed": "1/3059",
+        "Steel arrow": "10/128",
+        "Strawberry seed": "1/1064",
+        "Swamp toad": "5/128",
+        "Sweetcorn seed": "1/532",
+        "Teak logs": [
+          "2/128",
+          "1/128"
+        ],
+        "Toad crunchies": "10/128",
+        "Tomato seed": "1/266",
+        "Tortoise shell": "8/128",
+        "Watermelon seed": "1/2224",
+        "Whiteberry seed": "1/5800",
+        "Wildblood seed": "1/1671",
+        "Woad seed": "1/811",
+        "Worm batta": "4/128",
+        "Yanillian seed": "1/425"
+      }
+    }
+  ],
+  "Tower Archer": [
+    {
+      "version": "North",
+      "ids": [
+        6065
+      ],
+      "drops": {
+        "Iron arrow": "~14/100"
+      }
+    },
+    {
+      "version": "East",
+      "ids": [
+        6066
+      ],
+      "drops": {
+        "Steel arrow": "~12/100"
+      }
+    },
+    {
+      "version": "South",
+      "ids": [
+        6067
+      ],
+      "drops": {
+        "Mithril arrow": "~10/100"
+      }
+    },
+    {
+      "version": "West",
+      "ids": [
+        6068
+      ],
+      "drops": {
+        "Adamant arrow": "~8/100"
+      }
+    }
+  ],
+  "TzHaar-Ket": [
+    {
+      "version": "Level 149",
+      "ids": [
+        2173,
+        2174,
+        2175,
+        2176,
+        2177,
+        2178,
+        2179,
+        2187
+      ],
+      "drops": {
+        "Obsidian cape": "1/512",
+        "Tokkul": "160/512",
+        "Toktz-ket-xil": "1/512",
+        "Tzhaar-ket-om": "1/512",
+        "Uncut diamond": "1/512",
+        "Uncut emerald": "8/512",
+        "Uncut ruby": "4/512",
+        "Uncut sapphire": "16/512"
+      }
+    },
+    {
+      "version": "Level 221",
+      "ids": [
+        7679
+      ],
+      "drops": {
+        "Obsidian cape": "1/512",
+        "Obsidian helmet": "1/2000",
+        "Obsidian platebody": "1/2000",
+        "Obsidian platelegs": "1/2000",
+        "Onyx bolt tips": "10/512",
+        "Tokkul": "192/512",
+        "Toktz-ket-xil": "1/512",
+        "Tzhaar-ket-om": "1/512",
+        "Uncut diamond": "3/512",
+        "Uncut emerald": "8/512",
+        "Uncut ruby": "6/512",
+        "Uncut sapphire": "16/512"
+      }
+    }
+  ],
+  "Vitreous Jelly": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Chaos rune": "3 × 5/128",
+        "Clue scroll (hard)": "10/128",
+        "Death rune": "3 × 3/128",
+        "Dust battlestaff": "1/249",
+        "Eternal gem": "1/872",
+        "Gold bar": "3 × 2/128",
+        "Imbued heart": "1/872",
+        "Mist battlestaff": "1/249",
+        "Mithril boots": "3 × 1/128",
+        "Mithril kiteshield": "3 × 2/128",
+        "Rune full helm": "3 × 1/128",
+        "Steel 2h sword": "3 × 7/128",
+        "Steel axe": "3 × 3/128",
+        "Steel battleaxe": "3 × 11/128",
+        "Thread": "3 × 1/128"
+      }
+    },
+    {
+      "version": "Wilderness Slayer Cave superior",
+      "ids": [],
+      "drops": {
+        "Slayer's enchantment": "1/168"
+      }
+    }
+  ],
+  "White Knight": [
+    {
+      "version": "Level 36",
+      "ids": [
+        1798,
+        8149,
+        11892,
+        11948
+      ],
+      "drops": {
+        "Adamant arrow": "1/128",
+        "Blood rune": "1/128",
+        "Body rune": "3/128",
+        "Chaos rune": "3/128",
+        "Grimy avantoe": "1/546.1",
+        "Grimy cadantine": "1/819.2",
+        "Grimy dwarf weed": "1/1092.3",
+        "Grimy guam leaf": "1/102.4",
+        "Grimy harralander": "1/234.1",
+        "Grimy irit leaf": "1/409.6",
+        "Grimy kwuarm": "1/655.4",
+        "Grimy lantadyme": "1/1092.3",
+        "Grimy marrentill": "1/136.5",
+        "Grimy ranarr weed": "1/297.9",
+        "Grimy tarromin": "1/182",
+        "Half an apple pie": "1/128",
+        "Iron bar": [
+          "6/128",
+          "2/128"
+        ],
+        "Iron longsword": "2/128",
+        "Iron ore": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "11/128",
+        "Mithril arrow": "2/128",
+        "Nature rune": "4/128",
+        "Pot of flour": "1/128",
+        "Snape grass seed": "1/1075",
+        "Steel med helm": "1/128",
+        "Steel sword": "1/128",
+        "Strawberry seed": "1/373",
+        "Sweetcorn seed": "1/186",
+        "Tomato seed": "1/93",
+        "Water rune": "3/128",
+        "Watermelon seed": "1/781"
+      }
+    },
+    {
+      "version": "Level 38",
+      "ids": [
+        1799,
+        11949
+      ],
+      "drops": {
+        "Adamant arrow": "3/128",
+        "Blood rune": "1/128",
+        "Body rune": "3/128",
+        "Chaos rune": "3/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Half an apple pie": "1/128",
+        "Iron bar": [
+          "8/128",
+          "2/128"
+        ],
+        "Iron longsword": "2/128",
+        "Iron ore": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "8/128",
+        "Mithril arrow": "5/128",
+        "Nature rune": "4/128",
+        "Pot of flour": "1/128",
+        "Snape grass seed": "1/896",
+        "Steel med helm": "2/128",
+        "Steel sword": "1/128",
+        "Strawberry seed": "1/311",
+        "Sweetcorn seed": "1/155",
+        "Tomato seed": "1/77",
+        "Water rune": "3/128",
+        "Watermelon seed": "1/651"
+      }
+    },
+    {
+      "version": "Level 39",
+      "ids": [
+        1800,
+        11950
+      ],
+      "drops": {
+        "Adamant arrow": "3/128",
+        "Blood rune": "1/128",
+        "Body rune": "3/128",
+        "Chaos rune": "3/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Half an apple pie": "1/128",
+        "Iron bar": [
+          "6/128",
+          "2/128"
+        ],
+        "Iron longsword": "2/128",
+        "Iron ore": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "8/128",
+        "Mithril arrow": "5/128",
+        "Nature rune": "4/128",
+        "Pot of flour": "1/128",
+        "Snape grass seed": "1/896",
+        "Steel med helm": "2/128",
+        "Steel sword": "2/128",
+        "Strawberry seed": "1/311",
+        "Sweetcorn seed": "1/155",
+        "Tomato seed": "1/77",
+        "Water rune": "3/128",
+        "Watermelon seed": "1/651"
+      }
+    },
+    {
+      "version": "Level 42",
+      "ids": [
+        1829,
+        11951
+      ],
+      "drops": {
+        "Adamant arrow": "3/128",
+        "Blood rune": "1/128",
+        "Body rune": "3/128",
+        "Chaos rune": "3/128",
+        "Grimy avantoe": "1/390.1",
+        "Grimy cadantine": "1/585.1",
+        "Grimy dwarf weed": "1/780.2",
+        "Grimy guam leaf": "1/73.1",
+        "Grimy harralander": "1/167.2",
+        "Grimy irit leaf": "1/292.6",
+        "Grimy kwuarm": "1/468.1",
+        "Grimy lantadyme": "1/780.2",
+        "Grimy marrentill": "1/97.5",
+        "Grimy ranarr weed": "1/212.8",
+        "Grimy tarromin": "1/130",
+        "Half an apple pie": "1/128",
+        "Iron bar": [
+          "5/128",
+          "2/128"
+        ],
+        "Iron longsword": "2/128",
+        "Iron ore": "1/128",
+        "Law rune": "1/128",
+        "Mind rune": "3/128",
+        "Mithril arrow": "5/128",
+        "Nature rune": "4/128",
+        "Pot of flour": "1/128",
+        "Snape grass seed": "1/576",
+        "Steel med helm": "2/128",
+        "Steel sword": "2/128",
+        "Strawberry seed": "1/200",
+        "Sweetcorn seed": "1/100",
+        "Tomato seed": "1/50",
+        "Water rune": "3/128",
+        "Watermelon seed": "1/418"
+      }
+    }
+  ],
+  "Yama": [
+    {
+      "version": "",
+      "ids": [],
+      "drops": {
+        "Aether catalyst": "7/95.11",
+        "Barrel of demonic tallow (full)": "5/95.11",
+        "Battlestaff": "4/95.11",
+        "Blood rune": "3/95.11",
+        "Chasm teleport scroll": "4/95.11",
+        "Diabolic worms": "7/95.11",
+        "Diamond": "3/95.11",
+        "Dragon platelegs": "2/95.11",
+        "Dragon plateskirt": "2/95.11",
+        "Emerald": "3/95.11",
+        "Fire rune": "1/95.11",
+        "Law rune": "3/95.11",
+        "Oathplate chest": "1/600",
+        "Oathplate helm": "1/600",
+        "Oathplate legs": "1/600",
+        "Onyx bolt tips": "1/95.11",
+        "Pineapple pizza": "7.5/95.11",
+        "Prayer potion(3)": "7.5/95.11",
+        "Ruby": "3/95.11",
+        "Rune chainbody": "5/95.11",
+        "Rune platebody": "3/95.11",
+        "Smoke rune": "2/95.11",
+        "Soul rune": "2/95.11",
+        "Soulflame horn": "2/600",
+        "Super combat potion(1)": "7.5/95.11",
+        "Super restore mix(2)": "7.5/95.11",
+        "Wild pie": "7.5/95.11",
+        "Wrath rune": "1/95.11",
+        "Yami": "1/2500",
+        "Zamorak mix(2)": "7.5/95.11"
+      }
+    },
+    {
+      "version": "Contract",
+      "ids": [],
+      "drops": {
+        "Yami": "1/100"
+      }
+    }
+  ],
+  "Zombie": [
+    {
+      "version": "Level 13",
+      "ids": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        34,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "drops": {
+        "Air rune": "4/128",
+        "Body rune": "5/128",
+        "Bronze longsword": "1/128",
+        "Bronze med helm": "4/128",
+        "Copper ore": "2/128",
+        "Fishing bait": "37/128",
+        "Grimy avantoe": "1/109.2",
+        "Grimy cadantine": "1/163.8",
+        "Grimy dwarf weed": "1/218.5",
+        "Grimy irit leaf": "1/81.9",
+        "Grimy kwuarm": "1/131.1",
+        "Grimy lantadyme": "1/218.5",
+        "Grimy ranarr weed": "1/59.6",
+        "Iron arrow": [
+          "7/128",
+          "4/128"
+        ],
+        "Iron axe": "1/128",
+        "Mind rune": "5/128",
+        "Nature rune": "1/128",
+        "Steel arrow": "2/128",
+        "Zombie champion scroll": "1/5000"
+      }
+    },
+    {
+      "version": "Level 18",
+      "ids": [
+        42,
+        43,
+        44
+      ],
+      "drops": {
+        "Zombie champion scroll": "1/5000"
+      }
+    },
+    {
+      "version": "Level 24",
+      "ids": [
+        49,
+        50,
+        51,
+        52,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "drops": {
+        "Air rune": "3/128",
+        "Body rune": "2/128",
+        "Bronze kiteshield": "1/128",
+        "Chaos rune": "1/128",
+        "Cosmic rune": "1/128",
+        "Eye of newt": "1/128",
+        "Fire rune": "1/128",
+        "Fishing bait": "26/128",
+        "Grimy avantoe": "1/91",
+        "Grimy cadantine": "1/136.5",
+        "Grimy dwarf weed": "1/182",
+        "Grimy irit leaf": "1/68.3",
+        "Grimy kwuarm": "1/109.2",
+        "Grimy lantadyme": "1/182",
+        "Iron dagger": "2/128",
+        "Iron mace": "3/128",
+        "Mithril arrow": "3/128",
+        "Tin ore": "1/128",
+        "Tinderbox": "2/128",
+        "Zombie champion scroll": "1/5000"
+      }
+    }
+  ],
+  "Zombie (Tarn's Lair)": [
+    {
+      "version": "Low level",
+      "ids": [
+        6449,
+        6450,
+        6451,
+        6452,
+        6453
+      ],
+      "drops": {
+        "Bowl of water": "5/128",
+        "Bronze 2h sword": "3/128",
+        "Bronze battleaxe": "5/128",
+        "Chaos rune": "2/128",
+        "Earth orb": "1/128",
+        "Earth rune": "2/128",
+        "Empty plant pot": "3/128",
+        "Fire rune": "3/128",
+        "Fishing potion(1)": "5/128",
+        "Gold ore": "2/128",
+        "Grimy avantoe": "1/910.2",
+        "Grimy cadantine": "1/1365.3",
+        "Grimy dwarf weed": "1/1820.4",
+        "Grimy guam leaf": "1/170.7",
+        "Grimy harralander": "1/390.1",
+        "Grimy irit leaf": "1/682.7",
+        "Grimy kwuarm": "1/1092.3",
+        "Grimy lantadyme": "1/1820.4",
+        "Grimy marrentill": "1/227.6",
+        "Grimy ranarr weed": "1/496.5",
+        "Grimy tarromin": "1/303.4",
+        "Iron ore": "3/128",
+        "Iron warhammer": "2/128",
+        "Law rune": "3/128",
+        "Mithril sword": "1/128",
+        "Mud rune": "5/128",
+        "Oak plank": "2/128",
+        "Pot lid": "5/128",
+        "Pot of flour": "5/128",
+        "Staff of air": "3/128",
+        "Steel arrow": "3/128",
+        "Steel cannonball": "3/128",
+        "Steel knife": "5/128",
+        "Steel mace": "2/128",
+        "Steel nails": "5/128",
+        "Steel platelegs": "8/128",
+        "Steel sq shield": "1/128",
+        "Tile": "2/128",
+        "Unholy mould": "2/128",
+        "Water rune": "5/128",
+        "Zombie champion scroll": "1/5000"
+      }
+    },
+    {
+      "version": "Medium level",
+      "ids": [
+        6454,
+        6455,
+        6456,
+        6457,
+        6458,
+        6459
+      ],
+      "drops": {
+        "Adamant plateskirt": "1/128",
+        "Adamant scimitar": "2/128",
+        "Bronze thrownaxe": "3/128",
+        "Cup of tea": "5/128",
+        "Death rune": "3/128",
+        "Fire orb": "3/128",
+        "Garlic": "1/128",
+        "Gold necklace": "3/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Holy mould": "3/128",
+        "Knife": "10/128",
+        "Leather boots": "2/128",
+        "Limestone brick": "3/128",
+        "Magic logs": "2/128",
+        "Mithril bar": "2/128",
+        "Mithril dagger": "2/128",
+        "Mithril full helm": "1/128",
+        "Mithril kiteshield": "1/128",
+        "Pure essence": "5/128",
+        "Ranging potion(3)": "5/128",
+        "Ring of dueling(3)": "2/128",
+        "Rune nails": "5/128",
+        "Rune warhammer": "1/128",
+        "Steel arrow": "3/128",
+        "Steel dart": "3/128",
+        "Steel longsword": "2/128",
+        "Steel spear(p++)": "1/128",
+        "Steel warhammer": "5/128",
+        "Tinderbox": "2/128",
+        "Willow shortbow": "3/128",
+        "Zombie champion scroll": "1/5000"
+      }
+    },
+    {
+      "version": "High level",
+      "ids": [
+        6460,
+        6461,
+        6462,
+        6463,
+        6464,
+        6465,
+        6466
+      ],
+      "drops": {
+        "Adamant arrow(p+)": "3/128",
+        "Adamant bolts": "1/128",
+        "Adamant spear": "5/128",
+        "Adamant sword": "1/128",
+        "Adamantite bar": "1/128",
+        "Black axe": "1/128",
+        "Black chainbody": "1/128",
+        "Black nails": "5/128",
+        "Black sq shield": "1/128",
+        "Bronze battleaxe": "3/128",
+        "Bronze chainbody": "1/128",
+        "Bronze javelin": "3/128",
+        "Cosmic rune": "2/128",
+        "Dwellberries": "2/128",
+        "Fishing bait": "3/128",
+        "Grimy avantoe": "1/1365.3",
+        "Grimy cadantine": "1/2048",
+        "Grimy dwarf weed": "1/2730.7",
+        "Grimy guam leaf": "1/256",
+        "Grimy harralander": "1/585.1",
+        "Grimy irit leaf": "1/1024",
+        "Grimy kwuarm": "1/1638.4",
+        "Grimy lantadyme": "1/2730.7",
+        "Grimy marrentill": "1/341.3",
+        "Grimy ranarr weed": "1/744.7",
+        "Grimy tarromin": "1/455.1",
+        "Hard leather": "5/128",
+        "Lava rune": "2/128",
+        "Law rune": "2/128",
+        "Leather gloves": "2/128",
+        "Mind rune": "2/128",
+        "Mist rune": "2/128",
+        "Mithril 2h sword": "3/128",
+        "Mithril pickaxe": "3/128",
+        "Nature rune": "3/128",
+        "Pestle and mortar": "2/128",
+        "Pot of cream": "1/128",
+        "Rune battleaxe": "1/128",
+        "Steel chainbody": "2/128",
+        "Steel warhammer": "5/128",
+        "White berries": "2/128",
+        "Zombie champion scroll": "1/5000"
+      }
+    }
+  ],
+  "Zombie pirate": [
+    {
+      "version": "Diary",
+      "ids": [],
+      "drops": {
+        "Adamant platebody": "6/378",
+        "Adamant seeds": "8/378",
+        "Battlestaff": "8/378",
+        "Blighted ancient ice sack": "12/378",
+        "Blighted anglerfish": "12/378",
+        "Blighted karambwan": "12/378",
+        "Blighted manta ray": "12/378",
+        "Blighted super restore(4)": "12/378",
+        "Blood rune": "4/378",
+        "Chaos rune": "4/378",
+        "Death rune": "4/378",
+        "Dragon dagger": "1/378",
+        "Dragon longsword": "1/378",
+        "Dragon scimitar": "1/378",
+        "Gold ore": "12/378",
+        "Larran's key": "1/1109",
+        "Mind rune": "4/378",
+        "Rune battleaxe": "6/378",
+        "Rune longsword": "6/378",
+        "Rune mace": "6/378",
+        "Rune med helm": "6/378",
+        "Rune sword": "6/378",
+        "Rune warhammer": "6/378",
+        "Slayer's enchantment": "1/296",
+        "Steel cannonball": "12/378",
+        "Teleport anchoring scroll": "~1/20000",
+        "Zombie champion scroll": "1/5000",
+        "Zombie pirate key": "16/378"
+      }
+    },
+    {
+      "version": "Regular",
+      "ids": [],
+      "drops": {
+        "Adamant platebody": "6/1260",
+        "Adamant seeds": "8/1260",
+        "Battlestaff": "8/1260",
+        "Blighted ancient ice sack": "12/1260",
+        "Blighted anglerfish": "12/1260",
+        "Blighted karambwan": "12/1260",
+        "Blighted manta ray": "12/1260",
+        "Blighted super restore(4)": "12/1260",
+        "Blood rune": "4/1260",
+        "Chaos rune": "4/1260",
+        "Death rune": "4/1260",
+        "Dragon dagger": "1/1260",
+        "Dragon longsword": "1/1260",
+        "Dragon scimitar": "1/1260",
+        "Gold ore": "12/1260",
+        "Larran's key": "1/1109",
+        "Mind rune": "4/1260",
+        "Rune battleaxe": "6/1260",
+        "Rune longsword": "6/1260",
+        "Rune mace": "6/1260",
+        "Rune med helm": "6/1260",
+        "Rune sword": "6/1260",
+        "Rune warhammer": "6/1260",
+        "Slayer's enchantment": "1/296",
+        "Steel cannonball": "12/1260",
+        "Teleport anchoring scroll": "~3/200000",
+        "Zombie champion scroll": "1/5000",
+        "Zombie pirate key": "16/1260"
+      }
+    }
+  ],
+  "Zygomite": [
+    {
+      "version": "Level 74",
+      "ids": [
+        537
+      ],
+      "drops": {
+        "Brimstone key": "1/188",
+        "Clay": "7/143",
+        "Earth rune": "5/143",
+        "Fungicide": "8/429",
+        "Grimy harralander": "1/143",
+        "Grimy ranarr weed": "6/143",
+        "Grimy tarromin": "2/143",
+        "Mithril full helm": "1/143",
+        "Mort myre fungus": "8/429",
+        "Mushroom spore": "8/429",
+        "Nature rune": "30/143",
+        "Potato seed": "1/143",
+        "Steel 2h sword": "3/143",
+        "Steel axe": "3/143",
+        "Strawberry seed": "11/143",
+        "Supercompost": "6/143"
+      }
+    },
+    {
+      "version": "Level 86",
+      "ids": [
+        1024
+      ],
+      "drops": {
+        "Brimstone key": "1/111",
+        "Clay": "7/146",
+        "Earth rune": "5/146",
+        "Fungicide": "4/146",
+        "Grimy harralander": "1/146",
+        "Grimy snapdragon": "6/146",
+        "Grimy tarromin": "2/146",
+        "Mort myre fungus": "4/146",
+        "Mushroom spore": "4/146",
+        "Nature rune": "3/146",
+        "Potato seed": "1/146",
+        "Rune full helm": "1/146",
+        "Steel 2h sword": "6/146",
+        "Steel axe": "3/146",
+        "Strawberry seed": "11/146",
+        "Supercompost": "6/146"
+      }
+    }
+  ]
+}

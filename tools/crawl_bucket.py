@@ -116,7 +116,7 @@ BUCKETS = {
     "drop_table_sources": ["page_name", "page_name_sub", "table_name", "quantity", "rolls", "rarity", "drop_level", "drop_type"],
     # Pages with a monster or NPC infobox. Drop lines on any other page are
     # chests, stalls, birdhouses and the like, which never arrive as NPC loot.
-    "infobox_monster": ["page_name"],
+    "infobox_monster": ["page_name", "page_name_sub", "version_anchor", "id", "combat_level"],
     "infobox_npc": ["page_name"],
 }
 CACHE_NAMES = list(BUCKETS) + [ITEM_NAMES_CACHE]
@@ -136,9 +136,9 @@ def fetch_item_names():
 
 def fetch_one(name):
     if name == ITEM_NAMES_CACHE:
-        data = fetch_item_names()
+        data = {"fields": [], "rows": fetch_item_names()}
     else:
-        data = fetch_bucket(name, BUCKETS[name])
+        data = {"fields": BUCKETS[name], "rows": fetch_bucket(name, BUCKETS[name])}
     with open(cache_path(name), "w", encoding="utf-8") as fh:
         json.dump(data, fh)
 
@@ -162,13 +162,27 @@ def ensure_cache(max_age_hours):
         if max_age_hours is not None and age > max_age_hours:
             print("cache is %.1f h old: %s" % (age, name), file=sys.stderr)
             stale.append(name)
+        elif name in BUCKETS and cached_fields(path) != BUCKETS[name]:
+            print("cache has different fields: %s" % name, file=sys.stderr)
+            stale.append(name)
     if stale:
         fetch_all(stale)
 
 
+def cached_fields(path):
+    with open(path, encoding="utf-8") as fh:
+        data = json.load(fh)
+    return data.get("fields") if is_wrapped_cache(data) else None
+
+
+def is_wrapped_cache(data):
+    return isinstance(data, dict) and "fields" in data and "rows" in data
+
+
 def load_cache(name):
     with open(cache_path(name), encoding="utf-8") as fh:
-        return json.load(fh)
+        data = json.load(fh)
+    return data["rows"] if is_wrapped_cache(data) else data
 
 
 # ---------------------------------------------------------------- parsing
@@ -379,6 +393,90 @@ def build_rdt(rows, source_rows, item_names, npc_pages):
     return dict(table)
 
 
+# ---------------------------------------------------------------- npc versions
+
+VERSIONS_FILE = "npc_versions.json"
+LEVEL_NUMBERS = re.compile(r"\d+")
+
+
+def primary_rate(info):
+    """Rate string for one monster row under the primary-file rules, or None."""
+    parsed = parse_rarity(info.get("Rarity"))
+    if not parsed:
+        return None
+    approx, num, den = parsed
+    if float(den) < MIN_DENOMINATOR:
+        return None
+    approx = approx or bool(info.get("Approx"))
+    return format_rate(num, den, info.get("Rolls") or 1, approx, PRIMARY_TIMES)
+
+
+def build_versions(rows, infobox_rows, item_names, npc_pages):
+    """{monster: [{"version", "ids", "drops"}]} for monsters whose wiki page
+    has more than one drop table.
+
+    A drop table version is tied to the infobox versions that carry NPC ids,
+    first by matching anchor name, otherwise by the combat levels the drop
+    table lists ("Drop level") against each infobox version's combat level.
+    An id that would match more than one drop table cannot decide between
+    them and is left out; the plugin then shows every version's rate, labelled.
+    """
+    infobox = defaultdict(list)
+    for row in infobox_rows:
+        ids = [int(i) for i in (row.get("id") or []) if str(i).isdigit()]
+        if ids:
+            infobox[row["page_name"]].append({
+                "sub": row.get("page_name_sub") or row["page_name"],
+                "ids": ids, "level": row.get("combat_level")})
+
+    tables = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))   # page -> sub -> item -> rates
+    levels = defaultdict(lambda: defaultdict(set))                          # page -> sub -> {combat levels}
+    for row in rows:
+        page = row["page_name"]
+        if page not in npc_pages or page_excluded(page) or is_table_row(row):
+            continue
+        info = json.loads(row["drop_json"])
+        if info.get("Drop type") != "combat":
+            continue
+        sub = row.get("page_name_sub") or page
+        levels[page][sub].update(int(x) for x in LEVEL_NUMBERS.findall(str(info.get("Drop level") or "")))
+        item = item_names.resolve(row["item_name"])
+        if item in EXCLUDED_ITEMS:
+            continue
+        rate = primary_rate(info)
+        if rate and rate not in tables[page][sub][item]:
+            tables[page][sub][item].append(rate)
+
+    out = {}
+    for page, subs in tables.items():
+        if len(subs) < 2:
+            continue
+        id_hits = defaultdict(set)
+        matches = {}
+        for sub in subs:
+            found = [v for v in infobox.get(page, []) if v["sub"] == sub]
+            if not found:
+                found = [v for v in infobox.get(page, []) if v["level"] in levels[page][sub]]
+            matches[sub] = found
+            for v in found:
+                for npc_id in v["ids"]:
+                    id_hits[npc_id].add(sub)
+        versions = []
+        for sub, items in subs.items():
+            ids = sorted({i for v in matches[sub] for i in v["ids"] if len(id_hits[i]) == 1})
+            # Versions without a deciding id are kept so the plugin can still
+            # label every rate when it has to show them all.
+            versions.append(OrderedDict([
+                ("version", sub.split("#", 1)[1] if "#" in sub else ""),
+                ("ids", ids),
+                ("drops", OrderedDict((item, rates[0] if len(rates) == 1 else rates)
+                                      for item, rates in sorted(items.items()))),
+            ]))
+        if versions:
+            out[source_key(page)] = versions
+    return OrderedDict(sorted(out.items()))
+
+
 # ---------------------------------------------------------------- validation
 
 # Mirrors CHANCE_PATTERN in DropRatePlugin.parseChance, plus its rejection of
@@ -391,6 +489,9 @@ def validate(tables):
     bad = []
     for name, table in tables.items():
         for outer, inner in table.items():
+            if isinstance(inner, list):                      # npc_versions.json
+                inner = {"%s / %s" % (v["version"], item): rate
+                         for v in inner for item, rate in v["drops"].items()}
             for item, value in inner.items():
                 for rate in (value if isinstance(value, list) else [value]):
                     if "{" in rate or not PLUGIN_RATE.match(rate):
@@ -401,8 +502,9 @@ def validate(tables):
 # ---------------------------------------------------------------- output
 
 def dump_json(obj, path):
-    """Match the shipped files: 2-space indent, sorted keys, CRLF, no final newline."""
-    text = json.dumps(obj, indent=2, ensure_ascii=False, sort_keys=True)
+    """Match the shipped files: 2-space indent, sorted keys, CRLF, no final newline.
+    Already-ordered structures (OrderedDict) keep their order."""
+    text = json.dumps(obj, indent=2, ensure_ascii=False, sort_keys=not isinstance(obj, OrderedDict))
     with open(path, "w", encoding="utf-8", newline="") as fh:
         fh.write(text.replace("\n", "\r\n"))
 
@@ -418,10 +520,20 @@ def generate(rows_by_bucket, item_names):
     return {
         PRIMARY_FILE: build_primary(rows_by_bucket["dropsline"], item_names, npc_pages),
         RDT_FILE: build_rdt(rows_by_bucket["dropsline"], rows_by_bucket["drop_table_sources"], item_names, npc_pages),
+        VERSIONS_FILE: build_versions(rows_by_bucket["dropsline"], rows_by_bucket["infobox_monster"], item_names, npc_pages),
     }
 
 
 # ---------------------------------------------------------------- diff
+
+def flatten_versions(table):
+    """npc_versions.json -> {monster: {"version [ids] / item": rate}} so it diffs like the others."""
+    if not table or not isinstance(next(iter(table.values())), list):
+        return table
+    return {monster: {"%s [%s] / %s" % (v["version"], ",".join(map(str, v["ids"])), item): rate
+                      for v in versions for item, rate in v["drops"].items()}
+            for monster, versions in table.items()}
+
 
 def diff_tables(old, new):
     """Compare two {outer: {inner: value}} maps."""
@@ -587,7 +699,7 @@ def main(argv=None):
     for name, table in generated.items():
         path = os.path.join(RESOURCES, name)
         committed = load_json(path) if os.path.exists(path) else {}
-        reports[name] = diff_tables(committed, table)
+        reports[name] = diff_tables(flatten_versions(committed), flatten_versions(table))
     for name, r in reports.items():
         print_report(name, r, args.limit)
     if args.report:
