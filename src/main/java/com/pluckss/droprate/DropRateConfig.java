@@ -165,6 +165,22 @@ public interface DropRateConfig extends Config
 		return 5000;
 	}
 
+	@ConfigItem(
+		keyName = "adaptChatboxColors",
+		name = "Fit standard chatbox",
+		description = "<html>The standard chatbox has a light parchment background, which bright<br>"
+			+ "colors such as the default orange are hard to read on.<br>"
+			+ "While it is active, darken each color just enough to stay legible;<br>"
+			+ "the transparent chatbox keeps the colors below exactly as picked.<br>"
+			+ "Also applies to the neutral white style. Turn off to never adjust.</html>",
+		position = 8,
+		section = colorsSection
+	)
+	default boolean adaptChatboxColors()
+	{
+		return true;
+	}
+
 	@Alpha
 	@ConfigItem(
 		keyName = "commonTierColor",

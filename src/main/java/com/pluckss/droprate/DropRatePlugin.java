@@ -92,6 +92,9 @@ public class DropRatePlugin extends Plugin
 	private static final Color DEFAULT_RED = new Color(178, 34, 34);
 	private static final Color DEFAULT_PURPLE = new Color(156, 39, 176);
 	private static final Color WHITE = new Color(255, 255, 255);
+	// Relative luminance a drop message must be at or below to clear 3:1 contrast on
+	// the standard chatbox's parchment background. See darkenForOpaqueChatbox.
+	private static final double OPAQUE_CHATBOX_MAX_LUMINANCE = 0.12d;
 	private static final DecimalFormat EFFECTIVE_RATE_FORMAT = createEffectiveRateFormat();
 	private static final DecimalFormat PERCENTAGE_FORMAT = createPercentageFormat();
 
@@ -626,7 +629,7 @@ public class DropRatePlugin extends Plugin
 				}
 			}
 
-			Color color = getColor(effectiveRate);
+			Color color = getChatColor(effectiveRate);
 			String message = colorTag(color) + stack.getQuantity() + "x " + itemName + " (" + rateDisplay + ")</col>";
 			String messageKey = buildMessageKey(npcName, stack, resolvedDrop.formattedRate);
 
@@ -1604,6 +1607,100 @@ public class DropRatePlugin extends Plugin
 
 		Color c = config.commonTierColor();
 		return c != null ? c : DEFAULT_GREEN;
+	}
+
+	/**
+	 * The tier colour to use for a chat message, adjusted for the chatbox the player
+	 * actually has open. Kept separate from {@link #getColor(double)} because the
+	 * Collection Log tooltip draws on RuneLite's own dark tooltip background and must
+	 * keep the picked colours untouched.
+	 */
+	private Color getChatColor(double rate)
+	{
+		Color color = getColor(rate);
+		if (!config.adaptChatboxColors() || isTransparentChatbox())
+		{
+			return color;
+		}
+
+		return darkenForOpaqueChatbox(color);
+	}
+
+	private boolean isTransparentChatbox()
+	{
+		try
+		{
+			// Same test RuneLite's own ChatMessageManager uses: the transparency
+			// setting only takes effect in resizable mode, so fixed mode is always
+			// the opaque parchment chatbox no matter what the varbit says.
+			return client.isResized() && client.getVarbitValue(VarbitID.CHATBOX_TRANSPARENCY) != 0;
+		}
+		catch (Exception e)
+		{
+			// Treat an unreadable varbit as the standard chatbox: darkening a colour
+			// on the transparent box is still readable, the reverse is what users
+			// complained about.
+			log.debug("Unable to read the chatbox transparency varbit", e);
+			return false;
+		}
+	}
+
+	/**
+	 * Scales a colour towards black until it is dark enough to read on the standard
+	 * chatbox's parchment background, keeping its hue. The default orange (255,140,0)
+	 * sits at ~1.2:1 contrast there, which is what players reported as unreadable;
+	 * the target luminance puts every tier past 3:1. Colours that are already dark
+	 * enough (the default red and purple) come back unchanged.
+	 */
+	private static Color darkenForOpaqueChatbox(Color color)
+	{
+		if (relativeLuminance(color) <= OPAQUE_CHATBOX_MAX_LUMINANCE)
+		{
+			return color;
+		}
+
+		// Straight bisection on a single scale factor. Luminance is monotonic in the
+		// factor, so ten steps land within 0.1% — cheaper and clearer than inverting
+		// the sRGB transfer function per channel.
+		double low = 0.0d;
+		double high = 1.0d;
+		for (int i = 0; i < 10; i++)
+		{
+			double mid = (low + high) / 2.0d;
+			if (relativeLuminance(scale(color, mid)) > OPAQUE_CHATBOX_MAX_LUMINANCE)
+			{
+				high = mid;
+			}
+			else
+			{
+				low = mid;
+			}
+		}
+
+		return scale(color, low);
+	}
+
+	private static Color scale(Color color, double factor)
+	{
+		return new Color(
+			(int) Math.round(color.getRed() * factor),
+			(int) Math.round(color.getGreen() * factor),
+			(int) Math.round(color.getBlue() * factor)
+		);
+	}
+
+	/** WCAG relative luminance, used only to compare a colour against the chatbox. */
+	private static double relativeLuminance(Color color)
+	{
+		return 0.2126d * linearize(color.getRed())
+			+ 0.7152d * linearize(color.getGreen())
+			+ 0.0722d * linearize(color.getBlue());
+	}
+
+	private static double linearize(int channel)
+	{
+		double value = channel / 255.0d;
+		return value <= 0.04045d ? value / 12.92d : Math.pow((value + 0.055d) / 1.055d, 2.4d);
 	}
 
 	private String colorTag(Color color)
