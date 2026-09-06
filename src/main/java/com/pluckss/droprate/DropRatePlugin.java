@@ -843,33 +843,61 @@ public class DropRatePlugin extends Plugin
 	private ResolvedDrop resolveDrop(String npcName, String itemName, DropContext context)
 	{
 		List<String> sourceCandidates = resolveSourceCandidates(npcName, itemName, context);
+
+		// The candidate list is ordered most-specific first, and the context-resolved
+		// variants ("Araxxor Legends", "Demonic gorilla RoW") exist ONLY in the rare
+		// drop table. Returning the first candidate that matched *anything* therefore
+		// reported the RDT rate for items the monster also drops from its own table,
+		// because the variant name never has a normal entry to beat it:
+		//   Araxxor / Rune kiteshield   -> 1/14720 (RDT) instead of 8/115
+		//   Demonic gorilla / Runite bar -> 1/2560 (RDT) instead of 15/500
+		// The monster's own table is what the player actually rolled, so search every
+		// candidate for a normal match first and only fall back to the RDT when the
+		// item is genuinely rare-drop-table only.
+		DropMatch normalMatch = null;
 		for (String sourceCandidate : sourceCandidates)
 		{
-			DropMatch normalMatch = findDropMatch(sourceCandidate, itemName);
-			String rdtRate = findRdtRate(sourceCandidate, itemName);
-
-			if (normalMatch == null && rdtRate == null)
+			normalMatch = findDropMatch(sourceCandidate, itemName);
+			if (normalMatch != null)
 			{
-				continue;
+				break;
 			}
+		}
 
-			if (normalMatch == null)
+		// Resolved independently of the normal match so the "Show source hints" line
+		// quotes the RDT rate for the variant the player is actually on (RoW/Legends),
+		// not whichever candidate happened to carry the normal entry.
+		String rdtSource = null;
+		String rdtRate = null;
+		for (String sourceCandidate : sourceCandidates)
+		{
+			rdtRate = findRdtRate(sourceCandidate, itemName);
+			if (rdtRate != null)
 			{
-				Chance rdtChance = parseChance(rdtRate);
-				return new ResolvedDrop(
-					sourceCandidate,
-					rdtRate,
-					formatSingleRate(rdtRate, rdtChance),
-					getEffectiveRate(rdtChance, rdtRate)
-				);
+				rdtSource = sourceCandidate;
+				break;
 			}
+		}
 
+		if (normalMatch != null)
+		{
 			Chance chance = parseChance(normalMatch.rate);
 			return new ResolvedDrop(
 				normalMatch.npcName,
 				normalMatch.rate,
 				formatRateForMessage(normalMatch.rate, chance, normalMatch.override, rdtRate),
 				getEffectiveRate(chance, normalMatch.rate)
+			);
+		}
+
+		if (rdtRate != null)
+		{
+			Chance rdtChance = parseChance(rdtRate);
+			return new ResolvedDrop(
+				rdtSource,
+				rdtRate,
+				formatSingleRate(rdtRate, rdtChance),
+				getEffectiveRate(rdtChance, rdtRate)
 			);
 		}
 
