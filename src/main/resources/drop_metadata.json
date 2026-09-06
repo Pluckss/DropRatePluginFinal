@@ -9,15 +9,33 @@
     ]
   },
   "sourceAliases": {
+    "Clue Scroll (Beginner)": [
+      "Beginner clue"
+    ],
+    "Clue Scroll (Easy)": [
+      "Easy clue"
+    ],
+    "Clue Scroll (Elite)": [
+      "Elite clue"
+    ],
+    "Clue Scroll (Hard)": [
+      "Hard clue"
+    ],
+    "Clue Scroll (Master)": [
+      "Master clue"
+    ],
+    "Clue Scroll (Medium)": [
+      "Medium clue"
+    ],
     "Cyclops": [
       "Cyclops (Ardougne Zoo)",
       "Cyclops (Catacombs of Kourend)",
       "Cyclops (God Wars Dungeon)"
     ],
-    "Dusk": [
+    "Dawn": [
       "Grotesque Guardians"
     ],
-    "Dawn": [
+    "Dusk": [
       "Grotesque Guardians"
     ],
     "Maggot King Corpse": [

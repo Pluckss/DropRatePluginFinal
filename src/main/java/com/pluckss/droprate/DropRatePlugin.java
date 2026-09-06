@@ -65,7 +65,7 @@ import net.runelite.http.api.loottracker.LootRecordType;
 @Slf4j
 @PluginDescriptor(
 	name = "Drop Rate",
-	description = "Shows drop rates in chat when you receive loot, and as a tooltip when hovering Collection Log items",
+	description = "Shows drop rates in chat when you receive loot, and as a tooltip when hovering Collection Log or clue reward items",
 	tags = {"drop", "rate", "loot", "collection", "log", "clog", "rarity", "clue"},
 	enabledByDefault = true
 )
@@ -122,6 +122,9 @@ public class DropRatePlugin extends Plugin
 	@Inject
 	private ClogTooltipOverlay clogTooltipOverlay;
 
+	@Inject
+	private ClueRewardTooltipOverlay clueRewardTooltipOverlay;
+
 	private Map<String, Map<String, String>> primaryDrops;
 	private Map<String, Map<String, String>> invertedDrops;
 	private Map<String, Map<String, String>> rdtDrops;
@@ -137,6 +140,9 @@ public class DropRatePlugin extends Plugin
 	private Map<String, List<SourceRate>> clogSources = Collections.emptyMap();
 	private String hoveredClogItem;
 	private boolean hoveredClogItemObtained;
+	// The Collection Log and the clue reward screen each have their own on/off switch,
+	// so the renderer has to know which interface put this item under the cursor.
+	private boolean hoveredFromClueReward;
 	private long clogHoverSeenAt;
 
 	// The overlay asks for the tooltip once per rendered frame, so building it from
@@ -172,15 +178,20 @@ public class DropRatePlugin extends Plugin
 		// pages, Unsired sink rewards). Merged like minigame data so both the chat
 		// feed and the Collection Log tooltip see them.
 		mergeDropTable(primaryDrops, loadPrimaryDrops("/special_droprates.json", false));
+		// Clue rewards used to be tooltip-only, which meant opening a casket printed
+		// nothing however rare the reward was. They arrive at handleLoot as EVENT loot
+		// named "Clue Scroll (Master)" and friends, and drop_metadata's sourceAliases
+		// point those names at these "Master clue" keys, so merging them here reports
+		// caskets in chat like every other source.
+		Map<String, Map<String, String>> clueDrops = loadPrimaryDrops("/clue_droprates.json", false);
+		mergeDropTable(primaryDrops, clueDrops);
 		invertedDrops = invertDropMap(primaryDrops);
 		rdtDrops = loadOptionalDrops("/rare_drop_table.json");
 		dropMetadata = loadDropMetadata("/drop_metadata.json");
 
-		// Clue reward rates are loaded only for the Collection Log tooltip. They are
-		// deliberately NOT merged into primaryDrops, so the chat feed is unaffected.
-		Map<String, Map<String, String>> clueDrops = loadPrimaryDrops("/clue_droprates.json", false);
 		clogSources = buildClogSources(primaryDrops, clueDrops, rdtDrops);
 		overlayManager.add(clogTooltipOverlay);
+		overlayManager.add(clueRewardTooltipOverlay);
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		log.info(
@@ -211,6 +222,7 @@ public class DropRatePlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(clogTooltipOverlay);
+		overlayManager.remove(clueRewardTooltipOverlay);
 		hoveredClogItem = null;
 		clogTooltipCache.clear();
 		fillerItems = null;
@@ -299,7 +311,34 @@ public class DropRatePlugin extends Plugin
 
 		hoveredClogItem = itemName;
 		hoveredClogItemObtained = isClogItemObtained(entry);
+		hoveredFromClueReward = false;
 		clogHoverSeenAt = System.currentTimeMillis();
+	}
+
+	/**
+	 * Called by {@link ClueRewardTooltipOverlay} for the item under the cursor on the
+	 * clue reward screen. Feeds the same hover state the Collection Log uses, so both
+	 * interfaces share one tooltip renderer and one cache.
+	 */
+	void setHoveredRewardItem(int itemId)
+	{
+		String itemName = cleanName(client.getItemDefinition(itemId).getName());
+		if (itemName == null)
+		{
+			return;
+		}
+
+		hoveredClogItem = itemName;
+		// "Already unlocked" is a Collection Log idea; a casket reward is just a reward,
+		// so the hide-if-obtained option must never suppress it.
+		hoveredClogItemObtained = false;
+		hoveredFromClueReward = true;
+		clogHoverSeenAt = System.currentTimeMillis();
+	}
+
+	boolean isClueRewardTooltipEnabled()
+	{
+		return config.showClueRewardTooltip();
 	}
 
 	private boolean isClogItemObtained(MenuEntry entry)
@@ -317,7 +356,12 @@ public class DropRatePlugin extends Plugin
 	 */
 	String buildActiveClogTooltip()
 	{
-		if (!config.showClogTooltip() || hoveredClogItem == null)
+		if (hoveredClogItem == null)
+		{
+			return null;
+		}
+
+		if (!(hoveredFromClueReward ? config.showClueRewardTooltip() : config.showClogTooltip()))
 		{
 			return null;
 		}

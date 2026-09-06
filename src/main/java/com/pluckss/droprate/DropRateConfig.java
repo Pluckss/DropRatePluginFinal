@@ -44,8 +44,8 @@ public interface DropRateConfig extends Config
 	String colorsSection = "colorsSection";
 
 	@ConfigSection(
-		name = "Collection log",
-		description = "Show drop-rate sources when hovering items in the Collection Log",
+		name = "Tooltips",
+		description = "Show drop-rate sources when hovering items in the Collection Log or a clue reward",
 		position = 4,
 		closedByDefault = true
 	)
@@ -341,6 +341,18 @@ public interface DropRateConfig extends Config
 		section = clogSection
 	)
 	default boolean showClogTooltip()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "showClueRewardTooltip",
+		name = "Clue reward tooltips",
+		description = "Show the same drop-rate tooltip when you hover an item on the clue scroll reward screen",
+		position = 2,
+		section = clogSection
+	)
+	default boolean showClueRewardTooltip()
 	{
 		return true;
 	}
