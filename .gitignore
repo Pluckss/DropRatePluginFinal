@@ -15,3 +15,4 @@ nbproject/
 *.err.log
 *.out.log
 scripts/icon_preview.png
+__pycache__/
