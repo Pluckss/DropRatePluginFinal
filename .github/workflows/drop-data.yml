@@ -1,0 +1,32 @@
+name: Drop data
+
+on:
+  pull_request:
+    paths:
+      - "tools/crawl_bucket.py"
+      - "src/main/resources/droprates_clean.json"
+      - "src/main/resources/rare_drop_table.json"
+      - ".github/workflows/drop-data.yml"
+  schedule:
+    # Weekly freshness check against the live wiki (Mondays 06:00 UTC).
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Bundled data matches the wiki
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch buckets and compare with committed JSON
+        run: python tools/crawl_bucket.py check --limit 40 --report build/drop-data-diff.md
+      - name: Upload diff report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: drop-data-diff
+          path: build/drop-data-diff.md
+          if-no-files-found: ignore
