@@ -2,7 +2,7 @@
   "Barbarian Assault high gamble": {
     "Dragon chainbody": "1/16000",
     "Dragon med helm": "1/16000",
-    "Pet penance queen": "1/1000"
+    "Pet Penance Queen": "1/1000"
   },
   "Guardians of the Rift": {
     "Abyssal ashes": "1/140",
@@ -56,7 +56,7 @@
     "Pyromancer garb": "1/150",
     "Pyromancer hood": "1/150",
     "Pyromancer robe": "1/150",
-    "Tome of fire (empty)": "1/1000",
+    "Tome of Fire (empty)": "1/1000",
     "Warm gloves": "1/150"
   },
   "Reward pool (Tempoross)": {
@@ -68,9 +68,9 @@
     "Spirit flakes": "40/160",
     "Tackle box": "1/400",
     "Tiny tempor": "1/8000",
-    "Tome of water (empty)": "1/1600"
+    "Tome of Water (empty)": "1/1600"
   },
   "Spoils of war": {
-    "Lil' creator": "1/400"
+    "Lil' Creator": "1/400"
   }
 }
