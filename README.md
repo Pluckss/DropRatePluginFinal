@@ -115,3 +115,13 @@ them — they depend on contribution, invocation level, or your skill level.
 - If an item and NPC combination is not in either database, no drop-rate message is shown.
 - Messages appear in chat as `Quantity x Item (rate)`.
 - Raids are not currently supported.
+
+## Credits
+Built and maintained by Pluckss.
+
+- [@xTaig4](https://github.com/xTaig4) — rebuilt the drop data on the OSRS Wiki's structured
+  Bucket API (`tools/crawl_bucket.py`) with a CI freshness check, and added per-version drop
+  table matching by NPC id.
+
+Drop rate data comes from the [OSRS Wiki](https://oldschool.runescape.wiki/), which is
+licensed CC BY-NC-SA 3.0.
