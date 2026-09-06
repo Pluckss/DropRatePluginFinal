@@ -1,7 +1,7 @@
 # Drop Rate Plugin
 Instantly see the exact drop rate of items when monsters, bosses, or select minigames drop them, without leaving the game.
 
-Created by **Pluckss**.
+Created by **Pluckss**, with contributions from [@xTaig4](https://github.com/xTaig4).
 
 ## Behind the Scenes
 This plugin started after I accidentally disassembled my Group Ironman's only Toxic blowpipe and had to grind out a replacement.
@@ -10,12 +10,10 @@ During that grind, I kept seeing dragonstone drops and repeatedly checking the r
 
 That frustration sparked the idea: show drop rates directly in chat so the information is always there when you need it.
 
-## Example
-![Drop Rate example](assets/hero-example.png)
-
 ## Features
 - Shows a chat message when a dropped item has a known drop rate.
 - Shows a hover tooltip in the Collection Log, and on the clue scroll reward screen, listing every source that drops an item with each rate.
+- Prints a rate for clue casket rewards from Beginner to Master when you open a casket.
 - Supports standard rates like `1/128` and bundle rates like `6/378` or `12/378`.
 - Uses color-coded chat messages to quickly separate common, uncommon, and rare drops.
 - Adds a purple ultra-rare tier for especially rare drops.
@@ -31,7 +29,12 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
 - Works with drop data whether it is stored as `NPC -> item` or `item -> NPC`.
 - Supports both normal drop tables and the Rare Drop Table (RDT) with automatic dual lookup.
 - Takes Ring of Wealth and your current Slayer task into account when resolving a rate.
+- Matches the drop table to the NPC you actually killed, so an Abyssal demon in the Wilderness
+  Slayer Cave, a level 106 Cyclops or a high-level Barbarian each report their own rate.
+- Darkens the tier colors on the standard parchment chatbox so they stay readable.
 - Supports minigame reward drops from Wintertodt, Tempoross, Guardians of the Rift, Soul Wars, and Barbarian Assault high gamble.
+- Drop data is generated from the OSRS Wiki's own structured drop tables and checked against
+  the wiki weekly, so rates track the game as it changes.
 - Supports context-aware overrides for exceptions like task-based Hydra rates.
 - Includes cleaner feed options so players can reduce chat clutter.
 
@@ -44,6 +47,11 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
   Off by default. Adds a rounded percent chance to the end of the message.
 - `Show source hints`
   Adds extra context for drops that can come from more than one table, such as both normal and RDT rates.
+- `Show all table variants`
+  On by default. When a monster has several drop tables and the kill cannot be matched to one
+  of them, every table's rate is shown, labelled by version, for example
+  `1x Adamantite bar (Standard 2/128 | Wilderness Slayer Cave 2/68)`. Turn it off to show only
+  the first table's rate.
 - `Rare-only minimum rate`
   Used only in `Rare drops only` mode. Example: `700` means show `1/700` and rarer.
 - `Show kill counter`
