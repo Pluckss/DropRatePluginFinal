@@ -105,6 +105,7 @@ them — they depend on contribution, invocation level, or your skill level.
 - All data is bundled with the plugin. It makes no network requests while you play.
 - The two main data files are regenerated from the OSRS Wiki's structured drop data with `python tools/crawl_bucket.py generate`; CI checks they stay in sync with the wiki.
 - If an item exists in both the normal table and the RDT for the same NPC, and `Show source hints` is on, both rates are shown side by side.
+- Monsters with several drop tables (Abyssal demon in the Wilderness Slayer Cave, Barbarian levels, Cyclops floors) are matched by the killed NPC's id. When the id cannot tell the tables apart, every table's rate is shown, labelled by version; `Show all table variants` turns that off.
 - If an item and NPC combination is not in either database, no drop-rate message is shown.
 - Messages appear in chat as `Quantity x Item (rate)`.
 - Raids are not currently supported.

@@ -6,6 +6,7 @@ on:
       - "tools/crawl_bucket.py"
       - "src/main/resources/droprates_clean.json"
       - "src/main/resources/rare_drop_table.json"
+      - "src/main/resources/npc_versions.json"
       - ".github/workflows/drop-data.yml"
   schedule:
     # Weekly freshness check against the live wiki (Mondays 06:00 UTC).

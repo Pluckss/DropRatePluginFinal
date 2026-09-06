@@ -83,6 +83,8 @@ public class DropRatePlugin extends Plugin
 	private static final String KILL_COUNT_CONFIG_GROUP = "killcount";
 	private static final String RING_OF_WEALTH_NAME = "ring of wealth";
 	private static final int BOSSES_TASK_ID = 98;
+	// Loot that did not come from an NPC kill (minigame rewards) has no NPC id.
+	private static final int NO_NPC_ID = -1;
 	private static final Pattern CHANCE_PATTERN = Pattern.compile(
 		"(?i)(?:([\\d.,]+)\\s*[x×*]\\s*)?([\\d.,]+)\\s*/\\s*([\\d.,]+)"
 	);
@@ -126,6 +128,14 @@ public class DropRatePlugin extends Plugin
 	private Map<String, Map<String, String>> invertedDrops;
 	private Map<String, Map<String, String>> rdtDrops;
 	private DropMetadata dropMetadata = DropMetadata.empty();
+	// Items whose wiki page lists more than one rate (several drop-table
+	// versions, or several rolls on one table). primaryDrops keeps only the
+	// first; the full list lives here so the chat feed can show them all.
+	private Map<String, Map<String, List<String>>> primaryVariants = new HashMap<>();
+	// Monsters with more than one drop table on the wiki, each version with
+	// the NPC ids that identify it. Lets a kill pick the right table.
+	private Map<String, List<NpcVersion>> npcVersions = new HashMap<>();
+	private Map<Integer, NpcVersion> npcVersionsById = new HashMap<>();
 	private final Map<String, Integer> recentLootSignatures = new HashMap<>();
 	private final Map<String, Integer> recentMessageKeys = new HashMap<>();
 	// Fallback only. Counts kills seen since the plugin loaded, so it is reset by
@@ -166,7 +176,9 @@ public class DropRatePlugin extends Plugin
 		migrateLegacyConfig();
 		migrateNotificationConfig();
 
-		primaryDrops = loadPrimaryDrops("/droprates_clean.json");
+		primaryVariants = new HashMap<>();
+		primaryDrops = loadPrimaryDrops("/droprates_clean.json", true, primaryVariants);
+		loadNpcVersions("/npc_versions.json");
 		mergeDropTable(primaryDrops, loadPrimaryDrops("/minigame_droprates.json", false));
 		// Bosses whose drops the main crawler structurally misses (combined activity
 		// pages, Unsired sink rewards). Merged like minigame data so both the chat
@@ -184,9 +196,11 @@ public class DropRatePlugin extends Plugin
 
 		DropRateDisplayMode displayMode = getDisplayMode();
 		log.info(
-			"DropRate database loaded: {} primary entries, {} RDT entries, {} drop overrides, {} context rules, {} source aliases, {} source context rules",
+			"DropRate database loaded: {} primary entries, {} RDT entries, {} versioned monsters ({} NPC ids), {} drop overrides, {} context rules, {} source aliases, {} source context rules",
 			primaryDrops != null ? primaryDrops.size() : 0,
 			rdtDrops != null ? rdtDrops.size() : 0,
+			npcVersions.size(),
+			npcVersionsById.size(),
 			dropMetadata.getDropOverrideCount(),
 			dropMetadata.getNpcContextCount(),
 			dropMetadata.getSourceAliasCount(),
@@ -239,7 +253,7 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
-		handleLoot(cleanName(npc.getName()), event.getItems());
+		handleLoot(cleanName(npc.getName()), npc.getId(), event.getItems());
 	}
 
 	@Subscribe
@@ -251,7 +265,7 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
-		handleLoot(cleanName(composition.getName()), event.getItems());
+		handleLoot(cleanName(composition.getName()), composition.getId(), event.getItems());
 	}
 
 	@Subscribe
@@ -265,7 +279,7 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
-		handleLoot(cleanName(event.getName()), event.getItems());
+		handleLoot(cleanName(event.getName()), NO_NPC_ID, event.getItems());
 	}
 
 	@Subscribe
@@ -469,7 +483,7 @@ public class DropRatePlugin extends Plugin
 		}
 	}
 
-	private void handleLoot(String npcName, Collection<ItemStack> items)
+	private void handleLoot(String npcName, int npcId, Collection<ItemStack> items)
 	{
 		if (primaryDrops == null || primaryDrops.isEmpty())
 		{
@@ -527,7 +541,7 @@ public class DropRatePlugin extends Plugin
 				}
 			}
 
-			ResolvedDrop resolvedDrop = resolveDrop(npcName, itemName, context);
+			ResolvedDrop resolvedDrop = resolveDrop(npcName, npcId, itemName, context);
 			if (resolvedDrop == null)
 			{
 				log.debug("No rarity entry found for {} from {}", itemName, npcName);
@@ -680,6 +694,19 @@ public class DropRatePlugin extends Plugin
 
 	private Map<String, Map<String, String>> loadPrimaryDrops(String resourcePath, boolean required)
 	{
+		return loadPrimaryDrops(resourcePath, required, null);
+	}
+
+	/**
+	 * Loads a {source: {item: rate | [rate, ...]}} resource. Array values keep
+	 * their first element in the returned map; when {@code variantsOut} is
+	 * given, arrays with more than one element are also stored there in full.
+	 */
+	private Map<String, Map<String, String>> loadPrimaryDrops(
+		String resourcePath,
+		boolean required,
+		Map<String, Map<String, List<String>>> variantsOut)
+	{
 		InputStream in = getClass().getResourceAsStream(resourcePath);
 		if (in == null)
 		{
@@ -717,6 +744,12 @@ public class DropRatePlugin extends Plugin
 						{
 							inner.put(entry.getKey(), arr.get(0).getAsString());
 						}
+						if (arr.size() > 1 && variantsOut != null)
+						{
+							variantsOut
+								.computeIfAbsent(outer.getKey(), k -> new HashMap<>())
+								.put(entry.getKey(), jsonStrings(arr));
+						}
 					}
 					else if (el.isJsonPrimitive())
 					{
@@ -730,6 +763,99 @@ public class DropRatePlugin extends Plugin
 		catch (Exception e)
 		{
 			throw new IllegalStateException("Unable to read resource: " + resourcePath, e);
+		}
+	}
+
+	private static List<String> jsonStrings(JsonArray arr)
+	{
+		List<String> values = new ArrayList<>(arr.size());
+		for (JsonElement element : arr)
+		{
+			if (element.isJsonPrimitive())
+			{
+				values.add(element.getAsString());
+			}
+		}
+		return values;
+	}
+
+	/**
+	 * Loads npc_versions.json: {monster: [{version, ids, drops: {item: rate | [rate, ...]}}]}.
+	 * Builds the by-name list used for labelled fallbacks and the by-id index
+	 * used to pick a version from the killed NPC.
+	 */
+	private void loadNpcVersions(String resourcePath)
+	{
+		npcVersions = new HashMap<>();
+		npcVersionsById = new HashMap<>();
+
+		InputStream in = getClass().getResourceAsStream(resourcePath);
+		if (in == null)
+		{
+			log.info("Optional resource not found: {}", resourcePath);
+			return;
+		}
+
+		try (InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8))
+		{
+			Map<String, List<RawNpcVersion>> raw = gson.fromJson(
+				reader,
+				new TypeToken<Map<String, List<RawNpcVersion>>>() {}.getType()
+			);
+			if (raw == null)
+			{
+				return;
+			}
+
+			for (Map.Entry<String, List<RawNpcVersion>> entry : raw.entrySet())
+			{
+				List<NpcVersion> versions = new ArrayList<>();
+				for (RawNpcVersion rawVersion : entry.getValue())
+				{
+					if (rawVersion == null || rawVersion.drops == null)
+					{
+						continue;
+					}
+
+					Map<String, List<String>> drops = new HashMap<>();
+					for (Map.Entry<String, JsonElement> drop : rawVersion.drops.entrySet())
+					{
+						JsonElement el = drop.getValue();
+						if (el.isJsonArray())
+						{
+							drops.put(drop.getKey(), jsonStrings(el.getAsJsonArray()));
+						}
+						else if (el.isJsonPrimitive())
+						{
+							drops.put(drop.getKey(), Collections.singletonList(el.getAsString()));
+						}
+					}
+
+					NpcVersion version = new NpcVersion(entry.getKey(), rawVersion.version, drops);
+					versions.add(version);
+					if (rawVersion.ids != null)
+					{
+						for (Integer id : rawVersion.ids)
+						{
+							if (id != null)
+							{
+								npcVersionsById.put(id, version);
+							}
+						}
+					}
+				}
+
+				if (!versions.isEmpty())
+				{
+					npcVersions.put(entry.getKey(), versions);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			log.warn("Unable to read optional resource: {}", resourcePath, e);
+			npcVersions = new HashMap<>();
+			npcVersionsById = new HashMap<>();
 		}
 	}
 
@@ -840,8 +966,14 @@ public class DropRatePlugin extends Plugin
 		return candidates;
 	}
 
-	private ResolvedDrop resolveDrop(String npcName, String itemName, DropContext context)
+	private ResolvedDrop resolveDrop(String npcName, int npcId, String itemName, DropContext context)
 	{
+		ResolvedDrop versioned = resolveVersionedDrop(npcName, npcId, itemName);
+		if (versioned != null)
+		{
+			return versioned;
+		}
+
 		List<String> sourceCandidates = resolveSourceCandidates(npcName, itemName, context);
 		for (String sourceCandidate : sourceCandidates)
 		{
@@ -874,6 +1006,112 @@ public class DropRatePlugin extends Plugin
 		}
 
 		return null;
+	}
+
+	/**
+	 * Resolves a drop for monsters whose wiki page has more than one rate for
+	 * the item. Order of preference:
+	 * <ol>
+	 * <li>the killed NPC's id identifies one drop-table version: use it;</li>
+	 * <li>the monster has several versions but the id cannot tell them apart:
+	 * show every version's rate, labelled;</li>
+	 * <li>the item simply has several rolls on one table: show them all.</li>
+	 * </ol>
+	 * Returns null when none of that applies (or a hand-curated override
+	 * exists), so the normal lookup runs unchanged.
+	 */
+	private ResolvedDrop resolveVersionedDrop(String npcName, int npcId, String itemName)
+	{
+		if (npcName == null || itemName == null || dropMetadata.getDropOverride(itemName, npcName) != null)
+		{
+			return null;
+		}
+
+		// rate -> label, in page order, duplicates collapsed
+		LinkedHashMap<String, String> rates = new LinkedHashMap<>();
+		NpcVersion byId = npcId != NO_NPC_ID ? npcVersionsById.get(npcId) : null;
+		if (byId != null && npcName.equals(byId.source))
+		{
+			List<String> versionRates = byId.drops.get(itemName);
+			if (versionRates == null)
+			{
+				return null;
+			}
+
+			for (String rate : versionRates)
+			{
+				rates.putIfAbsent(rate, null);
+			}
+		}
+		else
+		{
+			List<NpcVersion> versions = npcVersions.get(npcName);
+			if (versions != null)
+			{
+				for (NpcVersion version : versions)
+				{
+					List<String> versionRates = version.drops.get(itemName);
+					if (versionRates == null)
+					{
+						continue;
+					}
+
+					for (String rate : versionRates)
+					{
+						rates.putIfAbsent(rate, version.version);
+					}
+				}
+			}
+			else
+			{
+				Map<String, List<String>> variants = primaryVariants.get(npcName);
+				List<String> itemVariants = variants != null ? variants.get(itemName) : null;
+				if (itemVariants != null)
+				{
+					for (String rate : itemVariants)
+					{
+						rates.putIfAbsent(rate, null);
+					}
+				}
+			}
+		}
+
+		if (rates.isEmpty())
+		{
+			return null;
+		}
+
+		String rdtRate = findRdtRate(npcName, itemName);
+		String firstRate = rates.keySet().iterator().next();
+		Chance firstChance = parseChance(firstRate);
+		if (rates.size() == 1)
+		{
+			return new ResolvedDrop(
+				npcName,
+				firstRate,
+				formatRateForMessage(firstRate, firstChance, null, rdtRate),
+				getEffectiveRate(firstChance, firstRate)
+			);
+		}
+
+		if (!config.showVariantRates())
+		{
+			return null;
+		}
+
+		ArrayList<String> parts = new ArrayList<>();
+		for (Map.Entry<String, String> entry : rates.entrySet())
+		{
+			String rate = entry.getKey();
+			parts.add(formatLabeledRate(entry.getValue(), formatSingleRate(rate, parseChance(rate))));
+		}
+
+		return new ResolvedDrop(
+			npcName,
+			firstRate,
+			String.join(" | ", parts),
+			getEffectiveRate(firstChance, firstRate)
+		);
 	}
 
 	private List<String> resolveSourceCandidates(String npcName, String itemName, DropContext context)
@@ -1710,6 +1948,28 @@ public class DropRatePlugin extends Plugin
 			this.rate = rate;
 			this.formattedRate = formattedRate;
 			this.effectiveRate = effectiveRate;
+		}
+	}
+
+	/** Gson shape of one entry in npc_versions.json. */
+	private static final class RawNpcVersion
+	{
+		private String version;
+		private List<Integer> ids;
+		private Map<String, JsonElement> drops;
+	}
+
+	private static final class NpcVersion
+	{
+		private final String source;
+		private final String version;
+		private final Map<String, List<String>> drops;
+
+		private NpcVersion(String source, String version, Map<String, List<String>> drops)
+		{
+			this.source = source;
+			this.version = version;
+			this.drops = drops;
 		}
 	}
 
