@@ -7,7 +7,14 @@
     "Bludgeon axon": "31/6400",
     "Bludgeon claw": "31/6400",
     "Bludgeon spine": "31/6400",
-    "Jar of miasma": "13/12800"
+    "Jar of Miasma": "13/12800"
+  },
+  "Araxxor": {
+    "Brimstone key": "1/40",
+    "Prayer potion(4)": "1/8",
+    "Shark": "1/16",
+    "Super combat potion(1)": "1/16",
+    "Wild pie": "1/16"
   },
   "Grotesque Guardians": {
     "Adamant boots": "2 × 1/142",
@@ -29,7 +36,7 @@
     "Granite hammer": "2 × 1/750",
     "Granite maul": "2 × 1/250",
     "Granite ring": "2 × 1/500",
-    "Jar of stone": "1/5000",
+    "Jar of Stone": "1/5000",
     "Magic potion(2)": "2 × 6/142",
     "Mithril bar": "2 × 6/142",
     "Mushroom potato": "2 × 10/142",
