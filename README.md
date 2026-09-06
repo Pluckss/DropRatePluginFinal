@@ -15,7 +15,7 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
 
 ## Features
 - Shows a chat message when a dropped item has a known drop rate.
-- Shows a hover tooltip in the Collection Log listing every source that drops an item, with each rate.
+- Shows a hover tooltip in the Collection Log, and on the clue scroll reward screen, listing every source that drops an item with each rate.
 - Supports standard rates like `1/128` and bundle rates like `6/378` or `12/378`.
 - Uses color-coded chat messages to quickly separate common, uncommon, and rare drops.
 - Adds a purple ultra-rare tier for especially rare drops.
@@ -83,15 +83,21 @@ That frustration sparked the idea: show drop rates directly in chat so the infor
   Tiered colors only. Rates at or above this value use the ultra-rare color.
 - `Common color` / `Uncommon color` / `Rare color` / `Ultra-rare color`
   Pick the color used for each tier.
+- `Fit standard chatbox`
+  On by default. The standard chatbox has a light parchment background that bright colors are
+  hard to read on, so while it is active each color is darkened just enough to stay legible.
+  The transparent chatbox always uses your colors exactly as picked.
 
-## Collection log
+## Tooltips
 - `Collection log tooltips`
   On by default. Hovering an item in the Collection Log shows every source that drops it and
   its rate, with the most common source first. Sources that share a rate are grouped onto one line.
+- `Clue reward tooltips`
+  On by default. Hovering an item on the clue scroll reward screen shows the same tooltip.
 - `Hide for obtained items`
-  Off by default. Skips the tooltip for items you have already unlocked.
+  Off by default. Skips the tooltip for items you have already unlocked, in the Collection Log only.
 
-Clue casket rewards from Beginner to Master are included in the tooltip. Raid uniques and
+Clue casket rewards from Beginner to Master also print in chat when you open a casket, and are included in the tooltip. Raid uniques and
 skilling pets are deliberately shown without a rate, because no honest fixed number exists for
 them — they depend on contribution, invocation level, or your skill level.
 
@@ -100,7 +106,7 @@ them — they depend on contribution, invocation level, or your skill level.
 - Rare Drop Table data is loaded from `src/main/resources/rare_drop_table.json`.
 - Extra context rules and alternate-table metadata live in `src/main/resources/drop_metadata.json`.
 - Minigame reward rates load from `src/main/resources/minigame_droprates.json`, keyed by the in-game reward source.
-- Clue reward rates load from `src/main/resources/clue_droprates.json` and are used by the Collection Log tooltip only.
+- Clue reward rates load from `src/main/resources/clue_droprates.json` and feed both the chat feed and the tooltips.
 - Bosses whose drops the wiki stores outside a normal drop table load from `src/main/resources/special_droprates.json`.
 - All data is bundled with the plugin. It makes no network requests while you play.
 - If an item exists in both the normal table and the RDT for the same NPC, and `Show source hints` is on, both rates are shown side by side.

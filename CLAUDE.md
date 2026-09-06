@@ -70,13 +70,15 @@ cd DropRatePluginFinal
 | `src/main/resources/rare_drop_table.json` | Rare Drop Table items (26 items) |
 | `src/main/resources/drop_metadata.json` | NPC aliases, Ring of Wealth and Slayer task context rules |
 | `src/main/resources/minigame_droprates.json` | Minigame/reward-chest drop rates, keyed by RuneLite LootReceived event name |
-| `src/main/resources/clue_droprates.json` | Clue (Treasure Trail) reward rates per tier — tooltip only |
+| `src/main/resources/clue_droprates.json` | Clue (Treasure Trail) reward rates per tier — chat feed + tooltips |
 | `src/main/resources/special_droprates.json` | Bosses the main crawler structurally misses (Grotesque Guardians, Abyssal Sire Unsired rewards, Maggot King take-eggs pet route) |
 | `icon.png` / `scripts/make_icon.py` | Plugin Hub icon (48×72 purple droplet) and its generator |
 | `../Drop Rate Crawler/crawler_new.py` | Regenerates the NPC JSON data files from the OSRS Wiki |
 | `../Drop Rate Crawler/minigame_crawler.py` | Separate crawler for minigame reward rates (`minigame_droprates.json`) |
 | `../Drop Rate Crawler/clue_crawler.py` | Crawler for clue reward rates (`clue_droprates.json`) |
 | `../Drop Rate Crawler/special_droprates.py` | Crawler for the special-case bosses (`special_droprates.json`) |
+| `../Drop Rate Crawler/normalise_item_names.py` | Rewrites item names in the resources to the exact in-game spelling. **Run after every crawl** |
+| `src/main/java/com/pluckss/droprate/ClueRewardTooltipOverlay.java` | Hover detection on the clue scroll reward screen (`WidgetItemOverlay`) |
 
 ## Regenerating data
 ```
@@ -122,6 +124,37 @@ It must report `FAILED=0`.
   (all "Varies"), Barrows (reward-potential rolls), Hallowed Sepulchre, Shades of Mort'ton,
   Zalcano, Hespori, The Gauntlet, raids. See memory `minigame-droprates.md` for the why.
 
+## Clue caskets (added 2026-09-06)
+- Clue rewards used to be tooltip-only, so opening a master casket printed nothing however
+  rare the reward was. `clue_droprates.json` is now merged into `primaryDrops` like the
+  minigame data, so caskets report in chat through the normal filters.
+- The join is `sourceAliases` in `drop_metadata.json`: RuneLite delivers casket loot as
+  `LootReceived` / `LootRecordType.EVENT` named exactly **`Clue Scroll (Master)`** (and
+  Beginner/Easy/Medium/Hard/Elite), which those aliases point at our `Master clue` keys.
+  Those strings come from `LootTrackerPlugin`'s `CLUE_SCROLL_PATTERN` handler — if a name
+  ever changes upstream, the aliases are the only thing to update.
+- **Hovering an item on the reward screen** shows the same tooltip. The Collection Log's
+  `MenuEntryAdded` trick does not work there: `InterfaceID.TRAIL_REWARDSCREEN` (73) is a
+  display-only interface with five children and no per-item menu options, so its slots
+  raise no menu entries. `ClueRewardTooltipOverlay` uses `WidgetItemOverlay` instead,
+  which is handed each item's real canvas rectangle, and hit-tests the cursor itself.
+  Its own config toggle is **Clue reward tooltips**.
+
+## Chat colours vs the chatbox (added 2026-09-06)
+- The standard chatbox is light parchment; the default uncommon orange (255,140,0) sits at
+  ~1.2:1 contrast on it, which is what "the current orange text for mid tier drops makes it
+  hard to read" meant. RuneLite solves this with two full colour sets (`ChatColorConfig`'s
+  `opaqueXxx`/`transparentXxx`); doubling four pickers to eight was not worth it here.
+- Instead `getChatColor` darkens the *user's own* picked colour toward black until it clears
+  3:1 on parchment, keeping its hue. Only chat goes through it — the Collection Log tooltip
+  draws on RuneLite's dark tooltip background and keeps the colours exactly as picked.
+- Measured against the parchment: green 2.63→3.20, orange **1.20→3.19**, neutral white
+  1.95→3.17. The default red and purple are already dark enough and come back untouched.
+- Detection matches `ChatMessageManager`: `client.isResized() &&
+  client.getVarbitValue(VarbitID.CHATBOX_TRANSPARENCY) != 0`. The `isResized()` guard
+  matters — fixed mode is always the opaque chatbox whatever the varbit says.
+- Toggle is **Fit standard chatbox** (Appearance), default on.
+
 ## Collection Log tooltip
 - Hovering an item in the in-game Collection Log shows a tooltip listing every source that
   drops it, with rates, grouped by rate (identical rates collapse to one line; long groups
@@ -143,6 +176,34 @@ It must report `FAILED=0`.
   (CoX/ToB/ToA — contribution/invocation-based) and skilling pets (per-activity + level). Those
   items simply get no tooltip rather than a fabricated one.
 
+## The monster's own table always beats the RDT (fixed 2026-09-06)
+
+`resolveDrop` used to walk the candidate list and return the first candidate that
+matched *anything*. The context-resolved variants (`Araxxor Legends`,
+`Demonic gorilla RoW`) exist only in `rare_drop_table.json`, so for any item on both
+the monster's table and the RDT, the variant matched the RDT first and the monster's
+own rate never got a look in:
+
+- Araxxor / Rune kiteshield → `1/14720` (RDT) instead of `8/115`
+- Demonic gorilla / Runite bar → `1/2560` instead of `15/500`, law/death runes likewise
+
+It only bit players with a **Ring of Wealth equipped or Legends' Quest completed** —
+without either, the resolved name is the plain NPC name and the bug is invisible, which
+is why it survived so long. Measured over the whole dataset: **199 wrong rates across
+72 sources**, including Vorkath, Zulrah, Cerberus, KBD, Kalphite Queen, Alchemical
+Hydra and Abyssal demon. Now zero in all four RoW/Legends states.
+
+`resolveDrop` now does two passes — normal table across every candidate first, RDT only
+as a fallback — and looks the RDT rate up independently so the "Show source hints" line
+still quotes the RoW/Legends variant's number.
+
+`../Drop Rate Crawler/VerifyResolution.java` locks this in. It drives the **real**
+plugin class against the **real** shipped JSON via reflection (no reimplementation; the
+only stand-in is a `Proxy` over `DropRateConfig` returning the interface's own defaults),
+so a rate can be checked without a game client. Build the plugin, then from the crawler
+folder compile it against `build/classes/java/main` plus the compile classpath and run it
+with `src/main/resources` on the classpath. It must print `FAILED=0`.
+
 ## Special-case bosses (`special_droprates.py`)
 - The main NPC crawler only sees `{{DropsLine}}` tables on Category:Monsters pages, so it
   structurally misses bosses whose drops live elsewhere. `special_droprates.py` fills these and
@@ -160,8 +221,50 @@ It must report `FAILED=0`.
     sum(drop × pet) = 52/78125 = **1/1502.4**, i.e. 2.33× better than the stomach route. Kept as
     a decimal (a genuine weighted average, exactly as the wiki shows it — see the clue note
     above). It is a separate source key so the tooltip lists both routes side by side.
+  - **Araxxor (supply table)** — `sub_threshold_drops()` recovers the drops that
+    `MIN_DENOMINATOR = 50` filters out of the main crawl: Prayer potion(4) at 1/8,
+    Super combat potion(1) / Shark / Wild pie at 1/16, and Brimstone key at 1/40.
+    A supply drop lands on roughly a third of kills, so most corpse harvests handed the
+    player an item the plugin had no rate for — reported as "when looting Araxxor corpse,
+    drop rates do not show". It only emits items the normal parse did *not* already
+    produce, so it can never overwrite a main-table rate (Araxyte venom sac is in both
+    tables at different quantities and keeps its 5/115).
 - If another boss turns up missing, add it here. Audit of 35 notable collection-log bosses found
   only the first two; the Maggot King egg route was found by `clog_coverage.py`.
+- **The 1/50 floor is still global.** Araxxor is the only source whitelisted into
+  `sub_threshold_drops`. Lowering `MIN_DENOMINATOR` for all 613 monsters would make the
+  chat feed narrate every bone and arrow — a product decision, not a bug fix.
+
+## Item names must be the game's exact spelling (fixed 2026-09-06)
+
+The wiki writes many item names in sentence case; the game does not. Because lookups
+are exact string matches, every one of those names is permanently dead — in chat and
+in the tooltip — and fails silently. An audit against the game's own item name table
+(`https://static.runelite.net/cache/item/names.json`, the same strings
+`ItemComposition#getName` returns) found **83 wrong-case names across 187 entries**,
+and they were the drops players most want announced: every boss pet
+(`Pet snakeling` → `Pet Snakeling`, `Baby mole` → `Baby Mole`, `Ikkle hydra`,
+`Prince black dragon`, `Jal-nib-rek` → `Jal-Nib-Rek`, `Tzrek-jad` → `TzRek-Jad`), every
+jar (`Jar of venom` → `Jar of Venom`, miasma, stone, souls, swamp), every `3rd age` piece
+→ `3rd Age`, and `Wine of zamorak` → `Wine of Zamorak` across 35 sources.
+
+**Ownership is split — do not fix this in two places:**
+
+- `droprates_clean.json` and `rare_drop_table.json` are regenerated wholesale from the
+  wiki Bucket API by **PRs #10 / #11**, which already resolve names against the same
+  `names.json`. Never hand-edit those two files: they are the largest in the repo and a
+  rewrite makes the PRs unmergeable.
+- `normalise_item_names.py` covers everything else — `minigame_droprates.json`,
+  `special_droprates.json`, `clue_droprates.json` — and its file lists deliberately
+  exclude the two PR-owned files. **Run it after every crawl, before copying files in.**
+
+It only renames when the lowercased name maps to exactly one game name, so it can never
+guess between two real items, and it leaves `Vet'ion jr.`/`Vet'ion Jr.` alone (the game
+genuinely has both). It also reports names in no game item list at all — those are wiki
+page-title suffixes the crawler does not strip (`Annakarl teleport (tablet)`,
+`Bird nest (egg)`, `Tooth half of key (moon key)`, `Zombie head (Treasure Trails)`,
+`Casket (Reward pool)`, the six `Maggot egg (…)` variants). Each needs a per-item
+decision — some are real distinct items — so they are left untouched rather than guessed.
 
 ## Name matching (why the crawler normalises names)
 The plugin looks up NPC and item names by **exact string match** (`cleanName` only
