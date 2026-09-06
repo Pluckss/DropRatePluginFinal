@@ -1,7 +1,7 @@
 # Drop Rate Plugin
 Instantly see the exact drop rate of items when monsters, bosses, or select minigames drop them, without leaving the game.
 
-Created by **Pluckss**, with contributions from [@xTaig4](https://github.com/xTaig4).
+Created by **[@Pluckss](https://github.com/Pluckss)**, with contributions from [@xTaig4](https://github.com/xTaig4).
 
 ## Behind the Scenes
 This plugin started after I accidentally disassembled my Group Ironman's only Toxic blowpipe and had to grind out a replacement.
@@ -125,7 +125,7 @@ them — they depend on contribution, invocation level, or your skill level.
 - Raids are not currently supported.
 
 ## Credits
-Built and maintained by Pluckss.
+Built and maintained by [@Pluckss](https://github.com/Pluckss).
 
 - [@xTaig4](https://github.com/xTaig4) — rebuilt the drop data on the OSRS Wiki's structured
   Bucket API (`tools/crawl_bucket.py`) with a CI freshness check, and added per-version drop
