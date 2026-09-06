@@ -292,6 +292,17 @@ TALISMANS = {"Chaos talisman", "Nature talisman"}
 RDT_MEGA_SLOT = 15.0 / 128
 MEGA_TOTAL = 128.0
 MEGA_TOTAL_ROW = 15.0        # Ring of Wealth removes the 113 empty slots
+
+# Pages whose drop tables must not be picked by page order. Rows arrive in page
+# order and the first table on a page wins, which is wrong wherever the variants
+# are separate NPCs with different table access. Cyclops is the one case in the
+# data today: the Warriors' Guild Rooftop cyclopes (levels 56 and 76) reach only
+# the gem drop table at 2/100, while the Basement ones (level 106, the Dragon
+# defender drop) reach the full rare drop table at 2/100. Taking the rooftop
+# table would report gem-table rates for every cyclops, up to 6.4x off.
+RDT_PREFERRED_SUBPAGE = {
+    "Cyclops": "Cyclops#Warriors' Guild Basement",
+}
 TALISMAN_NO_LEGENDS_FACTOR = 4.0 / 3
 
 
@@ -327,6 +338,9 @@ def build_rdt(rows, source_rows, item_names, npc_pages):
     for row in rows:
         page = row["page_name"]
         if page not in npc_pages or page_excluded(page) or not is_table_row(row):
+            continue
+        preferred = RDT_PREFERRED_SUBPAGE.get(page)
+        if preferred is not None and row.get("page_name_sub") != preferred:
             continue
         info = json.loads(row["drop_json"])
         if info.get("Drop type") != "combat":
