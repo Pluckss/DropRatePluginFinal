@@ -191,6 +191,9 @@ public class DropRatePlugin extends Plugin
 	private static final long CLOG_HOVER_TIMEOUT_MS = 150;
 	private static final int CLOG_MAX_RATE_GROUPS = 7;
 	private static final int CLOG_MAX_SOURCES_PER_GROUP = 3;
+	// The page title inside the Collection Log header container. RuneLite's own
+	// ChatCommandsPlugin calls this index COL_LOG_ENTRY_HEADER_TITLE_INDEX.
+	private static final int CLOG_HEADER_TITLE_CHILD = 0;
 
 	@Provides
 	DropRateConfig provideConfig(ConfigManager configManager)
@@ -396,11 +399,15 @@ public class DropRatePlugin extends Plugin
 	 * string is the boss's display name, which is also how the page is keyed in our
 	 * drop data, so it can be matched directly.
 	 * <p>
-	 * Read from one component, and believed only when it names a source we actually
-	 * hold rates for. That guard is the important half: the component id was inferred
-	 * from the API's field order and is the one part of this not confirmed against a
-	 * running client, so if it is wrong it will be pointing at the window title or a
-	 * tab label, neither of which is a source — and the answer becomes null.
+	 * {@code Collection.HEADER_TEXT} is a container, not a label: the title lives in
+	 * its first child. This is the same read RuneLite's own {@code ChatCommandsPlugin}
+	 * does ({@code header.getChild(0).getText()}, which it compares against
+	 * "All Pets"), and the same one the collectionlog.net plugin does through
+	 * {@code ComponentID.COLLECTION_LOG_ENTRY_HEADER}, which resolves to this
+	 * component. Calling {@code getText()} on the container itself returns nothing.
+	 * <p>
+	 * The name is believed only when it matches a source we hold rates for, so
+	 * anything unexpected pins nothing instead of pinning a wrong page.
 	 * <p>
 	 * Searching the interface for any widget naming a known source was tried and
 	 * rejected. The page list down the left side of the Collection Log holds every
@@ -418,7 +425,13 @@ public class DropRatePlugin extends Plugin
 			return null;
 		}
 
-		String text = cleanName(header.getText());
+		Widget title = header.getChild(CLOG_HEADER_TITLE_CHILD);
+		if (title == null)
+		{
+			return null;
+		}
+
+		String text = cleanName(title.getText());
 		return text != null && clogPageSources.contains(text) ? text : null;
 	}
 
