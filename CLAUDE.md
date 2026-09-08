@@ -66,14 +66,14 @@ cd DropRatePluginFinal
 | `src/main/java/com/pluckss/droprate/DropRatePlugin.java` | Main plugin logic (chat feed + collection log tooltip) |
 | `src/main/java/com/pluckss/droprate/DropRateConfig.java` | All config options shown in the RuneLite panel |
 | `src/main/java/com/pluckss/droprate/ClogTooltipOverlay.java` | Overlay that draws the Collection Log hover tooltip via TooltipManager |
-| `src/main/resources/droprates_clean.json` | NPC drop rates (613 NPCs) |
+| `src/main/resources/droprates_clean.json` | NPC drop rates (689 NPCs) |
 | `src/main/resources/rare_drop_table.json` | Rare Drop Table items (26 items) |
 | `src/main/resources/npc_versions.json` | Monsters with several drop tables: each version's NPC ids and its own rates (generated) |
 | `src/main/resources/drop_metadata.json` | NPC aliases, Ring of Wealth and Slayer task context rules |
 | `src/main/resources/minigame_droprates.json` | Minigame/reward-chest drop rates, keyed by RuneLite LootReceived event name |
 | `src/main/resources/clue_droprates.json` | Clue (Treasure Trail) reward rates per tier — chat feed + tooltips |
 | `src/main/resources/special_droprates.json` | Bosses the main crawler structurally misses (Grotesque Guardians, Abyssal Sire Unsired rewards, Maggot King take-eggs pet route) |
-| `icon.png` / `scripts/make_icon.py` | Plugin Hub icon (48×72 purple droplet) and its generator |
+| `icon.png` / `scripts/make_icon.py` | Plugin Hub icon (48×72, a stacked 1/x on a purple plate) and its generator |
 | `tools/crawl_bucket.py` | Regenerates `droprates_clean.json` and `rare_drop_table.json` from the OSRS Wiki Bucket API (see below) |
 | `.github/workflows/drop-data.yml` | CI: fails a PR if those two files no longer match the wiki; also runs weekly |
 | `../Drop Rate Crawler/minigame_crawler.py` | Separate crawler for minigame reward rates (`minigame_droprates.json`) |
@@ -246,7 +246,7 @@ with `src/main/resources` on the classpath. It must print `FAILED=0`.
 - If another boss turns up missing, add it here. Audit of 35 notable collection-log bosses found
   only the first two; the Maggot King egg route was found by `clog_coverage.py`.
 - **The 1/50 floor is still global.** Araxxor is the only source whitelisted into
-  `sub_threshold_drops`. Lowering `MIN_DENOMINATOR` for all 613 monsters would make the
+  `sub_threshold_drops`. Lowering `MIN_DENOMINATOR` for all 689 monsters would make the
   chat feed narrate every bone and arrow — a product decision, not a bug fix.
 
 ## Item names must be the game's exact spelling (fixed 2026-09-06)
@@ -314,7 +314,7 @@ Use the default mode, not `--crawler`: `crawl_bucket.py generate` writes straigh
 
 | Item | Source | Why it has no rate today | What to check |
 |---|---|---|---|
-| `Ardeaglais teleport` | Mad Angel | Rate is **1/25**, below `MIN_DENOMINATOR = 50` in `tools/crawl_bucket.py`, so it is filtered out. It IS a collection log item, so the tooltip shows nothing for it | Decide whether the clog tooltip should bypass the min-denominator filter the way `clue_crawler.py` already does. Lowering the threshold globally would change chat output for all 613 NPCs — don't do it blind |
+| `Ardeaglais teleport` | Mad Angel | Rate is **1/25**, below `MIN_DENOMINATOR = 50` in `tools/crawl_bucket.py`, so it is filtered out. It IS a collection log item, so the tooltip shows nothing for it | Decide whether the clog tooltip should bypass the min-denominator filter the way `clue_crawler.py` already does. Lowering the threshold globally would change chat output for all 689 NPCs — don't do it blind |
 | `Jeweller's chisel` | Golem crafting | Untradeable Golem crafting reward; the wiki publishes no rate at all | Re-read [[Golem crafting]] once the page leaves "under construction" |
 | `Mr McGroot` | Goat hunting | Wiki states outright "the rates are currently unknown" | Re-read [[Goat hunting]]; if a rate appears, Goat hunting needs a `minigame_crawler.py` / `special_droprates.py` source |
 | `Granite dust` | Mad Angel | `rarity=Always` (25–35 per kill) | Nothing to fix — a 100% drop has no meaningful rate. Listed only so it is not re-investigated every sweep |
