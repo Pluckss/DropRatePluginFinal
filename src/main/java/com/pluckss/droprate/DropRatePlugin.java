@@ -168,6 +168,10 @@ public class DropRatePlugin extends Plugin
 	// ITEMS and models).
 	private String lastClueSource;
 	private Set<String> clueDropSources = Collections.emptySet();
+	// Every source the tooltip could pin. A Collection Log page name is only believed
+	// when it is in here, which is what lets the page be found by searching the
+	// interface instead of trusting one component id.
+	private Set<String> clogPageSources = Collections.emptySet();
 
 	// The overlay asks for the tooltip once per rendered frame, so building it from
 	// scratch every time would re-parse every rate of the hovered item ~50x a second
@@ -224,6 +228,16 @@ public class DropRatePlugin extends Plugin
 		clueDropSources = new HashSet<>(clueDrops.keySet());
 
 		clogSources = buildClogSources(primaryDrops, clueDrops, rdtDrops);
+
+		Set<String> pageSources = new HashSet<>();
+		for (List<SourceRate> sources : clogSources.values())
+		{
+			for (SourceRate source : sources)
+			{
+				pageSources.add(source.source);
+			}
+		}
+		clogPageSources = pageSources;
 		overlayManager.add(clogTooltipOverlay);
 		overlayManager.add(clueRewardTooltipOverlay);
 
@@ -378,12 +392,23 @@ public class DropRatePlugin extends Plugin
 	}
 
 	/**
-	 * The Collection Log page currently open, e.g. {@code "Alchemical Hydra"}, read
-	 * from the header above the item grid. That string is the boss's display name,
-	 * which is also how it is keyed in our drop data, so it can be matched directly.
+	 * The Collection Log page currently open, e.g. {@code "Alchemical Hydra"}. That
+	 * string is the boss's display name, which is also how the page is keyed in our
+	 * drop data, so it can be matched directly.
 	 * <p>
-	 * Returns null if the header cannot be read. Callers treat that as "no preference"
-	 * rather than an error — the tooltip then behaves exactly as it did before.
+	 * Read from one component, and believed only when it names a source we actually
+	 * hold rates for. That guard is the important half: the component id was inferred
+	 * from the API's field order and is the one part of this not confirmed against a
+	 * running client, so if it is wrong it will be pointing at the window title or a
+	 * tab label, neither of which is a source — and the answer becomes null.
+	 * <p>
+	 * Searching the interface for any widget naming a known source was tried and
+	 * rejected. The page list down the left side of the Collection Log holds every
+	 * page name as text, so a scan finds the first entry in that list rather than the
+	 * open page. Pinning the wrong boss is worse than pinning nothing.
+	 * <p>
+	 * Returns null when no page can be identified. Callers treat that as "no
+	 * preference", and the tooltip behaves exactly as it did before the pinning.
 	 */
 	private String activeClogPage()
 	{
@@ -393,7 +418,8 @@ public class DropRatePlugin extends Plugin
 			return null;
 		}
 
-		return cleanName(header.getText());
+		String text = cleanName(header.getText());
+		return text != null && clogPageSources.contains(text) ? text : null;
 	}
 
 	/**
