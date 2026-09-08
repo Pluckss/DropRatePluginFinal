@@ -16,3 +16,4 @@ nbproject/
 *.out.log
 scripts/icon_preview.png
 __pycache__/
+.readme-preview*.html

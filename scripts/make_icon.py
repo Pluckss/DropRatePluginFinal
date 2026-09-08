@@ -1,101 +1,68 @@
 """Generate the Plugin Hub icon (icon.png, 48x72) for the Drop Rate plugin.
 
-A glossy purple "rare drop" waterdrop with a white gloss highlight and a sparkle.
-Purple = a rare/"purple" loot drop in OSRS; the droplet = a "drop". Drawn at 8x
-and downscaled with LANCZOS for clean anti-aliased edges.
+A stacked "1/x" fraction in white on a rounded purple plate.
 
-Run: py -3 scripts/make_icon.py
+Why a fraction and not a droplet: the icon is shown at 48x72 in a long list, so
+whatever it says has to survive at that size. A fraction is what the plugin
+actually prints, and it stays readable when scaled down; fine details such as a
+gloss highlight turn to mush. The plate is filled so the icon keeps its contrast
+on the client's dark plugin panel and on the white plugin-hub website alike.
+
+The purple is the plugin's own ultra-rare tier colour, so the icon and the
+rarest chat messages match.
+
+Plugin Hub limits enforced by the packager (plugin-hub-tooling, Plugin.java):
+width * height must not exceed 50 * 100 px, and the file must be under 256 KiB.
+48x72 = 3456 px2, well inside both.
+
+Run it with the interpreter noted in CLAUDE.md:  <python> scripts/make_icon.py
 """
-import math
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFont
 
-SS = 8                     # supersample factor
-W, H = 48 * SS, 72 * SS    # working canvas
-
-# Purple palette (light top -> deep bottom), dark outline
-TOP_COL = (206, 152, 255)
-BOT_COL = (88, 18, 138)
-OUTLINE = (34, 8, 54)
-
-cx = W / 2
-R = W * 0.36               # bulb radius
-cy = H * 0.62              # bulb centre
-ty = H * 0.085             # tip (top point)
+W, H = 48, 72
+SS = 8                          # supersample factor, downscaled with LANCZOS at the end
+PLATE = (140, 32, 164, 255)     # plate fill, a shade off the ultra-rare purple
+INK = (26, 6, 42, 255)          # outline
+FONT = "C:/Windows/Fonts/ariblk.ttf"
+SIZE = 28                       # glyph size in final px
+GAP = 0.215                     # vertical offset of each glyph from centre, as a fraction of H
+BAR_W = 0.60                    # fraction bar width, as a fraction of W
 
 
-def qbez(p0, p1, p2, n=48):
-    out = []
-    for i in range(n + 1):
-        t = i / n
-        x = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t ** 2 * p2[0]
-        y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t ** 2 * p2[1]
-        out.append((x, y))
-    return out
+def outlined(img, text, font, xy, fill, radius):
+    """Draw text with a solid outline, so it reads on any plate colour."""
+    draw = ImageDraw.Draw(img)
+    for dx in range(-radius, radius + 1):
+        for dy in range(-radius, radius + 1):
+            if dx * dx + dy * dy <= radius * radius:
+                draw.text((xy[0] + dx, xy[1] + dy), text, font=font, fill=INK, anchor="mm")
+    draw.text(xy, text, font=font, fill=fill, anchor="mm")
 
 
-# Single closed droplet outline: tip -> concave left side -> lower semicircle -> concave right side -> tip
-left = qbez((cx, ty), (cx - R * 0.60, ty + (cy - ty) * 0.60), (cx - R, cy))
-arc = []
-for i in range(73):
-    a = math.pi * (1 - i / 72)                 # pi -> 0, i.e. left -> bottom -> right
-    arc.append((cx + R * math.cos(a), cy + R * math.sin(a)))
-right = qbez((cx + R, cy), (cx + R * 0.60, ty + (cy - ty) * 0.60), (cx, ty))
-outline = left + arc[1:] + right[1:]
+img = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
+draw = ImageDraw.Draw(img)
+draw.rounded_rectangle(
+    [1.5 * SS, 1.5 * SS, (W - 1.5) * SS, (H - 1.5) * SS], radius=9 * SS, fill=PLATE
+)
 
-# Vertical purple gradient
-grad = Image.new("RGB", (W, H))
-gp = grad.load()
-y0, y1 = ty, cy + R
-for y in range(H):
-    t = min(1.0, max(0.0, (y - y0) / (y1 - y0)))
-    gp_row = (
-        int(TOP_COL[0] + (BOT_COL[0] - TOP_COL[0]) * t),
-        int(TOP_COL[1] + (BOT_COL[1] - TOP_COL[1]) * t),
-        int(TOP_COL[2] + (BOT_COL[2] - TOP_COL[2]) * t),
-    )
-    for x in range(W):
-        gp[x, y] = gp_row
+font = ImageFont.truetype(FONT, int(SIZE * SS))
+cy = H * SS / 2
+outlined(img, "1", font, (W * SS / 2, cy - H * SS * GAP), (255, 255, 255, 255), int(2.1 * SS))
+outlined(img, "x", font, (W * SS / 2, cy + H * SS * GAP), (255, 255, 255, 255), int(2.1 * SS))
 
-# Mask + fill
-mask = Image.new("L", (W, H), 0)
-ImageDraw.Draw(mask).polygon(outline, fill=255)
-img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-img.paste(grad, (0, 0), mask)
+bar_w, bar_h, edge = W * SS * BAR_W, 2.7 * SS, 2.1 * SS
+draw.rounded_rectangle(
+    [W * SS / 2 - bar_w / 2 - edge, cy - bar_h - edge,
+     W * SS / 2 + bar_w / 2 + edge, cy + bar_h + edge], radius=4 * SS, fill=INK
+)
+draw.rounded_rectangle(
+    [W * SS / 2 - bar_w / 2, cy - bar_h, W * SS / 2 + bar_w / 2, cy + bar_h],
+    radius=bar_h, fill=(255, 255, 255, 255)
+)
 
-# Outline stroke
-ImageDraw.Draw(img).line(outline + [outline[0]], fill=OUTLINE, width=int(SS * 2.2), joint="curve")
-
-# Gloss highlight (clipped to droplet)
-gloss = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-gd = ImageDraw.Draw(gloss)
-hx, hy = cx - R * 0.34, cy - R * 0.28
-gd.ellipse([hx - R * 0.24, hy - R * 0.52, hx + R * 0.24, hy + R * 0.52], fill=(255, 255, 255, 165))
-gd.ellipse([cx - R * 0.10, cy + R * 0.30, cx + R * 0.16, cy + R * 0.60], fill=(255, 255, 255, 60))
-clip = ImageChops.multiply(gloss.getchannel("A"), mask)
-gloss.putalpha(clip)
-img = Image.alpha_composite(img, gloss)
-
-# Sparkle (4-point star) on the droplet's upper-right so it reads white-on-purple
-# on any background. A soft glow sits behind it.
-sx, sy = cx + R * 0.40, cy - R * 0.52
-s = R * 0.34
-k = 0.15
-star = [
-    (sx, sy - s), (sx + s * k, sy - s * k), (sx + s, sy), (sx + s * k, sy + s * k),
-    (sx, sy + s), (sx - s * k, sy + s * k), (sx - s, sy), (sx - s * k, sy - s * k),
-]
-glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-gdr = ImageDraw.Draw(glow)
-gdr.ellipse([sx - s * 1.15, sy - s * 1.15, sx + s * 1.15, sy + s * 1.15], fill=(255, 255, 255, 70))
-glow = glow.filter(ImageFilter.GaussianBlur(SS * 1.5))
-img = Image.alpha_composite(img, glow)
-ImageDraw.Draw(img).polygon(star, fill=(255, 255, 255, 245))
-
-# Downscale: final icon + a larger preview for review
 repo = Path(__file__).resolve().parent.parent
-icon = img.resize((48, 72), Image.LANCZOS)
-icon.save(repo / "icon.png")
-img.resize((192, 288), Image.LANCZOS).save(repo / "scripts" / "icon_preview.png")
-print(f"wrote {repo / 'icon.png'} (48x72) and scripts/icon_preview.png (192x288)")
+img.resize((W, H), Image.LANCZOS).save(repo / "icon.png")
+img.resize((W * 4, H * 4), Image.LANCZOS).save(repo / "scripts" / "icon_preview.png")
+print(f"wrote {repo / 'icon.png'} ({W}x{H}) and scripts/icon_preview.png ({W * 4}x{H * 4})")
