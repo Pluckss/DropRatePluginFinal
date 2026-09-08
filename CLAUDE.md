@@ -190,6 +190,51 @@ What the script does, so the output shape stays stable:
   (CoX/ToB/ToA — contribution/invocation-based) and skilling pets (per-activity + level). Those
   items simply get no tooltip rather than a fabricated one.
 
+## The source you are looking at leads the tooltip (added 2026-09-08, issue #12)
+
+Sorting the tooltip purely by rarity is right when you do not know where an item came
+from, and wrong when the interface already says. On a hard casket's own reward screen
+`Hard clue` was listed sixth for a Rune plateskirt, and for a Nature rune it was past
+the `+91 more` cut entirely — invisible on the screen that produced it.
+
+`renderClogTooltip(item, preferred)` now lifts the preferred source's group to the top
+**before** the `CLOG_MAX_RATE_GROUPS` truncation, and moves that source to the front of
+its own group so `CLOG_MAX_SOURCES_PER_GROUP` cannot trim it either.
+
+Where `preferred` comes from:
+- **Clue reward screen** — `lastClueSource`, recorded in `onLootReceived`. The screen
+  itself carries no title: `InterfaceID.TrailRewardscreen` has only `ITEMS` and models.
+  The casket loot arrives named `Clue Scroll (Hard)`, which `sourceAliases` already maps
+  to our `Hard clue` key, so no new lookup table was needed.
+- **Collection Log** — `activeClogPage()`, reading `InterfaceID.Collection.HEADER_TEXT`.
+
+**Fail-soft by design.** If the context is unknown or does not drop the item, nothing is
+pinned and the tooltip is byte-identical to before. That matters because the clog header
+component id was inferred from the API's field order and has NOT been confirmed in a
+running client — if it is wrong, the clue half still works and the clog half is merely
+inert. `VerifyClogOrder.java` covers this with three `unchanged` checks.
+
+The tooltip cache key is `item + (char) 31 + preferred`; item and source names both
+contain spaces, so an ordinary separator would let different pairs collide.
+
+## Running the verification harnesses — put "." LAST on the classpath
+
+`VerifyResolution.java` and `VerifyClogOrder.java` are run from the crawler folder, and
+that folder holds stale copies of the plugin's JSON from earlier crawls
+(`droprates_clean.json` there is August's 332 KB against the shipped 592 KB).
+`getResourceAsStream` takes the first classpath match, so:
+
+```
+java -cp "<classes>;<resources>;<compile cp>;."   VerifyResolution     # 46/46
+java -cp ".;<classes>;<resources>;<compile cp>"   VerifyResolution     # 12 phantom failures
+```
+
+With `.` first the harness silently tests August's data, which still had the
+pre-normalisation item names (`Jar of venom`, `Wine of zamorak`), and reports twelve
+failures that have nothing to do with the plugin. This cost an hour on 2026-09-08.
+`VerifyResolution` must also set `primaryVariants` and call `loadNpcVersions` —
+`startUp()` does both, and `resolveDrop` consults them first.
+
 ## The monster's own table always beats the RDT (fixed 2026-09-06)
 
 `resolveDrop` used to walk the candidate list and return the first candidate that

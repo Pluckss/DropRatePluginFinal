@@ -157,6 +157,17 @@ public class DropRatePlugin extends Plugin
 	// so the renderer has to know which interface put this item under the cursor.
 	private boolean hoveredFromClueReward;
 	private long clogHoverSeenAt;
+	// The source the player is actually standing in front of: the casket tier whose
+	// reward screen is open, or the Collection Log page they have selected. Sorting
+	// purely by rarity buries it — a hard casket's own rate showed up sixth on the
+	// hard casket's own reward screen, and Nature rune's was past "+91 more" — so
+	// this gets pinned to the top of the tooltip. Null means sort by rarity alone.
+	private String preferredSource;
+	// Set when a clue casket's loot arrives, which is what tells us the tier; the
+	// reward screen itself carries no title to read (TrailRewardscreen has only
+	// ITEMS and models).
+	private String lastClueSource;
+	private Set<String> clueDropSources = Collections.emptySet();
 
 	// The overlay asks for the tooltip once per rendered frame, so building it from
 	// scratch every time would re-parse every rate of the hovered item ~50x a second
@@ -168,6 +179,10 @@ public class DropRatePlugin extends Plugin
 	// Parsed form of the "Hidden filler items" CSV, rebuilt only when config changes
 	// instead of once per item per drop.
 	private Set<String> fillerItems;
+
+	// Joins the two halves of a tooltip cache key. Item and source names both contain
+	// spaces, so an ordinary separator would let different pairs collide.
+	private static final char CACHE_KEY_SEPARATOR = (char) 31;   // ASCII unit separator
 
 	private static final long CLOG_HOVER_TIMEOUT_MS = 150;
 	private static final int CLOG_MAX_RATE_GROUPS = 7;
@@ -203,6 +218,10 @@ public class DropRatePlugin extends Plugin
 		invertedDrops = invertDropMap(primaryDrops);
 		rdtDrops = loadOptionalDrops("/rare_drop_table.json");
 		dropMetadata = loadDropMetadata("/drop_metadata.json");
+
+		// Kept so a casket's loot event can be recognised as a clue tier rather than
+		// any other activity reward that also arrives as EVENT loot.
+		clueDropSources = new HashSet<>(clueDrops.keySet());
 
 		clogSources = buildClogSources(primaryDrops, clueDrops, rdtDrops);
 		overlayManager.add(clogTooltipOverlay);
@@ -241,6 +260,8 @@ public class DropRatePlugin extends Plugin
 		overlayManager.remove(clogTooltipOverlay);
 		overlayManager.remove(clueRewardTooltipOverlay);
 		hoveredClogItem = null;
+		preferredSource = null;
+		lastClueSource = null;
 		clogTooltipCache.clear();
 		fillerItems = null;
 	}
@@ -294,7 +315,30 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
-		handleLoot(cleanName(event.getName()), NO_NPC_ID, event.getItems());
+		String source = cleanName(event.getName());
+		rememberClueSource(source);
+		handleLoot(source, NO_NPC_ID, event.getItems());
+	}
+
+	/**
+	 * Remembers which casket tier just paid out, because the reward screen that opens
+	 * next cannot say so itself: {@code InterfaceID.TrailRewardscreen} has only an item
+	 * container and some models, no title to read.
+	 * <p>
+	 * The loot arrives named {@code "Clue Scroll (Hard)"}, which drop_metadata's
+	 * sourceAliases already map to our own {@code "Hard clue"} key — the same string
+	 * the tooltip lists, so it can be matched without a second lookup table.
+	 */
+	private void rememberClueSource(String eventName)
+	{
+		for (String alias : dropMetadata.getSourceAliases(eventName))
+		{
+			if (clueDropSources.contains(alias))
+			{
+				lastClueSource = alias;
+				return;
+			}
+		}
 	}
 
 	@Subscribe
@@ -329,7 +373,27 @@ public class DropRatePlugin extends Plugin
 		hoveredClogItem = itemName;
 		hoveredClogItemObtained = isClogItemObtained(entry);
 		hoveredFromClueReward = false;
+		preferredSource = activeClogPage();
 		clogHoverSeenAt = System.currentTimeMillis();
+	}
+
+	/**
+	 * The Collection Log page currently open, e.g. {@code "Alchemical Hydra"}, read
+	 * from the header above the item grid. That string is the boss's display name,
+	 * which is also how it is keyed in our drop data, so it can be matched directly.
+	 * <p>
+	 * Returns null if the header cannot be read. Callers treat that as "no preference"
+	 * rather than an error — the tooltip then behaves exactly as it did before.
+	 */
+	private String activeClogPage()
+	{
+		Widget header = client.getWidget(InterfaceID.Collection.HEADER_TEXT);
+		if (header == null || header.isHidden())
+		{
+			return null;
+		}
+
+		return cleanName(header.getText());
 	}
 
 	/**
@@ -350,6 +414,9 @@ public class DropRatePlugin extends Plugin
 		// so the hide-if-obtained option must never suppress it.
 		hoveredClogItemObtained = false;
 		hoveredFromClueReward = true;
+		// The casket that produced this screen, so its own rate leads the tooltip
+		// instead of sitting below whichever bosses happen to drop the item more often.
+		preferredSource = lastClueSource;
 		clogHoverSeenAt = System.currentTimeMillis();
 	}
 
@@ -399,17 +466,24 @@ public class DropRatePlugin extends Plugin
 		}
 
 		String itemName = hoveredClogItem;
-		if (clogTooltipCache.containsKey(itemName))
+		// The same item renders differently depending on which source is pinned to
+		// the top, so the pinned source belongs in the cache key. Joined on a
+		// character that cannot occur in either name — both contain spaces, so a
+		// space would let two different pairs collide on one key.
+		String cacheKey = preferredSource == null
+			? itemName
+			: itemName + CACHE_KEY_SEPARATOR + preferredSource;
+		if (clogTooltipCache.containsKey(cacheKey))
 		{
-			return clogTooltipCache.get(itemName);
+			return clogTooltipCache.get(cacheKey);
 		}
 
-		String tooltip = renderClogTooltip(itemName);
-		clogTooltipCache.put(itemName, tooltip);
+		String tooltip = renderClogTooltip(itemName, preferredSource);
+		clogTooltipCache.put(cacheKey, tooltip);
 		return tooltip;
 	}
 
-	private String renderClogTooltip(String itemName)
+	private String renderClogTooltip(String itemName, String preferred)
 	{
 		List<SourceRate> sources = clogSources.get(itemName);
 		if (sources == null || sources.isEmpty())
@@ -433,6 +507,11 @@ public class DropRatePlugin extends Plugin
 
 		// Most common source first — that is the best way to obtain the item.
 		groups.sort(Comparator.comparingDouble(group -> group.effectiveRate));
+
+		// Then lift the source the player is actually looking at to the top. This has
+		// to happen before the CLOG_MAX_RATE_GROUPS cut below, or the one rate they
+		// came for stays hidden behind "+n more" — which is exactly the complaint.
+		pinPreferredSource(groups, preferred);
 
 		StringBuilder tooltip = new StringBuilder();
 		tooltip.append(colorTag(WHITE)).append(itemName).append("</col>");
@@ -458,6 +537,50 @@ public class DropRatePlugin extends Plugin
 		}
 
 		return tooltip.toString();
+	}
+
+	/**
+	 * Moves the group containing {@code preferred} to the front, and that source to
+	 * the front of its own group. Everything else keeps its rarity order.
+	 * <p>
+	 * A group can hold several sources that happen to share a rate, and
+	 * {@link #joinClogSources(List)} only prints the first few of them, so reordering
+	 * within the group matters as much as reordering the groups themselves.
+	 * <p>
+	 * Does nothing when the preferred source is unknown or does not drop this item,
+	 * which is what makes a wrong or missing context harmless: the tooltip simply
+	 * falls back to the plain rarity order it has always had.
+	 */
+	private void pinPreferredSource(List<ClogRateGroup> groups, String preferred)
+	{
+		if (preferred == null || groups.isEmpty())
+		{
+			return;
+		}
+
+		for (int i = 0; i < groups.size(); i++)
+		{
+			ClogRateGroup group = groups.get(i);
+			int at = group.sources.indexOf(preferred);
+			if (at < 0)
+			{
+				continue;
+			}
+
+			if (at > 0)
+			{
+				group.sources.remove(at);
+				group.sources.add(0, preferred);
+			}
+
+			if (i > 0)
+			{
+				groups.remove(i);
+				groups.add(0, group);
+			}
+
+			return;
+		}
 	}
 
 	private String joinClogSources(List<String> sources)
