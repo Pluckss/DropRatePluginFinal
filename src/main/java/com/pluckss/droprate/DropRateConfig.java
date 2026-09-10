@@ -55,30 +55,13 @@ public interface DropRateConfig extends Config
 		keyName = "displayMode",
 		name = "Drop visibility",
 		description = "<html>All drops: show a rate for every item received.<br>"
-			+ "Notable drops only: hide guaranteed drops (bones, always-drops) and any items in the filler list below.<br>"
-			+ "Rare drops only: only show messages for drops rarer than the threshold below.</html>",
+			+ "Notable drops only: hide guaranteed drops (bones, always-drops) and any items in the filler list below.</html>",
 		position = 0,
 		section = dropFeedSection
 	)
 	default DropRateDisplayMode displayMode()
 	{
 		return DropRateDisplayMode.ALL_MATCHES;
-	}
-
-	@ConfigItem(
-		keyName = "highDropThreshold",
-		name = "Rare-only minimum rate",
-		description = "Used only in Rare drops only mode. Example: 700 shows 1/700 and rarer drops",
-		position = 4,
-		section = dropFeedSection
-	)
-	@Range(
-		min = 1,
-		max = 100000
-	)
-	default int rareDropThreshold()
-	{
-		return 500;
 	}
 
 	@ConfigItem(
@@ -231,6 +214,22 @@ public interface DropRateConfig extends Config
 	default Color ultraRareTierColor()
 	{
 		return new Color(156, 39, 176);
+	}
+
+	@ConfigItem(
+		keyName = "minimumChatRarity",
+		name = "Minimum rarity to show in chat",
+		description = "<html>Only print a drop when it is at least this rare. A tier shows itself<br>"
+			+ "and everything rarer, so Rare prints rare and ultra-rare drops only.<br>"
+			+ "Common, the default, prints every tier and filters nothing.<br>"
+			+ "These are the same tiers the colors use, so moving a tier boundary<br>"
+			+ "under Appearance moves this filter with it.</html>",
+		position = 3,
+		section = cleanerFeedSection
+	)
+	default DropRateTier minimumChatRarity()
+	{
+		return DropRateTier.COMMON;
 	}
 
 	@ConfigItem(

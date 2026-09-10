@@ -73,6 +73,12 @@ public class DropRatePlugin extends Plugin
 {
 	private static final String CONFIG_GROUP = "droprate";
 	private static final String DISPLAY_MODE_KEY = "displayMode";
+	private static final String MINIMUM_RARITY_KEY = "minimumChatRarity";
+	// The retired "Rare drops only" display mode and the numeric threshold it read.
+	// Both are replaced by "Minimum rarity to show in chat"; see migrateRareOnlyMode.
+	private static final String RETIRED_RARE_ONLY_MODE = "RARE_DROPS_ONLY";
+	private static final String RETIRED_RARE_THRESHOLD_KEY = "highDropThreshold";
+	private static final int RETIRED_RARE_THRESHOLD_DEFAULT = 500;
 	private static final String LEGACY_RARE_ONLY_KEY = "onlyHighDrops";
 	private static final String LEGACY_HIDE_ALWAYS_KEY = "hideAlwaysDrops";
 	private static final String LEGACY_HIDE_USELESS_KEY = "hideUselessDrops";
@@ -198,7 +204,14 @@ public class DropRatePlugin extends Plugin
 	@Provides
 	DropRateConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(DropRateConfig.class);
+		DropRateConfig config = configManager.getConfig(DropRateConfig.class);
+		// RuneLite walks every setting for its defaults the moment this method
+		// returns, and that pass quietly rewrites any stored value it cannot read
+		// back — the retired RARE_DROPS_ONLY display mode included — long before
+		// startUp runs. This is the last point at which it can still be seen.
+		migrateRareOnlyMode(configManager, config);
+		retireRareOnlyThreshold(configManager);
+		return config;
 	}
 
 	@Override
@@ -257,10 +270,10 @@ public class DropRatePlugin extends Plugin
 			dropMetadata.getSourceContextCount()
 		);
 		log.info(
-			"DropRate config active: mode={}, multiRolls={}, rareThreshold={}, rateFormatMode={}, showRatePercentage={}, colorMode={}, commonTierMax={}, rareTierMin={}, ultraRareTierMin={}, alternateTables={}",
+			"DropRate config active: mode={}, multiRolls={}, minimumChatRarity={}, rateFormatMode={}, showRatePercentage={}, colorMode={}, commonTierMax={}, rareTierMin={}, ultraRareTierMin={}, alternateTables={}",
 			displayMode,
 			config.showMultiRollDrops(),
-			config.rareDropThreshold(),
+			config.minimumChatRarity(),
 			config.rateFormatMode(),
 			config.showRatePercentage(),
 			config.colorMode(),
@@ -769,13 +782,9 @@ public class DropRatePlugin extends Plugin
 			}
 
 			double effectiveRate = resolvedDrop.effectiveRate;
-			if (displayMode == DropRateDisplayMode.RARE_DROPS_ONLY)
+			if (!passesMinimumRarity(effectiveRate))
 			{
-				int threshold = Math.max(1, config.rareDropThreshold());
-				if (effectiveRate <= 0 || effectiveRate < threshold)
-				{
-					continue;
-				}
+				continue;
 			}
 
 			if (!config.showMultiRollDrops() && chance != null && chance.numerator >= 2.0d)
@@ -1977,6 +1986,53 @@ public class DropRatePlugin extends Plugin
 		return Double.parseDouble(value);
 	}
 
+	/**
+	 * The single source of truth for what Common, Uncommon, Rare and Ultra-rare mean.
+	 * Both the tier colours and the "Minimum rarity to show in chat" filter read the
+	 * player's own tier boundaries through here, so the two can never disagree.
+	 *
+	 * <p>The boundaries are clamped into a strictly increasing order because each one
+	 * is edited independently in the config panel. A rate we could not parse comes in
+	 * as 0 and lands on Common, which is the tier its colour has always used.
+	 *
+	 * <p>Takes the config rather than reading the field so the rare-only migration,
+	 * which has to run before injection, can classify a threshold with it too.
+	 */
+	private static DropRateTier classifyTier(DropRateConfig config, double rate)
+	{
+		int commonTierMax = Math.max(1, config.commonTierThreshold());
+		int rareTierMin = Math.max(commonTierMax + 1, config.rareColorThreshold());
+		int ultraRareTierMin = Math.max(rareTierMin + 1, config.ultraRareColorThreshold());
+
+		if (rate >= ultraRareTierMin)
+		{
+			return DropRateTier.ULTRA_RARE;
+		}
+
+		if (rate >= rareTierMin)
+		{
+			return DropRateTier.RARE;
+		}
+
+		if (rate > commonTierMax)
+		{
+			return DropRateTier.UNCOMMON;
+		}
+
+		return DropRateTier.COMMON;
+	}
+
+	/**
+	 * Whether a drop is rare enough to be worth a chat line. The drop keeps whatever
+	 * rarity {@link #classifyTier} gives it; this only decides whether that tier is
+	 * at or past the one the player asked to be told about. Common is the lowest tier
+	 * and the default, so it lets everything through.
+	 */
+	private boolean passesMinimumRarity(double effectiveRate)
+	{
+		return classifyTier(config, effectiveRate).compareTo(config.minimumChatRarity()) >= 0;
+	}
+
 	private Color getColor(double rate)
 	{
 		if (config.colorMode() == DropRateColorMode.NEUTRAL_WHITE)
@@ -1984,29 +2040,30 @@ public class DropRatePlugin extends Plugin
 			return WHITE;
 		}
 
-		int commonTierMax = Math.max(1, config.commonTierThreshold());
-		int rareTierMin = Math.max(commonTierMax + 1, config.rareColorThreshold());
-		int ultraRareTierMin = Math.max(rareTierMin + 1, config.ultraRareColorThreshold());
-		if (rate >= ultraRareTierMin)
+		switch (classifyTier(config, rate))
 		{
-			Color c = config.ultraRareTierColor();
-			return c != null ? c : DEFAULT_PURPLE;
+			case ULTRA_RARE:
+			{
+				Color c = config.ultraRareTierColor();
+				return c != null ? c : DEFAULT_PURPLE;
+			}
+			case RARE:
+			{
+				Color c = config.rareTierColor();
+				return c != null ? c : DEFAULT_RED;
+			}
+			case UNCOMMON:
+			{
+				Color c = config.uncommonTierColor();
+				return c != null ? c : DEFAULT_ORANGE;
+			}
+			case COMMON:
+			default:
+			{
+				Color c = config.commonTierColor();
+				return c != null ? c : DEFAULT_GREEN;
+			}
 		}
-
-		if (rate >= rareTierMin)
-		{
-			Color c = config.rareTierColor();
-			return c != null ? c : DEFAULT_RED;
-		}
-
-		if (rate > commonTierMax)
-		{
-			Color c = config.uncommonTierColor();
-			return c != null ? c : DEFAULT_ORANGE;
-		}
-
-		Color c = config.commonTierColor();
-		return c != null ? c : DEFAULT_GREEN;
 	}
 
 	/**
@@ -2127,7 +2184,11 @@ public class DropRatePlugin extends Plugin
 		DropRateDisplayMode migratedMode;
 		if (parseLegacyBoolean(legacyRareOnly, false))
 		{
-			migratedMode = DropRateDisplayMode.RARE_DROPS_ONLY;
+			// The mode this used to become filtered by rarity, not by kind of drop,
+			// and the rarity filter now owns that job. Show every drop and let the
+			// minimum rarity below do the hiding.
+			migratedMode = DropRateDisplayMode.ALL_MATCHES;
+			adoptRareOnlyThresholdAsMinimumRarity(configManager, config);
 		}
 		else if (parseLegacyBoolean(legacyHideAlways, true) || parseLegacyBoolean(legacyHideUseless, false))
 		{
@@ -2140,6 +2201,74 @@ public class DropRatePlugin extends Plugin
 
 		configManager.setConfiguration(CONFIG_GROUP, DISPLAY_MODE_KEY, migratedMode.name());
 		log.info("Migrated legacy DropRate config to display mode {}", migratedMode);
+	}
+
+	/**
+	 * "Rare drops only" was one of three display modes and is now retired in favour of
+	 * "Minimum rarity to show in chat". Someone still on it has a display mode stored
+	 * that no longer names a constant — RuneLite would quietly fall back to All drops
+	 * and print everything at them — so translate it once instead: keep All drops, and
+	 * hand the rarity filter the tier their old threshold already sat in.
+	 */
+	private void migrateRareOnlyMode(ConfigManager configManager, DropRateConfig config)
+	{
+		if (!RETIRED_RARE_ONLY_MODE.equals(configManager.getConfiguration(CONFIG_GROUP, DISPLAY_MODE_KEY)))
+		{
+			return;
+		}
+
+		adoptRareOnlyThresholdAsMinimumRarity(configManager, config);
+		configManager.setConfiguration(CONFIG_GROUP, DISPLAY_MODE_KEY, DropRateDisplayMode.ALL_MATCHES.name());
+		log.info("Migrated the retired Rare drops only display mode to All drops");
+	}
+
+	/**
+	 * Classifies the retired numeric rare-only threshold with the very same tier
+	 * boundaries the colours use, so nobody is handed a boundary invented here. With
+	 * the old default of 500 and the default tiers that lands on Uncommon. The
+	 * classification rounds down by construction, so the new setting can only ever
+	 * show a returning player more than the old one did, never less.
+	 */
+	private void adoptRareOnlyThresholdAsMinimumRarity(ConfigManager configManager, DropRateConfig config)
+	{
+		if (configManager.getConfiguration(CONFIG_GROUP, MINIMUM_RARITY_KEY) != null)
+		{
+			return;
+		}
+
+		DropRateTier tier = classifyTier(config, readRetiredRareThreshold(configManager));
+		configManager.setConfiguration(CONFIG_GROUP, MINIMUM_RARITY_KEY, tier.name());
+		log.info("Migrated the retired rare-only threshold to minimum chat rarity {}", tier);
+	}
+
+	private int readRetiredRareThreshold(ConfigManager configManager)
+	{
+		String stored = configManager.getConfiguration(CONFIG_GROUP, RETIRED_RARE_THRESHOLD_KEY);
+		if (stored == null)
+		{
+			return RETIRED_RARE_THRESHOLD_DEFAULT;
+		}
+
+		try
+		{
+			return Integer.parseInt(stored.trim());
+		}
+		catch (NumberFormatException e)
+		{
+			return RETIRED_RARE_THRESHOLD_DEFAULT;
+		}
+	}
+
+	/** Drops the numeric rare-only threshold once the migration above has read it. */
+	private void retireRareOnlyThreshold(ConfigManager configManager)
+	{
+		if (configManager.getConfiguration(CONFIG_GROUP, RETIRED_RARE_THRESHOLD_KEY) == null)
+		{
+			return;
+		}
+
+		configManager.unsetConfiguration(CONFIG_GROUP, RETIRED_RARE_THRESHOLD_KEY);
+		log.debug("Removed the retired rare-only threshold setting");
 	}
 
 	/**
@@ -2189,7 +2318,9 @@ public class DropRatePlugin extends Plugin
 
 		if (parseLegacyBoolean(configManager.getConfiguration(CONFIG_GROUP, LEGACY_RARE_ONLY_KEY), false))
 		{
-			return DropRateDisplayMode.RARE_DROPS_ONLY;
+			// Matches migrateLegacyConfig: the rarity half of that setting is carried
+			// by the minimum rarity filter, leaving the display mode unrestricted.
+			return DropRateDisplayMode.ALL_MATCHES;
 		}
 
 		if (parseLegacyBoolean(configManager.getConfiguration(CONFIG_GROUP, LEGACY_HIDE_ALWAYS_KEY), true)

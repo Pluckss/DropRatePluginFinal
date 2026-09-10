@@ -88,7 +88,7 @@ Nothing is required. Install it and it works. But if you want to tune it:
 
 ### Display
 
-- **Drop visibility** — every drop, notable drops only, or rare drops only.
+- **Drop visibility** — every drop, or notable drops only.
 - **Rate display** — `1/111` (tidied up), `2/222` (exactly as the wiki writes it), or both.
 - **Show percentage** — adds `(1%)` on the end. Off by default.
 - **Show source hints** — when an item can come from two tables, shows both:
@@ -111,7 +111,6 @@ Nothing is required. Install it and it works. But if you want to tune it:
   message fall back to counting the current session only, and say so: `KC: 8 this session`.
 
 - **Kill counter min rarity** — only show the counter for drops rarer than this.
-- **Rare-only minimum rate** — in "rare drops only" mode, how rare is rare.
 
 ### Filtering
 
@@ -119,6 +118,11 @@ Nothing is required. Install it and it works. But if you want to tune it:
 - **Hidden filler items** — a comma-separated list of things you never want to hear about.
 - **Min item value (gp)** — hide drops worth less than this on the GE. Pets and other
   untradeables are never hidden by this.
+- **Minimum rarity to show in chat** — how rare a drop has to be before it is printed.
+  Pick a tier and you get that tier and everything rarer: `Uncommon` stops the common
+  green lines, `Rare` prints only red and purple. `Common`, the default, prints
+  everything. These are the same four tiers the colours use, so if you move a tier
+  boundary under **Appearance** this filter moves with it.
 
 ### Notifications
 
