@@ -72,6 +72,11 @@ import net.runelite.http.api.loottracker.LootRecordType;
 public class DropRatePlugin extends Plugin
 {
 	private static final String CONFIG_GROUP = "droprate";
+	// Separator between the rates of a multi-table drop. Must not be '|': the chat
+	// line is silently cut at the first pipe, taking the opening <col> tag with it,
+	// so "36x Earth rune (1/21 | 1/32 | 1/64)" renders as an uncoloured " 1/32 | 1/64)".
+	// Reported as issue #14.
+	private static final String RATE_SEPARATOR = ", ";
 	private static final String DISPLAY_MODE_KEY = "displayMode";
 	private static final String MINIMUM_RARITY_KEY = "minimumChatRarity";
 	// The retired "Rare drops only" display mode and the numeric threshold it read.
@@ -1355,7 +1360,7 @@ public class DropRatePlugin extends Plugin
 		return new ResolvedDrop(
 			npcName,
 			firstRate,
-			String.join(" | ", parts),
+			String.join(RATE_SEPARATOR, parts),
 			getEffectiveRate(firstChance, firstRate)
 		);
 	}
@@ -1679,13 +1684,13 @@ public class DropRatePlugin extends Plugin
 				parts.add(formatLabeledRate(alternate.label, formatSingleRate(alternate.rate, parseChance(alternate.rate))));
 			}
 
-			return parts.isEmpty() ? formattedPrimaryRate : String.join(" | ", parts);
+			return parts.isEmpty() ? formattedPrimaryRate : String.join(RATE_SEPARATOR, parts);
 		}
 
 		if (config.showAlternateTables() && rdtRate != null)
 		{
 			String formattedRdtRate = formatSingleRate(rdtRate, parseChance(rdtRate));
-			return formatLabeledRate("Normal", formattedPrimaryRate) + " | " + formatLabeledRate("RDT", formattedRdtRate);
+			return formatLabeledRate("Normal", formattedPrimaryRate) + RATE_SEPARATOR + formatLabeledRate("RDT", formattedRdtRate);
 		}
 
 		return formattedPrimaryRate;

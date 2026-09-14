@@ -291,7 +291,7 @@ public interface DropRateConfig extends Config
 		name = "Show all table variants",
 		description = "<html>When a monster has several drop tables and the kill cannot be<br>"
 			+ "matched to one of them, show every table's rate, labelled by version.<br>"
-			+ "Example: 1x Adamantite bar (Standard 2/128 | Wilderness Slayer Cave 2/68)<br>"
+			+ "Example: 1x Adamantite bar (Standard 2/128, Wilderness Slayer Cave 2/68)<br>"
 			+ "Off: show only the first table's rate.</html>",
 		position = 7,
 		section = dropFeedSection
