@@ -92,7 +92,7 @@ Nothing is required. Install it and it works. But if you want to tune it:
 - **Rate display** — `1/111` (tidied up), `2/222` (exactly as the wiki writes it), or both.
 - **Show percentage** — adds `(1%)` on the end. Off by default.
 - **Show source hints** — when an item can come from two tables, shows both:
-  `Normal 1/400 | RDT 1/5012.5`. Off by default.
+  `Normal 1/400, RDT 1/5012.5`. Off by default.
 - **Show all table variants** — when a monster has several drop tables and the kill can't be
   pinned to one, shows all of them, labelled. On by default.
 - **Show kill counter** — puts your kill count next to the drop, and how many kills that
