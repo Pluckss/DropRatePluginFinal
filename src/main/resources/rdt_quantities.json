@@ -1,0 +1,259 @@
+{
+  "Abyssal Sire": {
+    "Death rune": "90",
+    "Law rune": "90",
+    "Nature talisman": "2",
+    "Runite bar": "2",
+    "Uncut diamond": "2"
+  },
+  "Abyssal demon": {
+    "Law rune": "45"
+  },
+  "Alchemical Hydra": {
+    "Death rune": "45"
+  },
+  "Ancient Custodian": {
+    "Rune arrow": "42"
+  },
+  "Ancient Wyvern": {
+    "Death rune": "45",
+    "Nature rune": "67"
+  },
+  "Araxxor": {
+    "Death rune": "45",
+    "Nature rune": "67",
+    "Rune 2h sword": "1",
+    "Rune kiteshield": "1"
+  },
+  "Black demon": {
+    "Death rune": "45",
+    "Law rune": "45"
+  },
+  "Black dragon": {
+    "Adamant javelin": "20",
+    "Death rune": "45",
+    "Law rune": "45"
+  },
+  "Bronze dragon": {
+    "Adamant javelin": "20",
+    "Death rune": "45",
+    "Law rune": "45"
+  },
+  "Brutal black dragon": {
+    "Death rune": "45",
+    "Law rune": "45",
+    "Rune arrow": "42",
+    "Rune javelin": "5"
+  },
+  "Brutal blue dragon": {
+    "Death rune": "45",
+    "Law rune": "45",
+    "Rune arrow": "42",
+    "Rune javelin": "5"
+  },
+  "Brutal green dragon": {
+    "Law rune": "45",
+    "Nature rune": "67"
+  },
+  "Brutal red dragon": {
+    "Death rune": "45",
+    "Law rune": "45",
+    "Rune arrow": "42",
+    "Rune javelin": "5"
+  },
+  "Cerberus": {
+    "Death rune": "45",
+    "Uncut diamond": "1"
+  },
+  "Chaos Elemental": {
+    "Rune arrow": "42",
+    "Runite bar": "1"
+  },
+  "Chaos Fanatic": {
+    "Uncut emerald": "1",
+    "Uncut sapphire": "1"
+  },
+  "Commander Zilyana": {
+    "Law rune": "40-45"
+  },
+  "Crazy archaeologist": {
+    "Silver ore": "100",
+    "Uncut emerald": "1",
+    "Uncut sapphire": "1"
+  },
+  "Dark beast": {
+    "Death rune": "45"
+  },
+  "Demonic gorilla": {
+    "Death rune": "45",
+    "Law rune": "45",
+    "Runite bar": "1"
+  },
+  "Deranged archaeologist": {
+    "Uncut diamond": "1"
+  },
+  "Elder Chaos druid": {
+    "Law rune": "45",
+    "Nature rune": "67"
+  },
+  "Elder custodian stalker": {
+    "Rune arrow": "42"
+  },
+  "Fire giant": {
+    "Law rune": "45",
+    "Rune arrow": "42"
+  },
+  "Frost dragon": {
+    "Death rune": "45",
+    "Nature rune": "67"
+  },
+  "Giant Mole": {
+    "Death rune": "45",
+    "Law rune": "45"
+  },
+  "Greater abyssal demon": {
+    "Law rune": "45"
+  },
+  "Iron dragon": {
+    "Rune javelin": "5"
+  },
+  "Juvenile custodian stalker": {
+    "Death rune": "45",
+    "Rune arrow": "42"
+  },
+  "K'ril Tsutsaroth": {
+    "Death rune": "40-45"
+  },
+  "Kalphite Guardian": {
+    "Law rune": "45"
+  },
+  "Kalphite Queen": {
+    "Death rune": "45",
+    "Rune arrow": "42",
+    "Runite bar": "1",
+    "Uncut diamond": "1",
+    "Uncut emerald": "1",
+    "Uncut ruby": "1"
+  },
+  "King Black Dragon": {
+    "Law rune": "45"
+  },
+  "Kree'arra": {
+    "Rune arrow": "38-43"
+  },
+  "Lava dragon": {
+    "Death rune": "45",
+    "Law rune": "45",
+    "Rune javelin": "5"
+  },
+  "Lizardman shaman": {
+    "Death rune": "45"
+  },
+  "Locust rider": {
+    "Rune arrow": "42",
+    "Uncut sapphire": "1"
+  },
+  "Mad Angel": {
+    "Law rune": "45",
+    "Nature rune": "67"
+  },
+  "Mammoth": {
+    "Steel arrow": "150"
+  },
+  "Mature custodian stalker": {
+    "Death rune": "45",
+    "Rune arrow": "42"
+  },
+  "Mithril dragon": {
+    "Rune arrow": "42",
+    "Rune javelin": "5",
+    "Runite bar": "1"
+  },
+  "Nechryael": {
+    "Death rune": "45",
+    "Law rune": "45"
+  },
+  "Nechryarch": {
+    "Death rune": "45",
+    "Law rune": "45"
+  },
+  "Night beast": {
+    "Death rune": "45"
+  },
+  "Nuclear smoke devil": {
+    "Rune arrow": "42"
+  },
+  "Phantom Muspah": {
+    "Death rune": "45",
+    "Law rune": "45",
+    "Rune kiteshield": "1",
+    "Silver ore": "100"
+  },
+  "Rune dragon": {
+    "Death rune": "45",
+    "Rune arrow": "42"
+  },
+  "Sarachnis": {
+    "Uncut diamond": "1",
+    "Uncut emerald": "1",
+    "Uncut ruby": "1",
+    "Uncut sapphire": "1"
+  },
+  "Scarab Mage": {
+    "Rune arrow": "42",
+    "Uncut sapphire": "1"
+  },
+  "Skeletal Wyvern": {
+    "Death rune": "45",
+    "Rune arrow": "42",
+    "Uncut diamond": "1",
+    "Uncut ruby": "1"
+  },
+  "Skeleton (Lucien's camp)": {
+    "Law rune": "45"
+  },
+  "Smoke devil": {
+    "Rune arrow": "42"
+  },
+  "Sourhog": {
+    "Nature rune": "67",
+    "Steel arrow": "150"
+  },
+  "Steel dragon": {
+    "Rune javelin": "5"
+  },
+  "Strange creature (Shadows of Custodia)": {
+    "Death rune": "45",
+    "Rune arrow": "42"
+  },
+  "Tortured gorilla": {
+    "Death rune": "45"
+  },
+  "Vorkath": {
+    "Death rune": "45",
+    "Dragonstone": "1",
+    "Rune kiteshield": "1"
+  },
+  "Vyrewatch": {
+    "Death rune": "45",
+    "Nature rune": "67"
+  },
+  "Vyrewatch Sentinel": {
+    "Death rune": "45",
+    "Nature rune": "67",
+    "Rune arrow": "42"
+  },
+  "Waterfiend": {
+    "Uncut diamond": "1",
+    "Uncut emerald": "1",
+    "Uncut ruby": "1",
+    "Uncut sapphire": "1"
+  },
+  "Zombie (Shayzien Crypts)": {
+    "Law rune": "45"
+  },
+  "Zulrah": {
+    "Death rune": "45",
+    "Law rune": "45"
+  }
+}

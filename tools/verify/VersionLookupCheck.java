@@ -51,17 +51,17 @@ public class VersionLookupCheck
 		expect(resolve, plugin, "Abyssal demon", 416, "Adamantite bar", "2/128");
 		expect(resolve, plugin, "Abyssal demon", 7241, "Abyssal whip", null); // Catacombs table lists only its extras; normal path supplies the shared rate
 		expect(resolve, plugin, "Abyssal demon", 7241, "Dark totem base", "1/350");
-		expect(resolve, plugin, "Abyssal demon", -1, "Adamantite bar", "Standard 2/128 | Wilderness Slayer Cave 2/68");
+		expect(resolve, plugin, "Abyssal demon", -1, "Adamantite bar", "Standard 2/128, Wilderness Slayer Cave 2/68");
 		expect(resolve, plugin, "Cyclops", 2137, "Defensive casket", null); // basement id, item not on that table -> normal path
-		expect(resolve, plugin, "Vorkath", -1, "Dragonstone bolt tips", "2 × 5/150 | 2 × 14/2730");
-		expect(resolve, plugin, "Vorkath", 8061, "Dragonstone bolt tips", "2 × 5/150 | 2 × 14/2730");
+		expect(resolve, plugin, "Vorkath", -1, "Dragonstone bolt tips", "2 × 5/150, 2 × 14/2730");
+		expect(resolve, plugin, "Vorkath", 8061, "Dragonstone bolt tips", "2 × 5/150, 2 × 14/2730");
 		expect(resolve, plugin, "Kraken", 494, "Trident of the Seas (full)", null);
 		expect(resolve, plugin, "Barbarian", 3056, "Bronze arrow", "3/128");
 		expect(resolve, plugin, "Barbarian", 3055, "Bronze arrow", "4/128");
 		expect(resolve, plugin, "Green dragon", 7868, "Dragon bones", null);
 		expect(resolve, plugin, "Green dragon", 261, "Nature rune", "5/128");
 		expect(resolve, plugin, "Green dragon", 7868, "Nature rune", "1/128");
-		expect(resolve, plugin, "Green dragon", -1, "Nature rune", "Regular 5/128 | Wilderness Slayer Cave 1/128");
+		expect(resolve, plugin, "Green dragon", -1, "Nature rune", "Regular 5/128, Wilderness Slayer Cave 1/128");
 		expect(resolve, plugin, "Goblin", 3028, "Bronze arrow", "3/128"); // id undecided, but only one table lists the item
 		expect(resolve, plugin, "Does not exist", 1, "Coins", null);
 

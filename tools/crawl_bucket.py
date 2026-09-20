@@ -3,8 +3,8 @@
 
 The wiki renders every monster drop table from structured "buckets"
 (https://meta.weirdgloop.org/w/Extension:Bucket). This script reads them and
-writes droprates_clean.json and rare_drop_table.json under src/main/resources
-in the exact shape the plugin already loads, so no Java changes are needed.
+writes droprates_clean.json, rare_drop_table.json, npc_versions.json and
+rdt_quantities.json under src/main/resources in the shape the plugin loads.
 
     dropsline           one row per drop line on every page
     drop_table_sources  each monster's access chance into the rare / gem tables
@@ -393,6 +393,59 @@ def build_rdt(rows, source_rows, item_names, npc_pages):
     return dict(table)
 
 
+# ---------------------------------------------------------------- rare drop table quantities
+
+RDT_QUANTITIES_FILE = "rdt_quantities.json"
+
+
+def quantity_range(info):
+    low, high = info.get("Quantity Low"), info.get("Quantity High")
+    if not isinstance(low, (int, float)) or not isinstance(high, (int, float)):
+        return None                                         # "Varies", "Unknown"
+    return int(low), int(high)
+
+
+def build_rdt_quantities(rows, primary, rdt, item_names, npc_pages):
+    """{monster: {item: "N" | "LOW-HIGH"}}: the quantity the rare / gem table
+    hands out, for items a monster ALSO drops from its own table.
+
+    The plugin prefers the monster's own rate, which is wrong when the stack
+    really came off the rare drop table: Sarachnis drops 20-30 noted Uncut
+    sapphire at 4/100 and a single one from the gem table at 1/400. Quantity is
+    the only thing that tells the two apart, so a pair is emitted only when
+    the table's quantity cannot be confused with any of the monster's own rows
+    for that item. Everything else keeps the own-table rate.
+    """
+    own = defaultdict(list)
+    table_quantity = {}
+    for row in rows:
+        page = row["page_name"]
+        if page not in npc_pages or page_excluded(page):
+            continue
+        info = json.loads(row["drop_json"])
+        pair = (source_key(page), item_names.resolve(row["item_name"]))
+        if not is_table_row(row):
+            own[pair].append(quantity_range(info))
+            continue
+        # Same row selection as build_rdt, so the quantity belongs to the rate.
+        preferred = RDT_PREFERRED_SUBPAGE.get(page)
+        if preferred is not None and row.get("page_name_sub") != preferred:
+            continue
+        if info.get("Drop type") != "combat" or not parse_rarity(info.get("Rarity")):
+            continue
+        table_quantity.setdefault(pair, quantity_range(info))
+
+    out = defaultdict(dict)
+    for (monster, item), quantity in table_quantity.items():
+        if quantity is None or item not in primary.get(monster, {}) or monster not in rdt.get(item, {}):
+            continue
+        low, high = quantity
+        if any(q is None or not (q[1] < low or q[0] > high) for q in own[(monster, item)]):
+            continue
+        out[monster][item] = str(low) if low == high else "%d-%d" % (low, high)
+    return dict(out)
+
+
 # ---------------------------------------------------------------- npc versions
 
 VERSIONS_FILE = "npc_versions.json"
@@ -488,6 +541,8 @@ def validate(tables):
     """Return a list of (file, source, item, value) the plugin could not parse."""
     bad = []
     for name, table in tables.items():
+        if name == RDT_QUANTITIES_FILE:                      # quantities, not rates
+            continue
         for outer, inner in table.items():
             if isinstance(inner, list):                      # npc_versions.json
                 inner = {"%s / %s" % (v["version"], item): rate
@@ -517,10 +572,13 @@ def load_json(path):
 def generate(rows_by_bucket, item_names):
     npc_pages = {row["page_name"] for name in ("infobox_monster", "infobox_npc")
                  for row in rows_by_bucket[name]}
+    primary = build_primary(rows_by_bucket["dropsline"], item_names, npc_pages)
+    rdt = build_rdt(rows_by_bucket["dropsline"], rows_by_bucket["drop_table_sources"], item_names, npc_pages)
     return {
-        PRIMARY_FILE: build_primary(rows_by_bucket["dropsline"], item_names, npc_pages),
-        RDT_FILE: build_rdt(rows_by_bucket["dropsline"], rows_by_bucket["drop_table_sources"], item_names, npc_pages),
+        PRIMARY_FILE: primary,
+        RDT_FILE: rdt,
         VERSIONS_FILE: build_versions(rows_by_bucket["dropsline"], rows_by_bucket["infobox_monster"], item_names, npc_pages),
+        RDT_QUANTITIES_FILE: build_rdt_quantities(rows_by_bucket["dropsline"], primary, rdt, item_names, npc_pages),
     }
 
 

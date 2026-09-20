@@ -144,6 +144,10 @@ public class DropRatePlugin extends Plugin
 	private Map<String, Map<String, String>> primaryDrops;
 	private Map<String, Map<String, String>> invertedDrops;
 	private Map<String, Map<String, String>> rdtDrops;
+	// monster -> item -> the quantity ("1", "62-67") the rare / gem drop table hands
+	// out, only for items the monster also drops from its own table in a quantity
+	// that cannot be mistaken for it. See resolveDrop.
+	private Map<String, Map<String, String>> rdtQuantities = new HashMap<>();
 	private DropMetadata dropMetadata = DropMetadata.empty();
 	// Items whose wiki page lists more than one rate (several drop-table
 	// versions, or several rolls on one table). primaryDrops keeps only the
@@ -242,6 +246,7 @@ public class DropRatePlugin extends Plugin
 		mergeDropTable(primaryDrops, clueDrops);
 		invertedDrops = invertDropMap(primaryDrops);
 		rdtDrops = loadOptionalDrops("/rare_drop_table.json");
+		rdtQuantities = loadOptionalDrops("/rdt_quantities.json");
 		dropMetadata = loadDropMetadata("/drop_metadata.json");
 
 		// Kept so a casket's loot event can be recognised as a clue tier rather than
@@ -768,7 +773,7 @@ public class DropRatePlugin extends Plugin
 				}
 			}
 
-			ResolvedDrop resolvedDrop = resolveDrop(npcName, npcId, itemName, context);
+			ResolvedDrop resolvedDrop = resolveDrop(npcName, npcId, itemName, stack.getQuantity(), context);
 			if (resolvedDrop == null)
 			{
 				log.debug("No rarity entry found for {} from {}", itemName, npcName);
@@ -1189,15 +1194,46 @@ public class DropRatePlugin extends Plugin
 		return candidates;
 	}
 
-	private ResolvedDrop resolveDrop(String npcName, int npcId, String itemName, DropContext context)
+	private ResolvedDrop resolveDrop(String npcName, int npcId, String itemName, int quantity, DropContext context)
 	{
+		List<String> sourceCandidates = resolveSourceCandidates(npcName, itemName, context);
+
+		// Resolved independently of the normal match so the "Show source hints" line
+		// quotes the RDT rate for the variant the player is actually on (RoW/Legends),
+		// not whichever candidate happened to carry the normal entry.
+		String rdtSource = null;
+		String rdtRate = null;
+		for (String sourceCandidate : sourceCandidates)
+		{
+			rdtRate = findRdtRate(sourceCandidate, itemName);
+			if (rdtRate != null)
+			{
+				rdtSource = sourceCandidate;
+				break;
+			}
+		}
+
+		// Some monsters drop the same item from their own table AND from the rare /
+		// gem drop table: Sarachnis hands out 20-30 noted Uncut sapphire at 4/100 and a
+		// single one off the gem table at 1/400. The stack size is the only thing that
+		// tells them apart, and rdt_quantities.json lists a pair only when the two
+		// cannot be confused, so a matching stack is the rare-table roll.
+		if (rdtRate != null && isRareTableQuantity(npcName, itemName, quantity))
+		{
+			Chance rdtChance = parseChance(rdtRate);
+			return new ResolvedDrop(
+				rdtSource,
+				rdtRate,
+				formatSingleRate(rdtRate, rdtChance),
+				getEffectiveRate(rdtChance, rdtRate)
+			);
+		}
+
 		ResolvedDrop versioned = resolveVersionedDrop(npcName, npcId, itemName);
 		if (versioned != null)
 		{
 			return versioned;
 		}
-
-		List<String> sourceCandidates = resolveSourceCandidates(npcName, itemName, context);
 
 		// The candidate list is ordered most-specific first, and the context-resolved
 		// variants ("Araxxor Legends", "Demonic gorilla RoW") exist ONLY in the rare
@@ -1215,21 +1251,6 @@ public class DropRatePlugin extends Plugin
 			normalMatch = findDropMatch(sourceCandidate, itemName);
 			if (normalMatch != null)
 			{
-				break;
-			}
-		}
-
-		// Resolved independently of the normal match so the "Show source hints" line
-		// quotes the RDT rate for the variant the player is actually on (RoW/Legends),
-		// not whichever candidate happened to carry the normal entry.
-		String rdtSource = null;
-		String rdtRate = null;
-		for (String sourceCandidate : sourceCandidates)
-		{
-			rdtRate = findRdtRate(sourceCandidate, itemName);
-			if (rdtRate != null)
-			{
-				rdtSource = sourceCandidate;
 				break;
 			}
 		}
@@ -1699,6 +1720,45 @@ public class DropRatePlugin extends Plugin
 	private String formatLabeledRate(String label, String rate)
 	{
 		return isBlank(label) ? rate : label + " " + rate;
+	}
+
+	/**
+	 * True when a stack of this size can only be the rare / gem drop table's roll,
+	 * not the monster's own drop of the same item.
+	 */
+	private boolean isRareTableQuantity(String npcName, String itemName, int quantity)
+	{
+		if (rdtQuantities == null || npcName == null || itemName == null)
+		{
+			return false;
+		}
+
+		LinkedHashSet<String> sources = new LinkedHashSet<>();
+		sources.add(npcName);
+		sources.addAll(dropMetadata.getSourceAliases(npcName));
+		for (String source : sources)
+		{
+			Map<String, String> quantities = rdtQuantities.get(source);
+			String range = quantities != null ? quantities.get(itemName) : null;
+			if (range == null)
+			{
+				continue;
+			}
+
+			try
+			{
+				int dash = range.indexOf('-');
+				int low = Integer.parseInt(dash < 0 ? range : range.substring(0, dash));
+				int high = dash < 0 ? low : Integer.parseInt(range.substring(dash + 1));
+				return quantity >= low && quantity <= high;
+			}
+			catch (NumberFormatException e)
+			{
+				return false;
+			}
+		}
+
+		return false;
 	}
 
 	private String findRdtRate(String npcName, String itemName)
