@@ -2903,6 +2903,32 @@
         "lookupNpc": "Emissary Acolyte RoW Legends"
       }
     ],
+    "Emissary Ascended": [
+      {
+        "condition": "ring_of_wealth",
+        "equipped": true,
+        "lookupNpc": "Emissary Ascended RoW"
+      },
+      {
+        "condition": "legends_quest_completed",
+        "completed": true,
+        "lookupNpc": "Emissary Ascended Legends"
+      }
+    ],
+    "Emissary Ascended Legends": [
+      {
+        "condition": "ring_of_wealth",
+        "equipped": true,
+        "lookupNpc": "Emissary Ascended RoW Legends"
+      }
+    ],
+    "Emissary Ascended RoW": [
+      {
+        "condition": "legends_quest_completed",
+        "completed": true,
+        "lookupNpc": "Emissary Ascended RoW Legends"
+      }
+    ],
     "Emissary Chosen": [
       {
         "condition": "ring_of_wealth",
