@@ -18,6 +18,11 @@ jobs:
   check:
     name: Bundled data matches the wiki
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      DRIFT_TITLE: Bundled drop data is out of date with the wiki
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,3 +37,34 @@ jobs:
           name: drop-data-diff
           path: build/drop-data-diff.md
           if-no-files-found: ignore
+      # A red scheduled run is easy to miss, so keep one open issue with the latest diff
+      # while the data is stale, and close it once a run on master comes back clean.
+      - name: Open or update the drift issue
+        if: failure() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "Run: $RUN_URL"
+            echo
+            echo 'Fix: `python tools/crawl_bucket.py generate`, commit, then a plugin-hub PR.'
+            echo
+            if [ -f build/drop-data-diff.md ]; then head -c 60000 build/drop-data-diff.md; else echo "The check failed before it wrote a report; see the run log."; fi
+          } > build/drift-issue.md
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "in:title \"$DRIFT_TITLE\"" --json number,title --jq "map(select(.title == env.DRIFT_TITLE)) | .[0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" --body-file build/drift-issue.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$DRIFT_TITLE" --body-file build/drift-issue.md
+          fi
+      - name: Close the drift issue
+        if: success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "in:title \"$DRIFT_TITLE\"" --json number,title --jq "map(select(.title == env.DRIFT_TITLE)) | .[0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue close "$number" --repo "$GITHUB_REPOSITORY" --comment "Data matches the wiki again: $RUN_URL"
+          fi
