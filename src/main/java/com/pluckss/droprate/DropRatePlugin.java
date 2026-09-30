@@ -762,12 +762,12 @@ public class DropRatePlugin extends Plugin
 
 			if (config.minItemValue() > 0)
 			{
-				int unitPrice = itemManager.getItemPrice(stack.getId());
+				long unitPrice = itemManager.getItemPrice(stack.getId());
 				// Untradeables (pets, jars, Unsired) have no GE price and come back as 0.
 				// They are exactly the drops players want to be told about, so a value
 				// filter must never hide them — only filter items that do have a price.
 				if (unitPrice > 0
-					&& (long) unitPrice * Math.max(1, stack.getQuantity()) < config.minItemValue())
+					&& unitPrice * Math.max(1, stack.getQuantity()) < config.minItemValue())
 				{
 					continue;
 				}
