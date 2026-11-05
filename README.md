@@ -71,7 +71,7 @@ The data comes straight from the OSRS Wiki's own drop tables. A job runs every M
 compares what's bundled against the live wiki, so when Jagex changes a rate it gets caught
 instead of sitting wrong for months.
 
-- **689 monsters and bosses**, 1465 different items, 16545 rates in total
+- **691 monsters and bosses**, 1467 different items, 17760 rates in total
 - **The Rare Drop Table**, including how Ring of Wealth and Legends' Quest change it
 - **Clue caskets**, Beginner through Master, printed when you open one
 - **Minigames**: Wintertodt, Tempoross, Guardians of the Rift, Soul Wars, Barbarian Assault high gamble
