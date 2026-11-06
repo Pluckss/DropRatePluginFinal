@@ -737,6 +737,10 @@ public class DropRatePlugin extends Plugin
 			return;
 		}
 
+		// Both NPC event paths can describe one roll as split or merged stacks.
+		// Use per-item totals for deduplication, value/quantity filters and chat.
+		items = aggregateLoot(items);
+
 		if (isDuplicateLoot(npcName, items))
 		{
 			log.debug("Ignoring duplicate loot event for {}: {}", npcName, items);
@@ -799,6 +803,7 @@ public class DropRatePlugin extends Plugin
 
 			if (!config.showMultiRollDrops() && chance != null && chance.numerator >= 2.0d)
 			{
+				log.debug("Hiding {} from {}: Show bundle drops is disabled (rate {})", itemName, npcName, resolvedDrop.rate);
 				continue;
 			}
 
@@ -869,9 +874,22 @@ public class DropRatePlugin extends Plugin
 		return previousTick != null && tick - previousTick <= 1;
 	}
 
+	private Collection<ItemStack> aggregateLoot(Collection<ItemStack> items)
+	{
+		Map<Integer, Integer> quantities = new LinkedHashMap<>();
+		for (ItemStack item : items)
+		{
+			quantities.merge(item.getId(), item.getQuantity(), Integer::sum);
+		}
+
+		List<ItemStack> totals = new ArrayList<>(quantities.size());
+		quantities.forEach((id, quantity) -> totals.add(new ItemStack(id, quantity)));
+		return totals;
+	}
+
 	private String buildLootSignature(String npcName, Collection<ItemStack> items)
 	{
-		ArrayList<ItemStack> sortedItems = new ArrayList<>(items);
+		ArrayList<ItemStack> sortedItems = new ArrayList<>(aggregateLoot(items));
 		sortedItems.sort(Comparator.comparingInt(ItemStack::getId).thenComparingInt(ItemStack::getQuantity));
 
 		StringBuilder signature = new StringBuilder(npcName);

@@ -55,7 +55,8 @@ public interface DropRateConfig extends Config
 		keyName = "displayMode",
 		name = "Drop visibility",
 		description = "<html>All drops: show a rate for every item received.<br>"
-			+ "Notable drops only: hide guaranteed drops (bones, always-drops) and any items in the filler list below.</html>",
+			+ "Notable drops only: hide guaranteed drops (bones, always-drops) and any items in the filler list below.<br>"
+			+ "Both modes still apply Filtering settings, including Show bundle drops.</html>",
 		position = 0,
 		section = dropFeedSection
 	)
@@ -235,7 +236,10 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "allowSpam",
 		name = "Show bundle drops",
-		description = "Include multi-roll drops such as 2/115, 6/378, or 2 x 1/637",
+		description = "<html>Include multi-roll drops such as 2/115, 6/378, or 2 x 1/637.<br>"
+			+ "Turning this off hides them even with All drops selected.<br>"
+			+ "For example, Hydra Magic seed is 2 x 1/1147.7 and is hidden when off.<br>"
+			+ "The roll count is separate from the number of items received.</html>",
 		position = 0,
 		section = cleanerFeedSection
 	)
@@ -350,7 +354,10 @@ public interface DropRateConfig extends Config
 	@ConfigItem(
 		keyName = "notificationThreshold",
 		name = "Notification threshold",
-		description = "Minimum rarity to trigger a notification. Example: 1000 means only 1/1000 or rarer drops notify you.",
+		description = "<html>Minimum rarity to trigger a notification, after chat filters.<br>"
+			+ "1000 means only 1/1000 or rarer drops notify you.<br>"
+			+ "Uses the simplified rate: Hydra Magic seed (2 x 1/1147.7)<br>"
+			+ "is about 1/574, so it does not notify at 1000.</html>",
 		position = 1,
 		section = notificationsSection
 	)
