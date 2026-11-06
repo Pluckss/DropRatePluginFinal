@@ -115,6 +115,9 @@ Nothing is required. Install it and it works. But if you want to tune it:
 ### Filtering
 
 - **Show bundle drops** — include multi-roll drops like `6/378`. On by default.
+  Turning this off hides those drops even when **Drop visibility** is **All drops**.
+  For example, Alchemical Hydra Magic seed is `2 × 1/1147.7`, so it needs this enabled.
+  The `2 ×` means two rolls per kill, independently of receiving a stack of two seeds.
 - **Hidden filler items** — a comma-separated list of things you never want to hear about.
 - **Min item value (gp)** — hide drops worth less than this on the GE. Pets and other
   untradeables are never hidden by this.
@@ -130,6 +133,9 @@ Nothing is required. Install it and it works. But if you want to tune it:
   normal RuneLite notification settings, so you control the popup, the sound, and the
   screen flash. Handy when you're alt-tabbed. Off by default.
 - **Notification threshold** — how rare it has to be. `1000` means 1/1000 and rarer.
+  This uses the simplified rate and applies after the chat filters. Hydra Magic seed
+  simplifies to about `1/574`, so it does not notify at `1000`. The kill counter
+  minimum only controls whether KC is appended; it never hides the drop message.
 
 ### Appearance
 

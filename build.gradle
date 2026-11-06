@@ -87,3 +87,21 @@ tasks.register('shadowJar', Jar) {
 	archiveClassifier.set('shadow')
 	archiveFileName.set("${rootProject.name}-${project.version}-all.jar")
 }
+
+// Exercise the real plugin and RuneLite item stacks without a game login.
+sourceSets {
+	verification {
+		java.srcDir 'tools/verify'
+		compileClasspath += sourceSets.main.output + configurations.compileClasspath
+		runtimeClasspath += sourceSets.main.output + configurations.compileClasspath
+	}
+}
+
+tasks.register('verifyLootStacks', JavaExec) {
+	classpath = sourceSets.verification.runtimeClasspath
+	mainClass = 'LootStackCheck'
+}
+
+tasks.named('check') {
+	dependsOn 'verifyLootStacks'
+}
