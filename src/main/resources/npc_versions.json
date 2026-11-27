@@ -4752,7 +4752,8 @@
     {
       "version": "",
       "ids": [
-        6740
+        6740,
+        16917
       ],
       "drops": {
         "Shade robe": "32/128",
@@ -5196,7 +5197,7 @@
         "Green d'hide body": "7/128",
         "Grimy ranarr weed": "1/51.2",
         "Grimy snapdragon": "1/51.2",
-        "Grimy torstol": "1/68.27",
+        "Grimy torstol": "1/68.3",
         "Mithril longsword": "15/128",
         "Nature rune": "4/128",
         "Nihil shard": "1/128",
@@ -5263,7 +5264,7 @@
         "Coal": "8/128",
         "Grimy ranarr weed": "1/51.2",
         "Grimy snapdragon": "1/51.2",
-        "Grimy torstol": "1/68.27",
+        "Grimy torstol": "1/68.3",
         "Lobster": "1/128",
         "Mind rune": "7/128",
         "Mithril longsword": "15/128",
@@ -5563,8 +5564,7 @@
         2176,
         2177,
         2178,
-        2179,
-        2187
+        2179
       ],
       "drops": {
         "Obsidian cape": "1/512",
