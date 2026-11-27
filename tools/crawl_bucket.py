@@ -51,10 +51,6 @@ RDT_FILE = "rare_drop_table.json"
 # Rates rarer than 1/50 are shown in chat; anything more common is noise.
 # Applied to the denominator alone, matching the original crawler.
 MIN_DENOMINATOR = 50
-# Keep notable drops whose documented rates would otherwise be filtered out.
-COMMON_DROP_EXCEPTIONS = {
-    ("Blood-starved venator", "Blood shard"),
-}
 EXCLUDED_ITEMS = {"Coins"}
 EXCLUDED_PAGE_PATTERNS = [re.compile(r"\(Deadman\)$")]
 # Drop lines the plugin can see as NPC loot: kills, pickpockets and implings.
@@ -277,9 +273,14 @@ def build_primary(rows, item_names, npc_pages):
         if item in EXCLUDED_ITEMS:
             continue
         page = source_key(page)
-        rate = primary_rate(info, page, item)
-        if rate is None:
+        parsed = parse_rarity(info.get("Rarity"))
+        if not parsed:
             continue
+        approx, num, den = parsed
+        if float(den) < MIN_DENOMINATOR:
+            continue
+        approx = approx or bool(info.get("Approx"))
+        rate = format_rate(num, den, info.get("Rolls") or 1, approx, PRIMARY_TIMES)
         rates = table[page][item]
         if rate not in rates:
             rates.append(rate)
@@ -451,13 +452,13 @@ VERSIONS_FILE = "npc_versions.json"
 LEVEL_NUMBERS = re.compile(r"\d+")
 
 
-def primary_rate(info, source, item):
+def primary_rate(info):
     """Rate string for one monster row under the primary-file rules, or None."""
     parsed = parse_rarity(info.get("Rarity"))
     if not parsed:
         return None
     approx, num, den = parsed
-    if float(den) < MIN_DENOMINATOR and (source, item) not in COMMON_DROP_EXCEPTIONS:
+    if float(den) < MIN_DENOMINATOR:
         return None
     approx = approx or bool(info.get("Approx"))
     return format_rate(num, den, info.get("Rolls") or 1, approx, PRIMARY_TIMES)
@@ -495,7 +496,7 @@ def build_versions(rows, infobox_rows, item_names, npc_pages):
         item = item_names.resolve(row["item_name"])
         if item in EXCLUDED_ITEMS:
             continue
-        rate = primary_rate(info, source_key(page), item)
+        rate = primary_rate(info)
         if rate and rate not in tables[page][sub][item]:
             tables[page][sub][item].append(rate)
 
